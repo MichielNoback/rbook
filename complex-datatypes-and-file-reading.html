@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Complex Datatypes and File Reading | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="4.1 Factors: Nominal &amp; Ordinal scales Although factors are not actually a complex datatype but very much one of the five base types in R, I saved them because they have some more complex and...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Complex Datatypes and File Reading | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="4.1 Factors: Nominal &amp; Ordinal scales Although factors are not actually a complex datatype but very much one of the five base types in R, I saved them because they have some more complex and...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Complex Datatypes and File Reading | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="4.1 Factors: Nominal &amp; Ordinal scales Although factors are not actually a complex datatype but very much one of the five base types in R, I saved them because they have some more complex and...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="active" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">16</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="complex-datatypes-and-file-reading" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Complex Datatypes and File Reading<a class="anchor" aria-label="anchor" href="#complex-datatypes-and-file-reading"><i class="fas fa-link"></i></a>
+</h1>
+<div id="factors-nominal-ordinal-scales" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> Factors: Nominal &amp; Ordinal scales<a class="anchor" aria-label="anchor" href="#factors-nominal-ordinal-scales"><i class="fas fa-link"></i></a>
+</h2>
+<p>Although factors are not actually a complex datatype but very much one of the five base types in R, I saved them because they have some more complex and sometimes puzzling behaviour.</p>
+<div class="definitions">
+<p>Factors represent different discrete levels of a variable - the <em>nominal</em> and <em>ordinal</em> scales known from statistics.</p>
+</div>
+<p>For instance:</p>
+<ul>
+<li>eye color (brown, blue, green)</li>
+<li>weight class (underweight, normal, obese)</li>
+<li>autism spectrum (none, minimal, heavy)</li>
+</ul>
+<div id="factor-creation" class="section level4 unnumbered">
+<h4>Factor creation<a class="anchor" aria-label="anchor" href="#factor-creation"><i class="fas fa-link"></i></a>
+</h4>
+<p>Factors are used to represent data in nominal and ordinal scales. <strong><em>Nominal</em></strong> has no order (e.g. eye color). <strong><em>Ordinal</em></strong> has order (e.g. autism spectrum), but can not be calculated with, other than ordering from high to low. No <em>distance</em> is defined between separate levels. The following functions are used to create factors:</p>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>: constructor function, from factor, character, numeric or logical</li>
+<li>
+<code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code>: coercion function, from factor, character, numeric or logical</li>
+<li>
+<code><a href="https://rdrr.io/r/base/cut.html">cut()</a></code>: conversion function from numeric vector</li>
+</ul>
+<p>So what is the difference between <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code> and <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code>? Function <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code> is a <em>wrapper</em> for <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>. The difference lies in behaviour when the input is a factor itself: <code>factor</code> will omit unused levels. Besides this, <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code> does not specify the arguments for labels and levels.</p>
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">x</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] a b
+## Levels: a b c
+## [1] a b
+## Levels: a b
+## [1] a b
+## Levels: a b c</code></pre>
+<p>Suppose you have surveyed the eye color of your class room and found these values</p>
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">eye_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"green"</span>, <span class="st">"blue"</span>, <span class="st">"brown"</span>, <span class="st">"brown"</span>, <span class="st">"blue"</span>,</span>
+<span>    <span class="st">"brown"</span>, <span class="st">"brown"</span>, <span class="st">"brown"</span>, <span class="st">"blue"</span>, <span class="st">"brown"</span>, <span class="st">"green"</span>,</span>
+<span>    <span class="st">"brown"</span>, <span class="st">"brown"</span>, <span class="st">"blue"</span>, <span class="st">"blue"</span>, <span class="st">"brown"</span><span class="op">)</span></span></code></pre></div>
+<p>Next you would like to plot or tabulate these findings. Simply plotting gives an error:</p>
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">eye_colors</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning in xy.coords(x, y, xlabel, ylabel, log): NAs introduced by coercion</code></pre>
+<pre><code>## Warning in min(x): no non-missing arguments to min; returning Inf</code></pre>
+<pre><code>## Warning in max(x): no non-missing arguments to max; returning -Inf</code></pre>
+<pre><code>## Error in plot.window(...): need finite 'ylim' values</code></pre>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/eye-color-2-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>However, plotting a character vector converted to a factor is easy</p>
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">eye_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">eye_colors</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">eye_colors</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/eye-color-3-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>Factors are also really easy to tabulate and filter</p>
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">eye_colors</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## eye_colors
+##  blue brown green 
+##     5     9     2</code></pre>
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">eye_colors</span> <span class="op">==</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+</div>
+<div id="levels-labels-and-ordering" class="section level4 unnumbered">
+<h4>Levels, Labels and Ordering<a class="anchor" aria-label="anchor" href="#levels-labels-and-ordering"><i class="fas fa-link"></i></a>
+</h4>
+<p>When working with ordinal scales, defining the order of the factors (levels) is crucial. By default, R uses the <em>natural ordering</em> which means it will stick to either numerical (<code>numeric</code>, <code>integer</code> and <code>logical</code>) or alphabetical ordering (<code>character</code>). When you want a different ordering you need to specify this. You can even define missing levels, as shown in the following example.</p>
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">classSizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"big"</span>, <span class="st">"small"</span>, <span class="st">"huge"</span>, <span class="st">"huge"</span>, </span>
+<span>    <span class="st">"small"</span>,<span class="st">"big"</span>,<span class="st">"small"</span>,<span class="st">"big"</span><span class="op">)</span>,</span>
+<span>    levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"small"</span>, <span class="st">"normal"</span>, <span class="st">"big"</span>, <span class="st">"huge"</span><span class="op">)</span>,</span>
+<span>    ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co">#make it an ordinal scale!</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">classSizes</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/class-sizes-1-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>When you have factor, you can do a -limited- set of calulations with it. However, comparators only work with ordinal scale. As with all equality tests, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> works as well:</p>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">classSizes</span> <span class="op">&lt;</span> <span class="st">"big"</span> <span class="co">## only with in Ordinal scale</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">classSizes</span> <span class="op">==</span> <span class="st">"huge"</span><span class="op">)</span> </span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="convert-existing-factors" class="section level4 unnumbered">
+<h4>Convert existing factors<a class="anchor" aria-label="anchor" href="#convert-existing-factors"><i class="fas fa-link"></i></a>
+</h4>
+<p>When you already have an unordered factor, you can make it ordered by using the function <code><a href="https://rdrr.io/r/base/factor.html">ordered()</a></code> together with a fvector specifying the levels.</p>
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">classSizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"big"</span>, <span class="st">"small"</span>, <span class="st">"huge"</span>, <span class="st">"huge"</span>,</span>
+<span>    <span class="st">"small"</span>, <span class="st">"big"</span>, <span class="st">"small"</span>, <span class="st">"big"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">classSizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">ordered</a></span><span class="op">(</span><span class="va">classSizes</span>,</span>
+<span>                    levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"small"</span>, <span class="st">"big"</span>, <span class="st">"huge"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">classSizes</span></span></code></pre></div>
+<pre><code>## [1] big   small huge  huge  small big   small big  
+## Levels: small &lt; big &lt; huge</code></pre>
+</div>
+<div id="when-calculations-get-corrupted" class="section level4 unnumbered">
+<h4>When calculations get corrupted<a class="anchor" aria-label="anchor" href="#when-calculations-get-corrupted"><i class="fas fa-link"></i></a>
+</h4>
+<p>Especially when a factor consists of numeric levels, calculations can get your mind screwed big time:</p>
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">+</span> <span class="fl">1</span></span></code></pre></div>
+<pre><code>## Warning in Ops.factor(x, 1): '+' not meaningful for factors</code></pre>
+<pre><code>## [1] NA NA NA NA</code></pre>
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span></code></pre></div>
+<pre><code>## [1] 2 3 4 3</code></pre>
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span></code></pre></div>
+<pre><code>## [1] 4 5 6</code></pre>
+<p>The only way to get the numbers back with numeric factors is by using this trick</p>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span></span></code></pre></div>
+<pre><code>## [1] 3 4 5 4
+## Levels: 3 4 5</code></pre>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="va">x</span><span class="op">]</span></span></code></pre></div>
+<pre><code>## [1] 3 4 5 4</code></pre>
+<p>But this makes for really unintelligible code so try to prevent this at all costs!</p>
+</div>
+<div id="the-power-of-factors" class="section level4 unnumbered">
+<h4>The power of factors<a class="anchor" aria-label="anchor" href="#the-power-of-factors"><i class="fas fa-link"></i></a>
+</h4>
+<p>Factors are used all the time e.g. for defining treated/untreated. That’s why R knows how to deal with them so well:</p>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">ChickWeight</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">Diet</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/factor-plotting-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>You will see many many examples of factors in the subsequent chapters of this ebook.</p>
+<p>But it’s time to switch to a better plotting platform. Here is the same plot with the <code>ggplot2</code> library:</p>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ChickWeight</span>,</span>
+<span>       mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Diet</span>, y <span class="op">=</span> <span class="va">weight</span>, fill <span class="op">=</span> <span class="va">Diet</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/factor-plotting-ggplot-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>From here on, I will only use the base R plotting system for quick-and-dirty visualizations, just like you should.</p>
+</div>
+</div>
+<div id="lists" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Lists<a class="anchor" aria-label="anchor" href="#lists"><i class="fas fa-link"></i></a>
+</h2>
+<div class="definitions">
+<p>A list is an <strong><em>ordered collection of objects</em></strong>. These objects can be of any type: vectors (also of different types), dataframes, lists.</p>
+</div>
+<div id="list-creation" class="section level4 unnumbered">
+<h4>List creation<a class="anchor" aria-label="anchor" href="#list-creation"><i class="fas fa-link"></i></a>
+</h4>
+<p>Create a list with or without element names:</p>
+<ul>
+<li>
+<code>list(element1, element2, ...)</code><br>
+</li>
+<li><code>list(name1 = element1, name2 = element2, ...)</code></li>
+</ul>
+<p>Without names:</p>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>;  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"bar"</span><span class="op">)</span></span>
+<span><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
+<span><span class="va">l</span></span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 2 3 1
+## 
+## [[2]]
+## [1] "foo" "bar"</code></pre>
+<p>With names:</p>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"bar"</span><span class="op">)</span></span>
+<span><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"numbers"</span> <span class="op">=</span> <span class="va">x</span>, <span class="st">"words"</span> <span class="op">=</span> <span class="va">y</span><span class="op">)</span></span>
+<span><span class="va">l</span></span></code></pre></div>
+<pre><code>## $numbers
+## [1] 2 3 1
+## 
+## $words
+## [1] "foo" "bar"</code></pre>
+<p>This is the preferred way to create and use them because it gives you more and easier ways to access its elements and it makes for much more reradable code. That’s why you will only see lists with named elements from here on.</p>
+</div>
+<div id="making-selections-on-lists" class="section level4 unnumbered">
+<h4>Making selections on lists<a class="anchor" aria-label="anchor" href="#making-selections-on-lists"><i class="fas fa-link"></i></a>
+</h4>
+<p>Accessing named elements can be done in three ways:</p>
+<ul>
+<li>By index, within double or single brackets: <code>[[&lt;index&gt;]]</code> or <code>[&lt;index&gt;]</code>
+</li>
+<li>By name of the element, within double or single brackets: <code>[[&lt;name&gt;]]</code> or <code>[&lt;name&gt;]</code>
+</li>
+<li>By name of the element, using the dollar sign on the list name: <code>$&lt;name&gt;</code>
+</li>
+</ul>
+<p>Here are all three:</p>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>        <span class="co"># index</span></span>
+<span><span class="va">l</span><span class="op">[[</span><span class="st">"words"</span><span class="op">]</span><span class="op">]</span>  <span class="co"># name of element with double brackets</span></span>
+<span><span class="va">l</span><span class="op">$</span><span class="va">words</span>       <span class="co"># name of element with dollar sign</span></span></code></pre></div>
+<pre><code>## [1] "foo" "bar"
+## [1] "foo" "bar"
+## [1] "foo" "bar"</code></pre>
+<div class="attention">
+<p>Single bracket selection on a list returns a list; double brackets and <code>$</code> return a vector.</p>
+</div>
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">l</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">l</span><span class="op">$</span><span class="va">words</span></span></code></pre></div>
+<pre><code>## $words
+## [1] "foo" "bar"
+## 
+## [1] "foo" "bar"
+## [1] "foo" "bar"</code></pre>
+<p>In R, selections are often <strong><em>chained</em></strong>. In the following example the second vector element of the second list element is selected.</p>
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l</span></span>
+<span><span class="va">l</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> </span></code></pre></div>
+<pre><code>## $numbers
+## [1] 2 3 1
+## 
+## $words
+## [1] "foo" "bar"
+## 
+## [1] "bar"</code></pre>
+<p>When you need multiple elements of a list, use <strong><em>single brackets</em></strong>. Remember: single brackets return a list; that’s why you need single brackets here.</p>
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code>## $numbers
+## [1] 2 3 1
+## 
+## $words
+## [1] "foo" "bar"
+## 
+## $numbers
+## [1] 2 3 1</code></pre>
+<p>Accessing named elements has its limitations. You can not use a variable in combination with the dollar sign selector.</p>
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">select</span> <span class="op">&lt;-</span> <span class="st">"words"</span></span>
+<span><span class="va">l</span><span class="op">[[</span><span class="va">select</span><span class="op">]</span><span class="op">]</span> <span class="co">## OK</span></span></code></pre></div>
+<pre><code>## [1] "foo" "bar"</code></pre>
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l</span><span class="op">$</span><span class="va">select</span> <span class="co">##fails - no element with name "select"</span></span></code></pre></div>
+<pre><code>## NULL</code></pre>
+<p>Chaining of selectors can become awkward, as this example demonstrates.</p>
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">[</span><span class="st">"words"</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">words</span>  <span class="co">## mind****</span></span></code></pre></div>
+<pre><code>## [1] "foo" "bar"</code></pre>
+</div>
+</div>
+<div id="dataframes" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Dataframes<a class="anchor" aria-label="anchor" href="#dataframes"><i class="fas fa-link"></i></a>
+</h2>
+<div class="definitions">
+<p>A dataframe is an <strong><em>ordered collection of vectors</em></strong>. These vectors can have <em>differing types</em> but must have <em>equal lengths</em>.</p>
+</div>
+<p>A dataframe is very similar to the square grid-like structures you have probably worked with in Excel. Variables are in columns in which all elements are of the same type. Examples (observations) are in rows - they <em>can</em> have differing types.</p>
+<p>Dataframes can be constructed using the <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> function in the same way as the <code>list</code> function:<br><code>data.frame(column1 = vector1, column2 = vector2, ...)</code></p>
+<p>Here is a first example.</p>
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">geneNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"P53"</span>,<span class="st">"BRCA1"</span>,<span class="st">"VAMP1"</span>, <span class="st">"FHIT"</span><span class="op">)</span></span>
+<span><span class="va">sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">meanExp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4.5</span>, <span class="fl">7.3</span>, <span class="fl">5.4</span>, <span class="fl">2.4</span><span class="op">)</span></span>
+<span><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    <span class="st">"name"</span> <span class="op">=</span> <span class="va">geneNames</span>,  </span>
+<span>    <span class="st">"significant"</span> <span class="op">=</span> <span class="va">sig</span>,  </span>
+<span>    <span class="st">"expression"</span> <span class="op">=</span> <span class="va">meanExp</span><span class="op">)</span>  </span>
+<span><span class="va">genes</span></span></code></pre></div>
+<pre><code>##    name significant expression
+## 1   P53        TRUE        4.5
+## 2 BRCA1        TRUE        7.3
+## 3 VAMP1       FALSE        5.4
+## 4  FHIT       FALSE        2.4</code></pre>
+<p>By wrapping this dataframe in a more modern variant of <code>data.frame</code>, the <code>tibble</code>, you can see the structure: each column has a single datatype but rows can have differing types for neighboring fields.</p>
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+##   name  significant expression
+##   &lt;chr&gt; &lt;lgl&gt;            &lt;dbl&gt;
+## 1 P53   TRUE               4.5
+## 2 BRCA1 TRUE               7.3
+## 3 VAMP1 FALSE              5.4
+## 4 FHIT  FALSE              2.4</code></pre>
+<div id="importing-dataframes-using-read.table" class="section level3" number="4.3.1">
+<h3>
+<span class="header-section-number">4.3.1</span> Importing dataframes using <code>read.table()</code><a class="anchor" aria-label="anchor" href="#importing-dataframes-using-read.table"><i class="fas fa-link"></i></a>
+</h3>
+<p>Usually your data comes from file, loaded into memory as a <code>data.frame</code>. The most common data transfer- and storage format is text. The text file will have column separators that can be any of a wide range of characters called <strong><em>delimiters</em></strong>, but tab- or comma-delimited fields are most common.</p>
+<p>Here is an example dataset in a file (see <a href="data/whale_selenium.txt">whale_selenium.txt</a>) where the separator is a space character:</p>
+<pre><code>whale liver.Se tooth.Se  
+1 6.23 140.16  
+2 6.79 133.32  
+3 7.92 135.34  
+...  
+19 41.23 206.30  
+20 45.47 141.31  </code></pre>
+<p>To load this data into an R session you can use the function <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code>. Let’s try</p>
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">whale_selenium</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/whale_selenium.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">whale_selenium</span><span class="op">)</span> <span class="co"># first rows</span></span></code></pre></div>
+<pre><code>##      V1       V2       V3
+## 1 whale liver.Se tooth.Se
+## 2     1     6.23   140.16
+## 3     2     6.79   133.32
+## 4     3     7.92   135.34
+## 5     4     8.02   127.82
+## 6     5     9.34   108.67</code></pre>
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">whale_selenium</span><span class="op">)</span> <span class="co"># structure</span></span></code></pre></div>
+<pre><code>## 'data.frame':    21 obs. of  3 variables:
+##  $ V1: chr  "whale" "1" "2" "3" ...
+##  $ V2: chr  "liver.Se" "6.23" "6.79" "7.92" ...
+##  $ V3: chr  "tooth.Se" "140.16" "133.32" "135.34" ...</code></pre>
+<p>That is not entirely correct: all columns are imported as a factor while obviously they should be numeric. The cause of this is that, when loading the data,</p>
+<ul>
+<li>there is no special consideration for the header line</li>
+<li>the separator is assumed to be a space</li>
+<li>the decimal is assumed to be a dot “.”</li>
+</ul>
+<p>(and some more assumptions)</p>
+<p>Therefore, to read a file correctly, you have to specify its format in every detail. in this case,</p>
+<ul>
+<li>the first line is a header with column names</li>
+<li>the first column contains the row names</li>
+</ul>
+<p>Here is a new attempt with some <strong><em>format specifications</em></strong>:</p>
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">whale_selenium</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span></span>
+<span>    file <span class="op">=</span> <span class="st">"data/whale_selenium.txt"</span>,</span>
+<span>    header <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p>Before proceeding with your data, you should always perform some checks. Several helper methods exist for this purpose:</p>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> shows you the first <code>n</code> lines</li>
+<li>
+<code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> gives you a structure description: what types have the columns and what dimension does the data frame have?</li>
+<li>
+<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> gives you a 6-number sumary of the data</li>
+</ul>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="complex-datatypes-and-file-reading.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(whale_selenium, <span class="at">n=</span><span class="dv">4</span>) </span></code></pre></div>
+<pre><code>##   liver.Se tooth.Se
+## 1     6.23   140.16
+## 2     6.79   133.32
+## 3     7.92   135.34
+## 4     8.02   127.82</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="complex-datatypes-and-file-reading.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">str</span>(whale_selenium) </span></code></pre></div>
+<pre><code>## 'data.frame':    20 obs. of  2 variables:
+##  $ liver.Se: num  6.23 6.79 7.92 8.02 9.34 ...
+##  $ tooth.Se: num  140 133 135 128 109 ...</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="complex-datatypes-and-file-reading.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(whale_selenium) </span></code></pre></div>
+<pre><code>##     liver.Se         tooth.Se    
+##  Min.   : 6.230   Min.   :108.7  
+##  1st Qu.: 9.835   1st Qu.:134.8  
+##  Median :14.905   Median :143.4  
+##  Mean   :20.685   Mean   :156.6  
+##  3rd Qu.:33.633   3rd Qu.:175.1  
+##  Max.   :45.470   Max.   :245.1</code></pre>
+</div>
+<div id="file-io-in-detail" class="section level3" number="4.3.2">
+<h3>
+<span class="header-section-number">4.3.2</span> File I/O in detail<a class="anchor" aria-label="anchor" href="#file-io-in-detail"><i class="fas fa-link"></i></a>
+</h3>
+<p>Whatever the contents of a file, you always need to address (some of) these questions:</p>
+<ul>
+<li>Are there comment lines at the top?</li>
+<li>Is there a header line with column names?</li>
+<li>What is the column separator?</li>
+<li>Are there quotes around character data?</li>
+<li>How are missing values encoded?</li>
+<li>How are numeric values encoded?</li>
+<li>Are there dates (a special challenge)</li>
+<li>What is the type in each column?
+<ul>
+<li>character / numeric / factor / date-time</li>
+</ul>
+</li>
+</ul>
+<div id="some-read.table-arguments" class="section level4 unnumbered">
+<h4>Some <code>read.table()</code> arguments<a class="anchor" aria-label="anchor" href="#some-read.table-arguments"><i class="fas fa-link"></i></a>
+</h4>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="31%">
+<col width="35%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>arg</th>
+<th>specifies</th>
+<th>example</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>sep</strong></td>
+<td>field separator</td>
+<td>sep = “:”</td>
+</tr>
+<tr class="even">
+<td><strong>header</strong></td>
+<td>is there a header</td>
+<td>header = F</td>
+</tr>
+<tr class="odd">
+<td><strong>dec</strong></td>
+<td>decimal format</td>
+<td>dec = “,”</td>
+</tr>
+<tr class="even">
+<td><strong>comment.char</strong></td>
+<td>comment line start</td>
+<td>comment.char = “”</td>
+</tr>
+<tr class="odd">
+<td><strong>na.strings</strong></td>
+<td>NA value</td>
+<td>na.strings = “-”</td>
+</tr>
+<tr class="even">
+<td><strong>as.is</strong></td>
+<td>load as character</td>
+<td>as.is = c(1,4)</td>
+</tr>
+<tr class="odd">
+<td><strong>stringsAsFactors</strong></td>
+<td>load strings as factors</td>
+<td>stringsAsFactors = F</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="the-data-reading-workflow" class="section level4 unnumbered">
+<h4>The data reading workflow<a class="anchor" aria-label="anchor" href="#the-data-reading-workflow"><i class="fas fa-link"></i></a>
+</h4>
+<p>Always apply this sequence of steps and repeat until you are satisfied with the result:</p>
+<ol style="list-style-type: decimal">
+<li>
+<code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> with arguments that seem OK</li>
+<li>Check the result at least with <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> and <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> and verify that the columns have the correct data type.
+<ul>
+<li>Factors where numeric expected indicate missed “NA” values!</li>
+</ul>
+</li>
+<li>Adjust the read.table parameters</li>
+<li>Rinse and repeat</li>
+</ol>
+</div>
+</div>
+<div id="simple-dataframe-manipulations" class="section level3" number="4.3.3">
+<h3>
+<span class="header-section-number">4.3.3</span> Simple dataframe manipulations<a class="anchor" aria-label="anchor" href="#simple-dataframe-manipulations"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are various other helper methods the you can use to inspect the contents and nature of your dataframe columns and rows:</p>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> gives the rows and columns</li>
+<li>
+<code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code> gives the number of columns</li>
+<li>
+<code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> gives the number of rows</li>
+<li>
+<code><a href="https://rdrr.io/r/base/names.html">names()</a></code> gives the column names (synonym to <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code>)</li>
+<li>
+<code><a href="https://rdrr.io/r/base/colnames.html">rownames()</a></code> gives the row names</li>
+</ul>
+<p>But visualizing your data speaks more than a thousand words of course.</p>
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">whale_selenium</span>,</span>
+<span>       mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">liver.Se</span>, y <span class="op">=</span> <span class="va">tooth.Se</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="st">"y~x"</span>, se <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">xlab</span><span class="op">(</span><span class="st">"Liver Selenium"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Tooth Selenium"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/data-frame-io3-1.png" width="80%" style="display: block; margin: auto;"></div>
+<div id="changing-column-names" class="section level4 unnumbered">
+<h4>Changing column names<a class="anchor" aria-label="anchor" href="#changing-column-names"><i class="fas fa-link"></i></a>
+</h4>
+<p>Sometimes the existing column names are not convenient to work with (unclear, too long etc.). In that case it may be a good idea to change the column names. To do this you can use either <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> or <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code>.</p>
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">whale_selenium</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"liver"</span>, <span class="st">"tooth"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">whale_selenium</span>, n<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   liver  tooth
+## 1  6.23 140.16
+## 2  6.79 133.32</code></pre>
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">##or</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">whale_selenium</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pancreas"</span>, <span class="st">"colon"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">whale_selenium</span>, n<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   pancreas  colon
+## 1     6.23 140.16
+## 2     6.79 133.32</code></pre>
+</div>
+<div id="adding-columns" class="section level4 unnumbered">
+<h4>Adding columns<a class="anchor" aria-label="anchor" href="#adding-columns"><i class="fas fa-link"></i></a>
+</h4>
+<p>You can add a single column by simply specifying its name and the value(s) to be attached.</p>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## add simulated stomach data</span></span>
+<span><span class="va">whale_selenium</span><span class="op">$</span><span class="va">stomach</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">whale_selenium</span><span class="op">)</span>, <span class="fl">42</span>, <span class="fl">6</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">whale_selenium</span>, n<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   liver  tooth  stomach
+## 1  6.23 140.16 52.53270
+## 2  6.79 133.32 50.69782</code></pre>
+<p>Alternatively, use <code>cbind</code>. It is a bit more versatile because you can add multiple columns at once.</p>
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">whale_selenium</span>, <span class="st">"brain"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="co">#cycled values!</span></span></code></pre></div>
+<pre><code>##    liver  tooth  stomach brain
+## 1   6.23 140.16 52.53270     1
+## 2   6.79 133.32 50.69782     0
+## 3   7.92 135.34 39.30723     1
+## 4   8.02 127.82 42.84040     0
+## 5   9.34 108.67 39.75810     1
+## 6  10.00 146.22 34.76140     0
+## 7  10.57 131.18 26.03192     1
+## 8  11.04 145.51 41.84943     0
+## 9  12.36 163.24 41.79376     1
+## 10 14.53 136.55 51.85415     0
+## 11 15.28 112.63 30.02723     1
+## 12 18.68 245.07 38.02698     0
+## 13 22.08 140.48 47.28023     1
+## 14 27.55 177.93 44.05432     0
+## 15 32.83 160.73 42.73052     1
+## 16 36.04 227.60 38.27543     0
+## 17 37.74 177.69 43.20567     1
+## 18 40.00 174.23 40.58457     0
+## 19 41.23 206.30 42.68197     1
+## 20 45.47 141.31 38.53242     0</code></pre>
+</div>
+<div id="adding-rows-rbind" class="section level4 unnumbered">
+<h4>Adding rows: <code>rbind()</code><a class="anchor" aria-label="anchor" href="#adding-rows-rbind"><i class="fas fa-link"></i></a>
+</h4>
+<p>Adding rows to a dataframe is similar. There is however a constraint: the column names of both dataframes need to match for this operation to succeed.</p>
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_data1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>colA <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, colB <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">my_data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>colA <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">5</span>, colB <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"d"</span>, <span class="st">"e"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">my_data_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">my_data1</span>, <span class="va">my_data2</span><span class="op">)</span></span>
+<span><span class="va">my_data_complete</span></span></code></pre></div>
+<pre><code>##   colA colB
+## 1    1    a
+## 2    2    b
+## 3    3    c
+## 4    4    d
+## 5    5    e</code></pre>
+</div>
+</div>
+<div id="selections-on-dataframes" class="section level3" number="4.3.4">
+<h3>
+<span class="header-section-number">4.3.4</span> Selections on dataframes<a class="anchor" aria-label="anchor" href="#selections-on-dataframes"><i class="fas fa-link"></i></a>
+</h3>
+<p>Making selections on dataframes is not very surprising when you already know how to do it with vectors and lists. There is only one extension. The fact that it is a square grid-like structure makes it possible to add an extra way of making selections: combining rows and column selections as subgrids. This section extensively reviews all means of making selections.</p>
+<p>This is a summary:</p>
+<ul>
+<li>Select a single column using <code>$</code> will return a vector</li>
+<li>Selecting with double brackets <code>[[&lt;name&gt;]]</code> or <code>[[&lt;index&gt;]]</code> will return a vector</li>
+<li>Selecting with single brackets <code>[&lt;name&gt;]</code> or <code>[&lt;index&gt;]</code> will return a dataframe</li>
+<li>Selecting with row-and-column coordinates <code>[row_selection, col_selection]</code> returns either a vector or a dataframe, depending on the selection made. Here, <code>row_selection</code> and <code>col_selection</code> can be
+<ul>
+<li>a numerical vector of length 1 or more</li>
+<li>a logical vector of length 1 or more</li>
+<li>empty (to select all rows/columns)</li>
+</ul>
+</li>
+</ul>
+<p>Here follow a few examples.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="complex-datatypes-and-file-reading.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> genes[<span class="dv">2</span>,<span class="dv">1</span>]            <span class="co">#row 2, column 1</span></span></code></pre></div>
+<pre><code>## [1] "BRCA1"</code></pre>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="complex-datatypes-and-file-reading.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> genes[<span class="dv">2</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]     <span class="co">#row 2, columns 1 and 2</span></span></code></pre></div>
+<pre><code>##    name significant
+## 2 BRCA1        TRUE</code></pre>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="complex-datatypes-and-file-reading.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> genes[<span class="dv">2</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)] <span class="co">#row 2, column 1 and 3</span></span></code></pre></div>
+<pre><code>##    name expression
+## 2 BRCA1        7.3</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="complex-datatypes-and-file-reading.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> genes<span class="sc">$</span>name          <span class="co">#column "name"</span></span></code></pre></div>
+<pre><code>## [1] "P53"   "BRCA1" "VAMP1" "FHIT"</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="complex-datatypes-and-file-reading.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> genes[, <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"expression"</span>)]  <span class="co">#columns "name" and "expression", all rows</span></span></code></pre></div>
+<pre><code>##    name expression
+## 1   P53        4.5
+## 2 BRCA1        7.3
+## 3 VAMP1        5.4
+## 4  FHIT        2.4</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="complex-datatypes-and-file-reading.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> genes[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]      <span class="co">#columns 1 and 2, all rows</span></span></code></pre></div>
+<pre><code>##    name significant
+## 1   P53        TRUE
+## 2 BRCA1        TRUE
+## 3 VAMP1       FALSE
+## 4  FHIT       FALSE</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="complex-datatypes-and-file-reading.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> genes[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ]      <span class="co">#row 1 and 2, all columns</span></span></code></pre></div>
+<pre><code>##    name significant expression
+## 1   P53        TRUE        4.5
+## 2 BRCA1        TRUE        7.3</code></pre>
+<p>As with vectors and lists, R will cycle selectors, and you can select an element as often as you want.</p>
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">genes</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">T</span>, <span class="cn">F</span><span class="op">)</span>, <span class="fl">1</span><span class="op">]</span>   <span class="co">#every uneven row, column 1</span></span></code></pre></div>
+<pre><code>## [1] "P53"   "VAMP1"</code></pre>
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">genes</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="op">]</span>  <span class="co">#three times row 1 and row 2</span></span></code></pre></div>
+<pre><code>##      name significant expression
+## 1     P53        TRUE        4.5
+## 1.1   P53        TRUE        4.5
+## 1.2   P53        TRUE        4.5
+## 2   BRCA1        TRUE        7.3</code></pre>
+<p>A dataframe is much like a list, but not entirely equal:</p>
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">genes</span><span class="op">[[</span><span class="st">"name"</span><span class="op">]</span><span class="op">]</span> <span class="co">## select column w. double brackets</span></span></code></pre></div>
+<pre><code>## [1] "P53"   "BRCA1" "VAMP1" "FHIT"</code></pre>
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span> <span class="co">## it is NOT a list though</span></span></code></pre></div>
+<pre><code>## [1] "data.frame"</code></pre>
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 'data.frame':    4 obs. of  3 variables:
+##  $ name       : chr  "P53" "BRCA1" "VAMP1" "FHIT"
+##  $ significant: logi  TRUE TRUE FALSE FALSE
+##  $ expression : num  4.5 7.3 5.4 2.4</code></pre>
+<div class="attention">
+<p>A dataframe can usually be treated as if it was a list, but a list can rarely be treated as a dataframe.</p>
+</div>
+<div id="selections-with-subset" class="section level4 unnumbered">
+<h4>Selections with <code>subset()</code><a class="anchor" aria-label="anchor" href="#selections-with-subset"><i class="fas fa-link"></i></a>
+</h4>
+<div class="info">
+<p>This section is optional; we are going to proceed with the <code>dplyr</code> package that makes these operations easier.</p>
+</div>
+<p>Function <code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code> can serve as alternative to “bracket-based” selections (<code>[ , ]</code>).
+You can use <code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code> to make both <strong>column</strong> and <strong>row selections</strong>. Here, using <code>subset =</code>, the rows are selected for which Solar.R is available using the <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> function.</p>
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>, subset <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Solar.R</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67   May   1
+## 2    36     118  8.0   72   May   2
+## 3    12     149 12.6   74   May   3
+## 4    18     313 11.5   62   May   4
+## 7    23     299  8.6   65   May   7
+## 8    19      99 13.8   59   May   8</code></pre>
+<p>Note that you don’t even need to use quotes for column names.</p>
+<p>Select columns only with the <code>select =</code> argument.</p>
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>, select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Ozone</span>, <span class="va">Solar.R</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Ozone Solar.R
+## 1    41     190
+## 2    36     118
+## 3    12     149
+## 4    18     313
+## 5    NA      NA
+## 6    28      NA</code></pre>
+<p>Of course, you can combine row and colum selection:</p>
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>, </span>
+<span>            subset <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Solar.R</span><span class="op">)</span>, </span>
+<span>            select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Ozone</span>, <span class="va">Solar.R</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Ozone Solar.R
+## 1    41     190
+## 2    36     118
+## 3    12     149
+## 4    18     313
+## 7    23     299
+## 8    19      99</code></pre>
+<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># shorthand notation</span></span>
+<span><span class="co">#subset(airquality, Day == 1, select = -Temp)</span></span></code></pre></div>
+<p><code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code> can be used more sophisticated; however we are going to see <code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code> on steroids in the next course: the functions in package <code>dplyr</code>.</p>
+
+</div>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></div>
+<div class="next"><a href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#complex-datatypes-and-file-reading"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="nav-link" href="#factors-nominal-ordinal-scales"><span class="header-section-number">4.1</span> Factors: Nominal &amp; Ordinal scales</a></li>
+<li><a class="nav-link" href="#lists"><span class="header-section-number">4.2</span> Lists</a></li>
+<li>
+<a class="nav-link" href="#dataframes"><span class="header-section-number">4.3</span> Dataframes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#importing-dataframes-using-read.table"><span class="header-section-number">4.3.1</span> Importing dataframes using read.table()</a></li>
+<li><a class="nav-link" href="#file-io-in-detail"><span class="header-section-number">4.3.2</span> File I/O in detail</a></li>
+<li><a class="nav-link" href="#simple-dataframe-manipulations"><span class="header-section-number">4.3.3</span> Simple dataframe manipulations</a></li>
+<li><a class="nav-link" href="#selections-on-dataframes"><span class="header-section-number">4.3.4</span> Selections on dataframes</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

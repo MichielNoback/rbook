@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 6 Built-in Functions | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="This chapter deals with the most-used functions that R has to offer. A clean installation of R already contains hundreds of functions; see here for a complete listing of functions in the base...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 6 Built-in Functions | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="This chapter deals with the most-used functions that R has to offer. A clean installation of R already contains hundreds of functions; see here for a complete listing of functions in the base...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 6 Built-in Functions | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="This chapter deals with the most-used functions that R has to offer. A clean installation of R already contains hundreds of functions; see here for a complete listing of functions in the base...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="active" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">16</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="built-in-functions" class="section level1" number="6">
+<h1>
+<span class="header-section-number">6</span> Built-in Functions<a class="anchor" aria-label="anchor" href="#built-in-functions"><i class="fas fa-link"></i></a>
+</h1>
+<p>This chapter deals with the most-used functions that R has to offer. A clean installation of R already contains hundreds of functions; see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html">here</a> for a complete listing of functions in the <code>base</code> package.
+Obviously, this eBook is not the platform to discuss these exhaustively. Therefore, I chose to only deal with the ones I use regularly.<br>
+Besides that, the tidyverse packages <code>tidyr</code> and <code>dplyr</code> offer functionality that are better alternatives for many base R functions. These packages are discussed in later chapters.</p>
+<div id="descriptive-statistics" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Descriptive statistics<a class="anchor" aria-label="anchor" href="#descriptive-statistics"><i class="fas fa-link"></i></a>
+</h2>
+<p>R provides a wealth of descriptive statistics functions. The most important ones of them are listed below. The ones with an asterisk are described in more detail in following paragraphs.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>function</th>
+<th>purpose</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/r/base/mean.html">mean( )</a></code></td>
+<td>mean</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/r/stats/median.html">median( )</a></code></td>
+<td>median</td>
+</tr>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/r/base/Extremes.html">min( )</a></code></td>
+<td>minimum</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/r/base/Extremes.html">max( )</a></code></td>
+<td>maximum</td>
+</tr>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/r/base/range.html">range( )</a></code></td>
+<td>min and max</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/r/stats/cor.html">var( )</a></code></td>
+<td>variance s^2</td>
+</tr>
+<tr class="odd">
+<td><code><a href="https://rdrr.io/r/stats/sd.html">sd( )</a></code></td>
+<td>standard deviation s</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rdrr.io/r/base/summary.html">summary( )</a></code></td>
+<td>6-number summary</td>
+</tr>
+<tr class="odd">
+<td>
+<code><a href="https://rdrr.io/r/stats/quantile.html">quantile( )</a></code> *</td>
+<td>quantiles</td>
+</tr>
+<tr class="even">
+<td>
+<code><a href="https://rdrr.io/r/stats/IQR.html">IQR( )</a></code> *</td>
+<td>interquantile range</td>
+</tr>
+</tbody>
+</table></div>
+<div id="the-quantile-function" class="section level4 unnumbered">
+<h4>The <code>quantile()</code> function<a class="anchor" aria-label="anchor" href="#the-quantile-function"><i class="fas fa-link"></i></a>
+</h4>
+<p>This function gives the data values corresponding to the specified quantiles. The function defaults to the quantiles <code>0%  25%  50%  75% 100%</code>: these are the <em>quartiles</em> of course.</p>
+<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ChickWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   0%  25%  50%  75% 100% 
+##   35   63  103  164  373</code></pre>
+<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ChickWeight</span><span class="op">$</span><span class="va">weight</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   0%  20%  40%  60%  80% 100% 
+##   35   57   85  126  182  373</code></pre>
+</div>
+<div id="interquantile-range-iqr" class="section level4 unnumbered">
+<h4>Interquantile range <code>IQR()</code><a class="anchor" aria-label="anchor" href="#interquantile-range-iqr"><i class="fas fa-link"></i></a>
+</h4>
+<p>Function <code><a href="https://rdrr.io/r/stats/IQR.html">IQR()</a></code> gives the range between the 25% and 75% quantiles.</p>
+<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">ChickWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 101</code></pre>
+<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## same as</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ChickWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ChickWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span></code></pre></div>
+<pre><code>## 75% 
+## 101</code></pre>
+<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## same as</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ChickWeight</span><span class="op">$</span><span class="va">weight</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 75% 
+## 101</code></pre>
+</div>
+<div id="boxplot-is-summary-visualized" class="section level4 unnumbered">
+<h4>
+<code>boxplot()</code> is <code>summary()</code> visualized<a class="anchor" aria-label="anchor" href="#boxplot-is-summary-visualized"><i class="fas fa-link"></i></a>
+</h4>
+<p>Boxplot is a graph of the 5-number summary, but <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> also gives the mean</p>
+<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ChickWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##      35      63     103     122     164     373</code></pre>
+<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">ChickWeight</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/box_demo-1.png" width="336"></div>
+</div>
+</div>
+<div id="general-purpose-functions" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> General purpose functions<a class="anchor" aria-label="anchor" href="#general-purpose-functions"><i class="fas fa-link"></i></a>
+</h2>
+<div id="dealing-with-nas" class="section level3" number="6.2.1">
+<h3>
+<span class="header-section-number">6.2.1</span> Dealing with NAs<a class="anchor" aria-label="anchor" href="#dealing-with-nas"><i class="fas fa-link"></i></a>
+</h3>
+<p>Dealing with NA is a <strong><em>very big thing</em></strong>. When you work with external data there is always the possibility that some values will be missing.</p>
+<p>You should be aware that it is not possible to test for <code>NA</code> values (Not Available) values in any other way; using <code>==</code> will simply return <code>NA</code>:</p>
+<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="va">x</span> <span class="op">==</span> <span class="cn">NA</span></span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>Important functions for dealing with that are <code><a href="https://rdrr.io/r/stats/na.fail.html">na.omit()</a></code> (<code>drop_na()</code> in dplyr) and <code><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases()</a></code>. The first drops rows from a dataframe that contain at least one NA; the other returns a logical indicating which rows are complete; i.e. without any NA.<br>
+Besides that, many functions in R have a (variant of) the <code>na.rm =</code> argument. For instance, when the <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> function encounters an NA in its input vector, it will always return <code>NA</code>:</p>
+<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="cn">NA</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="convert-numeric-vector-to-factor-cut" class="section level3" number="6.2.2">
+<h3>
+<span class="header-section-number">6.2.2</span> Convert numeric vector to factor: <code>cut()</code><a class="anchor" aria-label="anchor" href="#convert-numeric-vector-to-factor-cut"><i class="fas fa-link"></i></a>
+</h3>
+<p>Sometimes it is useful to work with a factor instead of a numeric vector. For instance, when working with a Body Mass Index (bmi) variable it may be nice to split this into a factor for some analyses.
+The function <code><a href="https://rdrr.io/r/base/cut.html">cut()</a></code> is used for this.
+Suppose you have the following fictitious dataset</p>
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## body mass index</span></span>
+<span><span class="va">bmi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">32</span>, <span class="fl">21</span>, <span class="fl">37</span>, <span class="fl">28</span>, <span class="fl">34</span>, <span class="fl">26</span>, <span class="fl">29</span>,</span>
+<span>         <span class="fl">41</span>, <span class="fl">18</span>, <span class="fl">22</span>, <span class="fl">27</span>, <span class="fl">32</span>, <span class="fl">31</span>, <span class="fl">26</span><span class="op">)</span></span>
+<span><span class="co">## year income * 1000 euros</span></span>
+<span><span class="va">income</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">23</span>, <span class="fl">14</span>, <span class="fl">20</span>, <span class="fl">13</span>, <span class="fl">47</span>, <span class="fl">15</span>, <span class="fl">38</span>, <span class="fl">29</span>, </span>
+<span>            <span class="fl">12</span>, <span class="fl">25</span>, <span class="fl">33</span>, <span class="fl">24</span>, <span class="fl">19</span>, <span class="fl">42</span>, <span class="fl">38</span><span class="op">)</span></span>
+<span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>bmi <span class="op">=</span> <span class="va">bmi</span>, income <span class="op">=</span> <span class="va">income</span><span class="op">)</span></span></code></pre></div>
+<p>You can of course look at income as a function of bmi using a scatter plot:</p>
+<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">my_data</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">income</span> <span class="op">~</span> <span class="va">bmi</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/cut-demo-2-1.png" width="70%" style="display: block; margin: auto;"></div>
+<p>But wouldn’t it be nice to look at the bmi categories as defined by the WHO? To be able to do this, you need to split the numeric <code>bmi</code> variable into a factor using <code><a href="https://rdrr.io/r/base/cut.html">cut()</a></code>.</p>
+<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_data</span><span class="op">$</span><span class="va">bmi_class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">bmi</span>,</span>
+<span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">18.5</span>, <span class="fl">25.0</span>, <span class="fl">30.0</span>, <span class="cn">Inf</span><span class="op">)</span>, </span>
+<span>    right <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"underweight"</span>, <span class="st">"normal"</span>, <span class="st">"overweight"</span>, <span class="st">"obese"</span><span class="op">)</span>,</span>
+<span>    ordered_result <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">my_data</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">income</span> <span class="op">~</span> <span class="va">bmi_class</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/cut-demo-3-1.png" width="70%" style="display: block; margin: auto;"></div>
+<p>The <code>breaks =</code> argument specifies the split positions; the <code>right = F</code> arguments specifies that the interval is <em>inclusive</em> on the lower (left) boundary:</p>
+<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">x</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>, right <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] [2,5)  [5,10) &lt;NA&gt;  
+## Levels: [0,2) [2,5) [5,10)</code></pre>
+<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">x</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>, right <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] (0,2]  (2,5]  (5,10]
+## Levels: (0,2] (2,5] (5,10]</code></pre>
+<p>An interval written as <code>(5,10]</code> means it is from -but excluding- 5 to -but including- 10.
+Note that in the first example the last value (10) becomes NA because 10 is exclusive in that interval specification.</p>
+</div>
+<div id="memory-management" class="section level3 unnumbered">
+<h3>Memory management<a class="anchor" aria-label="anchor" href="#memory-management"><i class="fas fa-link"></i></a>
+</h3>
+<p>When working with large datasets it may be useful to free some memory once in a while (i.e. intermediate results). Use <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> to see what is in memory; use <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code> to delete single or several items: <code>rm(genes)</code>, <code>rm(x, y, z)</code> and clear all by typing <code>rm(list = ls())</code></p>
+</div>
+<div id="file-system-operations" class="section level3 unnumbered">
+<h3>File system operations<a class="anchor" aria-label="anchor" href="#file-system-operations"><i class="fas fa-link"></i></a>
+</h3>
+<p>Several functions exist for working with the file system:</p>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> returns the current working directory.</li>
+<li>
+<code>setwd(&lt;/path/to/folder&gt;)</code> sets the current working directory.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/list.files.html">dir()</a></code>, <code>dir(path)</code> lists the contents of the current directory, or of <code>path</code>.</li>
+<li>A <code>path</code> can be defined as <code>"E:\\emile\\datasets"</code> (Windows) or, on Linux/Mac using relative paths <code>"~/datasets"</code> or absolute paths <code>"/home/emile/datasets"</code>.</li>
+</ul>
+</div>
+<div id="glueing-character-elements-paste" class="section level3 unnumbered">
+<h3>Glueing character elements: <code>paste()</code><a class="anchor" aria-label="anchor" href="#glueing-character-elements-paste"><i class="fas fa-link"></i></a>
+</h3>
+<p>Use <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> to combine elements into a string</p>
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "1 2 3"</code></pre>
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "1-2-3"</code></pre>
+<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, <span class="va">month.abb</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##  [1] "1 Jan"  "2 Feb"  "3 Mar"  "4 Apr"  "5 May"  "6 Jun"  "7 Jul"  "8 Aug" 
+##  [9] "9 Sep"  "10 Oct" "11 Nov" "12 Dec"</code></pre>
+<p>There is a variant, <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code> which uses no separator by default.</p>
+</div>
+<div id="a-local-namespace-with" class="section level3 unnumbered">
+<h3>A local namespace: <code>with()</code><a class="anchor" aria-label="anchor" href="#a-local-namespace-with"><i class="fas fa-link"></i></a>
+</h3>
+<p>When you have a piece of related code operating on a single dataset, use <code><a href="https://rdrr.io/r/base/with.html">with()</a></code> so you don’t have to type its name all the time.</p>
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">airquality</span>, <span class="op">{</span></span>
+<span>  <span class="va">mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Solar.R</span> <span class="op">~</span> <span class="va">Temp</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">Solar.R</span> <span class="op">~</span> <span class="va">Temp</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="va">mdl</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<p>Local variables such as <code>mdl</code> will not end up in the global environment.</p>
+</div>
+<div id="writing-data-to-file" class="section level3 unnumbered">
+<h3>Writing data to file<a class="anchor" aria-label="anchor" href="#writing-data-to-file"><i class="fas fa-link"></i></a>
+</h3>
+<p>To write a data frame, matrix or vector to file, use <code>write.table(myData, file="file.csv")</code>. Standard is a comma-separated file with both column- and row names, unless otherwise specified:</p>
+<ul>
+<li><code>col.names = F</code></li>
+<li><code>row.names = F</code></li>
+<li><code>sep = ";"</code></li>
+<li><code>sep = "\t" # tab-separated</code></li>
+</ul>
+</div>
+<div id="saving-r-objects-to-file" class="section level3 unnumbered">
+<h3>Saving R objects to file<a class="anchor" aria-label="anchor" href="#saving-r-objects-to-file"><i class="fas fa-link"></i></a>
+</h3>
+<p>Use the <code><a href="https://rdrr.io/r/base/save.html">save()</a></code> function to write R objects to file for later use.
+This is especially handy with intermediate results in long-running analysis workflows.</p>
+<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="cn">TRUE</span>, c <span class="op">=</span> <span class="st">"oops"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, file <span class="op">=</span> <span class="st">"xy.RData"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="writing-a-plot-to-file" class="section level3 unnumbered">
+<h3>Writing a plot to file<a class="anchor" aria-label="anchor" href="#writing-a-plot-to-file"><i class="fas fa-link"></i></a>
+</h3>
+<p>Use one of the functions <code><a href="https://rdrr.io/r/grDevices/png.html">png()</a></code>, <code><a href="https://rdrr.io/r/grDevices/png.html">jpeg()</a></code>, <code><a href="https://rdrr.io/r/grDevices/png.html">tiff()</a></code>, or <code><a href="https://rdrr.io/r/grDevices/png.html">bmp()</a></code> for these specific file types. They have widely differing properties, especially with respect to file size.<br>
+Use <code>width</code> and <code>height</code> to specify size. Default unit is pixels. Use other unit: <code>units = "mm"</code></p>
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span><span class="op">(</span><span class="st">"/path/to/your/file.png"</span>,</span>
+<span>    width <span class="op">=</span> <span class="fl">700</span>, height <span class="op">=</span> <span class="fl">350</span>, units <span class="op">=</span> <span class="st">"mm"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># don't forget this one!</span></span></code></pre></div>
+<p>A ggplot figure can be written to file like this:</p>
+<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span><span class="op">(</span><span class="st">"myplot.png"</span><span class="op">)</span></span>
+<span><span class="va">myplot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">myplot</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></div>
+<div class="next"><a href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#built-in-functions"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="nav-link" href="#descriptive-statistics"><span class="header-section-number">6.1</span> Descriptive statistics</a></li>
+<li>
+<a class="nav-link" href="#general-purpose-functions"><span class="header-section-number">6.2</span> General purpose functions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dealing-with-nas"><span class="header-section-number">6.2.1</span> Dealing with NAs</a></li>
+<li><a class="nav-link" href="#convert-numeric-vector-to-factor-cut"><span class="header-section-number">6.2.2</span> Convert numeric vector to factor: cut()</a></li>
+<li><a class="nav-link" href="#memory-management">Memory management</a></li>
+<li><a class="nav-link" href="#file-system-operations">File system operations</a></li>
+<li><a class="nav-link" href="#glueing-character-elements-paste">Glueing character elements: paste()</a></li>
+<li><a class="nav-link" href="#a-local-namespace-with">A local namespace: with()</a></li>
+<li><a class="nav-link" href="#writing-data-to-file">Writing data to file</a></li>
+<li><a class="nav-link" href="#saving-r-objects-to-file">Saving R objects to file</a></li>
+<li><a class="nav-link" href="#writing-a-plot-to-file">Writing a plot to file</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

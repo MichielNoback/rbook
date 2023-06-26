@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 8 Tidying dataframes using Package tidyr | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="This chapter explores the package tidyr which is part of the tidyverse set of packages. This package is an essential tool collection in the process of organizing you data in a tidy way. A dataset...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 8 Tidying dataframes using Package tidyr | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="This chapter explores the package tidyr which is part of the tidyverse set of packages. This package is an essential tool collection in the process of organizing you data in a tidy way. A dataset...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 8 Tidying dataframes using Package tidyr | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="This chapter explores the package tidyr which is part of the tidyverse set of packages. This package is an essential tool collection in the process of organizing you data in a tidy way. A dataset...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="active" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">16</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidyr" class="section level1" number="8">
+<h1>
+<span class="header-section-number">8</span> Tidying dataframes using Package <code>tidyr</code><a class="anchor" aria-label="anchor" href="#tidyr"><i class="fas fa-link"></i></a>
+</h1>
+<p>This chapter explores the package <code>tidyr</code> which is part of the <code>tidyverse</code> set of packages.</p>
+<p>This package is an essential tool collection in the process of organizing you data in a <strong><em>tidy</em></strong> way.</p>
+<div class="definitions">
+<p>A dataset is considered <strong><em>tidy</em></strong> when it is formed according to these rules:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable has its own column.</li>
+<li>Each observation has its own row.</li>
+<li>Each value has its own cell.</li>
+</ol>
+</div>
+<div class="info">
+<p>Why do we want tidy data?</p>
+<ul>
+<li>Because the entire tidyverse works with tidy data, especially the ggplot2 package.<br>
+</li>
+<li>Pivoting data is also often used to make specific data representations for other purposes.<br>
+</li>
+<li>Finally: we often receive “dirty” data that needs to be processed in order to be able to carry out our analyses.</li>
+</ul>
+</div>
+<p>Here is an example dataset, downloaded from the WHO website <a href="https://www.who.int/immunization/monitoring_surveillance/burden/vpd/surveillance_type/active/measles_monthlydata/en/">here</a>
+Note: the original data was exported from Excel to csv, and a text editor was used to replace single quote occurrences (“’”) with an underscore. Otherwise, data will be corrupted.</p>
+<p>The data concerns disease occurrences for two diseases: measles and rubella (“rode hond” in Dutch).
+Suppose I would like to analyse distribution and timeline of these two diseases, in relation to each other.
+There are two problems here:
+1. The data needs to be clean
+2. The data needs to be combined from two files into one dataframe.</p>
+<p>Let’s start with the first: measles.
+Here is part of the measles data. It is not tidy. Why not?</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:load-measles">Table 8.1: </span>Why is this not a tidy dataset?</caption>
+<thead><tr class="header">
+<th align="left">Region</th>
+<th align="left">ISO3</th>
+<th align="left">Country</th>
+<th align="right">Year</th>
+<th align="right">January</th>
+<th align="right">February</th>
+<th align="right">March</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="right">17</td>
+<td align="right">19</td>
+<td align="right">37</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2012</td>
+<td align="right">373</td>
+<td align="right">289</td>
+<td align="right">381</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2013</td>
+<td align="right">725</td>
+<td align="right">646</td>
+<td align="right">734</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2014</td>
+<td align="right">1161</td>
+<td align="right">1101</td>
+<td align="right">1319</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2015</td>
+<td align="right">4</td>
+<td align="right">15</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2016</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2017</td>
+<td align="right">1</td>
+<td align="right">7</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2018</td>
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2019</td>
+<td align="right">120</td>
+<td align="right">94</td>
+<td align="right">281</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">BDI</td>
+<td align="left">Burundi</td>
+<td align="right">2011</td>
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">BDI</td>
+<td align="left">Burundi</td>
+<td align="right">2012</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">BDI</td>
+<td align="left">Burundi</td>
+<td align="right">2013</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">BDI</td>
+<td align="left">Burundi</td>
+<td align="right">2014</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">BDI</td>
+<td align="left">Burundi</td>
+<td align="right">2015</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">BDI</td>
+<td align="left">Burundi</td>
+<td align="right">2016</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table></div>
+<p>The monthly counts are in separate columns. However, they are really all the same variable: measles cases. So this data needs to be tidied: There should be only one column called “cases” and another column called “month”. Or maybe even a single column “Date”? Because year and month are actually elements of a single unit of course. We’ll leave that for a later chapter.</p>
+<div id="the-pivot_longer-function" class="section level2" number="8.1">
+<h2>
+<span class="header-section-number">8.1</span> The <code>pivot_longer()</code> function<a class="anchor" aria-label="anchor" href="#the-pivot_longer-function"><i class="fas fa-link"></i></a>
+</h2>
+<p>Tidying has never been simpler, using the <code>pivot_longer</code> function:</p>
+<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">measles_tidy</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>data <span class="op">=</span> <span class="va">measles</span>,</span>
+<span>                             cols <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">16</span>,</span>
+<span>                             names_to <span class="op">=</span> <span class="st">"Month"</span>,</span>
+<span>                             values_to <span class="op">=</span> <span class="st">"Cases"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">measles_tidy</span>, n<span class="op">=</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">Region</th>
+<th align="left">ISO3</th>
+<th align="left">Country</th>
+<th align="right">Year</th>
+<th align="left">Month</th>
+<th align="right">Cases</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">January</td>
+<td align="right">17</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">February</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">March</td>
+<td align="right">37</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">April</td>
+<td align="right">41</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">May</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">June</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">July</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">August</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">September</td>
+<td align="right">32</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">October</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">November</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2011</td>
+<td align="left">December</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2012</td>
+<td align="left">January</td>
+<td align="right">373</td>
+</tr>
+<tr class="even">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2012</td>
+<td align="left">February</td>
+<td align="right">289</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">AGO</td>
+<td align="left">Angola</td>
+<td align="right">2012</td>
+<td align="left">March</td>
+<td align="right">381</td>
+</tr>
+</tbody>
+</table></div>
+<p>In the <code>pivot_longer</code> function, you provide three pieces of information:</p>
+<ol style="list-style-type: decimal">
+<li><p>You need to tell which columns to collect the data and headers from. Here, all the month columns are collected: <code>cols = 5:16</code>. you can also use the names of the columns you want to gather.</p></li>
+<li><p>The name of the column to hold the “old” column headers: <code>names_to</code>. This is the name of the newly created column that will hold the information that is now present in the column headers that you are going to collect - in this case, the months names January-December. Hence, <code>names_to = Month</code>.</p></li>
+<li><p>The name for <code>values_to</code>. The <code>value_to</code> argument is the name of the column that will hold the actual measurements. In this case, the number of cases from each of the 12 month columns will be “gathered” in this column. Hence, <code>values_to = Cases</code>.</p></li>
+</ol>
+<p>The result is a “flattened but elongated” data structure. All data from the non-gathered columns (<code>Region</code>, <code>ISO3</code>, <code>Country</code>, and <code>Year</code>) will be expanded/duplicated for each of the 12 month rows that will be created.</p>
+<p>Here you can see the numbers as verification of the process:</p>
+<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## The original dimensions</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">measles</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 1746   16</code></pre>
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## The tidied data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">measles_tidy</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 20952     6</code></pre>
+<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## 12 times 1746 is 20952 rows</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">measles_tidy</span><span class="op">)</span> <span class="op">/</span> <span class="fl">12</span></span></code></pre></div>
+<pre><code>## [1] 1746</code></pre>
+<p>Obviously, the data you gather into a single column must be a single measurement type!</p>
+<div id="selecting-columns" class="section level3" number="8.1.1">
+<h3>
+<span class="header-section-number">8.1.1</span> Selecting columns<a class="anchor" aria-label="anchor" href="#selecting-columns"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>cols=</code> argument can be specified using a whole bunch of different methods. A few are listed here.</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="tidyr.html#cb393-1" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">=</span> <span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>),</span>
+<span id="cb393-2"><a href="tidyr.html#cb393-2" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">=</span> <span class="sc">-</span>(Region<span class="sc">:</span>Year),</span>
+<span id="cb393-3"><a href="tidyr.html#cb393-3" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">=</span> January<span class="sc">:</span>December,</span>
+<span id="cb393-4"><a href="tidyr.html#cb393-4" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">=</span> <span class="sc">-</span><span class="fu">c</span>(Region, ISO3, Country, Year),</span></code></pre></div>
+<p>Later on, we’ll encounter some more means to select columns using the <em><strong>tidyselect helpers</strong></em>.</p>
+</div>
+<div id="another-example" class="section level3" number="8.1.2">
+<h3>
+<span class="header-section-number">8.1.2</span> Another example<a class="anchor" aria-label="anchor" href="#another-example"><i class="fas fa-link"></i></a>
+</h3>
+<p>As an extra example, here is the dose_response data again.</p>
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/dose_response2.txt"</span>,</span>
+<span>                            header <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>                            sep<span class="op">=</span><span class="st">";"</span>,</span>
+<span>                            colClasses<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"character"</span>, <span class="st">"factor"</span>, <span class="st">"integer"</span>, <span class="st">"integer"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dose_response</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "patient"   "sex"       "dose10mg"  "dose100mg"</code></pre>
+<p>It is processed by pivot_longer as well. This time, a Regular Expression is used to parse the dose as numbers only out of the header names.</p>
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dose_response</span>,</span>
+<span>             cols <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"patient"</span>, <span class="st">"sex"</span><span class="op">)</span>,</span>
+<span>             names_to <span class="op">=</span> <span class="st">"dose"</span>,</span>
+<span>             names_pattern <span class="op">=</span> <span class="st">"dose(10|100)mg"</span>,</span>
+<span>             values_to <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">patient</th>
+<th align="left">sex</th>
+<th align="left">dose</th>
+<th align="right">response</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">001</td>
+<td align="left">f</td>
+<td align="left">10</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">001</td>
+<td align="left">f</td>
+<td align="left">100</td>
+<td align="right">88</td>
+</tr>
+<tr class="odd">
+<td align="left">002</td>
+<td align="left">f</td>
+<td align="left">10</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">002</td>
+<td align="left">f</td>
+<td align="left">100</td>
+<td align="right">54</td>
+</tr>
+<tr class="odd">
+<td align="left">003</td>
+<td align="left">m</td>
+<td align="left">10</td>
+<td align="right">54</td>
+</tr>
+<tr class="even">
+<td align="left">003</td>
+<td align="left">m</td>
+<td align="left">100</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left">004</td>
+<td align="left">m</td>
+<td align="left">10</td>
+<td align="right">71</td>
+</tr>
+<tr class="even">
+<td align="left">004</td>
+<td align="left">m</td>
+<td align="left">100</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="left">005</td>
+<td align="left">f</td>
+<td align="left">10</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="left">005</td>
+<td align="left">f</td>
+<td align="left">100</td>
+<td align="right">89</td>
+</tr>
+</tbody>
+</table></div>
+<p>The argument <code>names_pattern = "dose(10|100)mg"</code> specifies, using parentheses and the “or” symbol <code>|</code> that we want to extract only the numbers 10 or 100 from the column names. Regular expressions are discussed in another chapter (<a href="regex.html#regex">11</a>)</p>
+<p>Note however they are still character values so this requires a conversion:</p>
+<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">dose</span><span class="op">)</span></span>
+<span><span class="va">tmp</span><span class="op">$</span><span class="va">dose</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">dose</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "character"</code></pre>
+<p>More sophisticated techniques dealt are with in the chapter on package <code>dplyr</code> (<a href="mangling.html#mangling">9</a>).</p>
+</div>
+<div id="a-more-complex-problem-two-sets-of-columns" class="section level3" number="8.1.3">
+<h3>
+<span class="header-section-number">8.1.3</span> A more complex problem: two sets of columns<a class="anchor" aria-label="anchor" href="#a-more-complex-problem-two-sets-of-columns"><i class="fas fa-link"></i></a>
+</h3>
+<p>How about a case with two sets of columns? Here, to create an example, a <code>tibble</code> is used. This is an extension of the well-known <code>data.frame</code> type. It is also part of the <code>tidyverse</code> and will be discussed in more detail as well.</p>
+<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
+<span><span class="va">two_two_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subject <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,</span>
+<span>              T0_Control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>              T0_Treated <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">9.5</span>, <span class="fl">1.2</span><span class="op">)</span>,</span>
+<span>              T1_Control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">11</span>, <span class="fl">1.5</span><span class="op">)</span>,</span>
+<span>              T1_Treated <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">16</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">two_two_col</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">subject</th>
+<th align="right">T0_Control</th>
+<th align="right">T0_Treated</th>
+<th align="right">T1_Control</th>
+<th align="right">T1_Treated</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">a</td>
+<td align="right">8.79</td>
+<td align="right">10.11</td>
+<td align="right">10.28</td>
+<td align="right">15.8</td>
+</tr>
+<tr class="even">
+<td align="left">b</td>
+<td align="right">10.28</td>
+<td align="right">8.81</td>
+<td align="right">9.50</td>
+<td align="right">15.0</td>
+</tr>
+<tr class="odd">
+<td align="left">c</td>
+<td align="right">11.08</td>
+<td align="right">8.84</td>
+<td align="right">9.84</td>
+<td align="right">14.2</td>
+</tr>
+<tr class="even">
+<td align="left">d</td>
+<td align="right">7.65</td>
+<td align="right">8.82</td>
+<td align="right">11.10</td>
+<td align="right">14.3</td>
+</tr>
+<tr class="odd">
+<td align="left">e</td>
+<td align="right">10.43</td>
+<td align="right">8.43</td>
+<td align="right">12.44</td>
+<td align="right">20.8</td>
+</tr>
+</tbody>
+</table></div>
+<p>The measurements are spread over 4 columns and the column names actually represent the levels of <strong><em>two</em></strong> variables: Treatment and Time.
+Thus, to be tidy we need to mangle the data in this form:</p>
+<pre><code>subject time treatment response
+a       T0   Control   10.764
+a       T0   Treated   8.681
+a       T1   Control   13.057
+a       T1   Treated   15.188
+...</code></pre>
+<p>To solve this it requires another bit of knowledge of regular expressions:</p>
+<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>data <span class="op">=</span> <span class="va">two_two_col</span>,</span>
+<span>             cols <span class="op">=</span> <span class="op">-</span><span class="st">"subject"</span>,</span>
+<span>             names_pattern <span class="op">=</span> <span class="st">"(T.)_(Control|Treated)"</span>,</span>
+<span>             names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Time"</span>, <span class="st">"Treatment"</span><span class="op">)</span>,</span>
+<span>             values_to <span class="op">=</span> <span class="st">"Response"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dose_response_long</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">subject</th>
+<th align="left">Time</th>
+<th align="left">Treatment</th>
+<th align="right">Response</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">a</td>
+<td align="left">T0</td>
+<td align="left">Control</td>
+<td align="right">8.79</td>
+</tr>
+<tr class="even">
+<td align="left">a</td>
+<td align="left">T0</td>
+<td align="left">Treated</td>
+<td align="right">10.11</td>
+</tr>
+<tr class="odd">
+<td align="left">a</td>
+<td align="left">T1</td>
+<td align="left">Control</td>
+<td align="right">10.28</td>
+</tr>
+<tr class="even">
+<td align="left">a</td>
+<td align="left">T1</td>
+<td align="left">Treated</td>
+<td align="right">15.78</td>
+</tr>
+<tr class="odd">
+<td align="left">b</td>
+<td align="left">T0</td>
+<td align="left">Control</td>
+<td align="right">10.28</td>
+</tr>
+<tr class="even">
+<td align="left">b</td>
+<td align="left">T0</td>
+<td align="left">Treated</td>
+<td align="right">8.81</td>
+</tr>
+<tr class="odd">
+<td align="left">b</td>
+<td align="left">T1</td>
+<td align="left">Control</td>
+<td align="right">9.50</td>
+</tr>
+<tr class="even">
+<td align="left">b</td>
+<td align="left">T1</td>
+<td align="left">Treated</td>
+<td align="right">14.98</td>
+</tr>
+</tbody>
+</table></div>
+<p>The expression <code>names_pattern = "(T.).(Control|Treated)"</code> tells the function there are two groups in the column names to be widened. These groups are defined by the two sets of parentheses <code>()</code>. The first group is defined by the letter “T” follows by a single character specified by the dot <code>.</code> which says “any character”. The second group is <code>(Control|Treated)</code> which tells the function that it is formed by the word Control or Treated. In between is a random single underscore “_“.<br>
+Alternatively, and actually much simpler, the <code>names_sep</code> argument could have been used. For instance, <code>names_sep = '_'</code> tells to split the column names at the underscore character character, yielding this result:</p>
+<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">alt</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>data <span class="op">=</span> <span class="va">two_two_col</span>,</span>
+<span>             cols <span class="op">=</span> <span class="op">-</span><span class="st">"subject"</span>,</span>
+<span>             names_sep <span class="op">=</span> <span class="st">"_"</span>,</span>
+<span>             names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Time"</span>, <span class="st">"Treatment"</span><span class="op">)</span>,</span>
+<span>             values_to <span class="op">=</span> <span class="st">"Response"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">alt</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">subject</th>
+<th align="left">Time</th>
+<th align="left">Treatment</th>
+<th align="right">Response</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">a</td>
+<td align="left">T0</td>
+<td align="left">Control</td>
+<td align="right">8.79</td>
+</tr>
+<tr class="even">
+<td align="left">a</td>
+<td align="left">T0</td>
+<td align="left">Treated</td>
+<td align="right">10.11</td>
+</tr>
+<tr class="odd">
+<td align="left">a</td>
+<td align="left">T1</td>
+<td align="left">Control</td>
+<td align="right">10.28</td>
+</tr>
+<tr class="even">
+<td align="left">a</td>
+<td align="left">T1</td>
+<td align="left">Treated</td>
+<td align="right">15.78</td>
+</tr>
+<tr class="odd">
+<td align="left">b</td>
+<td align="left">T0</td>
+<td align="left">Control</td>
+<td align="right">10.28</td>
+</tr>
+<tr class="even">
+<td align="left">b</td>
+<td align="left">T0</td>
+<td align="left">Treated</td>
+<td align="right">8.81</td>
+</tr>
+<tr class="odd">
+<td align="left">b</td>
+<td align="left">T1</td>
+<td align="left">Control</td>
+<td align="right">9.50</td>
+</tr>
+<tr class="even">
+<td align="left">b</td>
+<td align="left">T1</td>
+<td align="left">Treated</td>
+<td align="right">14.98</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="widening-with-pivot_wider" class="section level2" number="8.2">
+<h2>
+<span class="header-section-number">8.2</span> Widening with <code>pivot_wider()</code><a class="anchor" aria-label="anchor" href="#widening-with-pivot_wider"><i class="fas fa-link"></i></a>
+</h2>
+<p>The opposite of <code>pivot_longer()</code> is <code>pivot_wider()</code>. First the simple case of a single column:</p>
+<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dose_response_long</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   subject Time  Treatment Response
+##   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;
+## 1 a       T0    Control       8.79
+## 2 a       T0    Treated      10.1 
+## 3 a       T1    Control      10.3 
+## 4 a       T1    Treated      15.8 
+## 5 b       T0    Control      10.3 
+## 6 b       T0    Treated       8.81</code></pre>
+<p>Here is the reverse operation with <code>pivot_wider</code>:</p>
+<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu">pivot_wider</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dose_response_long</span>,</span>
+<span>                   names_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Time</span>, <span class="va">Treatment</span><span class="op">)</span>,</span>
+<span>                   values_from <span class="op">=</span> <span class="va">Response</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tmp</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">subject</th>
+<th align="right">T0_Control</th>
+<th align="right">T0_Treated</th>
+<th align="right">T1_Control</th>
+<th align="right">T1_Treated</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">a</td>
+<td align="right">8.79</td>
+<td align="right">10.11</td>
+<td align="right">10.28</td>
+<td align="right">15.8</td>
+</tr>
+<tr class="even">
+<td align="left">b</td>
+<td align="right">10.28</td>
+<td align="right">8.81</td>
+<td align="right">9.50</td>
+<td align="right">15.0</td>
+</tr>
+<tr class="odd">
+<td align="left">c</td>
+<td align="right">11.08</td>
+<td align="right">8.84</td>
+<td align="right">9.84</td>
+<td align="right">14.2</td>
+</tr>
+<tr class="even">
+<td align="left">d</td>
+<td align="right">7.65</td>
+<td align="right">8.82</td>
+<td align="right">11.10</td>
+<td align="right">14.3</td>
+</tr>
+<tr class="odd">
+<td align="left">e</td>
+<td align="right">10.43</td>
+<td align="right">8.43</td>
+<td align="right">12.44</td>
+<td align="right">20.8</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="other-utility-functions" class="section level2" number="8.3">
+<h2>
+<span class="header-section-number">8.3</span> Other utility functions<a class="anchor" aria-label="anchor" href="#other-utility-functions"><i class="fas fa-link"></i></a>
+</h2>
+<div id="split-columns-with-separate" class="section level3" number="8.3.1">
+<h3>
+<span class="header-section-number">8.3.1</span> Split columns with <code>separate()</code><a class="anchor" aria-label="anchor" href="#split-columns-with-separate"><i class="fas fa-link"></i></a>
+</h3>
+<p>The function <code>separate()</code> will split on the non-word character if no separator is specified. Here a separator is prided telling to split on an X with two other characters on either side.</p>
+<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">10</span><span class="op">:</span><span class="fl">15</span>, a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="st">"zXb"</span>, <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">tmp</span></span></code></pre></div>
+<pre><code>##    x     a
+## 1 10 1zXba
+## 2 11 2zXbb
+## 3 12 3zXbc
+## 4 13 4zXbd
+## 5 14 5zXbe
+## 6 15 6zXbf</code></pre>
+<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">separate</span><span class="op">(</span>data <span class="op">=</span> <span class="va">tmp</span>, col <span class="op">=</span> <span class="va">a</span>, sep <span class="op">=</span> <span class="st">".X."</span>, into<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    x b c
+## 1 10 1 a
+## 2 11 2 b
+## 3 12 3 c
+## 4 13 4 d
+## 5 14 5 e
+## 6 15 6 f</code></pre>
+</div>
+<div id="combine-columns-with-unite" class="section level3" number="8.3.2">
+<h3>
+<span class="header-section-number">8.3.2</span> Combine columns with <code>unite()</code><a class="anchor" aria-label="anchor" href="#combine-columns-with-unite"><i class="fas fa-link"></i></a>
+</h3>
+<p>When you have two columns that should be logically combined into one, use the <code>unite()</code> function.
+For instance, dates and times are often placed in separate columns but they are two aspects of a single measurement: time.
+Here is a small example. In a later presentation, working with dates and times will be extensively treated.</p>
+<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">activity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"30/12/2019"</span>, <span class="st">"31/12/2019"</span>, <span class="st">"01/01/2020"</span>, <span class="st">"02/01/2020"</span>, <span class="st">"02/01/2020"</span><span class="op">)</span>,</span>
+<span>                 time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"14:55"</span>, <span class="st">"21:01"</span>, <span class="st">"08:22"</span>, <span class="st">"11:56"</span>, <span class="st">"16:38"</span><span class="op">)</span>,</span>
+<span>                 activity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">48</span>, <span class="fl">5</span>, <span class="fl">19</span>, <span class="fl">22</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">unite</span><span class="op">(</span><span class="va">activity</span>, <span class="st">"datetime"</span>, <span class="va">date</span>, <span class="va">time</span>, sep <span class="op">=</span> <span class="st">"T"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##           datetime activity
+## 1 30/12/2019T14:55       34
+## 2 31/12/2019T21:01       48
+## 3 01/01/2020T08:22        5
+## 4 02/01/2020T11:56       19
+## 5 02/01/2020T16:38       22</code></pre>
+</div>
+<div id="drop-rows-with-missing-values-drop_na" class="section level3" number="8.3.3">
+<h3>
+<span class="header-section-number">8.3.3</span> Drop rows with missing values: <code>drop_na()</code><a class="anchor" aria-label="anchor" href="#drop-rows-with-missing-values-drop_na"><i class="fas fa-link"></i></a>
+</h3>
+<p>This function is extremely simple and useful. It drops rows with missing from a dataframe and returns a cured copy:</p>
+<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">drop_na</span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Ozone Solar.R Wind Temp Month Day bar
+## 1    41     190  7.4   67   May   1   1
+## 2    36     118  8.0   72   May   2   1
+## 3    12     149 12.6   74   May   3   0
+## 4    18     313 11.5   62   May   4   0
+## 5    23     299  8.6   65   May   7   0
+## 6    19      99 13.8   59   May   8   0</code></pre>
+<p>There is of course an equivalent in base R: <code><a href="https://rdrr.io/r/stats/na.fail.html">na.omit()</a></code>.</p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></div>
+<div class="next"><a href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tidyr"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li>
+<a class="nav-link" href="#the-pivot_longer-function"><span class="header-section-number">8.1</span> The pivot_longer() function</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#selecting-columns"><span class="header-section-number">8.1.1</span> Selecting columns</a></li>
+<li><a class="nav-link" href="#another-example"><span class="header-section-number">8.1.2</span> Another example</a></li>
+<li><a class="nav-link" href="#a-more-complex-problem-two-sets-of-columns"><span class="header-section-number">8.1.3</span> A more complex problem: two sets of columns</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#widening-with-pivot_wider"><span class="header-section-number">8.2</span> Widening with pivot_wider()</a></li>
+<li>
+<a class="nav-link" href="#other-utility-functions"><span class="header-section-number">8.3</span> Other utility functions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#split-columns-with-separate"><span class="header-section-number">8.3.1</span> Split columns with separate()</a></li>
+<li><a class="nav-link" href="#combine-columns-with-unite"><span class="header-section-number">8.3.2</span> Combine columns with unite()</a></li>
+<li><a class="nav-link" href="#drop-rows-with-missing-values-drop_na"><span class="header-section-number">8.3.3</span> Drop rows with missing values: drop_na()</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

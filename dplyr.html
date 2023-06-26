@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 10 Data mangling with dplyr | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="10.1 The dplyr package This package, which is also in the tidyverse, is quite versatile. You can use it for a wide range of activities. Some examples are selecting, filtering and sampling cases...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 10 Data mangling with dplyr | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="10.1 The dplyr package This package, which is also in the tidyverse, is quite versatile. You can use it for a wide range of activities. Some examples are selecting, filtering and sampling cases...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 10 Data mangling with dplyr | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="10.1 The dplyr package This package, which is also in the tidyverse, is quite versatile. You can use it for a wide range of activities. Some examples are selecting, filtering and sampling cases...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="active" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">16</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="dplyr" class="section level1" number="10">
+<h1>
+<span class="header-section-number">10</span> Data mangling with dplyr<a class="anchor" aria-label="anchor" href="#dplyr"><i class="fas fa-link"></i></a>
+</h1>
+<div id="the-dplyr-package" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> The <code>dplyr</code> package<a class="anchor" aria-label="anchor" href="#the-dplyr-package"><i class="fas fa-link"></i></a>
+</h2>
+<p>This package, which is also in the tidyverse, is quite versatile. You can use it for a wide range of activities.
+Some examples are</p>
+<ul>
+<li>selecting, filtering and sampling cases</li>
+<li>summarizing data; e.g. counting, ranking,</li>
+<li>manipulating data; creating new or changing existing variables</li>
+<li>combining tables</li>
+</ul>
+<p>In this chapter only a small selection of this package will be discussed.</p>
+<p>There is an excellent cheat sheet for this package. You can find it <a href="https://rstudio.com/resources/cheatsheets/">here</a>. For convenience, primarily because this gitbook is also used in offline mode during examinations, I included it here as well: <a href="graphics/dplyr-data-transformation.pdf">dplyr-data-transformation.pdf</a></p>
+<p>Before embarking on an overview of the most important functions, let’s first look at the <code>tibble</code> and the <code>%&gt;%</code> chaining operator.</p>
+<p>The sections below are copied (and adapted) in part from the <code>dplyr</code> and <code>tibble</code> vignettes which can be found <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">here</a> and <a href="https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html">here</a></p>
+<p>In this chapter I will often use the term <strong><em>case</em></strong> instead of row and <strong><em>variable</em></strong> instead of column since they more precisely describe the essence. Also, these terms are used more in the tidyverse packages.</p>
+<div class="warning">
+<p>There are many functions in the dplyr package; they will not be exhaustively covered here.<br>
+Also, they get deprecated/superseded in a disturbing pace. You should therefore always check out the latest recommended strategy.</p>
+</div>
+<div id="tibbles" class="section level3" number="10.1.1">
+<h3>
+<span class="header-section-number">10.1.1</span> Tibbles<a class="anchor" aria-label="anchor" href="#tibbles"><i class="fas fa-link"></i></a>
+</h3>
+<p>Tibbles are a modern take on data frames. They keep the features that have stood the test of time, and drop the features that used to be convenient but are now frustrating (i.e. converting character vectors to factors). There is an entire package dedicated to tibbles, not surprisingly called <code>tibble</code> you usually do not have to load the package because dplyr and tidyr do that already (they depend on it themselves).</p>
+<p>Use the <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> constructor to create them as literals. There are several advantages over the old <code>data.frame</code> constructor:</p>
+<ul>
+<li>It never changes an input’s type (i.e., no more <code>stringsAsFactors = FALSE</code>!).</li>
+<li>It never adjusts the names of variables: <code>name with space</code> does not become <code>name.with.space</code>.</li>
+<li>It evaluates its arguments lazily and sequentially:</li>
+</ul>
+<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, y <span class="op">=</span> <span class="va">x</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 5 × 2
+##       x     y
+##   &lt;int&gt; &lt;dbl&gt;
+## 1     1     1
+## 2     2     4
+## 3     3     9
+## 4     4    16
+## 5     5    25</code></pre>
+<ul>
+<li>It never uses <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code>. The whole point of tidy data is to store variables in a consistent way. So it never stores a variable as special attribute.</li>
+<li>It only recycles vectors of length 1. This is because recycling vectors of greater lengths is a frequent source of bugs.</li>
+</ul>
+<p><strong>Coercion</strong>
+To complement <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code>, tibble provides <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> to coerce objects into tibbles.</p>
+<div id="tibbles-vs-data-frames" class="section level4 unnumbered">
+<h4>Tibbles vs data frames<a class="anchor" aria-label="anchor" href="#tibbles-vs-data-frames"><i class="fas fa-link"></i></a>
+</h4>
+<p>There are three key differences between tibbles and data frames: printing, subsetting, and recycling rules.</p>
+<p><strong>Printing</strong><br>
+- When you print a tibble, it only shows the first ten rows and all the columns that fit on one screen. It also prints an abbreviated description of the column type, and uses font styles and color for highlighting.
+- You can control the default appearance with options:
+- <code>options(tibble.print_max = n, tibble.print_min = m)</code>: if there are more than <code>n</code> rows, print only the first <code>m</code> rows. Use <code>options(tibble.print_max = Inf)</code> to always show all rows.
+- <code>options(tibble.width = Inf)</code> will always print all columns, regardless of the width of the screen.</p>
+<p><strong>Subsetting</strong><br>
+Tibbles are quite strict about subsetting. <code>[</code> always returns another tibble. Contrast this with a data frame: sometimes <code>[</code> returns a data frame and sometimes it just returns a vector.</p>
+<p><strong>Recycling</strong><br>
+When constructing a tibble, only values of length 1 are recycled. The first column with length different to one determines the number of rows in the tibble, conflicts lead to an error. This also extends to tibbles with zero rows, which is sometimes important for programming:</p>
+</div>
+<div id="the-str-equivalent-glimpse" class="section level4" number="10.1.1.1">
+<h4>
+<span class="header-section-number">10.1.1.1</span> The <code>str()</code> equivalent: <code>glimpse()</code><a class="anchor" aria-label="anchor" href="#the-str-equivalent-glimpse"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> function is the dplyr equivalent of <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>:</p>
+<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">dose_response_long</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Rows: 52
+## Columns: 4
+## $ patient  &lt;chr&gt; "001", "002", "003", "004", "005", "006", "007", "008", "009"…
+## $ sex      &lt;fct&gt; f, f, m, m, f, f, f, m, f, m, m, m, m, f, m, f, f, m, m, f, f…
+## $ Dose     &lt;chr&gt; "dose10mg", "dose10mg", "dose10mg", "dose10mg", "dose10mg", "…
+## $ Response &lt;int&gt; 12, 11, 54, 71, 19, 22, 23, 68, 30, 83, 72, 48, 67, 13, 73, 2…</code></pre>
+</div>
+</div>
+<div id="the-chaining-operator" class="section level3" number="10.1.2">
+<h3>
+<span class="header-section-number">10.1.2</span> The chaining operator <code>%&gt;%</code><a class="anchor" aria-label="anchor" href="#the-chaining-operator"><i class="fas fa-link"></i></a>
+</h3>
+<p>In any workflow, it happens all the time that you apply some function to a dataframe, store the result in a new variable (or overwrite the first) and apply a second function to this dataframe. And so on.
+There are two undesirable results with this. The first is cluttered code: many variables; how are you going to name them? Just have a look at the previous chapter and you’ll understand. The second -and much worse if you are working with big dataframes- is cluttering of the environment and memory footprint.</p>
+<p>This is where the chaining operator comes in. It helps you create clean workflows where intermediate results are only stored when opportune.</p>
+<p>It comes down to this simple notion: <code>x %&gt;% f(y))</code> is equivalent to f(x, y) where <code>f</code> is any function.</p>
+<p>Here is the good old dose-response example again, converted to a tibble.</p>
+<div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span></span></code></pre></div>
+<pre><code>## # A tibble: 52 × 4
+##   patient sex   Dose     Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;       &lt;int&gt;
+## 1 001     f     dose10mg       12
+## 2 002     f     dose10mg       11
+## 3 003     m     dose10mg       54
+## 4 004     m     dose10mg       71
+## 5 005     f     dose10mg       19
+## 6 006     f     dose10mg       22
+## # ℹ 46 more rows</code></pre>
+<p>Suppose I want to remove cases with missing values (there aren’t any - this is for the sake of argument), select the female subjects and then calculate the mean response for the two doses.
+In base R, you could do something like this.</p>
+<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long_no_na</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">dose_response_long</span><span class="op">)</span></span>
+<span><span class="va">dose_response_long_no_na_only_female</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dose_response_long_no_na</span>, subset <span class="op">=</span> <span class="va">sex</span> <span class="op">==</span> <span class="st">"f"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">Response</span> <span class="op">~</span> <span class="va">Dose</span>, data <span class="op">=</span> <span class="va">dose_response_long_no_na_only_female</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##        Dose Response
+## 1 dose100mg     80.9
+## 2  dose10mg     19.6</code></pre>
+<p>I know, I exaggerated a bit with the variable names.</p>
+<p>Here is the same workflow, using <code>dplyr</code>, but with the intermediate variables. It even has an explicit operation extra (<code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>).</p>
+<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long_no_na</span> <span class="op">&lt;-</span> <span class="fu">drop_na</span><span class="op">(</span><span class="va">dose_response_long</span><span class="op">)</span></span>
+<span><span class="va">dose_response_long_no_na_only_female</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">dose_response_long_no_na</span>, <span class="va">sex</span> <span class="op">==</span> <span class="st">"f"</span><span class="op">)</span></span>
+<span><span class="va">dose_response_long_no_na_only_female_grouped</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">dose_response_long_no_na_only_female</span>,</span>
+<span>                                                         <span class="va">Dose</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="va">dose_response_long_no_na_only_female_grouped</span>, mean_response <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Response</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   Dose      mean_response
+##   &lt;chr&gt;             &lt;dbl&gt;
+## 1 dose100mg          80.9
+## 2 dose10mg           19.6</code></pre>
+<p>And, finally, how dplyr is supposed to be used.</p>
+<div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"f"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_response <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Response</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   Dose      mean_response
+##   &lt;chr&gt;             &lt;dbl&gt;
+## 1 dose100mg          80.9
+## 2 dose10mg           19.6</code></pre>
+<p>Isn’t that a treat for your eyes? A highly readable, minimal piece of code, and what’s more - no environment clogged with data you forget to clean up.
+Note that <code>drop_na</code> is actually from the tidyr package. However, it works seamlessly in the chaining context of dplyr functions.</p>
+<p>This is the power of dplyr and the chaining operator!
+If you do actually want the result stored, you only need to assign to a single variable at the beginning of the chain.</p>
+<p>Does it work with <code>ggplot2</code> as well?</p>
+<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">Response</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="va">Dose</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/chain-to-ggplot-1.png" width="60%" style="display: block; margin: auto;"></div>
+<p>I don’t know about you, but this kind of thing makes me happy!
+The only thing that bothers me slightly is the <code>+</code> instead of <code>%&gt;%</code> in ggplot2 context.
+On the other hand it is layering, not chaining what ggplot2 does, so there is clear distinction.</p>
+<p>You have seen the essence of the tidyverse: <strong><em>clean chained workflows</em></strong>.</p>
+<p>The sections below are copied (and adapted) for a large part from the <code>dplyr</code> vignette which can be found <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">here</a></p>
+<p>Dplyr aims to provide a function for each basic verb of data manipulation:</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> and <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code> to select cases based on (the uniqueness of) their values.
+<code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> to reorder the cases.
+<code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> to select variables based on their names.
+<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute()</a></code> to add new variables that are functions of existing variables.
+<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to condense multiple values to a single value.
+<code><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac()</a></code> to take random samples.</p>
+</div>
+</div>
+<div id="selecting" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Selecting<a class="anchor" aria-label="anchor" href="#selecting"><i class="fas fa-link"></i></a>
+</h2>
+<div id="selecting-rows" class="section level3" number="10.2.1">
+<h3>
+<span class="header-section-number">10.2.1</span> Selecting rows<a class="anchor" aria-label="anchor" href="#selecting-rows"><i class="fas fa-link"></i></a>
+</h3>
+<div id="selecting-rows-by-index-slice" class="section level4 unnumbered">
+<h4>Selecting rows by index: <code>slice()</code><a class="anchor" aria-label="anchor" href="#selecting-rows-by-index-slice"><i class="fas fa-link"></i></a>
+</h4>
+<p>If you simply want to select rows by index, use <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code></p>
+<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">dose_response_long</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   patient sex   Dose     Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;       &lt;int&gt;
+## 1 002     f     dose10mg       11
+## 2 003     m     dose10mg       54
+## 3 004     m     dose10mg       71</code></pre>
+<p>The functions <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> and <code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code> work as expected; they work with tibbles as well (by overloading) and in the context of chained actions.</p>
+</div>
+<div id="get-unique-cases-with-distinct" class="section level4 unnumbered">
+<h4>Get unique cases with <code>distinct()</code><a class="anchor" aria-label="anchor" href="#get-unique-cases-with-distinct"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> function retains only unique/distinct cases from an input <code>tbl</code> or <code>data.frame</code>. You provide variables to use when determining uniqueness. If there are multiple cases for a given combination of inputs, only the first case will be preserved. If omitted, will use all variables. The <code>.keep_all</code> argument specifies whether all variables in the tbl should be kept.</p>
+<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">Dose</span>, .keep_all <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##   patient sex   Dose      Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;int&gt;
+## 1 001     f     dose10mg        12
+## 2 003     m     dose10mg        54
+## 3 001     f     dose100mg       88
+## 4 003     m     dose100mg       14</code></pre>
+<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">Dose</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 × 1
+##   Dose     
+##   &lt;chr&gt;    
+## 1 dose10mg 
+## 2 dose100mg</code></pre>
+</div>
+<div id="filter-cases" class="section level4 unnumbered">
+<h4>
+<code>filter()</code> cases<a class="anchor" aria-label="anchor" href="#filter-cases"><i class="fas fa-link"></i></a>
+</h4>
+<p>This function is similar to the <code>subset</code> argument of the <code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code> function.</p>
+<p>The filter function <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> allows you to select a subset of cases in a data frame. The first argument is the tibble or data frame. The second and subsequent arguments refer to variables within that data frame, selecting cases where the expression is TRUE.</p>
+<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Dose</span> <span class="op">==</span> <span class="st">"dose10mg"</span> <span class="op">&amp;</span> <span class="va">Response</span> <span class="op">&gt;</span> <span class="fl">60</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 7 × 4
+##   patient sex   Dose     Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;       &lt;int&gt;
+## 1 004     m     dose10mg       71
+## 2 008     m     dose10mg       68
+## 3 010     m     dose10mg       83
+## 4 011     m     dose10mg       72
+## 5 013     m     dose10mg       67
+## 6 015     m     dose10mg       73
+## 7 024     m     dose10mg       61</code></pre>
+<p>When you want to filter rows based on a regular expression pattern matching a character value you can do something like the chunk below, because the only thing select needs is a logical vector.</p>
+<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"abb"</span>, <span class="st">"bbc"</span>, <span class="st">"dbbd"</span>, <span class="st">"aacc"</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 × 2
+##   x         y
+##   &lt;chr&gt; &lt;int&gt;
+## 1 abb       1
+## 2 bbc       2
+## 3 dbbd      3
+## 4 aacc      4</code></pre>
+<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"bb"</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   x         y
+##   &lt;chr&gt; &lt;int&gt;
+## 1 abb       1
+## 2 bbc       2
+## 3 dbbd      3</code></pre>
+<p>Using <code>str_detect()</code> from the <code>stringr</code> tidyverse package this is also possible:</p>
+<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">x</span>, <span class="st">"bb"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   x         y
+##   &lt;chr&gt; &lt;int&gt;
+## 1 abb       1
+## 2 bbc       2
+## 3 dbbd      3</code></pre>
+</div>
+<div id="filter-across-multiple-columns" class="section level4 unnumbered">
+<h4>
+<code>filter()</code> across multiple columns<a class="anchor" aria-label="anchor" href="#filter-across-multiple-columns"><i class="fas fa-link"></i></a>
+</h4>
+<p>Suppose you have a dataframe with multiple columns holding numeric data, and you want to apply a filter step taking all these columns into account. For instance, suppose we have this dataset:</p>
+<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">patient_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>,</span>
+<span>                       age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">33</span>, <span class="fl">21</span>, <span class="fl">57</span>, <span class="fl">28</span>, <span class="fl">82</span>, <span class="fl">72</span><span class="op">)</span>,</span>
+<span>                       RHR_day1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">48</span>, <span class="fl">54</span>, <span class="fl">61</span>, <span class="fl">55</span>, <span class="fl">66</span>, <span class="fl">62</span><span class="op">)</span>,</span>
+<span>                       RHR_day2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">49</span>, <span class="fl">52</span>, <span class="fl">56</span>, <span class="fl">61</span>, <span class="fl">62</span>, <span class="fl">65</span><span class="op">)</span>,</span>
+<span>                       RHR_day3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">52</span>, <span class="fl">56</span>, <span class="fl">53</span>, <span class="fl">60</span>, <span class="fl">64</span>, <span class="fl">69</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   ID      age RHR_day1 RHR_day2 RHR_day3
+##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 A        33       48       49       52
+## 2 B        21       54       52       56
+## 3 C        57       61       56       53
+## 4 D        28       55       61       60
+## 5 E        82       66       62       64
+## 6 F        72       62       65       69</code></pre>
+<p>Now, if we want to filter rows where any of the rows has a Resting Heart rate above 62, we could do this.</p>
+<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">patient_data</span>,</span>
+<span>       <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">if_any</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span> <span class="op">&gt;</span> <span class="fl">62</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   ID      age RHR_day1 RHR_day2 RHR_day3
+##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 E        82       66       62       64
+## 2 F        72       62       65       69</code></pre>
+<p>The function <code>function(x) x &gt; 60</code> could (and preferably should) be replaced by a Lambda expression (discussed later in this chapter):</p>
+<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">patient_data</span>,</span>
+<span>       <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">if_any</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, <span class="op">~</span> <span class="va">.x</span> <span class="op">&gt;</span> <span class="fl">62</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
+<p>Note that in this particular case, the pivot_longer function followed by a normal filter operation could also have done the job. You should try it yourself.</p>
+<div class="attention">
+<p>There is a related function, <code><a href="https://dplyr.tidyverse.org/reference/across.html">if_all()</a></code> that works the same.</p>
+</div>
+</div>
+<div id="selecting-from-ranked-data" class="section level4 unnumbered">
+<h4>Selecting from ranked data<a class="anchor" aria-label="anchor" href="#selecting-from-ranked-data"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n()</a></code> function makes it easy to select a few cases that based on the ranking of a value:</p>
+<div class="sourceCode" id="cb504"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">Response</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##   patient sex   Dose      Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;int&gt;
+## 1 005     f     dose100mg       89
+## 2 006     f     dose100mg       99
+## 3 017     f     dose100mg       96
+## 4 021     f     dose100mg       89</code></pre>
+<p>We see 4 cases returned because the third rank is the same for two cases.</p>
+<p>This is especially interesting with grouped data:</p>
+<div class="sourceCode" id="cb506"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">3</span>, <span class="va">Response</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 7 × 4
+## # Groups:   Dose [2]
+##   patient sex   Dose      Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;int&gt;
+## 1 010     m     dose10mg        83
+## 2 011     m     dose10mg        72
+## 3 015     m     dose10mg        73
+## 4 005     f     dose100mg       89
+## 5 006     f     dose100mg       99
+## 6 017     f     dose100mg       96
+## 7 021     f     dose100mg       89</code></pre>
+</div>
+<div id="sorting-with-arrange" class="section level4 unnumbered">
+<h4>Sorting with <code>arrange()</code><a class="anchor" aria-label="anchor" href="#sorting-with-arrange"><i class="fas fa-link"></i></a>
+</h4>
+<p>If you want to sort the rows of a dataframe/tibble by the values of one or more columns, use <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code></p>
+<div class="sourceCode" id="cb508"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">Response</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   patient sex   Dose      Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;int&gt;
+## 1 024     m     dose100mg       10
+## 2 002     f     dose10mg        11
+## 3 026     f     dose10mg        11</code></pre>
+<p>Use the function <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> to reverse the ordering</p>
+<div class="sourceCode" id="cb510"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Response</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##   patient sex   Dose      Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;int&gt;
+## 1 006     f     dose100mg       99</code></pre>
+<p>Note that the previous chunk is equivalent to this</p>
+<div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">Response</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##   patient sex   Dose      Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;int&gt;
+## 1 006     f     dose100mg       99</code></pre>
+<p>So natural ordering is from low to high, but the <code><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n()</a></code> function always orders from high to low. You can reverse this as well using the <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> function.</p>
+</div>
+<div id="random-sampling" class="section level4 unnumbered">
+<h4>Random sampling<a class="anchor" aria-label="anchor" href="#random-sampling"><i class="fas fa-link"></i></a>
+</h4>
+<p>There are two functions available for random sampling: <code><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac()</a></code>.</p>
+<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span><span class="va">dose_response_long</span>, <span class="fl">0.05</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   patient sex   Dose      Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;int&gt;
+## 1 012     m     dose100mg       28
+## 2 025     m     dose100mg       36
+## 3 006     f     dose10mg        22</code></pre>
+<p>The workings of <code><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n()</a></code> are obvious I guess.</p>
+</div>
+</div>
+<div id="selecting-columns-1" class="section level3" number="10.2.2">
+<h3>
+<span class="header-section-number">10.2.2</span> Selecting columns<a class="anchor" aria-label="anchor" href="#selecting-columns-1"><i class="fas fa-link"></i></a>
+</h3>
+<div id="selecting-variables-select" class="section level4 unnumbered">
+<h4>Selecting variables: <code>select()</code><a class="anchor" aria-label="anchor" href="#selecting-variables-select"><i class="fas fa-link"></i></a>
+</h4>
+<p>This function is similar to the <code>select</code> argument of the <code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code> function.</p>
+<p>Choose variables from a table. Closely related to <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> discussed below; <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> keeps only the listed variables and <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> keeps all variables.</p>
+<p>When you use the <code>key = value</code> format this will result in a rename of the variable.</p>
+<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dose_response_long</span>, <span class="va">patient</span>, gender <span class="op">=</span> <span class="va">sex</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 52 × 2
+##   patient gender
+##   &lt;chr&gt;   &lt;fct&gt; 
+## 1 001     f     
+## 2 002     f     
+## 3 003     m     
+## 4 004     m     
+## 5 005     f     
+## 6 006     f     
+## # ℹ 46 more rows</code></pre>
+<p>Use the minus sign when you want to select everything <em>but</em> a variable:</p>
+<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dose_response_long</span>, <span class="op">-</span><span class="va">patient</span>, <span class="op">-</span><span class="va">sex</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 52 × 2
+##   Dose     Response
+##   &lt;chr&gt;       &lt;int&gt;
+## 1 dose10mg       12
+## 2 dose10mg       11
+## 3 dose10mg       54
+## 4 dose10mg       71
+## 5 dose10mg       19
+## 6 dose10mg       22
+## # ℹ 46 more rows</code></pre>
+<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## same as </span></span>
+<span><span class="co">#select(dose_response_long, -c(patient, sex))</span></span></code></pre></div>
+<p>You can use the colon operator to indicate a range of variables:</p>
+<div class="sourceCode" id="cb521"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dose_response_long</span>, <span class="va">patient</span><span class="op">:</span><span class="va">Dose</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 52 × 3
+##   patient sex   Dose    
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;   
+## 1 001     f     dose10mg
+## 2 002     f     dose10mg
+## 3 003     m     dose10mg
+## 4 004     m     dose10mg
+## 5 005     f     dose10mg
+## 6 006     f     dose10mg
+## # ℹ 46 more rows</code></pre>
+</div>
+<div id="conditionally-select-columns" class="section level4 unnumbered">
+<h4>Conditionally select columns<a class="anchor" aria-label="anchor" href="#conditionally-select-columns"><i class="fas fa-link"></i></a>
+</h4>
+<p>Here is our patient_data from before:</p>
+<div class="sourceCode" id="cb523"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">patient_data</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   ID      age RHR_day1 RHR_day2 RHR_day3
+##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 A        33       48       49       52
+## 2 B        21       54       52       56
+## 3 C        57       61       56       53
+## 4 D        28       55       61       60
+## 5 E        82       66       62       64
+## 6 F        72       62       65       69</code></pre>
+<p>What if we wanted to select any heart rate column that has an average over 60?</p>
+<div class="sourceCode" id="cb525"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">patient_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">ID</span>, <span class="op">-</span><span class="va">age</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html">select_if</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">58</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 1
+##   RHR_day3
+##      &lt;dbl&gt;
+## 1       52
+## 2       56
+## 3       53
+## 4       60
+## 5       64
+## 6       69</code></pre>
+<p>OK, but what if we also want the ID and age column retained. This took me a while to figure out. I have the feeling it could be done better.</p>
+<div class="sourceCode" id="cb527"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">patient_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">age</span>, <span class="fu">where</span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">58</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   ID      age RHR_day3
+##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 A        33       52
+## 2 B        21       56
+## 3 C        57       53
+## 4 D        28       60
+## 5 E        82       64
+## 6 F        72       69</code></pre>
+<p>This uses <code>where()</code>, one of the tidyselect helpers we’ll see used more. These are discussed next.</p>
+</div>
+<div id="tidyselect-helpers" class="section level4 unnumbered">
+<h4>Tidyselect helpers<a class="anchor" aria-label="anchor" href="#tidyselect-helpers"><i class="fas fa-link"></i></a>
+</h4>
+<p>With <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>, but also with <code>mutate(across())</code> and the pivot functions from tidyr, you can use the special helper functions of the tidyselect package:</p>
+<ul>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with()</a></code>: Starts with a prefix.</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with()</a></code>: Ends with a suffix.</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains()</a></code>: Contains a literal string.</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches()</a></code>: Matches a regular expression.</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">num_range()</a></code>: Matches a numerical range like x01, x02, x03.</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/one_of.html">one_of()</a></code>: Matches variable names in a character vector.</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code>: Matches all variables.</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col()</a></code>: Select last variable, possibly with an offset.</li>
+<li>
+<code>where()</code>: Select on a condition (predicate applied to the column)</li>
+</ul>
+<div class="sourceCode" id="cb529"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dose_response_long</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"o"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 52 × 2
+##   Dose     Response
+##   &lt;chr&gt;       &lt;int&gt;
+## 1 dose10mg       12
+## 2 dose10mg       11
+## 3 dose10mg       54
+## 4 dose10mg       71
+## 5 dose10mg       19
+## 6 dose10mg       22
+## # ℹ 46 more rows</code></pre>
+</div>
+<div id="extract-a-column-as-vector" class="section level4 unnumbered">
+<h4>Extract a column as vector<a class="anchor" aria-label="anchor" href="#extract-a-column-as-vector"><i class="fas fa-link"></i></a>
+</h4>
+<p>Using <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code> you can obtain atomic vectors.</p>
+<div class="sourceCode" id="cb531"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">dose_response_long</span>, <span class="va">Response</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##  [1] 12 11 54 71 19 22 23 68 30 83 72 48 67 13 73 20 22 40 57 26 17 29 54 61 57
+## [26] 11 88 54 14 21 89 99 69 31 85 18 37 28 16 79 22 84 96 14 12 63 89 77 21 10
+## [51] 36 80</code></pre>
+<p>This is of course the same as <code>dose_response_long[[4]]</code> or <code>dose_response_long$Response</code> but the difference is that <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code> can be applied in a <code>%&gt;%</code> pipeline.<br>
+With <code>dose_response_long[, 4]</code> it matters whether you are working with a tibble or a dataframe; a tibble returns a tibble and a dataframe returns a vector.</p>
+</div>
+</div>
+</div>
+<div id="adding-and-changing-variables" class="section level2" number="10.3">
+<h2>
+<span class="header-section-number">10.3</span> Adding and changing variables<a class="anchor" aria-label="anchor" href="#adding-and-changing-variables"><i class="fas fa-link"></i></a>
+</h2>
+<div id="window-functions" class="section level3" number="10.3.1">
+<h3>
+<span class="header-section-number">10.3.1</span> Window functions<a class="anchor" aria-label="anchor" href="#window-functions"><i class="fas fa-link"></i></a>
+</h3>
+<p>A new variable is usually the result of some operation on one or more previous variables. The data in an original variables is processed such that for each old value a new value is generated. Functions that carry out this kind of operation are called <strong><em>window</em></strong> functions. Thus, window functions are functions that take a vector and return another vector of the same length.</p>
+<p>For instance, the <code><a href="https://rdrr.io/r/base/cumsum.html">cumsum()</a></code> function returns the cumulative sum of a numeric vector:</p>
+<div class="sourceCode" id="cb533"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1]  1  3  6 10 15</code></pre>
+<p>Here are the main window functions. Note that some of them come from base R. Later you will see the use of several of them in concert with the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function.</p>
+<ul>
+<li>
+<p><strong><em><code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">dplyr::lead</a></code></em></strong><br>
+Copy with values shifted by 1.</p>
+<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lead</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1]  4  2  8 NA</code></pre>
+</li>
+<li>
+<p><strong><em><code>dplyr::lag</code></em></strong><br>
+Copy with values lagged by 1.</p>
+<div class="sourceCode" id="cb537"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">lag</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] NA  1  4  2</code></pre>
+</li>
+<li>
+<p><strong><em><code><a href="https://dplyr.tidyverse.org/reference/ranking.html">dplyr::min_rank</a></code></em></strong><br>
+Ranks on values, from low to high. Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> to reverse.</p>
+<div class="sourceCode" id="cb539"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">min_rank</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 3 2 1 4</code></pre>
+</li>
+<li>
+<p><strong><em><code><a href="https://dplyr.tidyverse.org/reference/ranking.html">dplyr::ntile</a></code></em></strong><br>
+Bin vector into n buckets.</p>
+<div class="sourceCode" id="cb541"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">ntile</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 2 2 1 3 1</code></pre>
+</li>
+<li>
+<p><strong><em><code><a href="https://dplyr.tidyverse.org/reference/between.html">dplyr::between</a></code></em></strong><br>
+Are values between a and b?</p>
+<div class="sourceCode" id="cb543"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html">between</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE FALSE FALSE FALSE</code></pre>
+</li>
+<li>
+<p><strong><em><code><a href="https://dplyr.tidyverse.org/reference/cumall.html">dplyr::cummean</a></code></em></strong><br>
+Cumulative mean</p>
+<div class="sourceCode" id="cb545"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/cumall.html">cummean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 5.00 4.50 3.67 4.75 4.00</code></pre>
+</li>
+<li>
+<p><strong><em><code>cumsum</code></em></strong><br>
+Cumulative sum</p>
+<div class="sourceCode" id="cb547"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1]  5  9 11 19 20</code></pre>
+</li>
+<li>
+<p><strong><em><code>cummax</code></em></strong><br>
+Cumulative maximum</p>
+<div class="sourceCode" id="cb549"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cummax</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 5 5 5 8 8</code></pre>
+</li>
+<li>
+<p><strong><em><code>cummin</code></em></strong><br>
+Cumulative minimum</p>
+<div class="sourceCode" id="cb551"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cummin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 5 4 2 2 1</code></pre>
+</li>
+<li>
+<p><strong><em><code>cumprod</code></em></strong><br>
+Cumulative product</p>
+<div class="sourceCode" id="cb553"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumprod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1]   5  20  40 320 320</code></pre>
+</li>
+<li>
+<p><strong><em><code>pmax</code></em></strong><br>
+Element-wise maximum</p>
+<div class="sourceCode" id="cb555"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmax</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 5 4 3 8 3</code></pre>
+</li>
+<li>
+<p><strong><em><code>pmin</code></em></strong><br>
+Element-wise minimum</p>
+<div class="sourceCode" id="cb557"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 2 2 2 4 1</code></pre>
+</li>
+</ul>
+</div>
+<div id="mutate" class="section level3" number="10.3.2">
+<h3>
+<span class="header-section-number">10.3.2</span> Mutate<a class="anchor" aria-label="anchor" href="#mutate"><i class="fas fa-link"></i></a>
+</h3>
+<div id="renaming-variables-rename" class="section level4 unnumbered">
+<h4>Renaming variables: <code>rename()</code><a class="anchor" aria-label="anchor" href="#renaming-variables-rename"><i class="fas fa-link"></i></a>
+</h4>
+<p>Rename variables from a table.</p>
+<div class="sourceCode" id="cb559"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>Patient <span class="op">=</span> <span class="va">patient</span>, Gender <span class="op">=</span> <span class="va">sex</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 52 × 4
+##   Patient Gender Dose     Response
+##   &lt;chr&gt;   &lt;fct&gt;  &lt;chr&gt;       &lt;int&gt;
+## 1 001     f      dose10mg       12
+## 2 002     f      dose10mg       11
+## 3 003     m      dose10mg       54
+## 4 004     m      dose10mg       71
+## 5 005     f      dose10mg       19
+## 6 006     f      dose10mg       22
+## # ℹ 46 more rows</code></pre>
+</div>
+<div id="add-one-or-more-variables-mutate" class="section level4 unnumbered">
+<h4>Add one or more variables: <code>mutate()</code><a class="anchor" aria-label="anchor" href="#add-one-or-more-variables-mutate"><i class="fas fa-link"></i></a>
+</h4>
+<p>The function <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> can be used to calculate and append one or more columns.The window functions from the previous section are often-used helpers.</p>
+<p>For instance, given the <code>ChickWeight</code> dataset which shows weight gain for 50 chicks:</p>
+<div class="sourceCode" id="cb561"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">chicks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">ChickWeight</span><span class="op">)</span> </span>
+<span><span class="va">chicks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 5 × 4
+##   weight  Time Chick Diet 
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt; &lt;fct&gt;
+## 1     42     0 1     1    
+## 2     51     2 1     1    
+## 3     59     4 1     1    
+## 4     64     6 1     1    
+## 5     76     8 1     1</code></pre>
+<p>Suppose we want to know the daily weight gain of these chicks (as a challenge, you could try to do this in base R).</p>
+<p>Using <code>lag()</code> and <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> this is a breeze (or so it seems):</p>
+<div class="sourceCode" id="cb563"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">chicks</span> <span class="op">&lt;-</span> <span class="va">chicks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weight_gain <span class="op">=</span> <span class="va">weight</span> <span class="op">-</span> <span class="fu">lag</span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 578 × 5
+##   weight  Time Chick Diet  weight_gain
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt; &lt;fct&gt;       &lt;dbl&gt;
+## 1     42     0 1     1              NA
+## 2     51     2 1     1               9
+## 3     59     4 1     1               8
+## 4     64     6 1     1               5
+## 5     76     8 1     1              12
+## 6     93    10 1     1              17
+## # ℹ 572 more rows</code></pre>
+<p>…but the devil is in the details:</p>
+<div class="sourceCode" id="cb565"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">chicks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   weight  Time Chick Diet  weight_gain
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt; &lt;fct&gt;       &lt;dbl&gt;
+## 1    171    18 1     1              22
+## 2    199    20 1     1              28
+## 3    205    21 1     1               6
+## 4     40     0 2     1            -165
+## 5     49     2 2     1               9
+## 6     58     4 2     1               9</code></pre>
+<p>The transition from chick 1 to chick 2 is not taken into account!
+So to get the weight gain for each chick, we need to split the data first. This is dealt with in a later section but here is a preview:</p>
+<div class="sourceCode" id="cb567"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">chicks</span> <span class="op">&lt;-</span> <span class="va">chicks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Chick</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co">#split on chicks</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weight_gain <span class="op">=</span> <span class="va">weight</span> <span class="op">-</span> <span class="fu">lag</span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#put together again</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">chicks</span>, <span class="fl">10</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   weight  Time Chick Diet  weight_gain
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt; &lt;fct&gt;       &lt;dbl&gt;
+## 1    171    18 1     1              22
+## 2    199    20 1     1              28
+## 3    205    21 1     1               6
+## 4     40     0 2     1              NA
+## 5     49     2 2     1               9
+## 6     58     4 2     1               9</code></pre>
+<p>Can you use a custom function in a <code>mutate</code> context? Of course you can!</p>
+<div class="sourceCode" id="cb569"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_z</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">women</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z_score <span class="op">=</span> <span class="fu">my_z</span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   height weight  bmi z_score
+## 1     58    115 24.0   1.402
+## 2     59    117 23.6   1.273
+## 3     60    120 23.4   1.080
+## 4     61    123 23.2   0.886
+## 5     62    126 23.0   0.693
+## 6     63    129 22.8   0.499</code></pre>
+<p>And what’s more, you can make multiple columns in one operation where the calculations for the subsequent columns are interdependent.</p>
+<div class="sourceCode" id="cb571"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">women</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z_score <span class="op">=</span> <span class="fu">my_z</span><span class="op">(</span><span class="va">weight</span><span class="op">)</span>,</span>
+<span>           z_bin <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">ntile</a></span><span class="op">(</span><span class="va">z_score</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   height weight  bmi z_score z_bin
+## 1     58    115 24.0   1.402     3
+## 2     59    117 23.6   1.273     3
+## 3     60    120 23.4   1.080     2
+## 4     61    123 23.2   0.886     2
+## 5     62    126 23.0   0.693     2
+## 6     63    129 22.8   0.499     1</code></pre>
+</div>
+<div id="multi-column-mutate-or-summary" class="section level4 unnumbered">
+<h4>Multi-column mutate or summary<a class="anchor" aria-label="anchor" href="#multi-column-mutate-or-summary"><i class="fas fa-link"></i></a>
+</h4>
+<p>When you want to apply a mutate operation on a selection of multiple columns you need to use the <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> function.</p>
+<p>It has this general signature:</p>
+<div class="sourceCode" id="cb573"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, .fns <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span>, .names <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<p>As you can see, the <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> function takes two main arguments: a selection of columns - often the result of one of the tidyselect helpers - and a function or list of functions to apply to these columns. The <code>.names=</code> argument can be used to specify how column names will be generated and the <code>...</code> arguments is for passing arguments to the applied functions, just like wehave seen with <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>.</p>
+</div>
+<div id="many-ways-to-select-columns" class="section level4 unnumbered">
+<h4>Many ways to select columns<a class="anchor" aria-label="anchor" href="#many-ways-to-select-columns"><i class="fas fa-link"></i></a>
+</h4>
+<p>In this first example the tidyselect helper function <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> is used.
+This is similar to usage of the base R <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> function.</p>
+<p>Suppose you want to calculate the log2 of all numeric values in the <code>iris</code> dataset.
+In base R you would probably do it like this:</p>
+<div class="sourceCode" id="cb574"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>, <span class="op">-</span><span class="fl">5</span><span class="op">]</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="va">log2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##      Sepal.Length Sepal.Width Petal.Length Petal.Width
+## [1,]         2.35        1.81        0.485       -2.32
+## [2,]         2.29        1.58        0.485       -2.32
+## [3,]         2.23        1.68        0.379       -2.32
+## [4,]         2.20        1.63        0.585       -2.32
+## [5,]         2.32        1.85        0.485       -2.32
+## [6,]         2.43        1.96        0.766       -1.32</code></pre>
+<p>When you do it with <code>mutate(across(...))</code> this is the most similar solution:</p>
+<div class="sourceCode" id="cb576"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">log2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1         2.35        1.81        0.485       -2.32
+## 2         2.29        1.58        0.485       -2.32
+## 3         2.23        1.68        0.379       -2.32</code></pre>
+<p>The tidyselect helper <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> does what you would expect given its name. Notice how the original columns have been dropped and new columns have the same name as the original ones.</p>
+<p>The <code>select(-Species) %&gt;%</code> however, is a bit redundant if you use the <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> function to its full potential in combination with tidyselect helpers. Here are some examples (only the first evaluated because output is the similar for all).</p>
+<p>Using indices:</p>
+<div class="sourceCode" id="cb578"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1         5.84        3.06         3.76         1.2</code></pre>
+<p>Using column names (no quotes required):</p>
+<div class="sourceCode" id="cb580"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Sepal.Length</span>, <span class="va">Sepal.Width</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Using text matching on column names:</p>
+<div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"P"</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"."</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Finally: Using <code>where(is.numeric)</code> to apply a logical filter to the column type:</p>
+<div class="sourceCode" id="cb582"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Execute <code><a href="https://tidyselect.r-lib.org/reference">help(package = "tidyselect")</a></code> to see a listing of more possibilities.
+As you have seen, the alternatives to selecting columns are almost endless.</p>
+</div>
+<div id="many-ways-to-apply-functions" class="section level4 unnumbered">
+<h4>Many ways to apply functions<a class="anchor" aria-label="anchor" href="#many-ways-to-apply-functions"><i class="fas fa-link"></i></a>
+</h4>
+<p>Besides a single function name to apply, you can provide lists of functions, anonymous functions and lambdas. Here are some examples.</p>
+<p>You can provide a named list to apply more than one function. in that case the list name is used as column name. Surprisingly enough, the original columns are maintained in this use case (also when your list contains only one entry)!</p>
+<div class="sourceCode" id="cb583"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>log <span class="op">=</span> <span class="va">log2</span>, sqrt <span class="op">=</span> <span class="va">sqrt</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Sepal.Length_log
+## 1          5.1         3.5          1.4         0.2             2.35
+## 2          4.9         3.0          1.4         0.2             2.29
+## 3          4.7         3.2          1.3         0.2             2.23
+##   Sepal.Length_sqrt Sepal.Width_log Sepal.Width_sqrt Petal.Length_log
+## 1              2.26            1.81             1.87            0.485
+## 2              2.21            1.58             1.73            0.485
+## 3              2.17            1.68             1.79            0.379
+##   Petal.Length_sqrt Petal.Width_log Petal.Width_sqrt
+## 1              1.18           -2.32            0.447
+## 2              1.18           -2.32            0.447
+## 3              1.14           -2.32            0.447</code></pre>
+<p>When you don’t give the entries names (e.g. <code>list(log2, sqrt)</code> instead of <code>list(log = log2, sqrt = sqrt)</code>) the resulting column names will receive simple serial numbers.</p>
+<p>However, when you use <code>tibble::list()</code> instead, the function names do get used even though you don’t provide names (results omitted):</p>
+<div class="sourceCode" id="cb585"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>log <span class="op">=</span> <span class="va">log2</span>, sqrt <span class="op">=</span> <span class="va">sqrt</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>You can also pass <strong><em>lambdas</em></strong> to <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> instead of a function name. Lambda’s are anonymous function-like expressions. Although this form is harder to grasp, it does make it easier to pass arguments to the function you want executed (in this case <code>tcenter = FALSE</code> to <code>scale</code>).</p>
+<div class="sourceCode" id="cb586"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">.x</span>, center <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1        0.861       1.130        0.336        0.14  setosa
+## 2        0.828       0.968        0.336        0.14  setosa
+## 3        0.794       1.033        0.312        0.14  setosa
+## 4        0.777       1.001        0.360        0.14  setosa
+## 5        0.844       1.162        0.336        0.14  setosa</code></pre>
+<p>Again, you can also pass a (named) list:</p>
+<div class="sourceCode" id="cb588"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>scaled <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">.</span>, center <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, </span>
+<span>                            mean <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span>, trim <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species Sepal.Length_scaled
+## 1          5.1         3.5          1.4         0.2  setosa               0.861
+## 2          4.9         3.0          1.4         0.2  setosa               0.828
+## 3          4.7         3.2          1.3         0.2  setosa               0.794
+## 4          4.6         3.1          1.5         0.2  setosa               0.777
+## 5          5.0         3.6          1.4         0.2  setosa               0.844
+##   Sepal.Length_mean Sepal.Width_scaled Sepal.Width_mean Petal.Length_scaled
+## 1               5.8              1.130             3.04               0.336
+## 2               5.8              0.968             3.04               0.336
+## 3               5.8              1.033             3.04               0.312
+## 4               5.8              1.001             3.04               0.360
+## 5               5.8              1.162             3.04               0.336
+##   Petal.Length_mean Petal.Width_scaled Petal.Width_mean
+## 1              3.84               0.14              1.2
+## 2              3.84               0.14              1.2
+## 3              3.84               0.14              1.2
+## 4              3.84               0.14              1.2
+## 5              3.84               0.14              1.2</code></pre>
+<p>The expression <code>~ mean(.x, trim = 0.2)</code> is therefore equivalent to something like
+<code>function (.x) mean(.x, trim = 0.2)</code> so the tilde is shorthand for <code>function (.x)</code>. Instead of <code>.x</code> a single dot <code>.</code> is also allowed, and this syntax is used in more locations of the tidyverse - see <code><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map()</a></code> and related functions.</p>
+</div>
+<div id="change-values-of-a-variable-recode-and-recode_factor" class="section level4 unnumbered">
+<h4>Change values of a variable: <code>recode()</code> and <code>recode_factor()</code><a class="anchor" aria-label="anchor" href="#change-values-of-a-variable-recode-and-recode_factor"><i class="fas fa-link"></i></a>
+</h4>
+<p>These two functions help you to quickly change the values of a variable. Here, the Dose variable is overwritten with new -numeric- values. Note that the original <code>dose_response_long</code> tibble has <strong><em>not</em></strong> been modified!</p>
+<div class="sourceCode" id="cb590"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dose_response_long</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##   patient sex   Dose     Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;       &lt;int&gt;
+## 1 001     f     dose10mg       12
+## 2 002     f     dose10mg       11</code></pre>
+<div class="sourceCode" id="cb592"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Dose <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">Dose</span>, dose10mg <span class="op">=</span> <span class="fl">10</span>, dose100mg <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##   patient sex    Dose Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;    &lt;int&gt;
+## 1 001     f        10       12
+## 2 002     f        10       11</code></pre>
+<p>Similarly, the <code>sex</code> variable can be recoded with the <code><a href="https://dplyr.tidyverse.org/reference/recode.html">recode_factor()</a></code> function. In the example below,<br>
+- the Response variable is created based on the <code>sex</code> variable,
+- the <code>sex</code> variable is deleted and
+- the variables are reordered to the original format</p>
+<div class="sourceCode" id="cb594"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Gender <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode_factor</a></span><span class="op">(</span><span class="va">sex</span>, f <span class="op">=</span> <span class="st">"female"</span>, m <span class="op">=</span> <span class="st">"male"</span><span class="op">)</span>, </span>
+<span>           sex <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">patient</span>, <span class="va">Gender</span>, <span class="va">Dose</span>, <span class="va">Response</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   patient Gender Dose     Response
+##   &lt;chr&gt;   &lt;fct&gt;  &lt;chr&gt;       &lt;int&gt;
+## 1 001     female dose10mg       12
+## 2 002     female dose10mg       11
+## 3 003     male   dose10mg       54</code></pre>
+</div>
+</div>
+<div id="operations-on-groups" class="section level3" number="10.3.3">
+<h3>
+<span class="header-section-number">10.3.3</span> Operations on groups<a class="anchor" aria-label="anchor" href="#operations-on-groups"><i class="fas fa-link"></i></a>
+</h3>
+<p>Often you want to know something about groups in your data. For instance, in the previous examples with the chickens, it is interesting to know the average weight gain of the chickens for each diet. This is where the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function comes in, and its counterpart <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code>.</p>
+<p>One important thing to realize is the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> does not <strong><em>split</em></strong> your data. instead, it adds metadata to a tibble (or data.frame) that marks how rows should be grouped. As long as that metadata is there -i.e. you have not called <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code>- you won’t be able to change the factors of the columns involved in the grouping.</p>
+<p>If you really want to split, like the base R <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> function, you should use the <code><a href="https://dplyr.tidyverse.org/reference/group_split.html">group_split()</a></code> function.</p>
+<div id="group_by-and-ungroup" class="section level4 unnumbered">
+<h4>
+<code>group_by()</code> and <code>ungroup()</code><a class="anchor" aria-label="anchor" href="#group_by-and-ungroup"><i class="fas fa-link"></i></a>
+</h4>
+<p>This is the most used set of grouping functions. It is usually followed by some summary function -discussed below- but sometimes, as in the case of the weight gain outlined in section <a href="dplyr.html#mutate">10.3.2</a>, you want to progress with all data combined. In that case you need to ungroup again.</p>
+<p>Here is the summary use case. No need for ungrouping.</p>
+<div class="sourceCode" id="cb596"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Response</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   sex    mean
+##   &lt;fct&gt; &lt;dbl&gt;
+## 1 f      50.3
+## 2 m      41.7</code></pre>
+<p>Of course you can group by multiple variables.</p>
+<div class="sourceCode" id="cb598"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Dose</span>, <span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Response</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by 'Dose'. You can override using the
+## `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 4 × 3
+## # Groups:   Dose [2]
+##   Dose      sex    mean
+##   &lt;chr&gt;     &lt;fct&gt; &lt;dbl&gt;
+## 1 dose100mg f      80.9
+## 2 dose100mg m      21.5
+## 3 dose10mg  f      19.6
+## 4 dose10mg  m      61.9</code></pre>
+<p>After grouping on a variable, you will sometimes be interested in the top or bottom <em>n</em> rows. The <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function will not work then, surprisingly enough. Suppose you want the bottom 2 responses from both the males and females in the dose100mg group. Surprisingly enough this does not work:</p>
+<div class="sourceCode" id="cb601"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Dose</span> <span class="op">==</span> <span class="st">"dose100mg"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">Response</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##   patient sex   Dose      Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;int&gt;
+## 1 024     m     dose100mg       10
+## 2 019     m     dose100mg       12</code></pre>
+<p>Instead, to select the top <em>n</em> values after grouping you need to use either <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> or <code>filter(row_number() &lt;some-logical-test&gt;)</code>. Here is the correct solution.</p>
+<div class="sourceCode" id="cb603"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Dose</span> <span class="op">==</span> <span class="st">"dose100mg"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">Response</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="co">#filter(row_number() %in% 1:2) %&gt;% #also works</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#ungrouping not required but I added it for clarity of code</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##   patient sex   Dose      Response
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;        &lt;int&gt;
+## 1 002     f     dose100mg       54
+## 2 020     f     dose100mg       63
+## 3 024     m     dose100mg       10
+## 4 019     m     dose100mg       12</code></pre>
+<p>Here is rather lengthy use case for ungrouping: the z-score is calculated per <code>sex</code> group, and then there is some Dose-specific calculation before summarizing. This required an ungroup in between.</p>
+<div class="sourceCode" id="cb605"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Response_Z <span class="op">=</span> <span class="fu">my_z</span><span class="op">(</span><span class="va">Response</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co">##ungroup for other grouping</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Response_scaled <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">Response</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>Z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Response_Z</span><span class="op">)</span>, Scaled_Mean_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">Response_scaled</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   Dose          Z Scaled_Mean_sd
+##   &lt;chr&gt;     &lt;dbl&gt;          &lt;dbl&gt;
+## 1 dose100mg 0.906              1
+## 2 dose10mg  0.912              1</code></pre>
+</div>
+<div id="group_split-and-group_keys" class="section level4 unnumbered">
+<h4>
+<code>group_split()</code> and <code>group_keys()</code><a class="anchor" aria-label="anchor" href="#group_split-and-group_keys"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/group_split.html">group_split()</a></code> function is equivalent to the base R <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> function. But it uses the grouping structure from group_by() and therefore is subject to the data mask. Also, it does not name the elements of the list based on the grouping. So in the example below (unevaluated), <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> will return a list with two named elements (<code>$m</code> and <code>$f</code>), but the list returned by <code><a href="https://dplyr.tidyverse.org/reference/group_split.html">group_split()</a></code> will only be accessible with <code>[[1]]</code> and <code>[[2]]</code>.</p>
+<div class="sourceCode" id="cb607"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_split.html">group_split</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span></span>
+<span><span class="co">##same as</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">dose_response_long</span><span class="op">)</span>, <span class="va">dose_response_long</span><span class="op">$</span><span class="va">sex</span><span class="op">)</span></span></code></pre></div>
+<p>The last grouping-related function, <code><a href="https://dplyr.tidyverse.org/reference/group_data.html">group_keys()</a></code>, only returns a tibble explaining the grouping structure:</p>
+<div class="sourceCode" id="cb608"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_data.html">group_keys</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">Dose</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: The `...` argument of `group_keys()` is deprecated as of dplyr 1.0.0.
+## ℹ Please `group_by()` first
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   sex   Dose     
+##   &lt;fct&gt; &lt;chr&gt;    
+## 1 f     dose100mg
+## 2 f     dose10mg 
+## 3 m     dose100mg
+## 4 m     dose10mg</code></pre>
+</div>
+<div id="apply-a-function-to-each-group" class="section level4 unnumbered">
+<h4>Apply a function to each group<a class="anchor" aria-label="anchor" href="#apply-a-function-to-each-group"><i class="fas fa-link"></i></a>
+</h4>
+<p><code><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_modify()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_walk()</a></code> are functions that can be used to iterate grouped tibbles.</p>
+<ul>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_modify()</a></code> returns a grouped tibble. Therefore the supplied function must return a data frame/tibble to be able to combine the results of the individual subsets.</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map()</a></code> returns a list of results, each element being the result of calling the supplied function on each group</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_walk()</a></code> calls the supplied function for side effects and returns the input <code>.tbl</code>, invisibly. This makes it possible to, for instance, print the intermediate results or write them to file without breaking the workflow.</li>
+</ul>
+<p>Here is an example of <code><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map()</a></code>. As you can see it takes a lambda expression as seen before:</p>
+<div class="sourceCode" id="cb611"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">Response</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [[1]]
+##   0%  20%  40%  60%  80% 100% 
+##   10   18   31   69   85   99 
+## 
+## [[2]]
+##   0%  20%  40%  60%  80% 100% 
+##   11   19   26   54   67   83</code></pre>
+<p>Below is another example, where the resulting list of three dataframes is combined into a single dataframe (result not printed):</p>
+<div class="sourceCode" id="cb613"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Sep.rat <span class="op">=</span> <span class="va">.x</span><span class="op">$</span><span class="va">Sepal.Length</span> <span class="op">/</span> <span class="va">.x</span><span class="op">$</span><span class="va">Sepal.Width</span>,</span>
+<span>                                Pet.rat <span class="op">=</span> <span class="va">.x</span><span class="op">$</span><span class="va">Petal.Length</span> <span class="op">/</span> <span class="va">.x</span><span class="op">$</span><span class="va">Petal.Width</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
+<p>Here is an example of group_modify.</p>
+<div class="sourceCode" id="cb614"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_modify</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>quant <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">Petal.Length</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 15 × 2
+## # Groups:   Species [3]
+##   Species    quant
+##   &lt;fct&gt;      &lt;dbl&gt;
+## 1 setosa      1   
+## 2 setosa      1.4 
+## 3 setosa      1.5 
+## 4 setosa      1.58
+## 5 setosa      1.9 
+## 6 versicolor  3   
+## # ℹ 9 more rows</code></pre>
+<p>Of course, it would have been nicer to put the quantiles in separate columns.</p>
+<div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_modify</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>quant <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">Petal.Length</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">prob</span>, values_from <span class="op">=</span> <span class="va">quant</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 7
+##   Species      `0` `0.2` `0.4` `0.6` `0.8`   `1`
+##   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 setosa       1     1.3  1.4    1.5   1.6   1.9
+## 2 versicolor   3     3.9  4.2    4.5   4.7   5.1
+## 3 virginica    4.5   5.1  5.36   5.6   6     6.9</code></pre>
+<p>But this is much nicer of course:</p>
+<div class="sourceCode" id="cb618"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">.y</span>, <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">Petal.Length</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 7
+##   Species     `0%` `20%` `40%` `60%` `80%` `100%`
+##   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 setosa       1     1.3  1.4    1.5   1.6    1.9
+## 2 versicolor   3     3.9  4.2    4.5   4.7    5.1
+## 3 virginica    4.5   5.1  5.36   5.6   6      6.9</code></pre>
+<p>Use <code><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_walk()</a></code> when you only want to have a peek at each group before processing further.</p>
+<div class="sourceCode" id="cb620"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_walk</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.x</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Response</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   patient sex   Response
+##   &lt;chr&gt;   &lt;fct&gt;    &lt;int&gt;
+## 1 001     f           88
+## 2 002     f           54
+## # A tibble: 2 × 3
+##   patient sex   Response
+##   &lt;chr&gt;   &lt;fct&gt;    &lt;int&gt;
+## 1 001     f           12
+## 2 002     f           11</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##   Dose        avg
+##   &lt;chr&gt;     &lt;dbl&gt;
+## 1 dose100mg  51.2
+## 2 dose10mg   40.8</code></pre>
+</div>
+</div>
+<div id="operations-on-rows" class="section level3" number="10.3.4">
+<h3>
+<span class="header-section-number">10.3.4</span> Operations on rows<a class="anchor" aria-label="anchor" href="#operations-on-rows"><i class="fas fa-link"></i></a>
+</h3>
+<p>Rows are just a special case of groups.</p>
+<p>Suppose you have a workflow where you want to add a column containing the rowwise means of a selection of columns in the data frame. For instance, here <code>apply</code> is used to calculate the mean of the ratios of Length/Width of Sepals and Petals in the iris dataset.</p>
+<div class="sourceCode" id="cb623"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mean_ratios</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> <span class="va">x</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">/</span><span class="va">x</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span></span>
+<span><span class="op">}</span> </span>
+<span></span>
+<span><span class="va">mr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,</span>
+<span>      MARGIN <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>      FUN <span class="op">=</span> <span class="va">mean_ratios</span><span class="op">)</span></span>
+<span><span class="va">iris</span><span class="op">$</span><span class="va">mean_ratios</span> <span class="op">&lt;-</span> <span class="va">mr</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species mean_ratios
+## 1          5.1         3.5          1.4         0.2  setosa        4.23
+## 2          4.9         3.0          1.4         0.2  setosa        4.32
+## 3          4.7         3.2          1.3         0.2  setosa        3.98
+## 4          4.6         3.1          1.5         0.2  setosa        4.49
+## 5          5.0         3.6          1.4         0.2  setosa        4.19
+## 6          5.4         3.9          1.7         0.4  setosa        2.82</code></pre>
+<p>This works. But how about when you want to embed this step into a tidyverse workflow?</p>
+<p>Using the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function, you will probably first try something like this:</p>
+<div class="sourceCode" id="cb625"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>mean_ratio <span class="op">=</span> <span class="op">(</span><span class="va">Sepal.Length</span><span class="op">/</span><span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Petal.Length</span><span class="op">/</span><span class="va">Petal.Width</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species mean_ratios
+## 1           5.1         3.5          1.4         0.2  setosa        4.23
+## 2           4.9         3.0          1.4         0.2  setosa        4.32
+## 3           4.7         3.2          1.3         0.2  setosa        3.98
+## 4           4.6         3.1          1.5         0.2  setosa        4.49
+## 5           5.0         3.6          1.4         0.2  setosa        4.19
+## 6           5.4         3.9          1.7         0.4  setosa        2.82
+## 7           4.6         3.4          1.4         0.3  setosa        3.01
+## 8           5.0         3.4          1.5         0.2  setosa        4.49
+## 9           4.4         2.9          1.4         0.2  setosa        4.26
+## 10          4.9         3.1          1.5         0.1  setosa        8.29
+##    mean_ratio
+## 1        4.23
+## 2        4.32
+## 3        3.98
+## 4        4.49
+## 5        4.19
+## 6        2.82
+## 7        3.01
+## 8        4.49
+## 9        4.26
+## 10       8.29</code></pre>
+<p>OK, this works, but this would be a drag if many more columns would have been involved.<br>
+Let’s try something slightly different:</p>
+<div class="sourceCode" id="cb627"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rowmeans <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Sepal.Length</span>, <span class="va">Sepal.Width</span>, <span class="va">Petal.Length</span>, <span class="va">Petal.Width</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">mean_ratios</span>, <span class="op">-</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width rowmeans
+## 1          5.1         3.5          1.4         0.2     3.46
+## 2          4.9         3.0          1.4         0.2     3.46
+## 3          4.7         3.2          1.3         0.2     3.46
+## 4          4.6         3.1          1.5         0.2     3.46
+## 5          5.0         3.6          1.4         0.2     3.46
+## 6          5.4         3.9          1.7         0.4     3.46</code></pre>
+<p>We get the mean of the entire numeric part of the iris dataset!</p>
+<p>The solution here is the combination of <code><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/c_across.html">c_across()</a></code>.</p>
+<div class="sourceCode" id="cb629"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rowmeans <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/c_across.html">c_across</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 7
+## # Rowwise: 
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species mean_ratios rowmeans
+##          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+## 1          5.1         3.5          1.4         0.2 setosa         4.23     2.55
+## 2          4.9         3            1.4         0.2 setosa         4.32     2.38
+## 3          4.7         3.2          1.3         0.2 setosa         3.98     2.35
+## 4          4.6         3.1          1.5         0.2 setosa         4.49     2.35
+## 5          5           3.6          1.4         0.2 setosa         4.19     2.55
+## 6          5.4         3.9          1.7         0.4 setosa         2.82     2.85</code></pre>
+<p>Alternative selections could have been</p>
+<div class="sourceCode" id="cb631"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">rowmeans</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/c_across.html">c_across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"."</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">rowmeans</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/c_across.html">c_across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">rowmeans</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/c_across.html">c_across</a></span><span class="op">(</span><span class="op">-</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## simpler but less generic</span></span>
+<span><span class="va">rowmeans</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Sepal.Length</span>, <span class="va">Sepal.Width</span>, <span class="va">Petal.Lenght</span>, <span class="va">Petal.Width</span><span class="op">)</span></span></code></pre></div>
+<div class="attention">
+<p>There is a restriction here: unlike the apply functions, the data types of the selected columns must be the same for this to work.</p>
+</div>
+</div>
+</div>
+<div id="summarizing-and-counting" class="section level2" number="10.4">
+<h2>
+<span class="header-section-number">10.4</span> Summarizing and counting<a class="anchor" aria-label="anchor" href="#summarizing-and-counting"><i class="fas fa-link"></i></a>
+</h2>
+<p>You have seen the <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> function at work a few times. In essence, it creates one or more summary statistics, for each group, if existing.</p>
+<p>For instance, to calculate the mean and SD of relative weight gain for different diets, this is the workflow for it:</p>
+<div class="sourceCode" id="cb632"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">chicks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Chick</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co">#split on chicks</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rel_weight_gain <span class="op">=</span> <span class="op">(</span><span class="va">weight</span> <span class="op">-</span> <span class="fu">lag</span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="va">weight</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Diet</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_rel_gain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rel_weight_gain</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, </span>
+<span>              sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">rel_weight_gain</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+##   Diet  mean_rel_gain     sd
+##   &lt;fct&gt;         &lt;dbl&gt;  &lt;dbl&gt;
+## 1 1             0.111 0.0743
+## 2 2             0.131 0.0742
+## 3 3             0.153 0.0657
+## 4 4             0.142 0.0748</code></pre>
+<p>There is an equivalent that creates a summary for a group of variables: <code><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarize_all()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarize_at()</a></code> and <code>summareize_if()</code> which are analogous to the <code>mutate_xxx()</code> methods. Here is one example.</p>
+<div class="sourceCode" id="cb634"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarize_if</a></span><span class="op">(</span><span class="va">is.numeric</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="va">mean</span>, sd <span class="op">=</span> <span class="va">sd</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Sepal.Length_mean Sepal.Width_mean Petal.Length_mean Petal.Width_mean
+## 1              5.84             3.06              3.76              1.2
+##   mean_ratios_mean Sepal.Length_sd Sepal.Width_sd Petal.Length_sd
+## 1             3.13           0.828          0.436            1.77
+##   Petal.Width_sd mean_ratios_sd
+## 1          0.762           1.13</code></pre>
+<p>You should be able to figure out the rest of them by now.</p>
+<div id="simple-counting-of-occurrences" class="section level4 unnumbered">
+<h4>Simple counting of occurrences<a class="anchor" aria-label="anchor" href="#simple-counting-of-occurrences"><i class="fas fa-link"></i></a>
+</h4>
+<p>An often used operation is simple counting of occurrences of course:</p>
+<div class="sourceCode" id="cb636"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">Dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by 'sex'. You can override using the `.groups`
+## argument.</code></pre>
+<pre><code>## # A tibble: 4 × 3
+## # Groups:   sex [2]
+##   sex   Dose      count
+##   &lt;fct&gt; &lt;chr&gt;     &lt;int&gt;
+## 1 f     dose100mg    13
+## 2 f     dose10mg     13
+## 3 m     dose100mg    13
+## 4 m     dose10mg     13</code></pre>
+<p>There is a shorthand for this type of count: <code><a href="https://dplyr.tidyverse.org/reference/count.html">tally()</a></code>:</p>
+<div class="sourceCode" id="cb639"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">Dose</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+## # Groups:   sex [2]
+##   sex   Dose          n
+##   &lt;fct&gt; &lt;chr&gt;     &lt;int&gt;
+## 1 f     dose100mg    13
+## 2 f     dose10mg     13
+## 3 m     dose100mg    13
+## 4 m     dose10mg     13</code></pre>
+<p>And even shorter is this:</p>
+<div class="sourceCode" id="cb641"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">Dose</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+##   sex   Dose          n
+##   &lt;fct&gt; &lt;chr&gt;     &lt;int&gt;
+## 1 f     dose100mg    13
+## 2 f     dose10mg     13
+## 3 m     dose100mg    13
+## 4 m     dose10mg     13</code></pre>
+<p>When you want the counts sorted, use the <code>sort = TRUE</code> argument to count, e.g.<br><code>mtcars %&gt;% count(cyl, sort = TRUE)</code></p>
+<p>If you want such a count as a column in your dataset, use <code><a href="https://dplyr.tidyverse.org/reference/count.html">add_tally()</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/count.html">add_count()</a></code></p>
+<div class="sourceCode" id="cb643"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">add_tally</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 52 × 5
+## # Groups:   sex [2]
+##   patient sex   Dose     Response     n
+##   &lt;chr&gt;   &lt;fct&gt; &lt;chr&gt;       &lt;int&gt; &lt;int&gt;
+## 1 001     f     dose10mg       12    26
+## 2 002     f     dose10mg       11    26
+## 3 003     m     dose10mg       54    26
+## 4 004     m     dose10mg       71    26
+## 5 005     f     dose10mg       19    26
+## 6 006     f     dose10mg       22    26
+## # ℹ 46 more rows</code></pre>
+<div class="sourceCode" id="cb645"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">##same as below, but slightly more readable:</span></span>
+<span><span class="co">#add_count(sex)</span></span></code></pre></div>
+<p><code><a href="https://dplyr.tidyverse.org/reference/count.html">add_count()</a></code> is useful for groupwise filtering, for instance when you want to show details of the group that occurs the least.</p>
+<div class="sourceCode" id="cb646"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">add_count</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">n</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    mpg cyl disp  hp drat n
+## 1 21.0   6  160 110 3.90 7
+## 2 21.0   6  160 110 3.90 7
+## 3 21.4   6  258 110 3.08 7
+## 4 18.1   6  225 105 2.76 7
+## 5 19.2   6  168 123 3.92 7
+## 6 17.8   6  168 123 3.92 7
+## 7 19.7   6  145 175 3.62 7</code></pre>
+</div>
+</div>
+<div id="combining-data" class="section level2" number="10.5">
+<h2>
+<span class="header-section-number">10.5</span> Combining data<a class="anchor" aria-label="anchor" href="#combining-data"><i class="fas fa-link"></i></a>
+</h2>
+<div id="merging" class="section level4 unnumbered">
+<h4>Merging<a class="anchor" aria-label="anchor" href="#merging"><i class="fas fa-link"></i></a>
+</h4>
+<p>There are a few functions, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code>; only <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> is discussed here; the others are variations behaving differently with missing data in one or the other data frames to combine. In base R you have <code><a href="https://rdrr.io/r/base/merge.html">merge()</a></code> that is responsible for this kind of operations.</p>
+<p>Suppose you have two tibbles:</p>
+<div class="sourceCode" id="cb648"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">trA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
+<span>  <span class="op">~</span><span class="va">ID</span>, <span class="op">~</span><span class="va">var1</span>,</span>
+<span>  <span class="st">"a"</span>,   <span class="fl">4</span>,</span>
+<span>  <span class="st">"b"</span>,   <span class="fl">6</span>,</span>
+<span>  <span class="st">"c"</span>,   <span class="fl">1</span>,</span>
+<span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   ID     var1
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1 a         4
+## 2 b         6
+## 3 c         1</code></pre>
+<div class="sourceCode" id="cb650"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">trB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
+<span>  <span class="op">~</span><span class="va">ID</span>, <span class="op">~</span><span class="va">var2</span>,</span>
+<span>  <span class="st">"a"</span>,   <span class="fl">7</span>,</span>
+<span>  <span class="st">"b"</span>,   <span class="fl">3</span>,</span>
+<span>  <span class="st">"d"</span>,   <span class="fl">5</span></span>
+<span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   ID     var2
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1 a         7
+## 2 b         3
+## 3 d         5</code></pre>
+<p>Since there is a common variable “ID” we can simply combine these two into a single tibble:</p>
+<div class="sourceCode" id="cb652"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">trA</span>, <span class="va">trB</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+##   ID     var1  var2
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a         4     7
+## 2 b         6     3
+## 3 c         1    NA
+## 4 d        NA     5</code></pre>
+<p>When the column names differ you can specify it as <code>full_join(x, y, by = c("a" = "b"))</code> which will match variable <code>a</code> on tibble <code>x</code> to variable <code>b</code> on tibble <code>y</code>.<br>
+You can of course also do this in a workflow setting:</p>
+<div class="sourceCode" id="cb654"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">trA</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">trB</span>, by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+##   ID     var1  var2
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a         4     7
+## 2 b         6     3
+## 3 c         1    NA
+## 4 d        NA     5</code></pre>
+</div>
+<div id="adding-rows-and-columns" class="section level4 unnumbered">
+<h4>Adding rows and columns<a class="anchor" aria-label="anchor" href="#adding-rows-and-columns"><i class="fas fa-link"></i></a>
+</h4>
+<p>To add rows, use <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> and to add columns, use <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> have a look at the docs for the details. They are pretty much self-explanatory, and analogous to the base R <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> and <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> functions. The difference is that both <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> accept multiple dataframes.</p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></div>
+<div class="next"><a href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dplyr"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li>
+<a class="nav-link" href="#the-dplyr-package"><span class="header-section-number">10.1</span> The dplyr package</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tibbles"><span class="header-section-number">10.1.1</span> Tibbles</a></li>
+<li><a class="nav-link" href="#the-chaining-operator"><span class="header-section-number">10.1.2</span> The chaining operator %&gt;%</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#selecting"><span class="header-section-number">10.2</span> Selecting</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#selecting-rows"><span class="header-section-number">10.2.1</span> Selecting rows</a></li>
+<li><a class="nav-link" href="#selecting-columns-1"><span class="header-section-number">10.2.2</span> Selecting columns</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#adding-and-changing-variables"><span class="header-section-number">10.3</span> Adding and changing variables</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#window-functions"><span class="header-section-number">10.3.1</span> Window functions</a></li>
+<li><a class="nav-link" href="#mutate"><span class="header-section-number">10.3.2</span> Mutate</a></li>
+<li><a class="nav-link" href="#operations-on-groups"><span class="header-section-number">10.3.3</span> Operations on groups</a></li>
+<li><a class="nav-link" href="#operations-on-rows"><span class="header-section-number">10.3.4</span> Operations on rows</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#summarizing-and-counting"><span class="header-section-number">10.4</span> Summarizing and counting</a></li>
+<li><a class="nav-link" href="#combining-data"><span class="header-section-number">10.5</span> Combining data</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

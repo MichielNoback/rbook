@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 11 Text processing with regex | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="11.1 Regex syntax  11.1.1 Why regexes? This chapter deals with processing data in textual form: character data. When working with text, you really need to be able to work with regular expressions....">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 11 Text processing with regex | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="11.1 Regex syntax  11.1.1 Why regexes? This chapter deals with processing data in textual form: character data. When working with text, you really need to be able to work with regular expressions....">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 11 Text processing with regex | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="11.1 Regex syntax  11.1.1 Why regexes? This chapter deals with processing data in textual form: character data. When working with text, you really need to be able to work with regular expressions....">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="active" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">16</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="regex" class="section level1" number="11">
+<h1>
+<span class="header-section-number">11</span> Text processing with regex<a class="anchor" aria-label="anchor" href="#regex"><i class="fas fa-link"></i></a>
+</h1>
+<div id="regex-syntax" class="section level2" number="11.1">
+<h2>
+<span class="header-section-number">11.1</span> Regex syntax<a class="anchor" aria-label="anchor" href="#regex-syntax"><i class="fas fa-link"></i></a>
+</h2>
+<div id="why-regexes" class="section level3" number="11.1.1">
+<h3>
+<span class="header-section-number">11.1.1</span> Why regexes?<a class="anchor" aria-label="anchor" href="#why-regexes"><i class="fas fa-link"></i></a>
+</h3>
+<p>This chapter deals with processing data in textual form: character data.<br>
+When working with text, you really need to be able to work with regular expressions. That is why these are dealt with first, together with the base R regex functions. After that the functions from the <code>stringr</code> package are discussed.</p>
+<p>It is easy enough to look for the word “Chimpanzee” in a vector containing animal species names:</p>
+<div class="sourceCode" id="cb656"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">animals</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chimpanzee"</span>, <span class="st">"Cow"</span>, <span class="st">"Camel"</span><span class="op">)</span></span>
+<span><span class="va">animals</span> <span class="op">==</span> <span class="st">"Chimpanzee"</span></span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE</code></pre>
+<p>but what are you going to do if there are multiple variants of the word you are looking for? This?</p>
+<div class="sourceCode" id="cb658"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">animals</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chimpanzee"</span>, <span class="st">"Chimp"</span>, <span class="st">"chimpanzee"</span>, <span class="st">"Camel"</span><span class="op">)</span></span>
+<span><span class="va">animals</span> <span class="op">==</span> <span class="st">"Chimpanzee"</span> <span class="op">|</span> <span class="va">animals</span> <span class="op">==</span> <span class="st">"Chimp"</span> <span class="op">|</span> <span class="va">animals</span> <span class="op">==</span> <span class="st">"chimpanzee"</span></span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
+<p>The solution here is not using literals, but to describe <strong><em>patterns</em></strong>.</p>
+<p>Look at the above example. How would you describe a pattern that would correctly identify all Chimpanzee occurrences?</p>
+<p>Is you pattern something like this?</p>
+<p><em>A letter C in upper-or lower case followed by ‘himp’ followed by nothing or ‘anzee’</em></p>
+<p>In programming we use <strong><em>regular expressions</em></strong> or <strong><em>RegEx</em></strong> to describe such a pattern in a formal concise way:</p>
+<p><code>[Cc]himp(anzee)?</code></p>
+<p>And to apply such a pattern in R, we use one of several functions dedicated for this task. Here is one, <code><a href="https://rdrr.io/r/base/grep.html">grepl()</a></code>, which returns <code>TRUE</code> if the regex matched the vector element.</p>
+<div class="sourceCode" id="cb660"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"[Cc]himp(anzee)?"</span>, <span class="va">animals</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
+<div class="definitions">
+<p>Pattern matching is the process of finding, locating, extracting and replacing patterns in character data that usually cannot be literally described.</p>
+</div>
+<div id="base-functions-using-regex" class="section level4 unnumbered">
+<h4>Base functions using regex<a class="anchor" aria-label="anchor" href="#base-functions-using-regex"><i class="fas fa-link"></i></a>
+</h4>
+<p>There are several base R functions dedicated to finding patters in character data.
+They differ in intent and output. Later, the <code>stringr</code> counterparts will be discussed.</p>
+<ul>
+<li>
+<strong>finding</strong> Does an element contain a pattern (TRUE/FALSE)? <code>grepl(pattern, string)</code>
+</li>
+<li>
+<strong>locating</strong> Which elements contain a pattern (INDEX)? <code>grep(pattern, string)</code>
+</li>
+<li>
+<strong>extracting</strong> Get the content of matching elements <code>grep(pattern, string, value = TRUE)</code>
+</li>
+<li>
+<strong>replace</strong> Replace the first occurrence of the pattern <code>sub(pattern, replacement, string)</code>
+</li>
+<li>
+<strong>replace all</strong> Replace all occurrences of the pattern <code>gsub(pattern, replacement, string)</code>
+</li>
+</ul>
+<p>Note that the <code>stringr</code> package from the tidyverse has many user-friendly functions in this field as well. Two of them will be dealt with in the exercises.</p>
+</div>
+</div>
+<div id="regex-components" class="section level3" number="11.1.2">
+<h3>
+<span class="header-section-number">11.1.2</span> Regex components<a class="anchor" aria-label="anchor" href="#regex-components"><i class="fas fa-link"></i></a>
+</h3>
+<p>A regular expression can be build out of any combination of</p>
+<ul>
+<li>
+<strong>character sequences</strong> - Literal character sequences such as ‘chimp’</li>
+<li>
+<strong>character classes</strong> - A listing of possibilities for a single position.
+<ul>
+<li>Between brackets: <code>[adgk]</code> means ‘a’ or ‘d’ or ‘g’ or ‘k’.</li>
+<li>Use a hyphen to create a series: <code>[3-9]</code> means digits 3 through 9 and <code>[a-zA-Z]</code> means all alphabet characters.</li>
+<li>Negate using <code>^</code>. <code>[^adgk]</code> means anything <em>but</em> a, d, g or k.</li>
+<li>A special case is the dot <code>.</code>: any character matches.</li>
+<li>Many special character classes exist (digits, whitespaces etc). They are discussed in a later paragraph.</li>
+</ul>
+</li>
+<li>
+<strong>alternatives</strong> - Are defined by the pipe symbol <code>|</code>: “OR”</li>
+<li>
+<strong>quantifiers</strong> - How many times the preceding block should occur. See next paragraph.</li>
+<li>
+<strong>anchors</strong> - <code>^</code> means matching at the start of a string. <code>$</code> means at the end.</li>
+</ul>
+<p>An excellent cheat sheet from the RStudio website is also included
+<a href="figures/RegExCheatsheet.pdf" target="_blank">here</a></p>
+<div id="quantifiers" class="section level4 unnumbered">
+<h4>Quantifiers<a class="anchor" aria-label="anchor" href="#quantifiers"><i class="fas fa-link"></i></a>
+</h4>
+<p>Use quantifiers to specify how many times a character or series of characters should occur.</p>
+<ul>
+<li>
+<strong><code>{n}</code></strong>: exactly <code>n</code> times</li>
+<li>
+<strong><code>{n, }</code></strong>: at least <code>n</code> times</li>
+<li>
+<strong><code>{ ,n}</code></strong>: at most <code>n</code> times</li>
+<li>
+<strong><code>{n, m}</code></strong>: at least <code>n</code> and at most <code>m</code> times.</li>
+<li>
+<strong><code>*</code></strong>: 0 or more times; same as <code>{0, }</code>
+</li>
+<li>
+<strong><code>+</code></strong>: 1 or more times; same as <code>{1, }</code>
+</li>
+<li>
+<strong><code>?</code></strong>: 0 or 1 time; same as <code>{0, 1}</code>
+</li>
+</ul>
+</div>
+<div id="anchoring" class="section level4 unnumbered">
+<h4>Anchoring<a class="anchor" aria-label="anchor" href="#anchoring"><i class="fas fa-link"></i></a>
+</h4>
+<p>Using anchoring, you can make sure the string is not longer than you explicitly state:</p>
+<div class="sourceCode" id="cb662"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"15/2/2019"</span>, <span class="st">"15-2-2019"</span>, <span class="st">"15-02-2019"</span>, <span class="st">"015/2/20191"</span>, <span class="st">"15/2/20191"</span><span class="op">)</span></span>
+<span><span class="va">dateRegex</span> <span class="op">&lt;-</span> <span class="st">"^[0-9]{2}[/-][0-9]{1,2}[/-][0-9]{4}$"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="va">dateRegex</span>, x <span class="op">=</span> <span class="va">dates</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "15/2/2019"  "15-2-2019"  "15-02-2019"</code></pre>
+<p>Now the date matching is correct.</p>
+</div>
+<div id="metacharacters-special-character-classes" class="section level4 unnumbered">
+<h4>Metacharacters: Special character classes<a class="anchor" aria-label="anchor" href="#metacharacters-special-character-classes"><i class="fas fa-link"></i></a>
+</h4>
+<p>Since patterns such as <code>[0-9]</code> occur so frequently, they have dedicated character classes such as <code>[[:digit:]]</code>. The most important other ones are</p>
+<ul>
+<li>
+<strong>digits</strong> <code>[[:digit:]]</code> or <code>\\d</code>: equivalent to <code>[0-9]</code>
+</li>
+<li>
+<strong>alphabet characters</strong> <code>[[:alpha:]]</code>: equivalent to <code>[a-zA-Z]</code>
+</li>
+<li>
+<strong>lowercase characters</strong> <code>[[:lower:]]</code>: equivalent to <code>[a-z]</code>
+</li>
+<li>
+<strong>uppercase characters</strong> <code>[[:upper:]]</code>: equivalent to <code>[A-Z]</code>
+</li>
+<li>
+<strong>whitespace characters</strong> <code>[[:space:]]</code> or <code>\\s</code>: Space, tab, vertical tab, newline, form feed, carriage return</li>
+<li>
+<strong>punctuation characters</strong> <code>[[:punct:]]</code>: One of !“#$%&amp;’()*+,-./:;&lt;=&gt;?@[]^_`{|}~</li>
+</ul>
+<p>(have a look at the cheat sheet for all)</p>
+<p>Here is the same example, this time using these predefined character classes</p>
+<div class="sourceCode" id="cb664"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"15/2/2019"</span>, <span class="st">"15-2-2019"</span>, <span class="st">"15-02-2019"</span>, <span class="st">"15022019"</span>, <span class="st">"15/2/20191"</span><span class="op">)</span></span>
+<span><span class="va">dateRegex</span> <span class="op">&lt;-</span> <span class="st">"[[:digit:]]{2}[/-]\\d{1,2}[/-]\\d{4}"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="va">dateRegex</span>, x <span class="op">=</span> <span class="va">dates</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "15/2/2019"  "15-2-2019"  "15-02-2019" "15/2/20191"</code></pre>
+</div>
+<div id="alternatives" class="section level4 unnumbered">
+<h4>Alternatives<a class="anchor" aria-label="anchor" href="#alternatives"><i class="fas fa-link"></i></a>
+</h4>
+<p>To apply two alternative choices for a single regex element you use the pipe symbol <code>|</code>. You can us parentheses <code>(foo[])</code> to fence alternatives off.</p>
+<div class="sourceCode" id="cb666"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">column_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Subject"</span>, <span class="st">"Age"</span>, <span class="st">"T0_creatine"</span>, <span class="st">"T0_calcium"</span>, <span class="st">"T1_creatine"</span>, <span class="st">"T1_calcium"</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"T[01]_(creatine|calcium)"</span>, x <span class="op">=</span> <span class="va">column_names</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "T0_creatine" "T0_calcium"  "T1_creatine" "T1_calcium"</code></pre>
+</div>
+</div>
+<div id="some-examples" class="section level3" number="11.1.3">
+<h3>
+<span class="header-section-number">11.1.3</span> Some examples<a class="anchor" aria-label="anchor" href="#some-examples"><i class="fas fa-link"></i></a>
+</h3>
+<div id="restriction-enzymes" class="section level4 unnumbered">
+<h4>Restriction enzymes<a class="anchor" aria-label="anchor" href="#restriction-enzymes"><i class="fas fa-link"></i></a>
+</h4>
+<p>This is the recognition sequence for the <em>HincII</em> restriction endonuclease:</p>
+<pre><code>5'-GTYRAC-3'
+3'-CARYTG-5'</code></pre>
+<p>Before reading on: how would you define a regular expression that is precisely describes this recognition sequence?</p>
+<p>Molecular biology sequence ambiguity codes can be found
+<a href="data/ambiguity-codes.html" target="_blank">here</a></p>
+<div class="sourceCode" id="cb669"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">HincII_rs</span> <span class="op">&lt;-</span> <span class="st">"GT[CT][AG]AC"</span></span>
+<span><span class="va">sequences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GTCAAC"</span>,</span>
+<span>               <span class="st">"GTCGAC"</span>,</span>
+<span>               <span class="st">"GTTGAC"</span>,</span>
+<span>               <span class="st">"aGTTAACa"</span>,</span>
+<span>               <span class="st">"GTGCAC"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="va">HincII_rs</span>, x <span class="op">=</span> <span class="va">sequences</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "GTCAAC"   "GTCGAC"   "GTTGAC"   "aGTTAACa"</code></pre>
+</div>
+<div id="dutch-dates" class="section level4 unnumbered">
+<h4>Dutch dates<a class="anchor" aria-label="anchor" href="#dutch-dates"><i class="fas fa-link"></i></a>
+</h4>
+<p>Here are some Dutch dates, in different accepted formats. The last two are not a correct notation.
+Create a RegEx that will determine whether an element contains a Dutch date string.</p>
+<div class="sourceCode" id="cb671"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"15/2/2019"</span>, <span class="st">"15-2-2019"</span>, <span class="st">"15-02-2019"</span>, <span class="st">"015/2/20191"</span>, <span class="st">"15/2/20191"</span><span class="op">)</span></span>
+<span><span class="va">dateRegex</span> <span class="op">&lt;-</span> <span class="st">"[0-9]{2}[/-][0-9]{1,2}[/-][0-9]{4}"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="va">dateRegex</span>, x <span class="op">=</span> <span class="va">dates</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "15/2/2019"   "15-2-2019"   "15-02-2019"  "015/2/20191" "15/2/20191"</code></pre>
+<p>Why were the last two matched?
+Because the pattern <em>is there</em>, albeit embedded in a longer string.
+We have to <strong><em>anchor</em></strong> the pattern to be more specific.</p>
+</div>
+<div id="exercise-postal-codes" class="section level4 unnumbered">
+<h4>Exercise: Postal codes<a class="anchor" aria-label="anchor" href="#exercise-postal-codes"><i class="fas fa-link"></i></a>
+</h4>
+<p>Here are some Dutch zip (postal) codes, in different accepted formats. The last two are not a correct notation.
+Can you create a RegEx that will determine whether an element contains a Dutch zip code?</p>
+<div class="sourceCode" id="cb673"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">zips</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1234 AA"</span>, <span class="st">"2345-BB"</span>, <span class="st">"3456CC"</span>, <span class="st">"4567 dd"</span>, <span class="st">"56789aa"</span>, <span class="st">"6789a_"</span><span class="op">)</span></span>
+<span><span class="va">zips</span></span></code></pre></div>
+<pre><code>## [1] "1234 AA" "2345-BB" "3456CC"  "4567 dd" "56789aa" "6789a_"</code></pre>
+</div>
+<div id="exercise-prosite-patterns" class="section level4 unnumbered">
+<h4>Exercise: Prosite patterns<a class="anchor" aria-label="anchor" href="#exercise-prosite-patterns"><i class="fas fa-link"></i></a>
+</h4>
+<p><a href="https://prosite.expasy.org/" target="_blank">Prosite</a> is a database of amino acid sequence motifs. One of them is the Histidine Triad profile (PDOC00694).</p>
+<pre><code>[NQAR]-x(4)-[GSAVY]-x-[QFLPA]-x-[LIVMY]-x-[HWYRQ]-
+[LIVMFYST]-H-[LIVMFT]-H-[LIVMF]-[LIVMFPT]-[PSGAWN]</code></pre>
+<ul>
+<li>Write this down as a RegEx</li>
+<li>Was that efficient? Using the <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code> function, can you convert it in a RegEx using code? It may take several iterations. Was that efficient?</li>
+<li>Next, use an appropriate function to find if, and where, this pattern is located within the sequences in file <code>data/hit_proteins.txt</code> (<a href="data/hit_proteins.txt" target="_blank">here</a>)</li>
+</ul>
+<p>Amino Acid codes and Prosite pattern encoding can be found
+<a href="data/ambiguity-codes.html" target="_blank">here</a></p>
+</div>
+</div>
+</div>
+<div id="the-stringr-package" class="section level2" number="11.2">
+<h2>
+<span class="header-section-number">11.2</span> The <code>stringr</code> package<a class="anchor" aria-label="anchor" href="#the-stringr-package"><i class="fas fa-link"></i></a>
+</h2>
+<p>This is the last presentation in the tidyverse series. It revolves around processing textual data: finding, extracting, and replacing patterns. Central to this task is <strong><em>pattern matching</em></strong> using regular expressions. Pattern matching is the process of finding, locating, extracting and replacing patterns in character data that usually cannot be literally described. <strong><em>Regular expression syntax</em></strong> is the language in which patterns are described in a wide range of programming languages, including R.</p>
+<p>This topic has been dealt with in an introductory manner previously (course DAVuR1). And is repeated and expanded here. Instead of the base R functions we now switch to the <code>stringr</code> package.</p>
+<p>As all packages from the tidyverse, <code>stringr</code> has many many functions (type <code><a href="https://stringr.tidyverse.org/reference">help(package = "stringr")</a></code> to see which). this package has a great <a href="graphics/stringr.pdf">cheat sheet</a> as well.</p>
+<p>Here, a few of them will be reviewed.</p>
+<div id="a-few-remarks-on-locale" class="section level3" number="11.2.1">
+<h3>
+<span class="header-section-number">11.2.1</span> A few remarks on “locale”<a class="anchor" aria-label="anchor" href="#a-few-remarks-on-locale"><i class="fas fa-link"></i></a>
+</h3>
+<p>Many functions of the tidyverse packages related to time and text (and currency) accept arguments specifying the <strong><em>locale</em></strong>.
+The locale is a container for all location-specific display of information.<br>
+Think</p>
+<ul>
+<li>Character set of the language</li>
+<li>Time zone, Daylight savings time</li>
+<li>Thousands separator and decimal symbol</li>
+<li>Currency symbol</li>
+</ul>
+<p>Dealing with locales is a big challenge indeed for any programming language. However, since this is only an introductory course we will stick to US English and work with the current locale for times only.
+This note is to make you aware of the concept so that you remember this when the appropriate time comes.</p>
+</div>
+<div id="the-stringr-essentials" class="section level3" number="11.2.2">
+<h3>
+<span class="header-section-number">11.2.2</span> The <code>stringr</code> essentials<a class="anchor" aria-label="anchor" href="#the-stringr-essentials"><i class="fas fa-link"></i></a>
+</h3>
+<div id="case-conversion" class="section level4 unnumbered">
+<h4>Case conversion<a class="anchor" aria-label="anchor" href="#case-conversion"><i class="fas fa-link"></i></a>
+</h4>
+<p>These functions all change the capitalization of (some of) the word characters of an input string. They all ignore non-word characters such as punctuation and other symbols.</p>
+<ul>
+<li>
+<code>str_to_upper()</code> converts all word characters to uppercase</li>
+<li>
+<code>str_to_lower()</code> converts all word characters to lowercase</li>
+<li>
+<code>str_to_title()</code> capitalizes all first characters of words</li>
+<li>
+<code>str_to_sentence()</code> capitalizes the first character in the string, not after every period</li>
+</ul>
+<div class="sourceCode" id="cb676"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sntc</span> <span class="op">&lt;-</span> <span class="st">"the path of the righteous man is beset on all sides by the iniquities of the selfish,  and the tyranny of evil men. --quote from?"</span></span>
+<span></span>
+<span><span class="fu">str_to_title</span><span class="op">(</span><span class="va">sntc</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "The Path Of The Righteous Man Is Beset On All Sides By The Iniquities Of The Selfish,  And The Tyranny Of Evil Men. --Quote From?"</code></pre>
+<div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_to_sentence</span><span class="op">(</span><span class="va">sntc</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "The path of the righteous man is beset on all sides by the iniquities of the selfish,  and the tyranny of evil men. --quote from?"</code></pre>
+</div>
+<div id="split-join-and-substring" class="section level4 unnumbered">
+<h4>Split, join and substring<a class="anchor" aria-label="anchor" href="#split-join-and-substring"><i class="fas fa-link"></i></a>
+</h4>
+<p>Combining two vectors into one, one vector into one, or doing the reverse: splitting. These are all string-based operation that are carried out in scripting quite often.</p>
+<p>Here are some joining operations, using <code>str_c()</code>:</p>
+<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">l1</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span><span class="va">l2</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
+<span></span>
+<span><span class="fu">str_c</span><span class="op">(</span><span class="va">l1</span>, collapse <span class="op">=</span> <span class="st">"="</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "a=b=c=d=e"</code></pre>
+<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_c</span><span class="op">(</span><span class="va">l1</span>, <span class="va">l2</span>, sep <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "a+f" "b+g" "c+h" "d+i" "e+j"</code></pre>
+<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_c</span><span class="op">(</span><span class="va">l1</span>, <span class="va">l2</span>, sep <span class="op">=</span> <span class="st">"+"</span>, collapse <span class="op">=</span> <span class="st">"="</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "a+f=b+g=c+h=d+i=e+j"</code></pre>
+<p>When you want to combine variables and text <code>str_glue()</code> comes in handy:</p>
+<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_glue</span><span class="op">(</span><span class="st">"The value of pi is {pi} and the first month of the year is {month.name[1]}"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## The value of pi is 3.14159265358979 and the first month of the year is January</code></pre>
+<p>This is a more friendly approach than with <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>.</p>
+<p><strong>Splitting</strong> is slightly more tricky since it accepts a regex pattern as split argument. For instance, you can get the words of a sentence by splitting like this:</p>
+<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">words</span> <span class="op">&lt;-</span> <span class="fu">str_split</span><span class="op">(</span><span class="va">sntc</span>, <span class="st">"([[:punct:]]|[[:space:]])+"</span><span class="op">)</span></span>
+<span><span class="va">words</span></span>
+<span><span class="co">##alternative</span></span>
+<span><span class="co">#str_split(sntc, "[^a-zA-Z]+")</span></span></code></pre></div>
+<pre><code>## [[1]]
+##  [1] "the"        "path"       "of"         "the"        "righteous" 
+##  [6] "man"        "is"         "beset"      "on"         "all"       
+## [11] "sides"      "by"         "the"        "iniquities" "of"        
+## [16] "the"        "selfish"    "and"        "the"        "tyranny"   
+## [21] "of"         "evil"       "men"        "quote"      "from"      
+## [26] ""</code></pre>
+<p>There are two ways to get parts of character strings, or <strong><em>substrings</em></strong>. The first is by index. You can omit both <code>start</code> and <code>end</code> arguments; they will default to start and end of the string, respectively.</p>
+<div class="sourceCode" id="cb690"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nucs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Adenine"</span>, <span class="st">"Guanine"</span>, <span class="st">"Cytosine"</span>, <span class="st">"Thymine"</span><span class="op">)</span></span>
+<span><span class="fu">str_sub</span><span class="op">(</span><span class="va">nucs</span>, end <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "Ade" "Gua" "Cyt" "Thy"</code></pre>
+<p>You can even use this function to change the substring that is removed</p>
+<div class="sourceCode" id="cb692"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_sub</span><span class="op">(</span><span class="va">nucs</span>, start <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"......"</span></span>
+<span><span class="va">nucs</span></span></code></pre></div>
+<pre><code>## [1] "Ade......" "Gua......" "Cyt......" "Thy......"</code></pre>
+<p>This does not work with literals! The following chunk gives and error:</p>
+<div class="sourceCode" id="cb694"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_sub</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Adenine"</span>, <span class="st">"Guanine"</span>, <span class="st">"Cytosine"</span>, <span class="st">"Thymine"</span><span class="op">)</span>, start <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"......"</span></span></code></pre></div>
+<pre><code>## Error in str_sub(c("Adenine", "Guanine", "Cytosine", "Thymine"), start = 4) &lt;- "......": target of assignment expands to non-language object</code></pre>
+</div>
+<div id="matching" class="section level4 unnumbered">
+<h4>Matching<a class="anchor" aria-label="anchor" href="#matching"><i class="fas fa-link"></i></a>
+</h4>
+<p>When you <strong>match</strong> a pattern to a string, you usually want to know <strong><em>if</em></strong> it is there, <strong>which</strong> elements have it, <strong><em>where</em></strong> it is located in those elements or <strong><em>how often</em></strong> it is present. For each of these question there is a dedicated function:</p>
+<ul>
+<li>
+<p><code>str_detect(string, pattern)</code> detects the presence of a pattern match in a string.</p>
+<div class="sourceCode" id="cb696"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_detect</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"[Aa]"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
+</li>
+<li>
+<p><code>str_subset(string, pattern)</code> returns only the strings that contain a pattern match</p>
+<div class="sourceCode" id="cb698"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_subset</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"[Aa]"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "Banana" "Apple"  "Orange"</code></pre>
+</li>
+<li>
+<p><code>str_which(string, pattern)</code> finds the indexes of strings that contain a pattern match.</p>
+<div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_which</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"[Aa]"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+</li>
+<li>
+<p><code>str_count(string, pattern)</code> counts the number of matches in a string.</p>
+<div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_count</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"[Aa]"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 3 1 1 0</code></pre>
+</li>
+<li>
+<p><code>str_locate(string, pattern)</code> and <code>str_locate_all(string, pattern)</code> locate the positions of pattern matches in a string</p>
+<div class="sourceCode" id="cb704"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_locate_all</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"[Aa]"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [[1]]
+##      start end
+## [1,]     2   2
+## [2,]     4   4
+## [3,]     6   6
+## 
+## [[2]]
+##      start end
+## [1,]     1   1
+## 
+## [[3]]
+##      start end
+## [1,]     3   3
+## 
+## [[4]]
+##      start end</code></pre>
+</li>
+</ul>
+</div>
+<div id="extracting-and-replacing" class="section level4 unnumbered">
+<h4>Extracting and replacing<a class="anchor" aria-label="anchor" href="#extracting-and-replacing"><i class="fas fa-link"></i></a>
+</h4>
+<p>If you want to obtain the character sequences matching your pattern you can use the <code>str_extract()</code> and <code>str_extract_all()</code> functions:</p>
+<div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_extract_all</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"an"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [[1]]
+## [1] "an" "an"
+## 
+## [[2]]
+## character(0)
+## 
+## [[3]]
+## [1] "an"
+## 
+## [[4]]
+## character(0)</code></pre>
+<p>Finally, replacing occurrences of a pattern is carried out using <code>str_replace()</code> or <code>str_replace_all()</code>.</p>
+<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str_replace_all</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"an"</span>, <span class="st">".."</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "B....a" "Apple"  "Or..ge" "Cherry"</code></pre>
+
+</div>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></div>
+<div class="next"><a href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#regex"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li>
+<a class="nav-link" href="#regex-syntax"><span class="header-section-number">11.1</span> Regex syntax</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#why-regexes"><span class="header-section-number">11.1.1</span> Why regexes?</a></li>
+<li><a class="nav-link" href="#regex-components"><span class="header-section-number">11.1.2</span> Regex components</a></li>
+<li><a class="nav-link" href="#some-examples"><span class="header-section-number">11.1.3</span> Some examples</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#the-stringr-package"><span class="header-section-number">11.2</span> The stringr package</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#a-few-remarks-on-locale"><span class="header-section-number">11.2.1</span> A few remarks on “locale”</a></li>
+<li><a class="nav-link" href="#the-stringr-essentials"><span class="header-section-number">11.2.2</span> The stringr essentials</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 14 Exploratory Data Analysis I | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="14.1 Introduction This chapter introduces you to the concept of Exploratory Data Analysis (EDA). The purpose of an EDA is analysing a dataset with the goal of assessing its main characteristics,...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 14 Exploratory Data Analysis I | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="14.1 Introduction This chapter introduces you to the concept of Exploratory Data Analysis (EDA). The purpose of an EDA is analysing a dataset with the goal of assessing its main characteristics,...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 14 Exploratory Data Analysis I | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="14.1 Introduction This chapter introduces you to the concept of Exploratory Data Analysis (EDA). The purpose of an EDA is analysing a dataset with the goal of assessing its main characteristics,...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="active" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">16</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="eda-1" class="section level1" number="14">
+<h1>
+<span class="header-section-number">14</span> Exploratory Data Analysis I<a class="anchor" aria-label="anchor" href="#eda-1"><i class="fas fa-link"></i></a>
+</h1>
+<div id="introduction-1" class="section level2" number="14.1">
+<h2>
+<span class="header-section-number">14.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>This chapter introduces you to the concept of Exploratory Data Analysis (EDA). The purpose of an EDA is analysing a dataset with the goal of assessing its main characteristics, including quality and usability for subsequent statistical modelling and analysis. Data cleaning and transformation strategies are explored and often already applied. Data summary techniques and visualizations are used in an EDA. There is no fixed set of activities; each dataset poses its own questions and challenges.</p>
+<div class="attention">
+<p>Datasets are often expensive and time-consuming to collect, and therefore they are usually collected with a specific goal in mind. The EDA you perform should always be with this goal in mind: is the dataset of sufficient quality to answer the scientific questions for which they were collected?</p>
+</div>
+<p>The current EDA is the first of two; this one mainly uses base R functionality (except for plotting where ggplot2 is used) while the next one mainly employs <em>tidyverse</em> functionality.</p>
+<div id="eda-outline" class="section level4 unnumbered">
+<h4>EDA outline<a class="anchor" aria-label="anchor" href="#eda-outline"><i class="fas fa-link"></i></a>
+</h4>
+<p>An EDA therefore may include:</p>
+<ul>
+<li>
+<strong>Dataset description</strong>: how were they collected, what data types do the variables have, what are the units and physical quantities, how are missing data encoded, etc.</li>
+<li>
+<strong>Data summary</strong>: number of cases, number of variables, basic statistical description (i.e. mean, median, sd etc.), variable distributions (normal or not, outliers, missing data, skewed distributions)</li>
+<li>
+<strong>Visual summaries</strong> using boxplots, histograms, density plots.</li>
+<li>
+<strong>Recoding or transformations of variables</strong> may be required to get better results (e.g. from numeric to factor or vice versa, or log transformation of exponential data)</li>
+<li>
+<strong>Exploration of variable relations/covariance</strong>. It is always interesting to know about correlations between variables, but this is especially the case when you have a <em>dependent</em> variable for which you wish to build a statistical model in a later stage of your analysis.</li>
+</ul>
+<p>Note that your EDA results should <em>always</em> be accompanied by text that describes your results and discusses the implications of them. your figures should be well annotated with a caption and legend if relevant. An EDA is <em>not</em> a publication, but it will usually have a short introduction, a results section and a discussion. In contrast with a publication you usually <em>do</em> show the code. This ensures complete transparency and reproducibility.</p>
+<p>In this chapter I will demonstrate a short EDA on the “Yeast dataset” from the UCI Machine Learning repository.</p>
+<p>It is outside the scope of this short analysis to delve too deeply in the attribute background information, but you should realize that for a real analysis this is absolutely critical: without domain knowledge the you won’t have the insight to identify strange, worrying or surprising results.</p>
+</div>
+</div>
+<div id="eda-of-the-yeast-dataset" class="section level2" number="14.2">
+<h2>
+<span class="header-section-number">14.2</span> EDA of the Yeast dataset<a class="anchor" aria-label="anchor" href="#eda-of-the-yeast-dataset"><i class="fas fa-link"></i></a>
+</h2>
+<div id="introduction-2" class="section level3" number="14.2.1">
+<h3>
+<span class="header-section-number">14.2.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>The data were collected from the <a href="https://archive.ics.uci.edu/ml/datasets/Yeast">UCI Machine Learning website</a>. To ensure their continued availability the files were copied to a personal <a href="https://github.com/MichielNoback/datasets/tree/master/UCI_yeast_protein_loc">repository</a>.</p>
+<p>The data were accompanied by a <em>very</em> short abstract: <strong><em>“Predicting the Cellular Localization Sites of Proteins”</em></strong>. The data description states there are 1484 instances, each with 8 attributes (variables) and a class label. The class label is the variable we wish to build a model for so this is the dependent variable.</p>
+<p>The <em>Attribute Information</em> section describes these variables:</p>
+<ol style="list-style-type: decimal">
+<li>Sequence Name: Accession number for the SWISS-PROT database</li>
+<li>
+<code>mcg</code>: McGeoch’s method for signal sequence recognition.</li>
+<li>
+<code>gvh</code>: von Heijne’s method for signal sequence recognition.</li>
+<li>
+<code>alm</code>: Score of the ALOM membrane spanning region prediction program.</li>
+<li>
+<code>mit</code>: Score of discriminant analysis of the amino acid content of the N-terminal region (20 residues long) of mitochondrial and non-mitochondrial proteins.</li>
+<li>
+<code>erl</code>: Presence of “HDEL” substring (thought to act as a signal for retention in the endoplasmic reticulum lumen). Binary attribute.</li>
+<li>
+<code>pox</code>: Peroxisomal targeting signal in the C-terminus.</li>
+<li>
+<code>vac</code>: Score of discriminant analysis of the amino acid content of vacuolar and extracellular proteins.</li>
+<li>
+<code>nuc</code>: Score of discriminant analysis of nuclear localization signals of nuclear and non-nuclear proteins.</li>
+</ol>
+<p>The sequence name is not interesting in this EDA: we are interested in patterns, not individuals. However, if there is an anomalous protein in the EDA it should be possible to retrace its origin so the identifier stays in the dataset.</p>
+<p>There seem to be two attributes (<code>mcg</code> and <code>gvh</code>) measuring the same property - the presence of a signal sequence which is the N-terminal part of a protein signalling the cellular machinery the protein should be exported.</p>
+<p>Very simply put, if this scoring system was perfect each of the attributes (except <code>mcg</code> and <code>gvh</code>) would unequivocally “assign” the protein in question to a cellular location: Cellular external matrix, membrane inserted, mitochondrial, endoplasmic reticulum lumen, peroxisomal, vacuolar or nuclear.</p>
+<p>The tenth variable in the data is the dependent or explanatory variable. The <code>yeast.names</code> file describes it like this:</p>
+<pre><code>Class Distribution. The class is the localization site. Please see Nakai &amp;
+               Kanehisa referenced above for more details.
+  CYT (cytosolic or cytoskeletal)                    463
+  NUC (nuclear)                                      429
+  MIT (mitochondrial)                                244
+  ME3 (membrane protein, no N-terminal signal)       163
+  ME2 (membrane protein, uncleaved signal)            51
+  ME1 (membrane protein, cleaved signal)              44
+  EXC (extracellular)                                 37
+  VAC (vacuolar)                                      30
+  POX (peroxisomal)                                   20
+  ERL (endoplasmic reticulum lumen)                    5</code></pre>
+<p>This tells me the different localizations are by no means equally distributed; there is an over representation of “cytosolic or cytoskeletal” and “nuclear” and a huge under representation of especially endoplasmic reticulum lumen proteins.</p>
+</div>
+<div id="data-loading-and-prepping" class="section level3" number="14.2.2">
+<h3>
+<span class="header-section-number">14.2.2</span> Data loading and prepping<a class="anchor" aria-label="anchor" href="#data-loading-and-prepping"><i class="fas fa-link"></i></a>
+</h3>
+<p>Since I am going to rerun the code in this notebook often I am going to create a local copy, and load that one.</p>
+<div class="sourceCode" id="cb798"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">file_name</span> <span class="op">&lt;-</span> <span class="st">"yeast.data"</span></span>
+<span><span class="va">yeast_data_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/MichielNoback/datasets/master/UCI_yeast_protein_loc/"</span>, <span class="va">file_name</span><span class="op">)</span></span>
+<span><span class="va">yeast_local_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"./data/"</span>, <span class="va">file_name</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#only download if not present</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span> <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="va">yeast_local_location</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="va">yeast_data_url</span>, </span>
+<span>                  destfile <span class="op">=</span> <span class="va">yeast_local_location</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">yeast_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">yeast_local_location</span>,</span>
+<span>                         sep <span class="op">=</span> <span class="st">","</span>,</span>
+<span>                         as.is <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 'data.frame':    1484 obs. of  10 variables:
+##  $ V1 : chr  "ADT1_YEAST" "ADT2_YEAST" "ADT3_YEAST" "AAR2_YEAST" ...
+##  $ V2 : num  0.58 0.43 0.64 0.58 0.42 0.51 0.5 0.48 0.55 0.4 ...
+##  $ V3 : num  0.61 0.67 0.62 0.44 0.44 0.4 0.54 0.45 0.5 0.39 ...
+##  $ V4 : num  0.47 0.48 0.49 0.57 0.48 0.56 0.48 0.59 0.66 0.6 ...
+##  $ V5 : num  0.13 0.27 0.15 0.13 0.54 0.17 0.65 0.2 0.36 0.15 ...
+##  $ V6 : num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...
+##  $ V7 : num  0 0 0 0 0 0.5 0 0 0 0 ...
+##  $ V8 : num  0.48 0.53 0.53 0.54 0.48 0.49 0.53 0.58 0.49 0.58 ...
+##  $ V9 : num  0.22 0.22 0.22 0.22 0.22 0.22 0.22 0.34 0.22 0.3 ...
+##  $ V10: Factor w/ 10 levels "CYT","ERL","EXC",..: 7 7 7 8 7 1 7 8 7 1 ...</code></pre>
+<p>The data seems to have been loaded correctly and, as expected since that was stated in the original data description, there are no missing data.</p>
+<p>The column names were not defined in the data file so this will be fixed first. I will create a data frame that also holds the column descriptions. I have put the data in a small text file for easy loading and editing; the attribute descriptions copied/pasted into a text file and with find/replace converted in easy to load form, and a new <code>label</code> column added for use in plotting. There were a few occurrences of the <code>'</code> character which always corrupt data import into R. They were removed.</p>
+<div class="sourceCode" id="cb800"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">attribute_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/yeast_attribute_info.txt"</span>, </span>
+<span>                             sep <span class="op">=</span> <span class="st">":"</span>,</span>
+<span>                             header <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                             stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#attach column names</span></span>
+<span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">attribute_info</span><span class="op">$</span><span class="va">attribute</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##  [1] "accno" "mcg"   "gvh"   "alm"   "mit"   "erl"   "pox"   "vac"   "nuc"  
+## [10] "loc"</code></pre>
+<p>To make this info easily accessible, a function is created that can be used to fetch either the description or the label.</p>
+<div class="sourceCode" id="cb802"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">get_attribute_info</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">attribute</span>, <span class="va">resource</span> <span class="op">=</span> <span class="st">"label"</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span> <span class="va">resource</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"label"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"type "</span>, <span class="va">resource</span>, <span class="st">"is not an attribute resource"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">attribute_info</span><span class="op">[</span><span class="va">attribute_info</span><span class="op">$</span><span class="va">attribute</span> <span class="op">==</span> <span class="va">attribute</span>, <span class="va">resource</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co">#test it</span></span>
+<span><span class="fu">get_attribute_info</span><span class="op">(</span><span class="st">"gvh"</span><span class="op">)</span></span>
+<span><span class="fu">get_attribute_info</span><span class="op">(</span><span class="st">"accno"</span>, <span class="st">"description"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "VonHeijne signal"
+## [1] "Accession number for the SWISS-PROT database"</code></pre>
+</div>
+<div id="data-verification" class="section level3" number="14.2.3">
+<h3>
+<span class="header-section-number">14.2.3</span> Data verification<a class="anchor" aria-label="anchor" href="#data-verification"><i class="fas fa-link"></i></a>
+</h3>
+<p>The original data description stated that 1484 instances with 9 attributes + a class label are present.</p>
+<div class="sourceCode" id="cb804"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 1484   10</code></pre>
+<p>This is correct.
+No missing data are supposed to be there:</p>
+<div class="sourceCode" id="cb806"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 1484</code></pre>
+<p>Also correct.</p>
+<p>The classes of the columns are also OK so the data is verified and found correct.</p>
+</div>
+<div id="attribute-summaries" class="section level3" number="14.2.4">
+<h3>
+<span class="header-section-number">14.2.4</span> Attribute summaries<a class="anchor" aria-label="anchor" href="#attribute-summaries"><i class="fas fa-link"></i></a>
+</h3>
+<p>A first scan of the attributes.</p>
+<div class="sourceCode" id="cb808"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##     accno                mcg            gvh            alm      
+##  Length:1484        Min.   :0.11   Min.   :0.13   Min.   :0.21  
+##  Class :character   1st Qu.:0.41   1st Qu.:0.42   1st Qu.:0.46  
+##  Mode  :character   Median :0.49   Median :0.49   Median :0.51  
+##                     Mean   :0.50   Mean   :0.50   Mean   :0.50  
+##                     3rd Qu.:0.58   3rd Qu.:0.57   3rd Qu.:0.55  
+##                     Max.   :1.00   Max.   :1.00   Max.   :1.00  
+##                                                                 
+##       mit             erl             pox             vac            nuc       
+##  Min.   :0.000   Min.   :0.500   Min.   :0.000   Min.   :0.00   Min.   :0.000  
+##  1st Qu.:0.170   1st Qu.:0.500   1st Qu.:0.000   1st Qu.:0.48   1st Qu.:0.220  
+##  Median :0.220   Median :0.500   Median :0.000   Median :0.51   Median :0.220  
+##  Mean   :0.261   Mean   :0.505   Mean   :0.007   Mean   :0.50   Mean   :0.276  
+##  3rd Qu.:0.320   3rd Qu.:0.500   3rd Qu.:0.000   3rd Qu.:0.53   3rd Qu.:0.300  
+##  Max.   :1.000   Max.   :1.000   Max.   :0.830   Max.   :0.73   Max.   :1.000  
+##                                                                                
+##       loc     
+##  CYT    :463  
+##  NUC    :429  
+##  MIT    :244  
+##  ME3    :163  
+##  ME2    : 51  
+##  ME1    : 44  
+##  (Other): 90</code></pre>
+<p>All these attributes seem to be in the range zero to one, except of course for the localization attribute and the accession number. This is not surprising since these attributes are all probabilities. The class distribution corresponds with the published data.</p>
+<p>The
+The <code>pox</code> (Peroxisomal) and <code>erl</code> ( ER-retention) attributes, seem to have a really strange distribution and should be investigated further.</p>
+<p>Here are all the numeric attributes in a single panel. I chose histogram over boxplot or density plot because it is more fine-grained than boxplot and very easy to interpret.</p>
+<div class="sourceCode" id="cb810"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># a list to store the plots</span></span>
+<span><span class="va">my_plots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">names_to_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">names_to_plot</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">col_to_plot</span> <span class="op">&lt;-</span> <span class="va">names_to_plot</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
+<span>    <span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">yeast_data</span>,</span>
+<span>                  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">!</span><span class="op">!</span><span class="fu"><a href="https://rlang.r-lib.org/reference/sym.html">sym</a></span><span class="op">(</span><span class="va">col_to_plot</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">col_to_plot</span><span class="op">)</span></span>
+<span>    <span class="va">my_plots</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">plt</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span>grobs <span class="op">=</span> <span class="va">my_plots</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:yeast-attributes-hist"></span>
+<img src="DAVuR_files/figure-html/yeast-attributes-hist-1.png" alt="Distributions of the numeric variables" width="100%"><p class="caption">
+Figure 14.1: Distributions of the numeric variables
+</p>
+</div>
+<p>Here, it can be seen that the attributes “ER-retention” and “Peroxisomal” are pretty much uninformative, a problem probably largely caused by the low abundance of proteins in these classes. Surprisingly enough, the “Vacuolar” property which is also low-abundant, does not have this extreme distribution.</p>
+<p>What is also striking is that, although these attributes are probabilities of targeting signals, none (with the exception of the two low-abundance ones) show a more or less bi-modal distribution as you would naively expect.</p>
+</div>
+<div id="attribute-relationships" class="section level3" number="14.2.5">
+<h3>
+<span class="header-section-number">14.2.5</span> Attribute relationships<a class="anchor" aria-label="anchor" href="#attribute-relationships"><i class="fas fa-link"></i></a>
+</h3>
+<p>Here is a quick scan of variable relationship, excluding the dependent variable. The <code><a href="https://rdrr.io/r/graphics/pairs.html">pairs()</a></code> function is used for that. I excluded <code>erl</code> and <code>pox</code> because they do not add information to the picture.</p>
+<div class="sourceCode" id="cb811"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Function to return points and geom_smooth</span></span>
+<span><span class="co"># allow for the method to be changed</span></span>
+<span><span class="va">wrap_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">mapping</span>, <span class="va">method</span><span class="op">=</span><span class="st">"loess"</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span></span>
+<span>      <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, mapping <span class="op">=</span> <span class="va">mapping</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span>, alpha <span class="op">=</span> <span class="fl">0.4</span>, color <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="va">method</span>, formula <span class="op">=</span> <span class="st">'y ~ x'</span>, <span class="va">...</span><span class="op">)</span></span>
+<span>      <span class="va">p</span></span>
+<span>    <span class="op">}</span></span>
+<span></span>
+<span><span class="fu">ggpairs</span><span class="op">(</span><span class="va">yeast_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">9</span><span class="op">)</span><span class="op">]</span>, </span>
+<span>        progress <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>        lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>continuous <span class="op">=</span> <span class="va">wrap_fn</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:yeast-pairs-plot"></span>
+<img src="DAVuR_files/figure-html/yeast-pairs-plot-1.png" alt="Relations between the numeric variables" width="100%"><p class="caption">
+Figure 14.2: Relations between the numeric variables
+</p>
+</div>
+<p>NB: I found suggestions on how to adjust color, size etc <a href="https://stackoverflow.com/questions/35085261/how-to-use-loess-method-in-ggallyggpairs-using-wrap-function">here</a>. If this is too complicated for you, you can simply use <code>ggpairs(yeast_data[c(2, 3, 4, 5, 8, 9)], progress = FALSE))</code>, or alternatively, base R has a nice <code><a href="https://rdrr.io/r/graphics/pairs.html">pairs()</a></code> function this creates a similar but less good looking plot.</p>
+<p>By adding the smoother it is made clear that the only pair which shows a clear correlation is the pair <code>mcg</code> / <code>gvh</code> which actually predict the same property. Therefore it would have been very surprising indeed if they would <em>not</em> have a correlation. The strength of this correlation -the <strong><em>R-squared</em></strong>- is not very strong.</p>
+</div>
+<div id="correlations-to-the-dependent-variable" class="section level3" number="14.2.6">
+<h3>
+<span class="header-section-number">14.2.6</span> Correlations to the dependent variable<a class="anchor" aria-label="anchor" href="#correlations-to-the-dependent-variable"><i class="fas fa-link"></i></a>
+</h3>
+<p>As a first investigation, numeric variables are split on the location variable. These plots are screated using the base R plotting system.</p>
+<div class="sourceCode" id="cb812"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span>
+<span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">8</span>, name <span class="op">=</span> <span class="st">"Accent"</span><span class="op">)</span></span>
+<span><span class="co">#col = c("darkblue", "darkgreen", "magenta", )</span></span>
+<span><span class="va">col_i</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">col_i</span> <span class="op">&lt;-</span> <span class="va">col_i</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">[</span>, <span class="va">name</span><span class="op">]</span> <span class="op">~</span> <span class="va">yeast_data</span><span class="op">$</span><span class="va">loc</span>,</span>
+<span>            xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>            ylab <span class="op">=</span> <span class="fu">get_attribute_info</span><span class="op">(</span><span class="va">name</span><span class="op">)</span>,</span>
+<span>            col <span class="op">=</span> <span class="va">colors</span><span class="op">[</span><span class="va">col_i</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:corr-to-dependent-1"></span>
+<img src="DAVuR_files/figure-html/corr-to-dependent-1.png" alt="Correlations with the dependent variable" width="70%"><p class="caption">
+Figure 14.3: Correlations with the dependent variable
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:corr-to-dependent-2"></span>
+<img src="DAVuR_files/figure-html/corr-to-dependent-2.png" alt="Correlations with the dependent variable" width="70%"><p class="caption">
+Figure 14.4: Correlations with the dependent variable
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:corr-to-dependent-3"></span>
+<img src="DAVuR_files/figure-html/corr-to-dependent-3.png" alt="Correlations with the dependent variable" width="70%"><p class="caption">
+Figure 14.5: Correlations with the dependent variable
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:corr-to-dependent-4"></span>
+<img src="DAVuR_files/figure-html/corr-to-dependent-4.png" alt="Correlations with the dependent variable" width="70%"><p class="caption">
+Figure 14.6: Correlations with the dependent variable
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:corr-to-dependent-5"></span>
+<img src="DAVuR_files/figure-html/corr-to-dependent-5.png" alt="Correlations with the dependent variable" width="70%"><p class="caption">
+Figure 14.7: Correlations with the dependent variable
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:corr-to-dependent-6"></span>
+<img src="DAVuR_files/figure-html/corr-to-dependent-6.png" alt="Correlations with the dependent variable" width="70%"><p class="caption">
+Figure 14.8: Correlations with the dependent variable
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:corr-to-dependent-7"></span>
+<img src="DAVuR_files/figure-html/corr-to-dependent-7.png" alt="Correlations with the dependent variable" width="70%"><p class="caption">
+Figure 14.9: Correlations with the dependent variable
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:corr-to-dependent-8"></span>
+<img src="DAVuR_files/figure-html/corr-to-dependent-8.png" alt="Correlations with the dependent variable" width="70%"><p class="caption">
+Figure 14.10: Correlations with the dependent variable
+</p>
+</div>
+<p>Quite a few of the variables correlate pretty well with the dependent variable. These do so very well: <code>alm</code>, <code>mit</code>, <code>erl</code>, <code>pox</code>. Others are not: <code>nuc</code>, <code>vac</code>, and some are ambiguous - they discriminate, but not exclusively: <code>mcg</code>, <code>gvh</code>.</p>
+<p>Here are some summary statistics for the numeric variables split on the dependent variable:</p>
+<div class="sourceCode" id="cb813"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span> <span class="va">.</span> <span class="op">~</span> <span class="va">loc</span>, data <span class="op">=</span> <span class="va">yeast_data</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm"><tbody>
+<tr>
+<td style="text-align:left;">
+loc
+</td>
+<td style="text-align:left;">
+CYT
+</td>
+<td style="text-align:left;">
+ERL
+</td>
+<td style="text-align:left;">
+EXC
+</td>
+<td style="text-align:left;">
+ME1
+</td>
+<td style="text-align:left;">
+ME2
+</td>
+<td style="text-align:left;">
+ME3
+</td>
+<td style="text-align:left;">
+MIT
+</td>
+<td style="text-align:left;">
+NUC
+</td>
+<td style="text-align:left;">
+POX
+</td>
+<td style="text-align:left;">
+VAC
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mcg
+</td>
+<td style="text-align:left;">
+0.48
+</td>
+<td style="text-align:left;">
+0.79
+</td>
+<td style="text-align:left;">
+0.74
+</td>
+<td style="text-align:left;">
+0.79
+</td>
+<td style="text-align:left;">
+0.72
+</td>
+<td style="text-align:left;">
+0.43
+</td>
+<td style="text-align:left;">
+0.52
+</td>
+<td style="text-align:left;">
+0.45
+</td>
+<td style="text-align:left;">
+0.52
+</td>
+<td style="text-align:left;">
+0.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gvh
+</td>
+<td style="text-align:left;">
+0.47
+</td>
+<td style="text-align:left;">
+0.77
+</td>
+<td style="text-align:left;">
+0.72
+</td>
+<td style="text-align:left;">
+0.76
+</td>
+<td style="text-align:left;">
+0.60
+</td>
+<td style="text-align:left;">
+0.49
+</td>
+<td style="text-align:left;">
+0.53
+</td>
+<td style="text-align:left;">
+0.46
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+alm
+</td>
+<td style="text-align:left;">
+0.54
+</td>
+<td style="text-align:left;">
+0.48
+</td>
+<td style="text-align:left;">
+0.49
+</td>
+<td style="text-align:left;">
+0.38
+</td>
+<td style="text-align:left;">
+0.41
+</td>
+<td style="text-align:left;">
+0.36
+</td>
+<td style="text-align:left;">
+0.52
+</td>
+<td style="text-align:left;">
+0.53
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mit
+</td>
+<td style="text-align:left;">
+0.23
+</td>
+<td style="text-align:left;">
+0.34
+</td>
+<td style="text-align:left;">
+0.29
+</td>
+<td style="text-align:left;">
+0.31
+</td>
+<td style="text-align:left;">
+0.28
+</td>
+<td style="text-align:left;">
+0.21
+</td>
+<td style="text-align:left;">
+0.40
+</td>
+<td style="text-align:left;">
+0.23
+</td>
+<td style="text-align:left;">
+0.25
+</td>
+<td style="text-align:left;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+erl
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+1.00
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pox
+</td>
+<td style="text-align:left;">
+0.0011
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+<td style="text-align:left;">
+0.0089
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+<td style="text-align:left;">
+0.4235
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+vac
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.55
+</td>
+<td style="text-align:left;">
+0.46
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.49
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nuc
+</td>
+<td style="text-align:left;">
+0.26
+</td>
+<td style="text-align:left;">
+0.25
+</td>
+<td style="text-align:left;">
+0.23
+</td>
+<td style="text-align:left;">
+0.27
+</td>
+<td style="text-align:left;">
+0.25
+</td>
+<td style="text-align:left;">
+0.27
+</td>
+<td style="text-align:left;">
+0.24
+</td>
+<td style="text-align:left;">
+0.33
+</td>
+<td style="text-align:left;">
+0.23
+</td>
+<td style="text-align:left;">
+0.25
+</td>
+</tr>
+</tbody></table></div>
+<div class="sourceCode" id="cb814"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span> <span class="va">.</span> <span class="op">~</span> <span class="va">loc</span>, data <span class="op">=</span> <span class="va">yeast_data</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span>, FUN <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm"><tbody>
+<tr>
+<td style="text-align:left;">
+loc
+</td>
+<td style="text-align:left;">
+CYT
+</td>
+<td style="text-align:left;">
+ERL
+</td>
+<td style="text-align:left;">
+EXC
+</td>
+<td style="text-align:left;">
+ME1
+</td>
+<td style="text-align:left;">
+ME2
+</td>
+<td style="text-align:left;">
+ME3
+</td>
+<td style="text-align:left;">
+MIT
+</td>
+<td style="text-align:left;">
+NUC
+</td>
+<td style="text-align:left;">
+POX
+</td>
+<td style="text-align:left;">
+VAC
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mcg
+</td>
+<td style="text-align:left;">
+0.48
+</td>
+<td style="text-align:left;">
+0.78
+</td>
+<td style="text-align:left;">
+0.77
+</td>
+<td style="text-align:left;">
+0.78
+</td>
+<td style="text-align:left;">
+0.76
+</td>
+<td style="text-align:left;">
+0.43
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.45
+</td>
+<td style="text-align:left;">
+0.48
+</td>
+<td style="text-align:left;">
+0.56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gvh
+</td>
+<td style="text-align:left;">
+0.46
+</td>
+<td style="text-align:left;">
+0.80
+</td>
+<td style="text-align:left;">
+0.73
+</td>
+<td style="text-align:left;">
+0.73
+</td>
+<td style="text-align:left;">
+0.59
+</td>
+<td style="text-align:left;">
+0.49
+</td>
+<td style="text-align:left;">
+0.53
+</td>
+<td style="text-align:left;">
+0.46
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+alm
+</td>
+<td style="text-align:left;">
+0.53
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.49
+</td>
+<td style="text-align:left;">
+0.36
+</td>
+<td style="text-align:left;">
+0.41
+</td>
+<td style="text-align:left;">
+0.36
+</td>
+<td style="text-align:left;">
+0.52
+</td>
+<td style="text-align:left;">
+0.53
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mit
+</td>
+<td style="text-align:left;">
+0.19
+</td>
+<td style="text-align:left;">
+0.37
+</td>
+<td style="text-align:left;">
+0.28
+</td>
+<td style="text-align:left;">
+0.29
+</td>
+<td style="text-align:left;">
+0.26
+</td>
+<td style="text-align:left;">
+0.20
+</td>
+<td style="text-align:left;">
+0.41
+</td>
+<td style="text-align:left;">
+0.20
+</td>
+<td style="text-align:left;">
+0.21
+</td>
+<td style="text-align:left;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+erl
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:left;">
+1.0
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pox
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+0.5
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+vac
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.54
+</td>
+<td style="text-align:left;">
+0.48
+</td>
+<td style="text-align:left;">
+0.53
+</td>
+<td style="text-align:left;">
+0.52
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.50
+</td>
+<td style="text-align:left;">
+0.51
+</td>
+<td style="text-align:left;">
+0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nuc
+</td>
+<td style="text-align:left;">
+0.22
+</td>
+<td style="text-align:left;">
+0.22
+</td>
+<td style="text-align:left;">
+0.22
+</td>
+<td style="text-align:left;">
+0.22
+</td>
+<td style="text-align:left;">
+0.22
+</td>
+<td style="text-align:left;">
+0.22
+</td>
+<td style="text-align:left;">
+0.22
+</td>
+<td style="text-align:left;">
+0.28
+</td>
+<td style="text-align:left;">
+0.22
+</td>
+<td style="text-align:left;">
+0.22
+</td>
+</tr>
+</tbody></table></div>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></div>
+<div class="next"><a href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#eda-1"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="nav-link" href="#introduction-1"><span class="header-section-number">14.1</span> Introduction</a></li>
+<li>
+<a class="nav-link" href="#eda-of-the-yeast-dataset"><span class="header-section-number">14.2</span> EDA of the Yeast dataset</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#introduction-2"><span class="header-section-number">14.2.1</span> Introduction</a></li>
+<li><a class="nav-link" href="#data-loading-and-prepping"><span class="header-section-number">14.2.2</span> Data loading and prepping</a></li>
+<li><a class="nav-link" href="#data-verification"><span class="header-section-number">14.2.3</span> Data verification</a></li>
+<li><a class="nav-link" href="#attribute-summaries"><span class="header-section-number">14.2.4</span> Attribute summaries</a></li>
+<li><a class="nav-link" href="#attribute-relationships"><span class="header-section-number">14.2.5</span> Attribute relationships</a></li>
+<li><a class="nav-link" href="#correlations-to-the-dependent-variable"><span class="header-section-number">14.2.6</span> Correlations to the dependent variable</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 The toolbox | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="2.1 Embarking on Data Science The picture below represents data science in 1918: it probably tool a clerk a day to generate the figure. But disregarding the time investment: This is data science....">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 2 The toolbox | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="2.1 Embarking on Data Science The picture below represents data science in 1918: it probably tool a clerk a day to generate the figure. But disregarding the time investment: This is data science....">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 The toolbox | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="2.1 Embarking on Data Science The picture below represents data science in 1918: it probably tool a clerk a day to generate the figure. But disregarding the time investment: This is data science....">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="active" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">16</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="toolbox" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> The toolbox<a class="anchor" aria-label="anchor" href="#toolbox"><i class="fas fa-link"></i></a>
+</h1>
+<div id="embarking-on-data-science" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Embarking on Data Science<a class="anchor" aria-label="anchor" href="#embarking-on-data-science"><i class="fas fa-link"></i></a>
+</h2>
+<p>The picture below represents data science in 1918: it probably tool a clerk a day to generate the figure.</p>
+<div class="inline-figure"><img src="figures/influenza_1918_new_york.jpg"></div>
+<p>But disregarding the time investment: This is data science. You collect data (in this case, Influenza mortality), look for patterns and try to find underlying mechanisms that may explain the patterns (Age, Gender, Marital Status).</p>
+<p>(<a href="https://www.nytimes.com/2020/04/02/nyregion/spanish-flu-nyc-virus.html">source</a>)</p>
+<div id="why-do-statistical-programming" class="section level3 unnumbered">
+<h3>Why do statistical programming?<a class="anchor" aria-label="anchor" href="#why-do-statistical-programming"><i class="fas fa-link"></i></a>
+</h3>
+<p>Since you’re a life science student -that is my target audience at least-, you have probably worked with Excel or SPSS at some time. Have you ever wondered</p>
+<ul>
+<li>Why am I doing this exact same series of mouse clicks again and again? Is there not a more efficient way?</li>
+<li>How can I describe my work reproducible as a series of mouse clicks?</li>
+</ul>
+<p>If so, then R may be your next favorite data analysis tool.
+It takes a little effort at first, but once you get the hang of it you will never create a plot in Excel again.</p>
+<p>With R - as with any programming language,</p>
+<ul>
+<li>Redoing an analysis or generating a report with minor adjustments is a breeze</li>
+<li>The analysis is central, not the output. This guarantees complete reproducibility</li>
+</ul>
+</div>
+</div>
+<div id="overview-of-the-toolbox" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Overview of the toolbox<a class="anchor" aria-label="anchor" href="#overview-of-the-toolbox"><i class="fas fa-link"></i></a>
+</h2>
+<p>This chapter will introduce you to a toolbox that will serve you well during your data quests.<br>
+It consists of</p>
+<ul>
+<li>The R programming language and built-in functionality</li>
+<li>The RStudio Integrated Development Environment (IDE)</li>
+<li>R Markdown as documenting and reporting tool</li>
+</ul>
+<div id="tool-1-the-r-programming-language" class="section level3 unnumbered">
+<h3>Tool 1: The R programming language<a class="anchor" aria-label="anchor" href="#tool-1-the-r-programming-language"><i class="fas fa-link"></i></a>
+</h3>
+<div class="inline-figure"><img src="figures/Rlogo.png"></div>
+<p>Nobody likes to pay for computer tools. Fortunately, R is completely free. Moreover, it is completely open source. This is of course one of the main reasons for its popularity; other statistical tools are not free and sometimes downright expensive.<br>
+Besides this free nature, R is very popular because it has an interactive mode. We call this a read–evaluate–print loop: REPL. This means you don’t need to write programs to run code. You simply type a command in the <strong><em>console</em></strong>, press enter and immediately get the result on the line below.</p>
+<p>As stated above, because you store your analyses in code, repeating these analyses -possibly with with new data or changed settings- is very easy.<br>
+One of my personal favorite features is that R supports “literate programming” for creating presentations (such as this one!) and other publications (reports, papers etc). Pdf documents, Microsoft Word documents, web pages (html) and e-books are all possible outputs of a single R Markdown master document.</p>
+<p>Finally, R has advanced embedded graphical support. This means that graphical output (a plot) is as easy to generate as textual output! That said, the base plotting system of R should be considered deprecated and only used for quick inspections. The de facto standard is the ggplot2 plotting library.</p>
+<p>Here are some figures to whet your appetite. You will probably be able to create all of these yourself at the end of this course.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:toolbox-facetting"></span>
+<img src="DAVuR_files/figure-html/toolbox-facetting-1.png" alt="A facetplot - multiple similar plots split over a single nominal or ordinal variable" width="80%"><p class="caption">
+Figure 2.1: A facetplot - multiple similar plots split over a single nominal or ordinal variable
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:toolbox-polarplot"></span>
+<img src="DAVuR_files/figure-html/toolbox-polarplot-1.png" alt="A polar plot - the dimensions are not your normal 2d x and y" width="80%"><p class="caption">
+Figure 2.2: A polar plot - the dimensions are not your normal 2d x and y
+</p>
+</div>
+<div class="figure">
+<img src="figures/ptsd-jitter-5-1s.png" alt=""><p class="caption">A custom jitter visualization</p>
+</div>
+</div>
+<div id="tool-2-rstudio-as-development-environment" class="section level3 unnumbered">
+<h3>Tool 2: RStudio as development environment<a class="anchor" aria-label="anchor" href="#tool-2-rstudio-as-development-environment"><i class="fas fa-link"></i></a>
+</h3>
+<div class="figure">
+<img src="figures/RStudioLogo.png" alt=""><p class="caption">RStudio logo</p>
+</div>
+<p>RStudio is a so-called Integrated Development Environment. This means it is a “Swiss Multitool” for programming. With it, you manage and run code, files, documentation on the language (help pages), building different output formats.
+The workbench has several panels and looks like this when you run the application.</p>
+<div class="inline-figure"><img src="figures/RStudio_screen3.png"></div>
+<p>You primarily work with 4 panels of the workbench:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Code editor</strong> where you write your scripts and R Markdown documents: text files with code you want to execute more than once</li>
+<li>
+<strong>R console</strong> where you execute lines of code one by one</li>
+<li>
+<strong>Environment and History</strong> See what data you have in memory, and what you have done so far</li>
+<li><strong>Plots, Help &amp; Files</strong></li>
+</ol>
+<p>You use the console to do basic calculations, try pieces of code, develop a function, or load scripts (from the code editor) into memory. On the other hand, the code editor is used to work on code that has life span longer than a few minutes: analyses you may want to repeat, or develop further in the form of scripts and R Markdown documents.
+The code editor supports many file types for viewing and editing: regular text, structured datafiles (text, csv, data files), scripts (programs), and analytical notebooks (R Markdown).</p>
+<p>What is nice about the <strong><em>code editor</em></strong> above regular text editors such as Notepad, Wordpad, TextEdit, is that it knows about different file types and their constituting elements and helps your read, write (auto-complete, error alerts), scan and organize them by displaying these elements using coloring, font types and other visual aids.</p>
+<p>Here is the same piece of code, which is a plain text file, in two different editors. First as plain text in the Mac TextEdit app and next in the RStudio code editor:</p>
+<div class="figure">
+<img src="figures/R_code_plain.png" alt=""><p class="caption">code in TextEdit</p>
+</div>
+<div class="figure">
+<img src="figures/R_code_highlighted.png" alt=""><p class="caption">exact same file in RStudio editor</p>
+</div>
+<p>It is clearly visible where the code elements, numeric data and character data are within the code.</p>
+</div>
+<div id="tool-3-r-markdown" class="section level3 unnumbered">
+<h3>Tool 3: R Markdown<a class="anchor" aria-label="anchor" href="#tool-3-r-markdown"><i class="fas fa-link"></i></a>
+</h3>
+<div class="inline-figure"><img src="figures/markdown_logo.png"></div>
+<p>Using R Markdown you can combine regular text and figures with embedded R code that will be executed to generate a final document. We call this <em>literate programming</em>.<br>
+You can use it to create reports in word, pdf or web (html), presentations (pdf or web) and even eBooks and websites. This entire eBook itself is written in R Markdown!</p>
+<p>Markdown is, just like the language for the web, <code>html</code>, a <strong><em>markup</em></strong> language. Markup means that you use textual elements to indicate structure instead of content. The R extension to Markdown, R Markdown, simply is Markdown with embedded pieces of R code. Consider this piece of Markdown:</p>
+<pre><code>## Tool 3: R Markdown
+
+![](figures/markdown_logo.jpg)
+
+Using RMarkdown you can combine regular text and figures with embedded R code that will be executed to generate a final document. </code></pre>
+<p>The result of this snippet, after it is converted into html, is the top of the current paragraph you are reading.</p>
+<p>Here is a piece of R code we call a <strong><em>code chunk</em></strong> that plots some random data in a scatter plot. In RStudio this piece of R code within (the current) R Markdown document looks like this:</p>
+<p><img src="figures/code_chunk.png">
+Every code chunk consists of two parts; its <em>header</em> and <em>body</em>. The header tells the conversion engine (<strong><em>knitr</em></strong>) how to deal with the code within the chunk, and its output.
+In this case, this header is</p>
+<p><code>{r simple-scatter-demo-1, fig.asp=0.6, out.width='80%', fig.align='center', fig.caption='A simple scatter plot'}</code></p>
+<p>This header specifies quite a few things. First, the programming language (<code>r</code>) and the label, or “name”, of the chunk (<code>simple-scatter-demo-1</code>). Next, several aspects of the generated plot are specified: its <em>aspect ratio</em>, <em>relative width</em>, <em>alignment</em> on the page and the <em>figure caption</em>. Only the programming language is required here.</p>
+<p>Next, when you <strong><em>knit</em></strong> (translate) the document into web format it results in the piece below, together with its output, a scatter plot.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:toolbox-simple-scatter-demo-1"></span>
+<img src="DAVuR_files/figure-html/toolbox-simple-scatter-demo-1-1.png" alt="A simple scatter plot" width="80%"><p class="caption">
+Figure 2.3: A simple scatter plot
+</p>
+</div>
+<p>R Markdown is translated into html, the markup language of the web, before any further processing occurs. That is why you can also embed html code elements within it but that is outside the scope of this course.<br>
+Here are the most basic elements you can use in Markdown documents.</p>
+<div class="figure">
+<img src="figures/markdownOverview.png" alt=""><p class="caption">RMarkdown</p>
+</div>
+<p>Finally, it is also possible to embed Latex elements. For instance, equations can be defined in a text format. This:</p>
+<pre><code>$$d(p, q) = \sqrt{\sum_{i = 1}^{n}(q_i-p_i)^2}$$</code></pre>
+<p>results in this:</p>
+<p><span class="math display">\[d(p, q) = \sqrt{\sum_{i = 1}^{n}(q_i-p_i)^2}\]</span></p>
+<p>RStudio provides several cheatsheets with R, including Markdown. Have a look at Help → Cheatsheets.</p>
+<p>A final note. To be able to convert R Markdown into Word format you need to have MS Word installed on that machine. If you want to be able to generate pdf documents, you will need a bit more: see the screencast <a href="https://www.youtube.com/watch?v=YL3avjNu6Ak">Setting up on a Windows system</a>. It is a bit outdated so you should update to more recent version numbers.</p>
+</div>
+</div>
+<div id="resources" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Resources<a class="anchor" aria-label="anchor" href="#resources"><i class="fas fa-link"></i></a>
+</h2>
+<div id="screencasts" class="section level3 unnumbered">
+<h3>Screencasts<a class="anchor" aria-label="anchor" href="#screencasts"><i class="fas fa-link"></i></a>
+</h3>
+<p>There is a series of screencasts to support some of the text. They can be found in two different video channels; one for Base R and one for the Tidyverse collection of packages:</p>
+<ul>
+<li><a href="https://screenpal.com/channels/cY6UQuV6lf">base R</a></li>
+<li><a href="https://screenpal.com/channels/cY6U6TV6li">tidyverse</a></li>
+</ul>
+</div>
+<div id="data-files" class="section level3 unnumbered">
+<h3>Data Files<a class="anchor" aria-label="anchor" href="#data-files"><i class="fas fa-link"></i></a>
+</h3>
+In this section all data files used or required for the course presentations or exercises are listed.<br><ul>
+<li>
+Whale selenium data:
+<a href="https://raw.githubusercontent.com/MichielNoback/davur1/gh-pages/exercises/data/whale_selenium.txt" target="_blank">whale_selenium.txt</a>
+</li>
+<li>
+Bird observation data:
+<a href="https://raw.githubusercontent.com/MichielNoback/davur1/gh-pages/exercises/data/Observations-Data-2014.xlsx" target="_blank">Observations-Data-2014.xlsx</a> or, as
+<a href="https://raw.githubusercontent.com/MichielNoback/davur1/gh-pages/exercises/data/Observations-Data-2014.csv">csv</a>
+</li>
+<li>
+Food constituents:
+<a href="https://raw.githubusercontent.com/MichielNoback/davur1/gh-pages/exercises/data/food_constituents.txt" target="_blank">food_constituents.txt</a>
+</li>
+<li>
+Wine review data:
+<a href="https://www.kaggle.com/zynicide/wine-reviews/downloads/winemag-data-130k-v2.csv/4" target="_blank">winemag-data-130k-v2.csv</a>
+</li>
+</ul>
+</div>
+<div id="web-resources-and-references" class="section level3 unnumbered">
+<h3>Web resources and references<a class="anchor" aria-label="anchor" href="#web-resources-and-references"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p><strong>R Markdown</strong><br>
+R Markdown is a Markdown “Dialect” used for presenting, documenting and reporting in R: <a href="http://rmarkdown.rstudio.com/">http://rmarkdown.rstudio.com</a></p></li>
+<li><p><strong>R cheat sheet</strong><br>
+The <a href="figures/R_cheatsheet.pdf">R cheat sheet</a>.</p></li>
+<li><p><strong>R Markdown reference</strong><br>
+The <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">RMarkdown reference</a> cards with extensive documentation. Also available at the computer exam!</p></li>
+<li><p><strong>Bioconductor</strong><br>
+Bioconductor provides tools for the analysis and comprehension of high- throughput genomic data: <a href="http://www.bioconductor.org/">http://www.bioconductor.org</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"><span class="header-section-number">1</span> Getting started</a></div>
+<div class="next"><a href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#toolbox"><span class="header-section-number">2</span> The toolbox</a></li>
+<li>
+<a class="nav-link" href="#embarking-on-data-science"><span class="header-section-number">2.1</span> Embarking on Data Science</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#why-do-statistical-programming">Why do statistical programming?</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#overview-of-the-toolbox"><span class="header-section-number">2.2</span> Overview of the toolbox</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tool-1-the-r-programming-language">Tool 1: The R programming language</a></li>
+<li><a class="nav-link" href="#tool-2-rstudio-as-development-environment">Tool 2: RStudio as development environment</a></li>
+<li><a class="nav-link" href="#tool-3-r-markdown">Tool 3: R Markdown</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#resources"><span class="header-section-number">2.3</span> Resources</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#screencasts">Screencasts</a></li>
+<li><a class="nav-link" href="#data-files">Data Files</a></li>
+<li><a class="nav-link" href="#web-resources-and-references">Web resources and references</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

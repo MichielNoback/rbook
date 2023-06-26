@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 9 Old school data mangling | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="This chapter deals with old-school data mangling using base R functions. These are presented for completeness’ sake, and also because sometimes these functions are simply the most convenient...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 9 Old school data mangling | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="This chapter deals with old-school data mangling using base R functions. These are presented for completeness’ sake, and also because sometimes these functions are simply the most convenient...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 9 Old school data mangling | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="This chapter deals with old-school data mangling using base R functions. These are presented for completeness’ sake, and also because sometimes these functions are simply the most convenient...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="active" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">16</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="mangling" class="section level1" number="9">
+<h1>
+<span class="header-section-number">9</span> Old school data mangling<a class="anchor" aria-label="anchor" href="#mangling"><i class="fas fa-link"></i></a>
+</h1>
+<p>This chapter deals with old-school data mangling using base R functions. These are presented for completeness’ sake, and also because sometimes these functions are simply the most convenient compared to what dplyr has to offer.</p>
+<p>Dataframes are ubiquitous in R-based data analyses. Many R functions and packages are tailored specifically for DF manipulations - you have already seen <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code>, <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> and <code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code>.<br>
+In this presentation, we’ll explore a few new functions and techniques for working with DFs:</p>
+<ul>
+<li><code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/tapply.html">tapply()</a></code></li>
+<li><code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/split.html">split()</a></code></li>
+</ul>
+<div id="the-apply-family-of-functions" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> The <code>apply()</code> family of functions<a class="anchor" aria-label="anchor" href="#the-apply-family-of-functions"><i class="fas fa-link"></i></a>
+</h2>
+<p>Looping with <code>for</code> may be tempting, but highly discouraged in R because its inefficient. Usually one of these functions will do it better (or of course the dplyr functions discussed below):</p>
+<ul>
+<li>
+<code>apply</code>: Apply a function over the “margins” of a dataframe - rows or columns or both</li>
+<li>
+<code>lapply</code>: Loop over a list and evaluate a function on each element; returns a list of the same length</li>
+<li>
+<code>sapply</code>: Same as lapply but try to simplify the result</li>
+<li>
+<code>tapply</code>: Apply a function over subsets of a vector (read: split with a factor)</li>
+</ul>
+<p>There are more but these are the important ones.</p>
+<div id="apply-apply-functions-over-array-margins" class="section level4" number="9.1.0.1">
+<h4>
+<span class="header-section-number">9.1.0.1</span> <code>apply()</code>: Apply Functions Over Array Margins<a class="anchor" aria-label="anchor" href="#apply-apply-functions-over-array-margins"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li>Suppose you want to know the means of all columns of a dataframe.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> needs to know
+<ol style="list-style-type: decimal">
+<li>what DF to apply to (<code>X</code>)</li>
+<li>over which margin(s) - columns and/or rows (<code>MARGIN</code>)</li>
+<li>what function to apply (<code>FUN</code>)</li>
+</ol>
+</li>
+</ul>
+<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">cars</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span> <span class="co"># apply over columns</span></span></code></pre></div>
+<pre><code>## speed  dist 
+##  15.4  43.0</code></pre>
+<p>Here, a function is applied to both columns and rows</p>
+<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, y <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">minus_one_squared</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">df</span>, MARGIN <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="va">minus_one_squared</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##       x  y
+## [1,]  0 25
+## [2,]  1 36
+## [3,]  4 49
+## [4,]  9 64
+## [5,] 16 81</code></pre>
+<p>(Ok, that was a bit lame: <code>minus_one_squared(df)</code> does the same)</p>
+<p>The Body Mass Index, or BMI, is calculated as <span class="math inline">\((weight / height ^ 2) * 703\)</span> where weight is in pounds and height in inches. Here it is calculated for the build in dataset <code>women</code>.</p>
+<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">women</span>, n<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   height weight
+## 1     58    115
+## 2     59    117
+## 3     60    120</code></pre>
+<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">women</span><span class="op">$</span><span class="va">bmi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">women</span>, </span>
+<span>                   MARGIN <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>                   FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">/</span> <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">*</span> <span class="fl">703</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">women</span>, n<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   height weight  bmi
+## 1     58    115 24.0
+## 2     59    117 23.6
+## 3     60    120 23.4
+## 4     61    123 23.2</code></pre>
+</div>
+<div id="pass-arguments-to-the-applied-function" class="section level4 unnumbered">
+<h4>Pass arguments to the applied function<a class="anchor" aria-label="anchor" href="#pass-arguments-to-the-applied-function"><i class="fas fa-link"></i></a>
+</h4>
+<p>Sometimes the applied function needs to have other arguments passed besides the row or column. The <code>...</code> argument to <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> makes this possible (type <code><a href="https://rdrr.io/r/base/apply.html">?apply</a></code> to see more info)</p>
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># function sums and powers up</span></span>
+<span><span class="va">spwr</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">p</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">^</span><span class="va">p</span><span class="op">}</span></span>
+<span><span class="co"># a simple dataframe</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, b <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">df</span></span></code></pre></div>
+<pre><code>##   a  b
+## 1 1  6
+## 2 2  7
+## 3 3  8
+## 4 4  9
+## 5 5 10</code></pre>
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># spwr will use the default value for p (p = 2)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">df</span>, MARGIN <span class="op">=</span> <span class="fl">1</span>, FUN <span class="op">=</span> <span class="va">spwr</span><span class="op">)</span> </span></code></pre></div>
+<pre><code>## [1]  49  81 121 169 225</code></pre>
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># pass power p = 3 to function spwr (argument names omitted)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">df</span>, <span class="fl">1</span>, <span class="va">spwr</span>, p <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span></code></pre></div>
+<pre><code>## [1]  343  729 1331 2197 3375</code></pre>
+<p>Note: The <code>...</code> argument works for all <code>..apply..</code> functions.</p>
+</div>
+<div id="lapply-apply-a-function-over-a-list-or-vector" class="section level4" number="9.1.0.2">
+<h4>
+<span class="header-section-number">9.1.0.2</span> <code>lapply()</code>: Apply a Function over a List or Vector<a class="anchor" aria-label="anchor" href="#lapply-apply-a-function-over-a-list-or-vector"><i class="fas fa-link"></i></a>
+</h4>
+<p>Function <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> applies a function to all elements of a list and returns a list with the same length, each element the result of applying the function</p>
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">myNumbers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    one <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, </span>
+<span>    two <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    three <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">myNumbers</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## $one
+## [1] 2.67
+## 
+## $two
+## [1] 3
+## 
+## $three
+## [1] 7</code></pre>
+<p>Here is the same list, but now with <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code> applied. Notice how the nature of the applied function influences the result.</p>
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">myNumbers</span>, FUN <span class="op">=</span> <span class="va">sqrt</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## $one
+## [1] 1.00 1.73 2.00
+## 
+## $two
+## [1] 1.73 1.41 2.45 1.00
+## 
+## $three
+## [1] 2.24 2.65 2.45 2.83 3.00</code></pre>
+</div>
+<div id="sapply-apply-a-function-over-a-list-or-vector-and-simplify" class="section level4" number="9.1.0.3">
+<h4>
+<span class="header-section-number">9.1.0.3</span> <code>sapply()</code>: Apply a Function over a List or Vector and Simplify<a class="anchor" aria-label="anchor" href="#sapply-apply-a-function-over-a-list-or-vector-and-simplify"><i class="fas fa-link"></i></a>
+</h4>
+<p>When using the same example as above, but with <code>sapply</code>, you get a vector returned. Note that the resulting vector is a named vector, a convenient feature of <code>sapply</code></p>
+<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">myNumbers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    one <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>    two <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>    three <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">myNumbers</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   one   two three 
+##  2.67  3.00  7.00</code></pre>
+<p>When the result can not be simplified, you get the same list as with <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>:</p>
+<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">myNumbers</span>, FUN <span class="op">=</span> <span class="va">sqrt</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## $one
+## [1] 1.00 1.73 2.00
+## 
+## $two
+## [1] 1.73 1.41 2.45 1.00
+## 
+## $three
+## [1] 2.24 2.65 2.45 2.83 3.00</code></pre>
+</div>
+<div id="wasnt-a-dataframe-also-a-list" class="section level4" number="9.1.0.4">
+<h4>
+<span class="header-section-number">9.1.0.4</span> wasn’t a dataframe also a list?<a class="anchor" aria-label="anchor" href="#wasnt-a-dataframe-also-a-list"><i class="fas fa-link"></i></a>
+</h4>
+<p>Yes! It is also list(ish). Both <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> and <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code> work just fine on dataframes:</p>
+<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">cars</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## $speed
+## [1] 15.4
+## 
+## $dist
+## [1] 43</code></pre>
+<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">cars</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span> </span></code></pre></div>
+<pre><code>## speed  dist 
+##  15.4  43.0</code></pre>
+<p>By the way, sapply and lapply also work with vectors.</p>
+</div>
+<div id="tapply-apply-a-function-over-a-ragged-array" class="section level4" number="9.1.0.5">
+<h4>
+<span class="header-section-number">9.1.0.5</span> <code>tapply()</code>: Apply a Function Over a Ragged Array<a class="anchor" aria-label="anchor" href="#tapply-apply-a-function-over-a-ragged-array"><i class="fas fa-link"></i></a>
+</h4>
+<p>What <code><a href="https://rdrr.io/r/base/tapply.html">tapply()</a></code> does is apply a function over subsets of a vector; it splits a vector into groups according to the levels in a second vector and applies the given function to each group.</p>
+<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">weight</span>, INDEX <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">feed</span>, FUN <span class="op">=</span> <span class="va">sd</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    casein horsebean   linseed  meatmeal   soybean sunflower 
+##      64.4      38.6      52.2      64.9      54.1      48.8</code></pre>
+</div>
+</div>
+<div id="other-data-mangling-functions" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Other data mangling functions<a class="anchor" aria-label="anchor" href="#other-data-mangling-functions"><i class="fas fa-link"></i></a>
+</h2>
+<div id="split-divide-into-groups-and-reassemble" class="section level4" number="9.2.0.1">
+<h4>
+<span class="header-section-number">9.2.0.1</span> <code>split()</code>: Divide into Groups and Reassemble<a class="anchor" aria-label="anchor" href="#split-divide-into-groups-and-reassemble"><i class="fas fa-link"></i></a>
+</h4>
+<p>This is similar to <code><a href="https://rdrr.io/r/base/tapply.html">tapply()</a></code> in the sense that is uses a factor to split its first argument. But where <code><a href="https://rdrr.io/r/base/tapply.html">tapply()</a></code> splits a vector, <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> splits a dataframe - into <em>list of dataframes</em>.
+You use <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> when a dataframe needs to be divided depending on the value of some grouping variable.<br>
+Here we have the response of Treated (T) and Untreated (UT) subjects</p>
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">myData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    response <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">9</span>, <span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    treatment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"UT"</span>, <span class="st">"T"</span>, <span class="st">"UT"</span>, <span class="st">"UT"</span>, <span class="st">"T"</span>, <span class="st">"UT"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"UT"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"UT"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">splData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">myData</span>, f <span class="op">=</span> <span class="va">myData</span><span class="op">$</span><span class="va">treatment</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">splData</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## List of 2
+##  $ T :'data.frame':  6 obs. of  2 variables:
+##   ..$ response : num [1:6] 8 9 6 7 6 5
+##   ..$ treatment: Factor w/ 2 levels "T","UT": 1 1 1 1 1 1
+##  $ UT:'data.frame':  6 obs. of  2 variables:
+##   ..$ response : num [1:6] 5 4 5 3 3 2
+##   ..$ treatment: Factor w/ 2 levels "T","UT": 2 2 2 2 2 2</code></pre>
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">splData</span><span class="op">$</span><span class="cn">T</span><span class="op">$</span><span class="va">response</span>, <span class="va">splData</span><span class="op">$</span><span class="va">UT</span><span class="op">$</span><span class="va">response</span>, </span>
+<span>        names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Treated"</span>, <span class="st">"Untreated"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/split_demo-1-1.png" width="672"></div>
+<p>Note that this trivial example could also have been done with <code>boxplot(myData$response ~ myData$treatment)</code>.</p>
+<p>Here you can see that <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> also works with vectors.</p>
+<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sick"</span>, <span class="st">"healthy"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## $healthy
+## [1] -1.4482  0.5748 -1.0237 -0.0151 -0.9359
+## 
+## $sick
+## [1]  0.134 -0.491 -0.441  0.460 -0.694</code></pre>
+</div>
+<div id="aggregate-compute-summary-statistics-of-data-subsets" class="section level4" number="9.2.0.2">
+<h4>
+<span class="header-section-number">9.2.0.2</span> <code>aggregate()</code>: Compute Summary Statistics of Data Subsets<a class="anchor" aria-label="anchor" href="#aggregate-compute-summary-statistics-of-data-subsets"><i class="fas fa-link"></i></a>
+</h4>
+<p>Splits the data into subsets, computes summary statistics for each, and returns the result in a convenient form.</p>
+<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">Temp</span> <span class="op">~</span> <span class="va">Month</span>, </span>
+<span>          data <span class="op">=</span> <span class="va">airquality</span>, </span>
+<span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##       Month Temp
+## 1       May 65.5
+## 2      June 79.1
+## 3      July 83.9
+## 4    August 84.0
+## 5 September 76.9</code></pre>
+<p>Aggregate has two usage techniques:</p>
+<ul>
+<li><p>with a formula:<br><strong><code>aggregate(formula, data, FUN, ...)</code></strong></p></li>
+<li><p>with a list:<br><strong><code>aggregate(x, by, FUN, ...)</code></strong></p></li>
+</ul>
+<p>I really like <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code>, especially the first form. That is, until I got to know the <code>dplyr</code> package.</p>
+<p>Both forms of <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> will be demonstrated</p>
+</div>
+<div id="aggregate-with-formula" class="section level4 unnumbered">
+<h4>Aggregate with formula<a class="anchor" aria-label="anchor" href="#aggregate-with-formula"><i class="fas fa-link"></i></a>
+</h4>
+<p>The left part of the formula accepts one, several or all columns as dependent variables.</p>
+<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">##two dependents</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">Temp</span>, <span class="va">Ozone</span><span class="op">)</span> <span class="op">~</span> <span class="va">Month</span>, </span>
+<span>          data <span class="op">=</span> <span class="va">airquality</span>, </span>
+<span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##       Month Temp Ozone
+## 1       May 66.7  23.6
+## 2      June 78.2  29.4
+## 3      July 83.9  59.1
+## 4    August 84.0  60.0
+## 5 September 76.9  31.4</code></pre>
+<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">##all</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">Month</span>, </span>
+<span>          data <span class="op">=</span> <span class="va">airquality</span>, </span>
+<span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##       Month Ozone Solar.R  Wind Temp  Day   bar
+## 1       May  24.1     182 11.50 66.5 16.1 0.333
+## 2      June  29.4     184 12.18 78.2 14.3 0.333
+## 3      July  59.1     216  8.52 83.9 16.2 0.808
+## 4    August  60.0     173  8.86 83.7 17.2 0.696
+## 5 September  31.4     168 10.08 76.9 15.1 0.345</code></pre>
+<p>The right part can also accept multiple independent variables</p>
+<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp_factor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>, </span>
+<span>                              breaks <span class="op">=</span> <span class="fl">2</span>, </span>
+<span>                              labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"low"</span>, <span class="st">"high"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">Ozone</span> <span class="op">~</span> <span class="va">Month</span> <span class="op">+</span> <span class="va">Temp_factor</span>, </span>
+<span>          data <span class="op">=</span> <span class="va">airquality</span>, </span>
+<span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##        Month Temp_factor Ozone
+## 1        May         low  18.9
+## 2       June         low  20.5
+## 3       July         low  13.0
+## 4     August         low  16.0
+## 5  September         low  17.6
+## 6        May        high  80.0
+## 7       June        high  36.6
+## 8       July        high  63.0
+## 9     August        high  63.6
+## 10 September        high  48.5</code></pre>
+</div>
+<div id="the-by-list...-form" class="section level4 unnumbered">
+<h4>The <code>by = list(...)</code> form<a class="anchor" aria-label="anchor" href="#the-by-list...-form"><i class="fas fa-link"></i></a>
+</h4>
+<p>This is the other form of aggregate. It is more elaborate in my opinion because you need te spell out all vectors you want to work on.</p>
+<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">weight</span>, </span>
+<span>          by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>feed <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">feed</span><span class="op">)</span>, </span>
+<span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##        feed   x
+## 1    casein 324
+## 2 horsebean 160
+## 3   linseed 219
+## 4  meatmeal 277
+## 5   soybean 246
+## 6 sunflower 329</code></pre>
+<p>Here is another example:</p>
+<div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Wind</span>, </span>
+<span>          by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>month <span class="op">=</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Month</span>, temperature <span class="op">=</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Temp_factor</span><span class="op">)</span>, </span>
+<span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##        month temperature     x
+## 1        May         low 11.71
+## 2       June         low  9.85
+## 3       July         low 10.60
+## 4     August         low 11.43
+## 5  September         low 11.39
+## 6        May        high 10.30
+## 7       June        high 10.51
+## 8       July        high  8.83
+## 9     August        high  8.51
+## 10 September        high  8.79</code></pre>
+<p>But it is better to wrap it in <code><a href="https://rdrr.io/r/base/with.html">with()</a></code>:</p>
+<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">airquality</span>, <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Wind</span>, </span>
+<span>                           by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>month <span class="op">=</span> <span class="va">Month</span>, temperature <span class="op">=</span> <span class="va">Temp_factor</span><span class="op">)</span>, </span>
+<span>                           FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="many-roads-lead-to-rome" class="section level3" number="9.2.1">
+<h3>
+<span class="header-section-number">9.2.1</span> Many roads lead to Rome<a class="anchor" aria-label="anchor" href="#many-roads-lead-to-rome"><i class="fas fa-link"></i></a>
+</h3>
+<p>The next series of examples are all essentially the same. The message is: there is more than one way to do it!</p>
+<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">feed</span>, </span>
+<span>          data <span class="op">=</span> <span class="va">chickwts</span>, </span>
+<span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##        feed weight
+## 1    casein    324
+## 2 horsebean    160
+## 3   linseed    219
+## 4  meatmeal    277
+## 5   soybean    246
+## 6 sunflower    329</code></pre>
+<p>same as</p>
+<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">weight</span>, </span>
+<span>               by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>feed <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">feed</span><span class="op">)</span>, </span>
+<span>               FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>, n<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##        feed   x
+## 1    casein 324
+## 2 horsebean 160
+## 3   linseed 219</code></pre>
+<p>same as</p>
+<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">chickwts</span><span class="op">$</span><span class="va">weight</span>, <span class="va">chickwts</span><span class="op">$</span><span class="va">feed</span>, <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    casein horsebean   linseed  meatmeal   soybean sunflower 
+##       324       160       219       277       246       329</code></pre>
+<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">chickwts</span>, <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">weight</span>, <span class="va">feed</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    casein horsebean   linseed  meatmeal   soybean sunflower 
+##       324       160       219       277       246       329</code></pre>
+<p>same as</p>
+<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">chickwts</span>, <span class="va">chickwts</span><span class="op">$</span><span class="va">feed</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    casein horsebean   linseed  meatmeal   soybean sunflower 
+##       324       160       219       277       246       329</code></pre>
+<p>And this is the topic of the next part of this chapter:</p>
+<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">chickwts</span>, <span class="va">feed</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_weigth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   feed      mean_weigth
+##   &lt;fct&gt;           &lt;dbl&gt;
+## 1 casein           324.
+## 2 horsebean        160.
+## 3 linseed          219.
+## 4 meatmeal         277.
+## 5 soybean          246.
+## 6 sunflower        329.</code></pre>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></div>
+<div class="next"><a href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#mangling"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="nav-link" href="#the-apply-family-of-functions"><span class="header-section-number">9.1</span> The apply() family of functions</a></li>
+<li>
+<a class="nav-link" href="#other-data-mangling-functions"><span class="header-section-number">9.2</span> Other data mangling functions</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#many-roads-lead-to-rome"><span class="header-section-number">9.2.1</span> Many roads lead to Rome</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 3 Basic R - coding | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="3.1 Vectors, fuctions and variables  3.1.1 Doing Math in the console The console is the place where you do quick calculations, tests and analyses that do not need to be saved (yet) or repeated. It...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 3 Basic R - coding | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="3.1 Vectors, fuctions and variables  3.1.1 Doing Math in the console The console is the place where you do quick calculations, tests and analyses that do not need to be saved (yet) or repeated. It...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 3 Basic R - coding | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="3.1 Vectors, fuctions and variables  3.1.1 Doing Math in the console The console is the place where you do quick calculations, tests and analyses that do not need to be saved (yet) or repeated. It...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="active" href="basic-r---coding.html"><span class="header-section-number">3</span> Basic R - coding</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="exploratory-data-analysis-i-eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I {eda-1}</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="exercises..html"><span class="header-section-number">16</span> Exercises.</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="basic-r---coding" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> Basic R - coding<a class="anchor" aria-label="anchor" href="#basic-r---coding"><i class="fas fa-link"></i></a>
+</h1>
+<div id="vectors-fuctions-and-variables" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Vectors, fuctions and variables<a class="anchor" aria-label="anchor" href="#vectors-fuctions-and-variables"><i class="fas fa-link"></i></a>
+</h2>
+<div id="doing-math-in-the-console" class="section level3" number="3.1.1">
+<h3>
+<span class="header-section-number">3.1.1</span> Doing Math in the console<a class="anchor" aria-label="anchor" href="#doing-math-in-the-console"><i class="fas fa-link"></i></a>
+</h3>
+<p>The console is the place where you do quick calculations, tests and analyses that do not need to be saved (yet) or repeated. It is the the tab that says “Console” and on first use, R puts it in the lower left panel.</p>
+<p>In the console, the <strong><em>prompt</em></strong> is the “greater than” symbol “&gt;”. R waits here for you to enter commands. When the panel has “focus” the cursor is blinking on and off. You can use the console as a calculator. It supports all regular math operations, in the way you would expect them:</p>
+<p><code>+</code>  : ‘plus’, as in 2 + 2 = 4</p>
+<p><code>-</code> : ‘subtract’, as in 2 - 2 = 0</p>
+<p><code>*</code>  : ‘multiply’, as in 2 * 3 = 6</p>
+<p><code>/</code>  : ‘divide’, as in 8 / 4 = 2</p>
+<p><code>^</code>  : ‘exponent’, as in 2^3 = 8. In R, <code>^</code> is synonym of <code>**</code></p>
+<p>For the square root you can use <span class="math inline">\(n^{0.5}\)</span>: <code>n**0.5</code>, or the function <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code> (discussed later).</p>
+<p>When Enter is pressed when the mathematical statement is not complete yet, the <code>&gt;</code> symbol is replaced by a <code>+</code> at the start of the new line, indicating the statement is a continuation. Here is an example:</p>
+<pre><code>&gt; 1 + 3 + 4 + 
++ </code></pre>
+<p>So the <code>+</code> at the start of line 2 is not a mathematical <code>+</code> but a “continuation symbol”. You can always abort the current statement by pressing Escape.</p>
+<p>When a statement <em>is</em> complete, the result will be printed in the next line:</p>
+<pre><code>&gt; 31 + 11
+[1] 42</code></pre>
+<p>The result is of course <code>42</code>; the leading <code>[1]</code> is the <strong><em>index</em></strong> of the result. We will address this later.</p>
+<div id="operator-precedence" class="section level4 unnumbered">
+<h4>Operator Precedence<a class="anchor" aria-label="anchor" href="#operator-precedence"><i class="fas fa-link"></i></a>
+</h4>
+<p>All “operators” adhere to the standard mathematical <strong>precedence</strong> rules (PEMDAS):</p>
+<pre><code>    Parentheses (simplify inside these)
+    Exponents
+    Multiplication and Division (from left to right)
+    Addition and Subtraction (from left to right)</code></pre>
+<p>With complex statements you should be aware of operator precedence! If you are not sure, or want to make your expression less ambiguous you should simply use parentheses <code>()</code> because they have highest precedence.</p>
+<p>Besides math operators, R knows a whole set of other operators. They will be dealt with later in this chapter.</p>
+<blockquote>
+<p><strong><em>Programming Rule</em></strong> Always place spaces around both sides of an operator, with the exception of <code>^</code> and <code>**</code>.</p>
+</blockquote>
+</div>
+</div>
+<div id="an-expression-dissected" class="section level3" number="3.1.2">
+<h3>
+<span class="header-section-number">3.1.2</span> An expression dissected<a class="anchor" aria-label="anchor" href="#an-expression-dissected"><i class="fas fa-link"></i></a>
+</h3>
+<p>When you type <code>21 / 3</code> this called an <strong><em>expression</em></strong>. The expression has three parts: an operator (<code>/</code> in the middle) and two operands. The left operand is <code>21</code> and the right operand is <code>3</code>.<br>
+Since there is no assignment, the result of this expression will be send to the console as output, giving <code>[1] 7</code>.</p>
+<p>Because this expression is the sole contents of the current line in the console, it is also called a <strong><em>statement</em></strong>.</p>
+<blockquote>
+<p><strong><em>Statement vs expression</em></strong> A statement is a complete line of code that performs some action, while an expression is any section of code that evaluates to a value.</p>
+</blockquote>
+<div id="ending-statements" class="section level4 unnumbered">
+<h4>Ending statements<a class="anchor" aria-label="anchor" href="#ending-statements"><i class="fas fa-link"></i></a>
+</h4>
+<p>In R, the newline (enter) is an end-of-statement character. Optionally you can end statements with a semicolon “;”. However, when you have more statements on a single line they are mandatory is in this example:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>; <span class="va">x</span>; <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">42</span>; <span class="va">x</span></span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre><code>## [1] 42</code></pre>
+<blockquote>
+<p><strong><em>Programming Rule</em></strong>: Have one statement per line and don’t use semicolons</p>
+</blockquote>
+</div>
+<div id="comments" class="section level4 unnumbered">
+<h4>Comments<a class="anchor" aria-label="anchor" href="#comments"><i class="fas fa-link"></i></a>
+</h4>
+<p>Everything on a line after a hash sign “<code>#</code>” will be ignored by R. Use it to add explanation to your code:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## starting cool analysis</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">T</span>, <span class="cn">F</span>, <span class="cn">T</span><span class="op">)</span> <span class="co"># Creating a logical vector</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># same</span></span></code></pre></div>
+</div>
+</div>
+<div id="functions" class="section level3" number="3.1.3">
+<h3>
+<span class="header-section-number">3.1.3</span> Functions<a class="anchor" aria-label="anchor" href="#functions"><i class="fas fa-link"></i></a>
+</h3>
+<p>Simple mathematics is not the core business of R.</p>
+<p>Going further than basic math, you will need functions, mostly pre-existing functions but often also custom functions that you write yourself. Here is a definition of a function:</p>
+<blockquote>
+<p><em>A function is a piece of functionality that you can execute by typing its name, followed by a pair of parentheses. Within these parentheses, you can pass data for the function to work on. Functions often, but not always, return a value</em>.</p>
+</blockquote>
+<p>Function usage -or a <strong><em>function call</em></strong>- has this general form:
+<span class="math display">\[function\_name(arg_1, arg_2, ..., arg_n)\]</span></p>
+<div id="example-square-root-with-sqrt" class="section level4 unnumbered">
+<h4>Example: Square root with <code>sqrt()</code><a class="anchor" aria-label="anchor" href="#example-square-root-with-sqrt"><i class="fas fa-link"></i></a>
+</h4>
+<p>You have already seen that the square root can be calculated as <span class="math inline">\(n^{0.5}\)</span>.
+However, there is also a function for it: <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>. It <strong><em>returns</em></strong> the square root of the given <strong><em>parameter</em></strong>, a number, <em>e.g.</em> <code>sqrt(36)</code></p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">36</span><span class="op">^</span><span class="fl">0.5</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">36</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 6
+## [1] 6</code></pre>
+</div>
+<div id="another-example-paste" class="section level4 unnumbered">
+<h4>Another example: <code>paste()</code><a class="anchor" aria-label="anchor" href="#another-example-paste"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> function can take any number of arguments and returns them, combined into a single text (character) string. You can also specify a separator using <code>sep="&lt;separator string&gt;"</code>:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, sep <span class="op">=</span> <span class="st">"---"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "1---2---3"</code></pre>
+<p>Note the use of quotes surrounding the dashes: <code>"---"</code>; they indicate it is text, or character, data.<br>
+Also note the use of a name for only the last argument. Not all arguments can be specified by name, but when possible this has preference, as in <code>sep = "---"</code>.</p>
+</div>
+<div id="getting-help-on-a-function" class="section level4" number="3.1.3.1">
+<h4>
+<span class="header-section-number">3.1.3.1</span> Getting help on a function<a class="anchor" aria-label="anchor" href="#getting-help-on-a-function"><i class="fas fa-link"></i></a>
+</h4>
+<p>Type <code>?function_name</code> or <code>help(function_name)</code> in the console to get help on a function. The function documentation will appear in the panel containing the <code>Help</code> tab, Its location is dependent on your set of preferences.<br>
+For instance, typing <code><a href="https://rdrr.io/r/base/MathFun.html">?sqrt</a></code> will give the help page of the square root function together with the <code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code> function.<br>
+R help pages always have the exact same structure:</p>
+<ul>
+<li>Name &amp; package (e.g. <code>{base}</code>)</li>
+<li>Short description</li>
+<li>Description</li>
+<li>Usage</li>
+<li>Arguments</li>
+<li>Details</li>
+<li>…</li>
+<li>Examples</li>
+</ul>
+<p>Scroll down in the help to see example usages of the function. Alternatively, type <code>example(sqrt)</code> in the console to have all examples executed in order, until you press Escape.</p>
+</div>
+</div>
+<div id="variables" class="section level3" number="3.1.4">
+<h3>
+<span class="header-section-number">3.1.4</span> Variables<a class="anchor" aria-label="anchor" href="#variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>In math and programming you often use variables to label or name pieces of data, or a function in order to have them reusable, retrievable, changeable.</p>
+<blockquote>
+<p>A <strong><em>variable</em></strong> is a named piece of data stored in memory that can be accessed via its name</p>
+</blockquote>
+<p>For instance, <code>x = 42</code> is used to define a variable called <code>x</code>, with a value attached to it of <code>42</code>. Variables are really <em>variable</em> - their value can change!
+In R you usually assign a value to a variable using “<code>&lt;-</code>”, so “<code>x &lt;- 42</code>” is equivalent to “<code>x = 42</code>”. Both will work in R, but the “arrow” notation is preferred.</p>
+</div>
+<div id="vectors" class="section level3" number="3.1.5">
+<h3>
+<span class="header-section-number">3.1.5</span> Vectors<a class="anchor" aria-label="anchor" href="#vectors"><i class="fas fa-link"></i></a>
+</h3>
+<div id="r-is-completely-vector-based" class="section level4 unnumbered">
+<h4>R is completely vector-based<a class="anchor" aria-label="anchor" href="#r-is-completely-vector-based"><i class="fas fa-link"></i></a>
+</h4>
+<p>In R, <em><strong>all data lives inside vectors</strong></em>. When you type ‘2 + 4’, R will execute the following series of actions:</p>
+<ol style="list-style-type: decimal">
+<li>create a vector of length 1 with its element having the value 2</li>
+<li>create a vector of length 1 with its element having the value 4</li>
+<li>add the value of the second vector to ALL the values of vector one, and recycle any shorter vector as many times as needed</li>
+</ol>
+<p>Step 3 is a crucial one. It is essential to grasp this aspect in order to understand R. Therefore we’ll revisit it later in more detail.</p>
+</div>
+<div id="the-atomic-datatypes" class="section level4 unnumbered">
+<h4>The atomic datatypes<a class="anchor" aria-label="anchor" href="#the-atomic-datatypes"><i class="fas fa-link"></i></a>
+</h4>
+<p>R knows five basic types of data; other datatypes are build by combining these into more complex structures (discussed in a later chapter):</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="14%">
+<col width="47%">
+<col width="38%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">type</th>
+<th align="left">descripton</th>
+<th align="left">examples</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">numbers with a decimal part</td>
+<td align="left">
+<code>3.123</code>, <code>5000.0</code>, <code>4.1E3</code>
+</td>
+</tr>
+<tr class="even">
+<td align="left">integer</td>
+<td align="left">numbers without a decimal part</td>
+<td align="left">
+<code>1</code>, <code>0</code>, <code>2999</code>
+</td>
+</tr>
+<tr class="odd">
+<td align="left">logical</td>
+<td align="left">Boolean values: yes/no)</td>
+<td align="left">
+<code>true</code> <code>false</code>
+</td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">text, should be put within quotes</td>
+<td align="left">
+<code>'hello R'</code> <code>"A cat!"</code>
+</td>
+</tr>
+<tr class="odd">
+<td align="left">factor</td>
+<td align="left">nominal and ordinal scales</td>
+<td align="left">&lt;dealt with later&gt;</td>
+</tr>
+</tbody>
+</table></div>
+<p>All these types are created in similar ways and can often be converted into other types.</p>
+<p><strong>Note 1:</strong> If you type a number in the console, it will always be a <code>numeric</code> value, decimal part or not.<br><strong>Note 2:</strong> For character data, single and double quotes are equivalent but double are preferred; type <code><a href="https://rdrr.io/r/base/Quotes.html">?Quotes</a></code> in the console to read more on this topic.<br><strong>Note 3:</strong> There are also date/time types but they are not discussed here</p>
+</div>
+<div id="creating-vectors" class="section level4 unnumbered">
+<h4>Creating vectors<a class="anchor" aria-label="anchor" href="#creating-vectors"><i class="fas fa-link"></i></a>
+</h4>
+<p>You will see shortly that there are many ways to create vectors: a custom collection, a series, a repetition of a smaller set, a random sample from a distribution, etc. etc.</p>
+<p>The simplest way to create a vector is the first: create a vector from a custom set of elements, using the “Concatenate” function <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>. The <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function simply takes all its arguments and puts them behind each other, in the order in which they were passed to it, and returns the resulting vector.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basic-r---coding.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 2 4 3</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basic-r---coding.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="fu">c</span>(<span class="st">"c"</span>, <span class="st">"d"</span>))</span></code></pre></div>
+<pre><code>## [1] "a" "b" "c" "d"</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basic-r---coding.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.01</span>, <span class="fl">0.001</span>)</span></code></pre></div>
+<pre><code>## [1] 0.100 0.010 0.001</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="basic-r---coding.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(T, F, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="co"># There are two way to write logical values</span></span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE FALSE</code></pre>
+</div>
+<div id="vectors-can-hold-only-one-data-type" class="section level4 unnumbered">
+<h4>Vectors can hold only one data type<a class="anchor" aria-label="anchor" href="#vectors-can-hold-only-one-data-type"><i class="fas fa-link"></i></a>
+</h4>
+<p>A vector can hold only one type of data. Therefore, if you pass a mixed set of values to the function <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>, it will <strong>coerce</strong> all data into one type. The preferred type is numeric. However, when that is not possible the result will most often be a character vector. In the example below, two numbers and a character value are passed. Since <code>"a"</code> cannot be coerced into a numeric, the returned vector will be a character vector.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="st">"a"</span><span class="op">)</span> </span></code></pre></div>
+<pre><code>## [1] "2" "4" "a"</code></pre>
+<p>Here are some more coercion examples.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basic-r---coding.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">TRUE</span>) <span class="co"># To numeric</span></span></code></pre></div>
+<pre><code>## [1] 1 2 1</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="basic-r---coding.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="st">"TRUE"</span>) <span class="co"># To character</span></span></code></pre></div>
+<pre><code>## [1] "TRUE"  "FALSE" "TRUE"</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="basic-r---coding.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="fl">1.3</span>, <span class="cn">TRUE</span>, <span class="st">"1"</span>) <span class="co"># To character</span></span></code></pre></div>
+<pre><code>## [1] "1.3"  "TRUE" "1"</code></pre>
+<p>Using the function <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>, you can get the data type of any value or variable.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-r---coding.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="st">"a"</span>))</span></code></pre></div>
+<pre><code>## [1] "character"</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="basic-r---coding.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] "integer"</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="basic-r---coding.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="fl">0.3</span>))</span></code></pre></div>
+<pre><code>## [1] "numeric"</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basic-r---coding.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>## [1] "numeric"</code></pre>
+</div>
+<div id="vector-arithmetic" class="section level4 unnumbered">
+<h4>Vector arithmetic<a class="anchor" aria-label="anchor" href="#vector-arithmetic"><i class="fas fa-link"></i></a>
+</h4>
+<p>Let’s have a look at what it means to work with vectors, as opposed to singular values (also called <em>scalars</em>). An example is probably best to get an idea.</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span></code></pre></div>
+<pre><code>## [1] 8 6 9 7</code></pre>
+<p>As you can see, R works <strong><em>set based</em></strong> and will <strong><em>cycle</em></strong> the shorter of the two operands to deal with all elements of the longer operand. How about when the longer one is not a multiple of the shorter one?</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">-</span> <span class="va">z</span></span></code></pre></div>
+<pre><code>## Warning in x - z: longer object length is not a multiple of shorter object
+## length</code></pre>
+<pre><code>## [1] 1 2 0 4</code></pre>
+<p>As you can see this generates a warning that “longer object length is not a multiple of shorter object length”. However, R will proceed anyway, cycling the shorter one.</p>
+</div>
+</div>
+<div id="operators" class="section level3" number="3.1.6">
+<h3>
+<span class="header-section-number">3.1.6</span> Operators<a class="anchor" aria-label="anchor" href="#operators"><i class="fas fa-link"></i></a>
+</h3>
+<p>Here is a complete listing of operators in R. Some operators such as <code>^</code> are <em>unary</em>, which means they have a single <em>operand</em>; a single value or they operate on. On the other hand, <em>binary</em> operators such as <code>+</code> have two <em>operands</em>.</p>
+<p>The following unary and binary operators are listed in precedence groups, from highest to lowest. Many of them are still unknown to you of course. We will encounter most of these along the way as the course progresses, starting with a few in this section.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">operator</th>
+<th align="left">purpose</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">:: :::</td>
+<td align="left">access variables in a namespace</td>
+</tr>
+<tr class="even">
+<td align="left">$ @</td>
+<td align="left">component / slot extraction</td>
+</tr>
+<tr class="odd">
+<td align="left">[ [[</td>
+<td align="left">indexing</td>
+</tr>
+<tr class="even">
+<td align="left">^</td>
+<td align="left">exponentiation (right to left)</td>
+</tr>
+<tr class="odd">
+<td align="left">- +</td>
+<td align="left">unary minus and plus</td>
+</tr>
+<tr class="even">
+<td align="left">:</td>
+<td align="left">sequence operator</td>
+</tr>
+<tr class="odd">
+<td align="left">%any%</td>
+<td align="left">special operators (including %% and %/%)</td>
+</tr>
+<tr class="even">
+<td align="left">* /</td>
+<td align="left">multiply, divide</td>
+</tr>
+<tr class="odd">
+<td align="left">+ -</td>
+<td align="left">(binary) add, subtract</td>
+</tr>
+<tr class="even">
+<td align="left">&lt; &gt; &lt;= &gt;= == !=</td>
+<td align="left">ordering and comparison</td>
+</tr>
+<tr class="odd">
+<td align="left">!</td>
+<td align="left">negation</td>
+</tr>
+<tr class="even">
+<td align="left">&amp; &amp;&amp;</td>
+<td align="left">and</td>
+</tr>
+<tr class="odd">
+<td align="left">| ||</td>
+<td align="left">or</td>
+</tr>
+<tr class="even">
+<td align="left">~</td>
+<td align="left">as in formulae</td>
+</tr>
+<tr class="odd">
+<td align="left">-&gt; -&gt;&gt;</td>
+<td align="left">assignment (left to right)</td>
+</tr>
+<tr class="even">
+<td align="left">&lt;- &lt;&lt;-</td>
+<td align="left">assignment (right to left)</td>
+</tr>
+<tr class="odd">
+<td align="left">=</td>
+<td align="left">assignment (right to left)</td>
+</tr>
+<tr class="even">
+<td align="left">?</td>
+<td align="left">help (unary and binary)</td>
+</tr>
+</tbody>
+</table></div>
+<p>The <code>&lt;&lt;-</code> assignment operator is the same as <code>&lt;-</code> but assigns to a variable in the Global environment.</p>
+<div id="logical-operators" class="section level4 unnumbered">
+<h4>Logical operators<a class="anchor" aria-label="anchor" href="#logical-operators"><i class="fas fa-link"></i></a>
+</h4>
+<p>Logical operators are used to evaluate and/or combine expressions that result in a single logical value: <code>TRUE</code> or <code>FALSE</code>. The <strong><em>comparison operators</em></strong> compare two values (numeric, character - any type is possible) to get to a logical value, but always set-based! In the following chunk, each of the values in <code>x</code> is considered and if it is smaller than or equal to the value <code>4</code>, <code>TRUE</code> is returned, else <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">4</span></span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE  TRUE</code></pre>
+<p>Other comparison operators are <code>&lt;</code> (less then), <code>&lt;=</code> (less then or equal to), <code>&gt;</code> (greater then), <code>&gt;=</code> (greater then or equal to), and <code>==</code> (equal to).</p>
+<p>Another category of logical operators is the set of <strong><em>boolean operators</em></strong>. These are used to <em>reduce</em> two logical values into one. These are</p>
+<ul>
+<li>
+<code>&amp;</code>: logical “AND”; <code>a &amp; b</code> will evaluate to <code>TRUE</code> only if <code>a</code> AND <code>b</code> are TRUE.<br>
+</li>
+<li>
+<code>|</code>: logical “OR”; <code>a | b</code> will evaluate to <code>TRUE</code> only if <code>a</code> OR <code>b</code> are TRUE, no matter which.</li>
+<li>
+<code>!</code>: logical -unary- “NOT”; negates the right operand: <code>! a</code> will evaluate to the “flipped” logical value of <code>a</code>.</li>
+</ul>
+<p>Here is a more elaborate example combining comparison and boolean operators.
+Suppose you have vectors a and b and you want to know which values in <code>a</code> are greater than in <code>b</code> and also smaller than <code>3</code>. This is the expression used for answering that question.</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">a</span> <span class="op">&gt;</span> <span class="va">b</span> <span class="op">&amp;</span> <span class="va">a</span> <span class="op">&lt;</span> <span class="fl">3</span> <span class="co">## returns a logical vector with test results</span></span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE FALSE  TRUE</code></pre>
+<p>Here is a special case. Can you figure out what happens there?</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">6</span> <span class="op">-</span> <span class="fl">2</span> <span class="op">:</span> <span class="fl">5</span> <span class="op">&lt;</span> <span class="fl">3</span></span></code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE  TRUE</code></pre>
+</div>
+<div id="calculations-with-logical-vectors" class="section level4 unnumbered">
+<h4>Calculations with logical vectors<a class="anchor" aria-label="anchor" href="#calculations-with-logical-vectors"><i class="fas fa-link"></i></a>
+</h4>
+<p>Quite often you want to know how many cases fit some condition. A convenient thing in that case is that logical values have a numeric counterpart or “hidden face”:</p>
+<ul>
+<li>TRUE == 1</li>
+<li>FALSE == 0</li>
+</ul>
+<p>The <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> function is often used on this feature:</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="co">## which values are greater than 3?</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">3</span><span class="op">)</span> <span class="co">## how many are greater than 3?</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
+## [1] 3</code></pre>
+</div>
+<div id="modulo" class="section level4 unnumbered">
+<h4>Modulo: <code>%%</code><a class="anchor" aria-label="anchor" href="#modulo"><i class="fas fa-link"></i></a>
+</h4>
+<p>The modulo operator gives the remainder of a division.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">10</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span></span>
+<span><span class="fl">4</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span></span>
+<span><span class="fl">11</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span></span></code></pre></div>
+<pre><code>## [1] 1
+## [1] 0
+## [1] 2</code></pre>
+<p>The modulo is most often used to establish periodicity: <code>x %% 2</code> is zero for all even numbers. Likewise, <code>x %% 10</code> will be zero for every tenth value.</p>
+</div>
+<div id="integer-division-and-rounding" class="section level4 unnumbered">
+<h4>Integer division <code>%/%</code> and rounding<a class="anchor" aria-label="anchor" href="#integer-division-and-rounding"><i class="fas fa-link"></i></a>
+</h4>
+<p>The integer division is the complement of modulo and gives the integer part of a division, it simply “chops off” the decimal part.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">10</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">3</span></span>
+<span><span class="fl">4</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">2</span></span>
+<span><span class="fl">11</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">3</span></span></code></pre></div>
+<pre><code>## [1] 3
+## [1] 2
+## [1] 3</code></pre>
+<p>Note that <code><a href="https://rdrr.io/r/base/Round.html">floor()</a></code> does the same. In the same manner, <code><a href="https://rdrr.io/r/base/Round.html">ceiling()</a></code> rounds up to the nearest integer, no matter how large the decimal part. Finally, there is the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> method to be used for - well, rounding. Be aware that rounding in R is not the same as rounding your course grade which always goes up at <code>x.5</code>. Rounding <code>x.5</code> values mathematically goes to the nearest even number:</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>, <span class="fl">7.5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 0 2 2 4 4 6 6 8</code></pre>
+</div>
+<div id="the-in-operator" class="section level4 unnumbered">
+<h4>The <code>%in%</code> operator<a class="anchor" aria-label="anchor" href="#the-in-operator"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code>%in%</code> operator is very handy when you want to know if the elements of one vector are present in another vector. An example explains best, as usual:</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span><span class="op">)</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"zero"</span>, <span class="st">"three"</span>, <span class="st">"five"</span>, <span class="st">"two"</span><span class="op">)</span></span>
+<span><span class="va">a</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">b</span></span>
+<span><span class="va">b</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">a</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE
+## [1] FALSE  TRUE FALSE  TRUE</code></pre>
+<p>There is no positional evaluation, it simply reports if the corresponding element in the first is present <em>anywhere</em> in the second.</p>
+</div>
+<div id="selecting-vector-elements" class="section level4 unnumbered">
+<h4>Selecting vector elements<a class="anchor" aria-label="anchor" href="#selecting-vector-elements"><i class="fas fa-link"></i></a>
+</h4>
+<p>You often want to get to know things about specific values within a vector</p>
+<ul>
+<li>what value is at the third position?</li>
+<li>what is the highest value?</li>
+<li>which positions have negative values?</li>
+<li>what are the last 5 values?</li>
+</ul>
+<p>There are two principal ways to do this: through indexing with positionional reference (“addresses”) and through logical indexing.</p>
+<p>Here is a picture that demonstrates both.</p>
+<div class="inline-figure"><img src="figures/indexing_in_R_s.png"></div>
+<p>The <code>index</code> is the position of a value within a vector. R starts at one (1), and therefore ends at the length of the vector. Brackets <code>[]</code> are used to specify one or more indices that should be selected (returned).</p>
+<p>Here are two examples of straightforward indexing, selecing a single or a series of elements.</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span> <span class="co">## fourth element</span></span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span> <span class="co">## elements 3 to 5</span></span></code></pre></div>
+<pre><code>## [1] 6 3 5</code></pre>
+<p>However, the technique is much more versatile. You can use indexing to select elements multiple times and thus create copies of them, or select elements in any order you desire.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span> <span class="co">## elements 1, 2, 2 and 5</span></span></code></pre></div>
+<pre><code>## [1] 2 4 4 5</code></pre>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p>Besides integers you can use logicals to perform selections:</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">T</span>, <span class="cn">F</span>, <span class="cn">T</span>, <span class="cn">T</span>, <span class="cn">T</span>, <span class="cn">F</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code>## [1] 2 6 3 5</code></pre>
+<p>As with all vector operations, shorter vectors are cycled as often as needed to cover the longer one:</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">F</span>, <span class="cn">T</span>, <span class="cn">F</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code>## [1] 4 5</code></pre>
+<p>In practice you won’t type literal logicals very often; they are ususaly the result of some comparison operation. Here, all even numbers are selected because their modulo will retun zero.</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span></span></code></pre></div>
+<pre><code>## [1] 2 4 6</code></pre>
+<p>And all of the maximum values in a vector are retreived:</p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code>## [1] 3 3 3</code></pre>
+<p>There is a caveat in selecting the last <em>n</em> values: the colon operator has highest precedence!
+Here, the last two elements are (supposed to be selected).</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span> <span class="op">:</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span> <span class="co">#fails</span></span></code></pre></div>
+<pre><code>## [1] 5 3 6 4 2</code></pre>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">:</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span> <span class="co">## parentheses required!</span></span></code></pre></div>
+<pre><code>## [1] 5 1</code></pre>
+</div>
+<div id="use-which-to-get-an-index-instead-of-value" class="section level4 unnumbered">
+<h4>Use <code>which()</code> to get an index instead of value<a class="anchor" aria-label="anchor" href="#use-which-to-get-an-index-instead-of-value"><i class="fas fa-link"></i></a>
+</h4>
+<p>The function <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> returns indices for which the logical test evaluates to <code>true</code>:</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">2</span><span class="op">)</span> <span class="co">## which positions have values 2 or greater?</span></span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co">## which positions have the maximum value?</span></span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+</div>
+</div>
+<div id="vector-creation-methods" class="section level3" number="3.1.7">
+<h3>
+<span class="header-section-number">3.1.7</span> Vector creation methods<a class="anchor" aria-label="anchor" href="#vector-creation-methods"><i class="fas fa-link"></i></a>
+</h3>
+<p>Since vectors are the bricks with which <em>everything</em> is built in R, there are many, many ways to create them. Here, I will review the most important ones.</p>
+<div id="method-1-constructor-functions" class="section level4 unnumbered">
+<h4>Method 1: Constructor functions<a class="anchor" aria-label="anchor" href="#method-1-constructor-functions"><i class="fas fa-link"></i></a>
+</h4>
+<p>Often you want to be specific about what you create: use the class-specific constructor <strong>OR</strong> one of the conversion methods. Constructor methods have the name of the type. They will create and return a vector of that type wit as length the number that is passed as constructor argument:</p>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">integer</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 0 0 0 0
+## [1] "" "" "" ""
+## [1] FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div id="method-2-conversion-functions" class="section level4 unnumbered">
+<h4>Method 2: Conversion functions<a class="anchor" aria-label="anchor" href="#method-2-conversion-functions"><i class="fas fa-link"></i></a>
+</h4>
+<p>Conversion methods have the name <code>as.XXX()</code> where XXX is the desired type. They will attempt to coerce the given input vector into the requested type.</p>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">2.3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "numeric"
+## [1]  TRUE FALSE  TRUE  TRUE
+## [1] 1 0 2 2</code></pre>
+<p>But there are limits to coercion: R will not coerce elements with types that are non-coercable: you get an <code>NA</code> value.</p>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="st">"a"</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "integer"</code></pre>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">y</span></span></code></pre></div>
+<pre><code>## [1]  2  3 NA</code></pre>
+</div>
+<div id="method-3-the-colon-operator" class="section level4 unnumbered">
+<h4>Method 3: The colon operator<a class="anchor" aria-label="anchor" href="#method-3-the-colon-operator"><i class="fas fa-link"></i></a>
+</h4>
+<p>The colon operator (<strong><code>:</code></strong>) generates a series of integers fromthe left operand to -and including- the right operand.</p>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">1</span> <span class="op">:</span> <span class="fl">5</span></span>
+<span><span class="fl">5</span> <span class="op">:</span> <span class="fl">1</span></span>
+<span><span class="fl">2</span> <span class="op">:</span> <span class="fl">3.66</span></span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5
+## [1] 5 4 3 2 1
+## [1] 2 3</code></pre>
+</div>
+<div id="method-4-the-rep-function" class="section level4 unnumbered">
+<h4>Method 4: The <code>rep()</code> function<a class="anchor" aria-label="anchor" href="#method-4-the-rep-function"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> function takes three arguments. The first is an input vector. The second, <code>times =</code>, specifies how often the <em>entire</em> input vector should be repeated. The second argument, <code>each =</code>, specifies how often <em>each</em> individual element from the input vector should be repeated. When both arguments are provided, <code>each =</code> is evaluated first, followed by <code>times =</code>.</p>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">:</span> <span class="fl">3</span>, times <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 1 2 3 1 2 3 1 2 3</code></pre>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">:</span> <span class="fl">3</span>, each<span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 1 1 1 2 2 2 3 3 3</code></pre>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">:</span> <span class="fl">3</span>, times <span class="op">=</span> <span class="fl">2</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##  [1] 1 1 1 2 2 2 3 3 3 1 1 1 2 2 2 3 3 3</code></pre>
+</div>
+<div id="method-5-the-seq-function" class="section level4 unnumbered">
+<h4>Method 5: The <code>seq()</code> function<a class="anchor" aria-label="anchor" href="#method-5-the-seq-function"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> function is used to create a numeric vector in which the subsequent element show sequential increment or decrement. You specify a range and a step which may be neative if the range end (<code>to =</code>) is lower than the range start (<code>from =</code>).</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="basic-r---coding.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">3</span>, <span class="at">by =</span> .<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##  [1] 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="basic-r---coding.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">0.2</span>) <span class="co"># same</span></span></code></pre></div>
+<pre><code>## [1] 1.0 1.2 1.4 1.6 1.8 2.0</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="basic-r---coding.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 1.00 0.75 0.50 0.25 0.00</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="basic-r---coding.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="at">by =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 3 2 1 0</code></pre>
+</div>
+<div id="method-6-through-vector-operations" class="section level4 unnumbered">
+<h4>Method 6: Through vector operations<a class="anchor" aria-label="anchor" href="#method-6-through-vector-operations"><i class="fas fa-link"></i></a>
+</h4>
+<p>Of course, new vectors, often of different type, are created when two vectors are combined in some operation, or a single vector is processed in some way.</p>
+<p>This operation of two numeric vectors results in a logical vector:</p>
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE FALSE FALSE FALSE</code></pre>
+<p>And this <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> call results in a character vector:</p>
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">9</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "0-5" "1-6" "2-7" "3-8" "4-9"</code></pre>
+</div>
+</div>
+<div id="matrices-are-vectors-with-dimensions" class="section level3" number="3.1.8">
+<h3>
+<span class="header-section-number">3.1.8</span> Matrices are vectors with dimensions<a class="anchor" aria-label="anchor" href="#matrices-are-vectors-with-dimensions"><i class="fas fa-link"></i></a>
+</h3>
+<p>We will not detail on them in this course, only this one small paragraph. This does not mean they are not important, but they are just not the focus here. Some functions require or return a matrix so you should be aware of them.</p>
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+<span><span class="va">m</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    3    5    7    9
+## [2,]    2    4    6    8   10</code></pre>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">v</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">v</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    3    5    7    9
+## [2,]    2    4    6    8   10</code></pre>
+<p>You can convert to and from dataframes using <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code> and <code><a href="https://rdrr.io/r/base/matrix.html">as.matrix()</a></code>. From and to simple vectors is removing or adding dimension attributes: <code>dim(m) &lt;- NULL</code>.</p>
+</div>
+</div>
+<div id="base_plotting" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> R embedded plot types (optional)<a class="anchor" aria-label="anchor" href="#base_plotting"><i class="fas fa-link"></i></a>
+</h2>
+<div class="info">
+<p>This section is included for completeness’ sake. The base plotting system can be considered deprecated.<br>
+You should preferably use the <code>ggplot2</code> package for plotting.</p>
+</div>
+<p>Looking at numbers is boring - people want to see pictures! Doing analyses without visualizations is like only listening to a movie.</p>
+<p>There are a few plot types supported by base R that deal with (combinations of) vectors:</p>
+<ul>
+<li>scatter (or line-) plot</li>
+<li>barplot</li>
+<li>histogram</li>
+<li>boxplot</li>
+</ul>
+<p>We’ll only look at the bare basics in this chapter because we are going to do it for real with package <code>ggplot2</code> in the next course.</p>
+<div id="scatter-and-line-plots" class="section level3" number="3.2.1">
+<h3>
+<span class="header-section-number">3.2.1</span> Scatter and line plots<a class="anchor" aria-label="anchor" href="#scatter-and-line-plots"><i class="fas fa-link"></i></a>
+</h3>
+<p>Meet <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> - the workhorse of R plotting.</p>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.09</span>, <span class="fl">0.30</span>, <span class="fl">0.41</span>, <span class="fl">0.48</span>, <span class="fl">0.72</span>, <span class="fl">1.12</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">response</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:plot-hello-1"></span>
+<img src="DAVuR_files/figure-html/plot-hello-1-1.png" alt="Here is a nice figure!" width="80%"><p class="caption">
+Figure 3.1: Here is a nice figure!
+</p>
+</div>
+<p>The function plot is used here to generate a <em>scatter plot</em>. It may generae other types of figures, depending on its input as we’ll see later.</p>
+<div id="formula-notation" class="section level4 unnumbered">
+<h4>Formula notation<a class="anchor" aria-label="anchor" href="#formula-notation"><i class="fas fa-link"></i></a>
+</h4>
+<p>Instead of passing an <code>x =</code> and <code>y =</code> set of arguments, it is also possible to call the plot fuction with a <strong><em>formula notation</em></strong>:</p>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">response</span> <span class="op">~</span> <span class="va">time</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/plot-hello-with-formula-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>You can read <code>response ~ time</code> as <em>response as a function of time</em>. This is a nice, readable alternative in this case, but for many functions it is the only or preferred way to specify the relationship you want to investigate.</p>
+</div>
+<div id="plot-decorations" class="section level4 unnumbered">
+<h4>Plot decorations<a class="anchor" aria-label="anchor" href="#plot-decorations"><i class="fas fa-link"></i></a>
+</h4>
+<p>Plots should always have these decorations:</p>
+<ul>
+<li>Axis labels indicating measurement type (quantity) and its units. E.g. ‘[Mg] (mq/ml)’ or ‘Heartrate (bpm)’.</li>
+<li>If multiple data series are plotted: a legend</li>
+<li>Either a title or a figure caption, depending on the context.</li>
+</ul>
+<p>The first plots of this chapters were very bare (and a bit boring to look at): the plot has no axis labels (quantity and units) and no decoration whatsoever. By passing arguments to <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> you can modify or add many features of your plot. Basic decoration includes</p>
+<ul>
+<li>adjusting markers (<code>pch = 19</code>, <code>col = "blue"</code>)</li>
+<li>adding connector lines (<code>type = "b"</code>) or removing points (<code>type = "l"</code>)</li>
+<li>adding axis labels and title (<code>xlab = "Time (hours)"</code>, <code>ylab = "Systemic response"</code>, <code>main = "Systemic response to agent X"</code>)</li>
+<li>adjusting axis limits (<code>xlim = c(0, 8)</code>)</li>
+</ul>
+<p>This is not an exhaustive listing; these are listed in the last section of this chapter.</p>
+<p>Here is a more complete plot using a variety of arguments.</p>
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">response</span>, pch <span class="op">=</span> <span class="fl">19</span>, type <span class="op">=</span> <span class="st">"b"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">8</span><span class="op">)</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"Time (hours)"</span>, ylab <span class="op">=</span> <span class="st">"Systemic response (a.u.)"</span>,</span>
+<span>     main <span class="op">=</span> <span class="st">"Systemic response to agent X"</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/plot-hello-2-1.png" width="80%" style="display: block; margin: auto;"></div>
+</div>
+<div id="adjusting-the-plot-symbol" class="section level4 unnumbered">
+<h4>Adjusting the plot symbol<a class="anchor" aria-label="anchor" href="#adjusting-the-plot-symbol"><i class="fas fa-link"></i></a>
+</h4>
+<p>When you have many data points they will overlap. Using transparency with the <code>rgb(,, alpha=)</code> color definition and/or smaller plot symbols (<code>cex=</code>) solves this.</p>
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span>; <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">0.6</span>,</span>
+<span>     col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span>red <span class="op">=</span> <span class="fl">0</span>, green <span class="op">=</span> <span class="fl">0</span>, blue <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/plot-hello-3-1.png" width="80%" style="display: block; margin: auto;"></div>
+</div>
+</div>
+<div id="barplots" class="section level3" number="3.2.2">
+<h3>
+<span class="header-section-number">3.2.2</span> Barplots<a class="anchor" aria-label="anchor" href="#barplots"><i class="fas fa-link"></i></a>
+</h3>
+<p>Barplots can be generated in several ways:</p>
+<ul>
+<li>By passing a factor to <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> - it will generate a barplot of level frequencies. This is a shorthand for <code>barplot(table(some_factor))</code>.</li>
+<li>By using <code><a href="https://rdrr.io/r/graphics/barplot.html">barplot()</a></code>. The advantage of this is that accepts some graphical parameters that are not relevant and accepted by <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>, such as <code>beside =</code>, <code>height =</code>, <code>width =</code> and others (type <code><a href="https://rdrr.io/r/graphics/barplot.html">?barplot</a></code> to see all).</li>
+</ul>
+<p>Here is an example:</p>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">persons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"male"</span>, <span class="st">"female"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">100</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">persons</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/barplot-0-1.png" width="80%" style="display: block; margin: auto;"></div>
+<div id="barplot-with-a-vector" class="section level4 unnumbered">
+<h4>
+<code>barplot()</code> with a vector<a class="anchor" aria-label="anchor" href="#barplot-with-a-vector"><i class="fas fa-link"></i></a>
+</h4>
+<p>The function <code><a href="https://rdrr.io/r/graphics/barplot.html">barplot()</a></code> can be called with a vector specifying the bar heights (frequencies), or a <code>table</code> object.</p>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">frequencies</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">54</span>, <span class="fl">12</span>, <span class="fl">29</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span><span class="op">(</span><span class="va">frequencies</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="st">"four"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/barplot-1-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>With a table object:</p>
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">persons</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## persons
+## female   male 
+##     49     51</code></pre>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">persons</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/barplot-2-1.png" width="80%" style="display: block; margin: auto;"></div>
+</div>
+<div id="barplot-with-a-2d-table-object" class="section level4 unnumbered">
+<h4>
+<code>barplot()</code> with a 2D table object<a class="anchor" aria-label="anchor" href="#barplot-with-a-2d-table-object"><i class="fas fa-link"></i></a>
+</h4>
+<p>Suppose you have this data:</p>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span> </span>
+<span><span class="va">course</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"biology"</span>, <span class="st">"chemistry"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">passed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Passed"</span>, <span class="st">"Failed"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">passed</span>, <span class="va">course</span><span class="op">)</span> <span class="co"># the order matters!</span></span>
+<span><span class="va">tbl</span></span></code></pre></div>
+<pre><code>##         course
+## passed   biology chemistry
+##   Failed       6         8
+##   Passed       4         2</code></pre>
+<p>The <code>set.seed(1234)</code> makes the <em>sampling</em> reproducible, although that sounds really unlogical. Discussing <strong><em>pseudorandom</em></strong> sampling is not within the scope of this course however.</p>
+<p>You can create a <strong><em>stacked bar chart</em></strong> like this.</p>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span><span class="op">(</span><span class="va">tbl</span>, </span>
+<span>        col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"darkblue"</span><span class="op">)</span>, </span>
+<span>        xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span> <span class="op">+</span> <span class="fl">2</span><span class="op">)</span>, </span>
+<span>        legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/barplot-4-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>The <code>xlim =</code> setting is a trick to get the legend beside the plot.</p>
+<p>Using the <code>beside = TRUE</code> argument, you get the bars <strong><em>side by side</em></strong>:</p>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span><span class="op">(</span><span class="va">tbl</span>, </span>
+<span>        col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"darkblue"</span><span class="op">)</span>, </span>
+<span>        beside <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>        xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span><span class="op">*</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span><span class="op">)</span>, </span>
+<span>        legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/barplot-5-1.png" width="480"></div>
+<p>Later, we’ll see another data structure to feed to barplot: the matrix.</p>
+</div>
+</div>
+<div id="histograms" class="section level3" number="3.2.3">
+<h3>
+<span class="header-section-number">3.2.3</span> Histograms<a class="anchor" aria-label="anchor" href="#histograms"><i class="fas fa-link"></i></a>
+</h3>
+<p>Histograms help you visualise the distribution of your data.</p>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">male_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fl">80</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span> <span class="co">## create 500 random numbers around 80</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">male_weights</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/histogram-1-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>Using the <code>breaks</code> argument, you can adjust the bin width. Always explore this option when creating histograms!</p>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># make 2 plots to sit side by side</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">male_weights</span>, breaks <span class="op">=</span> <span class="fl">5</span>, col <span class="op">=</span> <span class="st">"gold"</span>, main <span class="op">=</span> <span class="st">"Male weights"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">male_weights</span>, breaks <span class="op">=</span> <span class="fl">25</span>, col <span class="op">=</span> <span class="st">"green"</span>, main <span class="op">=</span> <span class="st">"Male weights"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/histogram-2-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>If you want a more detailed</p>
+</div>
+<div id="density-plot-as-alternative-to-hist" class="section level3" number="3.2.4">
+<h3>
+<span class="header-section-number">3.2.4</span> Density plot as alternative to <code>hist()</code><a class="anchor" aria-label="anchor" href="#density-plot-as-alternative-to-hist"><i class="fas fa-link"></i></a>
+</h3>
+<p>When you want a bit more fine-grained view of the distribution you can use a plot of a density function; by adding a <code><a href="https://rdrr.io/r/graphics/polygon.html">polygon()</a></code> you can even have some nice shading under the line:</p>
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/density.html">density</a></span><span class="op">(</span><span class="va">male_weights</span><span class="op">)</span>,</span>
+<span>     main <span class="op">=</span> <span class="st">"A density plot of male weights"</span>,</span>
+<span>     col <span class="op">=</span> <span class="st">"blue"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html">polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/density.html">density</a></span><span class="op">(</span><span class="va">male_weights</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"lightblue"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/density-plot-1-1.png" width="80%" style="display: block; margin: auto;"></div>
+</div>
+<div id="boxplots" class="section level3" number="3.2.5">
+<h3>
+<span class="header-section-number">3.2.5</span> Boxplots<a class="anchor" aria-label="anchor" href="#boxplots"><i class="fas fa-link"></i></a>
+</h3>
+<p>This is the last of the basic plot types. A boxplot is a visual representation of the <em>5-number summary</em> of a numeric variable: minimum, maximum, median, first and third quartile.</p>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">persons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"male"</span>, <span class="st">"female"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">80</span>, <span class="fl">6</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">75</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#print 6-number summary (5-number + mean)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">weights</span><span class="op">[</span><span class="va">persons</span> <span class="op">==</span> <span class="st">"female"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   57.68   69.36   74.12   73.99   78.97   92.23</code></pre>
+<p>Boxplots tell the same story as histograms, but are less precise. however, they are excellent when you want to show a series of subsets split over some variable.</p>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># make 2 plots to sit side by side</span></span>
+<span><span class="co"># create boxplots of weights depending on sex</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">weights</span> <span class="op">~</span> <span class="va">persons</span>, ylab <span class="op">=</span> <span class="st">"weight"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">weights</span> <span class="op">~</span> <span class="va">persons</span>, notch <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"yellow"</span>, <span class="st">"magenta"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/boxplots-1-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>Use <code>varwidth = TRUE</code> when you want to visualize the difference in group sizes.</p>
+</div>
+<div id="adding-more-data-and-a-legend" class="section level3" number="3.2.6">
+<h3>
+<span class="header-section-number">3.2.6</span> Adding more data and a legend<a class="anchor" aria-label="anchor" href="#adding-more-data-and-a-legend"><i class="fas fa-link"></i></a>
+</h3>
+<p>When you have more than one data series to plot, add them using the function <code><a href="https://rdrr.io/r/graphics/points.html">points()</a></code>. You call this function <em>after</em> you created the primary plot. Since there are multiple lines you will also need a legend.</p>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">response2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.07</span>, <span class="fl">0.10</span>, <span class="fl">0.17</span>, <span class="fl">0.28</span>, <span class="fl">0.46</span>, <span class="fl">0.61</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">response</span>, pch <span class="op">=</span> <span class="fl">19</span>, type <span class="op">=</span> <span class="st">"b"</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"Time (hours)"</span>, ylab <span class="op">=</span> <span class="st">"Systemic response (a.u.)"</span>,</span>
+<span>     main <span class="op">=</span> <span class="st">"Systemic response to agent X"</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">response2</span>, col <span class="op">=</span> <span class="st">"red"</span>, pch <span class="op">=</span> <span class="fl">19</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span>, y <span class="op">=</span> <span class="fl">1.0</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"one"</span>, <span class="st">"two"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"red"</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/plot-legend-1-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p>The <code><a href="https://rdrr.io/r/graphics/legend.html">legend()</a></code> function is <em>very</em> versatile. Have a look at the docs!
+In its most basic form you pass it a position (x and y), series names, colors and plot character.</p>
+</div>
+<div id="helper-lines-and-lm" class="section level3" number="3.2.7">
+<h3>
+<span class="header-section-number">3.2.7</span> Helper lines and <code>lm()</code><a class="anchor" aria-label="anchor" href="#helper-lines-and-lm"><i class="fas fa-link"></i></a>
+</h3>
+<p>Adding helper lines can be used to aid your reader in grasping and interpreting your data story.
+Use the function <code><a href="https://rdrr.io/r/graphics/abline.html">abline()</a></code> for this.</p>
+<p>There are four types of helper lines you might want to add to a figure:</p>
+<ul>
+<li>A horizontal line with <code>h =</code>: indicate some y-threshold</li>
+<li>A vertical line with <code>v =</code>: indicate x-threshold or mean or some other statistic</li>
+<li>A line with an intercept (<code>a =</code>) and a slope (<code>b =</code>): often used to indicate some expected response, or diagonal x = y</li>
+<li>A linear model, determined with the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function. The linear model object actually contains an intercept and a slope value which is taken by <code><a href="https://rdrr.io/r/graphics/abline.html">abline()</a></code>.</li>
+</ul>
+<p>In the following plot, these four basic helper lines are demonstrated:</p>
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">response</span>, pch <span class="op">=</span> <span class="fl">19</span>, type <span class="op">=</span> <span class="st">"b"</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"Time (hours)"</span>, ylab <span class="op">=</span> <span class="st">"Systemic response (a.u.)"</span>,</span>
+<span>     main <span class="op">=</span> <span class="st">"Systemic response to agent X"</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="co">#horizontal line</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.3</span>, lty <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="co">#vertical line</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fl">4</span>, lty <span class="op">=</span> <span class="fl">3</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"darkgreen"</span><span class="op">)</span></span>
+<span><span class="co">#line with slope</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>a <span class="op">=</span> <span class="op">-</span><span class="fl">0.1</span>, b <span class="op">=</span> <span class="fl">0.3</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span></span>
+<span><span class="co">#linear model </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">response</span> <span class="op">~</span> <span class="va">time</span><span class="op">)</span>,  lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"maroon"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/plot-helpers-1-1.png" width="80%" style="display: block; margin: auto;"></div>
+</div>
+<div id="graphical-parameters-to-plot" class="section level3" number="3.2.8">
+<h3>
+<span class="header-section-number">3.2.8</span> Graphical parameters to <code>plot()</code><a class="anchor" aria-label="anchor" href="#graphical-parameters-to-plot"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are <em>many</em> parameters that can be passed to the plotting functions. Here is a small sample and their possible values.</p>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">series</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">20</span><span class="op">)</span> , ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">7.5</span><span class="op">)</span>, col<span class="op">=</span><span class="st">"white"</span> , yaxt<span class="op">=</span><span class="st">"n"</span> , ylab<span class="op">=</span><span class="st">""</span> , xlab<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># the rainbow() function gives a nice palette across all colors</span></span>
+<span><span class="co"># or use hcl.colors() to specify another palette</span></span>
+<span><span class="co"># use  hcl.pals() to get an overview of available pallettes</span></span>
+<span><span class="va">colors</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">hcl.colors</a></span><span class="op">(</span><span class="fl">20</span>, alpha <span class="op">=</span> <span class="fl">0.8</span>, palette <span class="op">=</span> <span class="st">'viridis'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#pch</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">series</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">20</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, cex <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#col</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">series</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">20</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">colors</span>, pch <span class="op">=</span> <span class="fl">16</span>, cex <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#cex</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">series</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">20</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"black"</span> , pch <span class="op">=</span> <span class="fl">16</span>, cex <span class="op">=</span> <span class="va">series</span> <span class="op">*</span> <span class="fl">0.2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#overlay to create new symbol</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">series</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">20</span><span class="op">)</span>, pch <span class="op">=</span> <span class="va">series</span>, cex <span class="op">=</span> <span class="fl">2.5</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">series</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">20</span><span class="op">)</span>, pch <span class="op">=</span> <span class="va">series</span>, cex <span class="op">=</span> <span class="fl">1.5</span>, col <span class="op">=</span> <span class="va">colors</span><span class="op">)</span></span>
+<span> </span>
+<span><span class="co">#lty</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">i</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"black"</span>, lty <span class="op">=</span> <span class="va">i</span>, type <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="op">(</span><span class="va">i</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span>, <span class="fl">5.25</span> , <span class="va">i</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#type and lwd</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="co">#type</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>, <span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">i</span> <span class="op">*</span> <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>           col <span class="op">=</span> <span class="st">"black"</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p"</span>,<span class="st">"l"</span>,<span class="st">"b"</span>,<span class="st">"o"</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="op">(</span><span class="va">i</span> <span class="op">*</span> <span class="fl">5</span><span class="op">)</span> <span class="op">-</span> <span class="fl">2.5</span>, <span class="fl">6.4</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p"</span>,<span class="st">"l"</span>,<span class="st">"b"</span>,<span class="st">"o"</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">)</span></span>
+<span>    <span class="co">#lwd</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>, <span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">i</span> <span class="op">*</span> <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">4</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span>, type <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="va">i</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="op">(</span><span class="va">i</span> <span class="op">*</span> <span class="fl">5</span><span class="op">)</span> <span class="op">-</span> <span class="fl">2.5</span>, <span class="fl">7.23</span>, <span class="va">i</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#add axis</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">2</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span><span class="op">)</span>,</span>
+<span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pch"</span> , <span class="st">"col"</span> , <span class="st">"cex"</span> , <span class="st">"combine"</span>, <span class="st">"lty"</span>, <span class="st">"type"</span> , <span class="st">"lwd"</span> <span class="op">)</span>,</span>
+<span>    tick <span class="op">=</span> <span class="cn">FALSE</span>, col <span class="op">=</span> <span class="st">"black"</span>, las <span class="op">=</span> <span class="fl">1</span>, cex.axis <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/plot-parameters-demo-1.png" width="672"></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></div>
+<div class="next"><a href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#basic-r---coding"><span class="header-section-number">3</span> Basic R - coding</a></li>
+<li>
+<a class="nav-link" href="#vectors-fuctions-and-variables"><span class="header-section-number">3.1</span> Vectors, fuctions and variables</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#doing-math-in-the-console"><span class="header-section-number">3.1.1</span> Doing Math in the console</a></li>
+<li><a class="nav-link" href="#an-expression-dissected"><span class="header-section-number">3.1.2</span> An expression dissected</a></li>
+<li><a class="nav-link" href="#functions"><span class="header-section-number">3.1.3</span> Functions</a></li>
+<li><a class="nav-link" href="#variables"><span class="header-section-number">3.1.4</span> Variables</a></li>
+<li><a class="nav-link" href="#vectors"><span class="header-section-number">3.1.5</span> Vectors</a></li>
+<li><a class="nav-link" href="#operators"><span class="header-section-number">3.1.6</span> Operators</a></li>
+<li><a class="nav-link" href="#vector-creation-methods"><span class="header-section-number">3.1.7</span> Vector creation methods</a></li>
+<li><a class="nav-link" href="#matrices-are-vectors-with-dimensions"><span class="header-section-number">3.1.8</span> Matrices are vectors with dimensions</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#base_plotting"><span class="header-section-number">3.2</span> R embedded plot types (optional)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#scatter-and-line-plots"><span class="header-section-number">3.2.1</span> Scatter and line plots</a></li>
+<li><a class="nav-link" href="#barplots"><span class="header-section-number">3.2.2</span> Barplots</a></li>
+<li><a class="nav-link" href="#histograms"><span class="header-section-number">3.2.3</span> Histograms</a></li>
+<li><a class="nav-link" href="#density-plot-as-alternative-to-hist"><span class="header-section-number">3.2.4</span> Density plot as alternative to hist()</a></li>
+<li><a class="nav-link" href="#boxplots"><span class="header-section-number">3.2.5</span> Boxplots</a></li>
+<li><a class="nav-link" href="#adding-more-data-and-a-legend"><span class="header-section-number">3.2.6</span> Adding more data and a legend</a></li>
+<li><a class="nav-link" href="#helper-lines-and-lm"><span class="header-section-number">3.2.7</span> Helper lines and lm()</a></li>
+<li><a class="nav-link" href="#graphical-parameters-to-plot"><span class="header-section-number">3.2.8</span> Graphical parameters to plot()</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-12.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

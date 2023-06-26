@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 16 Exercises. | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="This chapter only contains exercises. The solutions are in the next chapter which has a numbering parallel to this one. To work on the exercises it is best to download this chapter as separate...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 16 Exercises. | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="This chapter only contains exercises. The solutions are in the next chapter which has a numbering parallel to this one. To work on the exercises it is best to download this chapter as separate...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 16 Exercises. | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="This chapter only contains exercises. The solutions are in the next chapter which has a numbering parallel to this one. To work on the exercises it is best to download this chapter as separate...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r---coding.html"><span class="header-section-number">3</span> Basic R - coding</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="exploratory-data-analysis-i-eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I {eda-1}</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="active" href="exercises..html"><span class="header-section-number">16</span> Exercises.</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="exercises." class="section level1" number="16">
+<h1>
+<span class="header-section-number">16</span> Exercises.<a class="anchor" aria-label="anchor" href="#exercises."><i class="fas fa-link"></i></a>
+</h1>
+<p>This chapter only contains exercises. The solutions are in the next chapter which has a numbering parallel to this one.</p>
+<p>To work on the exercises it is best to download this chapter as separate RMarkdown file and work on that. You can download it <a href="https://raw.githubusercontent.com/MichielNoback/davur_ebook/main/17-exercises_base.Rmd">here</a>. Before commencing you should put in a new Markdown YAML header at the top of the file, with at least this contents:</p>
+<pre><code>---
+title: "Exercise solutions DAVuR1"
+author: "&lt;YOUR NAME&gt;"
+---</code></pre>
+<p>Alternatively, create either an RMarkdown Notebook (File → New File → R Notebook) or an RMarkdown document (File → New File → R Markdown… → choose Document as type and give it a title). A Notebook has the advantage that you can toggle the visibility of the code, but it has fewer output options (no pdf or Word).</p>
+<p>This is a link to an <a href="figures/R_cheatsheet.pdf">R cheat sheet</a> that you could use for selecting the right function for a task.</p>
+<div id="plotting-rules" class="section level4 unnumbered">
+<h4>Plotting rules<a class="anchor" aria-label="anchor" href="#plotting-rules"><i class="fas fa-link"></i></a>
+</h4>
+<p>With all plots, take care to adhere to the rules regarding titles and other decorations. Tip: the site <a href="http://www.statmethods.net/">Quick-R</a> has nice detailed information with examples on the different plot types and their configuration. Especially the section <a href="http://www.statmethods.net/graphs/index.html">on plotting</a> is helpful for these assignments.</p>
+</div>
+<div id="getting-started." class="section level2" number="16.1">
+<h2>
+<span class="header-section-number">16.1</span> Getting started.<a class="anchor" aria-label="anchor" href="#getting-started."><i class="fas fa-link"></i></a>
+</h2>
+<div id="install-the-tools" class="section level3" number="16.1.1">
+<h3>
+<span class="header-section-number">16.1.1</span> Install the tools<a class="anchor" aria-label="anchor" href="#install-the-tools"><i class="fas fa-link"></i></a>
+</h3>
+<p>Install these tools on your own PC or laptop, in this order:</p>
+<ol style="list-style-type: decimal">
+<li>R itself <a href="https://cran.r-project.org/bin/windows/base/">https://cran.r-project.org/bin/windows/base/</a><br>
+</li>
+<li>RStudio <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a> (choose the free version of course)</li>
+<li>[Optionally] If you want to generate pdf documents you should also install a Latex version: MikTeX or TinyTex for Windows or MacTeX on MacOS. If you want to keep things simple I suggest you stick to HTML and MS Word output for now (Word can also export to PDF).</li>
+</ol>
+</div>
+</div>
+<div id="the-toolbox" class="section level2" number="16.2">
+<h2>
+<span class="header-section-number">16.2</span> The toolbox<a class="anchor" aria-label="anchor" href="#the-toolbox"><i class="fas fa-link"></i></a>
+</h2>
+<div id="customize-rstudio" class="section level3" number="16.2.1">
+<h3>
+<span class="header-section-number">16.2.1</span> Customize RStudio<a class="anchor" aria-label="anchor" href="#customize-rstudio"><i class="fas fa-link"></i></a>
+</h3>
+<p>In RStudio, go to Tools → Global Options.</p>
+<ul>
+<li>Under General, Uncheck the option “Restore .RData into workspace at startup”. This is an evil option that should be removed from the app.</li>
+<li>Under Appearance, select some options such as the Theme.</li>
+<li>Under Pane Layout, customize how the panes are organized to your liking.<br>
+</li>
+<li>Under Spelling, install the Dutch spell checker.</li>
+</ul>
+</div>
+<div id="resumé" class="section level3" number="16.2.2">
+<h3>
+<span class="header-section-number">16.2.2</span> Resumé<a class="anchor" aria-label="anchor" href="#resum%C3%A9"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create an R Markdown document called Resumé.md and create your Curriculum Vitae using Markdown syntax. Use the R Markdown Reference Guide or Cheat Sheet provided in RStudio (via Help menu), or this <a href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf">Markdown Cheatsheet</a>. You don’t need R for your resumé so markdown alone is enough.</p>
+</div>
+</div>
+<div id="basic-r---coding-1" class="section level2" number="16.3">
+<h2>
+<span class="header-section-number">16.3</span> Basic R - coding<a class="anchor" aria-label="anchor" href="#basic-r---coding-1"><i class="fas fa-link"></i></a>
+</h2>
+<div id="math-in-the-console" class="section level3" number="16.3.1">
+<h3>
+<span class="header-section-number">16.3.1</span> Math in the console<a class="anchor" aria-label="anchor" href="#math-in-the-console"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the console, calculate the following:</p>
+<p><span class="math inline">\(31 + 11\)</span></p>
+<p><span class="math inline">\(66 - 24\)</span></p>
+<p><span class="math inline">\(\frac{126}{3}\)</span></p>
+<p><span class="math inline">\(12^2\)</span></p>
+<p><span class="math inline">\(\sqrt{256}\)</span></p>
+<p><span class="math inline">\(\frac{3*(4+\sqrt{8})}{5^3}\)</span></p>
+</div>
+<div id="first-look-at-functions" class="section level3" number="16.3.2">
+<h3>
+<span class="header-section-number">16.3.2</span> First look at functions<a class="anchor" aria-label="anchor" href="#first-look-at-functions"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>A</strong><br>
+View the help page for <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>. There are two variants of this function. Which? And what is the difference between them? Use both variants to generate <em>exactly</em> this message <code>"welcome to R"</code> from these arguments: <code>"welcome ", "to ", "R"</code></p>
+<p><strong>B</strong><br>
+What does the <code>abs</code> function do? What is returned by <code>abs(-20)</code> and what is <code>abs(20)</code>?</p>
+<p><strong>C</strong><br>
+What does the <code>c</code> function do? What is the difference in returned value (result) of <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> when you combine either <code>1</code>, <code>3</code> and <code>"a"</code> as arguments, or <code>1</code>, <code>2</code> and <code>3</code>? Use the function <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> to answer this.<br>
+Experiment with other usages of <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>: try out different types and try other vectors as argument to the function.</p>
+<p><strong>D</strong><br>
+What does the function <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> do? Use it to install the package <code>RColorBrewer</code>. We’ll have a look at this package later on.</p>
+<p><strong>E</strong><br>
+Type <code><a href="https://rdrr.io/r/base/Round.html">?round</a></code> in the console. There are several functions related to rounding numbers. Give this vector:</p>
+<div class="sourceCode" id="cb887"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">numberz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.33</span>, <span class="op">-</span><span class="fl">1.55239</span>, <span class="fl">0.4432</span>, <span class="fl">0.5000001</span>, <span class="fl">1.98765</span><span class="op">)</span></span></code></pre></div>
+<p>generate these -exact- outputs using one of the listed functions:</p>
+<pre><code>[1] -1 -1  1  1  2
+[1] -1 -1  0  0  1
+[1] -1.330 -1.552  0.443  0.500  1.988
+[1] -2 -2  0  0  1</code></pre>
+<p><strong>F</strong><br>
+Using the on the website provided <a href="https://michielnoback.github.io/bincourses/course_contents/davur/R_cheatsheet.pdf">cheat sheet</a>, find the String manipulation function that will convert this vector of author names</p>
+<div class="sourceCode" id="cb889"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"William Shakespeare"</span>, <span class="st">"Agatha Christie"</span>, <span class="st">"J. K. Rowling"</span><span class="op">)</span></span></code></pre></div>
+<p>into this:</p>
+<pre><code>[[1]]
+[1] "William"     "Shakespeare"
+
+[[2]]
+[1] "Agatha"   "Christie"
+
+[[3]]
+[1] "J."      "K."      "Rowling"</code></pre>
+<p>(The output type is a list, a data type that we’ll see later on)</p>
+<p><strong>G</strong></p>
+<p>Using the on the website provided <a href="https://michielnoback.github.io/bincourses/course_contents/davur/R_cheatsheet.pdf">cheat sheet</a>, find the data selection function that will convert this vector of bird names</p>
+<div class="sourceCode" id="cb891"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">birds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"robin"</span>, <span class="st">"wagtail"</span>, <span class="st">"blackbird"</span>, <span class="st">"robin"</span>, <span class="st">"blackbird"</span>, <span class="st">"buzzard"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">birds</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="variables-1" class="section level3" number="16.3.3">
+<h3>
+<span class="header-section-number">16.3.3</span> Variables<a class="anchor" aria-label="anchor" href="#variables-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create three variables with the given values - x=20, y=10 and z=3. Next, calculate the following with these variables:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(x+y\)</span></li>
+<li><span class="math inline">\(x^z\)</span></li>
+<li><span class="math inline">\(q = x \times y \times z\)</span></li>
+<li><span class="math inline">\(\sqrt{q}\)</span></li>
+<li>
+<span class="math inline">\(\frac{q}{\pi}\)</span> (pi is simply pi in R)</li>
+<li><span class="math inline">\(\log_{10}{(x \times y)}\)</span></li>
+</ol>
+</div>
+<div id="vectors-1" class="section level3" number="16.3.4">
+<h3>
+<span class="header-section-number">16.3.4</span> Vectors<a class="anchor" aria-label="anchor" href="#vectors-1"><i class="fas fa-link"></i></a>
+</h3>
+<div id="circles" class="section level4 unnumbered">
+<h4>Circles<a class="anchor" aria-label="anchor" href="#circles"><i class="fas fa-link"></i></a>
+</h4>
+<p>The circumference of a circle is <span class="math inline">\(2\pi\cdot r\)</span>, its surface <span class="math inline">\(4\pi \cdot r^2\)</span> and its volume <span class="math inline">\(4/3 \pi\cdot r^3\)</span>.
+Given this vector of circle radiuses,</p>
+<div class="sourceCode" id="cb892"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">radiuses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="va">pi</span>, <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<p><strong>A</strong><br>
+Calculate their cirumference.</p>
+<p><strong>B</strong><br>
+Calculate their surface.</p>
+<p><strong>C</strong><br>
+Calculate their volume.</p>
+</div>
+<div id="creating-vectors-1" class="section level4 unnumbered">
+<h4>Creating vectors<a class="anchor" aria-label="anchor" href="#creating-vectors-1"><i class="fas fa-link"></i></a>
+</h4>
+<p>Create the following vectors, <em>as efficiently as possible</em>. The functions <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code>, <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code>, <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code> and the colon operator <code>:</code> can be used, in any combination.</p>
+<p><strong>A</strong><br><code>[1] 1 2 5 1 2 5</code></p>
+<p><strong>B</strong><br><code>[1] 9 9 9 8 8 8 7 7 7 6 6 6 5 5 5</code></p>
+<p><strong>C</strong><br><code>[1] 1 1 1 4 4 4 9 9 9 1 1 1 4 4 4 9 9 9</code></p>
+<p><strong>D</strong><br><code>[1] "1a" "2b" "3c" "4d" "5e" "1a" "2b" "3c" "4d" "5e"</code></p>
+<p><strong>E</strong><br><code>[1] "0z"   "0.2y" "0.4x" "0.6w" "0.8v" "1u"</code></p>
+<p><strong>F</strong><br><code>[1] "505" "404" "303" "202" "101" "000"</code></p>
+<p><strong>G [Challenge]</strong><br><code>[1] "0.5A5.0" "0.4B4.0" "0.3C3.0" "0.2D2.0" "0.1E1.0"</code></p>
+</div>
+</div>
+<div id="optional-stair-walking-and-heart-rate" class="section level3" number="16.3.5">
+<h3>
+<span class="header-section-number">16.3.5</span> [Optional] Stair walking and heart rate<a class="anchor" aria-label="anchor" href="#optional-stair-walking-and-heart-rate"><i class="fas fa-link"></i></a>
+</h3>
+<p>The vectors below hold data for a staircase walking experiment. A subject of normal weight and height was asked to ascend a (long) stairs wearing a heart-rate monitor. The subjects’ heart was registered for different step heights. Create a <strong>line plot</strong> showing the dependence of heart rate (y axis) on stair height (x axis).</p>
+<div class="sourceCode" id="cb893"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#number of steps on the stairs</span></span>
+<span><span class="va">stair_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">35</span><span class="op">)</span></span>
+<span><span class="co">#heart rate after ascending the stairs</span></span>
+<span><span class="va">heart_rate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">66</span>, <span class="fl">65</span>, <span class="fl">67</span>, <span class="fl">69</span>, <span class="fl">73</span>, <span class="fl">79</span>, <span class="fl">86</span>, <span class="fl">97</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="optional-more-subjects" class="section level3" number="16.3.6">
+<h3>
+<span class="header-section-number">16.3.6</span> [Optional] More subjects<a class="anchor" aria-label="anchor" href="#optional-more-subjects"><i class="fas fa-link"></i></a>
+</h3>
+<p>The experiment from the previous question was extended with three more subjects. One of these subjects was like the first of normal weight, whereas the two others were obese. The data are given below. Create a single <strong>scatter plot</strong> with connector lines between the points showing the data for all four subjects. Give the normal-weighted subjects a green line and symbol and the obese subjects a red line and symbol.<br>
+You can add new data series to a plot by using the <code>points(x, y)</code> function. Use the <code><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim()</a></code> function to adjust the Y-axis range.</p>
+<div class="sourceCode" id="cb894"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#number of steps on the stairs</span></span>
+<span><span class="va">stair_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">35</span><span class="op">)</span></span>
+<span><span class="co">#heart rates for subjects with normal weight</span></span>
+<span><span class="va">heart_rate_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">66</span>, <span class="fl">65</span>, <span class="fl">67</span>, <span class="fl">69</span>, <span class="fl">73</span>, <span class="fl">79</span>, <span class="fl">86</span>, <span class="fl">97</span><span class="op">)</span></span>
+<span><span class="va">heart_rate_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">61</span>, <span class="fl">61</span>, <span class="fl">63</span>, <span class="fl">68</span>, <span class="fl">74</span>, <span class="fl">81</span>, <span class="fl">89</span>, <span class="fl">104</span><span class="op">)</span></span>
+<span><span class="co">#heart rates for obese subjects</span></span>
+<span><span class="va">heart_rate_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">58</span>, <span class="fl">60</span>, <span class="fl">67</span>, <span class="fl">71</span>, <span class="fl">78</span>, <span class="fl">89</span>, <span class="fl">104</span>, <span class="fl">121</span><span class="op">)</span></span>
+<span><span class="va">heart_rate_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">69</span>, <span class="fl">73</span>, <span class="fl">77</span>, <span class="fl">83</span>, <span class="fl">88</span>, <span class="fl">96</span>, <span class="fl">102</span>, <span class="fl">127</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="optional-chickens-on-a-diet" class="section level3" number="16.3.7">
+<h3>
+<span class="header-section-number">16.3.7</span> [Optional] Chickens on a diet<a class="anchor" aria-label="anchor" href="#optional-chickens-on-a-diet"><i class="fas fa-link"></i></a>
+</h3>
+<p>The body weights of chicks were measured at birth and every second day thereafter until day 20. They were also measured on day 21. In the experiment there were four groups of chicks on different protein diets. Here are the data for the first four chicks. Chick one and two were on diet 1 and chick three and four were on diet 2. Create a single line plot showing the data for all four chicks. Give each chick its own color.</p>
+<div class="sourceCode" id="cb895"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># chick weight data</span></span>
+<span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span>, <span class="fl">16</span>, <span class="fl">18</span>, <span class="fl">20</span>, <span class="fl">21</span><span class="op">)</span></span>
+<span><span class="va">chick_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">42</span>, <span class="fl">51</span>, <span class="fl">59</span>, <span class="fl">64</span>, <span class="fl">76</span>, <span class="fl">93</span>, <span class="fl">106</span>, <span class="fl">125</span>, <span class="fl">149</span>, <span class="fl">171</span>, <span class="fl">199</span>, <span class="fl">205</span><span class="op">)</span></span>
+<span><span class="va">chick_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">49</span>, <span class="fl">58</span>, <span class="fl">72</span>, <span class="fl">84</span>, <span class="fl">103</span>, <span class="fl">122</span>, <span class="fl">138</span>, <span class="fl">162</span>, <span class="fl">187</span>, <span class="fl">209</span>, <span class="fl">215</span><span class="op">)</span></span>
+<span><span class="va">chick_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">42</span>, <span class="fl">53</span>, <span class="fl">62</span>, <span class="fl">73</span>, <span class="fl">85</span>, <span class="fl">102</span>, <span class="fl">123</span>, <span class="fl">138</span>, <span class="fl">170</span>, <span class="fl">204</span>, <span class="fl">235</span>, <span class="fl">256</span><span class="op">)</span></span>
+<span><span class="va">chick_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">41</span>, <span class="fl">49</span>, <span class="fl">61</span>, <span class="fl">74</span>, <span class="fl">98</span>, <span class="fl">109</span>, <span class="fl">128</span>, <span class="fl">154</span>, <span class="fl">192</span>, <span class="fl">232</span>, <span class="fl">280</span>, <span class="fl">290</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="optional-chicken-bar-plot" class="section level3" number="16.3.8">
+<h3>
+<span class="header-section-number">16.3.8</span> [Optional] Chicken bar plot<a class="anchor" aria-label="anchor" href="#optional-chicken-bar-plot"><i class="fas fa-link"></i></a>
+</h3>
+<p>With the data from the previous question, create a bar plot of the maximum weights of the chicks.</p>
+</div>
+<div id="optional-lung-cancer" class="section level3" number="16.3.9">
+<h3>
+<span class="header-section-number">16.3.9</span> [Optional] Lung cancer<a class="anchor" aria-label="anchor" href="#optional-lung-cancer"><i class="fas fa-link"></i></a>
+</h3>
+<p>The R datasets package has three related timeseries datasets relating to lung cancer deaths. These are <code>ldeaths</code>, <code>mdeaths</code> and <code>fdeaths</code> for total, male and female deaths respectively. Create a line plot showing the monthly mortality holding all three of these datasets. Use the <code><a href="https://rdrr.io/r/graphics/legend.html">legend()</a></code> function to add a legend to the plot, as demonstrated in this example:</p>
+<div class="sourceCode" id="cb896"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
+<span><span class="va">y1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">y2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">7</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">y1</span>, type <span class="op">=</span> <span class="st">"b"</span>, ylab <span class="op">=</span> <span class="st">"response"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">y2</span>, col <span class="op">=</span> <span class="st">"blue"</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"series 1"</span>, <span class="st">"series 2"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"blue"</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">1</span>, lty <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="DAVuR_files/figure-html/legend-demo-1.png" width="80%" style="display: block; margin: auto;"></div>
+<p><strong>A</strong><br>
+Create the mentioned line plot. Do you see trends and/or patterns and if so, can you explain these?</p>
+<p><strong>B</strong><br>
+Create a combined boxplot of the three time-series. Are there outliers? If so, can you figure out when this occurred, and why?</p>
+</div>
+</div>
+<div id="complex-datatypes" class="section level2" number="16.4">
+<h2>
+<span class="header-section-number">16.4</span> Complex datatypes<a class="anchor" aria-label="anchor" href="#complex-datatypes"><i class="fas fa-link"></i></a>
+</h2>
+<p>This section serves you some datatype challenges.</p>
+<div id="creating-factors" class="section level3" number="16.4.1">
+<h3>
+<span class="header-section-number">16.4.1</span> Creating factors<a class="anchor" aria-label="anchor" href="#creating-factors"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>A</strong><br>
+Given this vector:</p>
+<div class="sourceCode" id="cb897"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">animal_risk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p>and these possible levels:
+1: harmless
+2: risky
+3: dangerous
+4: deadly</p>
+<p>Create a factor from this data.</p>
+<p><strong>B</strong><br>
+Given this data, a simulation of wealth distribution of “poor”, “middle class”, “wealthy” “rich:</p>
+<div class="sourceCode" id="cb898"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
+<span><span class="va">wealth_male</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, </span>
+<span>                 size <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>                 replace<span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                 prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.17</span>, <span class="fl">0.12</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wealth_female</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, </span>
+<span>                 size <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>                 replace<span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                 prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.15</span>, <span class="fl">0.497</span>, <span class="fl">0.003</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Create a factor from these two and report the cumulative percentage of its individual levels starting at the most abundant level, combined for male and female. Hint: use <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> and <code><a href="https://rdrr.io/r/base/proportions.html">prop.table()</a></code>.</p>
+</div>
+<div id="a-dictionary-with-a-named-vector" class="section level3" number="16.4.2">
+<h3>
+<span class="header-section-number">16.4.2</span> A dictionary with a named vector<a class="anchor" aria-label="anchor" href="#a-dictionary-with-a-named-vector"><i class="fas fa-link"></i></a>
+</h3>
+<p>Almost all programming languages know the (hash)map / dictionary data structure storing so-called “key-and-value” pairs. They make it possible to “look up” the value belonging to a “key”. That is where the term dictionary comes from. A dictionary holds keys (the words) and their meaning (values). R does not have a dictionary type but you could make a dict-like structure using a <strong><em>vector with named elements</em></strong>. Here follows an example.</p>
+<p>If I wanted to create and use a DNA codon translation table, and use it to translate a piece of DNA, I could do something like what is shown below (there are only 4 of the 64 codons included). See if you can figure out what is going on there</p>
+<div class="sourceCode" id="cb899"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## define codon table as named vector</span></span>
+<span><span class="va">codons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Gly"</span>, <span class="st">"Pro"</span>, <span class="st">"Lys"</span>, <span class="st">"Ser"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">codons</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GGA"</span>, <span class="st">"CCU"</span>, <span class="st">"AAA"</span>, <span class="st">"AGU"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## the DNA to translate</span></span>
+<span><span class="va">my_DNA</span> <span class="op">&lt;-</span> <span class="st">"GGACCUAAAAGU"</span></span>
+<span><span class="va">my_prot</span> <span class="op">&lt;-</span> <span class="st">""</span></span>
+<span><span class="co">## iterate the DNA and take only every third position</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">my_DNA</span><span class="op">)</span>, by<span class="op">=</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">codon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">my_DNA</span>, <span class="va">i</span>, <span class="va">i</span><span class="op">+</span><span class="fl">2</span><span class="op">)</span>;</span>
+<span>    <span class="va">my_prot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">my_prot</span>, <span class="va">codons</span><span class="op">[</span><span class="va">codon</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">my_prot</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] " Gly Pro Lys Ser"</code></pre>
+<p><strong>A</strong><br>
+Make a modified copy of this code chunk in such a way that no spaces are present between the amino acid residues (use help on <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> to figure this out) and that single-letter codes of amino acids are used instead of three-letter codes.</p>
+<p><strong>B</strong><br><strong>[Challenge]</strong> Here is a vector called <code>nuc_weights</code>. It holds the weights for the nucleotides A, C, G and U respectively. Make it a named vector, iterate <code>my_DNA</code> from the above code chunk and calculate its molecular weight.</p>
+<div class="sourceCode" id="cb901"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nuc_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">491.2</span>, <span class="fl">467.2</span>, <span class="fl">507.2</span>, <span class="fl">482.2</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="protein-concentrations-with-lowry" class="section level3" number="16.4.3">
+<h3>
+<span class="header-section-number">16.4.3</span> Protein concentrations with Lowry<a class="anchor" aria-label="anchor" href="#protein-concentrations-with-lowry"><i class="fas fa-link"></i></a>
+</h3>
+<p>The Lowry method is a widely used spectroscopic method to quantify protein amounts in solutions. Here are some real Lowry results for the quantification of proteins:
+The calibration curve is made using BSA (bovine serum albumin) as a standard.
+The concentrations are in mg/ml:</p>
+<div class="sourceCode" id="cb902"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bsa_conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">0</span>,  <span class="fl">0.025</span>,  <span class="fl">0.025</span>,  <span class="fl">0.075</span>,  <span class="fl">0.075</span>,  <span class="fl">0.125</span>,  <span class="fl">0.125</span><span class="op">)</span></span></code></pre></div>
+<p>Note that the duplos are all put into one vector, in subsequent pairs of numbers. We’ll deal with that later.</p>
+<p>These are the obtained absorption values at 750 nm (again for the duplos):</p>
+<div class="sourceCode" id="cb903"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">OD750</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.063</span>,   <span class="fl">0.033</span>,  <span class="fl">0.16</span>,   <span class="fl">0.181</span>,  <span class="fl">0.346</span>,  <span class="fl">0.352</span>,  <span class="fl">0.491</span>,  <span class="fl">0.488</span><span class="op">)</span></span></code></pre></div>
+<p><strong>A</strong></p>
+<p>Combine these two vectors in a dataframe and assign to a variable with name <code>dilution</code>. Do not add column names yet!</p>
+<p><strong>B</strong></p>
+<p>Now add the appropriate column names: <code>prot_conc</code> and <code>absorption</code>.</p>
+<p><strong>C</strong></p>
+<p>You forgot to include the last data points (again these are duplos):</p>
+<div class="sourceCode" id="cb904"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bsa_conc2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.175</span>,   <span class="fl">0.175</span>,  <span class="fl">0.25</span>,   <span class="fl">0.25</span><span class="op">)</span></span>
+<span><span class="va">OD750_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.597</span>, <span class="fl">0.595</span>,  <span class="fl">0.743</span>,  <span class="fl">0.742</span><span class="op">)</span></span></code></pre></div>
+<p>Generate a data frame assigned to the variable <code>df_temp</code> from these data points. This time, add the appropriate column names with creation of the data frame. Be sure you use exactly the same column names.</p>
+<p><strong>D</strong></p>
+<p>Now add the second data frame <code>df_temp</code> to your first data frame, with name <code>dilution</code>, and assign it to the name <code>dilution</code> (thus overwriting the original variable):</p>
+<p><strong>E [Optional]</strong></p>
+<p>Generate a line plot with the following properties:</p>
+<ul>
+<li>Title: “Absorbance as a function of protein concentration”.<br>
+</li>
+<li>Axis labels with clear indicated quantities and units.<br>
+</li>
+<li>Datapoints and connector lines should be visible and have a blue color.<br>
+</li>
+<li>Y-axis lower limit should be 0 and the upper limit should be 1.<br>
+</li>
+<li>The plot character (symbol) should be a filled circle.</li>
+</ul>
+<p>Use <code>col = rgb(0, 0, 1, 0.5)</code> to get transparent blue plot symbols.</p>
+<p><strong>F</strong></p>
+<p>Generate a new dataframe from the dataframe <code>dilution</code>, now with the duplo measurements side-by-side. So, instead of 2 you will now have 4 columns.</p>
+<ul>
+<li>Fist generate a dataframe <code>even</code> using the even numbered rows.<br>
+</li>
+<li>Then generate a dataframe <code>odd</code>using the odd numbered rows.<br>
+</li>
+<li>Finally combine these two new dataframes into one and assign it to the variable <code>dilution_duplo</code>.</li>
+</ul>
+<p>Hint: use subsetting with TRUE and FALSE and vector cycling.</p>
+<p><strong>G</strong></p>
+<p>The result will be a dataframe with two columns named <code>prot_conc</code> and two columns named <code>absorption</code>. Delete the second column named <code>prot_conc</code> (this is an exact copy after all!) and rename the column names to <code>prot_conc</code>, <code>abs1</code> and <code>abs2</code>.</p>
+<p><strong>H</strong></p>
+<p>Calculate the mean of the two abs measurements and add it as a column named <code>mean_abs</code>:</p>
+</div>
+<div id="island-surfaces" class="section level3" number="16.4.4">
+<h3>
+<span class="header-section-number">16.4.4</span> Island surfaces<a class="anchor" aria-label="anchor" href="#island-surfaces"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="airquality" class="section level3" number="16.4.5">
+<h3>
+<span class="header-section-number">16.4.5</span> Airquality<a class="anchor" aria-label="anchor" href="#airquality"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>airquality</code> dataset is also one of the datasets included in the <code>datasets</code> package. We’ll explore this for a few questions.</p>
+<p><strong>A</strong><br>
+What date (day/month) has the lowest recorded temperature? Which the highest? Please give temperature values in Celsius, not Fahrenheit! (Yes, this is an extra challenge!)</p>
+<p><strong>B</strong></p>
+<p><strong>C</strong></p>
+<p><strong>D</strong></p>
+</div>
+<div id="file-reading-practice" class="section level3" number="16.4.6">
+<h3>
+<span class="header-section-number">16.4.6</span> File reading practice<a class="anchor" aria-label="anchor" href="#file-reading-practice"><i class="fas fa-link"></i></a>
+</h3>
+<p>The files in this online folder on <a href="https://github.com/MichielNoback/davur1_gitbook/tree/master/data/file_reading">github</a> directory contain some (simulated) gene-array data. The dataset contains a selection of induced transcripts after some stimulus. The columns represent:</p>
+<ul>
+<li>the mRNA entry<br>
+</li>
+<li>fold induction after some stimulus<br>
+</li>
+<li>the protein entry number<br>
+</li>
+<li>protein length in number of amino acids of the corresponding NP entry<br>
+</li>
+<li>the protein family the protein belongs to<br>
+</li>
+<li>the predicted cellular localization</li>
+</ul>
+<p>Whatever the contents of a file, you always need to address (some of) these questions:</p>
+<ul>
+<li>Are there comment lines at the top?<br>
+</li>
+<li>Is there a header line with column names?<br>
+</li>
+<li>What is the column separator?<br>
+</li>
+<li>Are there quotes around character data?<br>
+</li>
+<li>How are missing values encoded?<br>
+</li>
+<li>How are numeric values encoded?<br>
+</li>
+<li>What is the type in each column?</li>
+</ul>
+<p>Also: read the help for the <code>read.table</code> function carefully.</p>
+<p>Read the content of the each file in the <code>file_reading</code> directory into a dataframe object and assign it to the variable name <code>df</code>. There are 15 different files to practice your file loading skills.</p>
+<p>You don’t need to download them manually; simply use this:</p>
+<div class="sourceCode" id="cb905"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/MichielNoback/davur1_gitbook/master/data/file_reading/file01.txt"</span>,</span>
+<span>              destfile <span class="op">=</span> <span class="st">"file01.txt"</span><span class="op">)</span></span></code></pre></div>
+<p>Then you’ll have the file in the current working directory.
+Replace the file number as needed.</p>
+</div>
+<div id="bird-observations" class="section level3" number="16.4.7">
+<h3>
+<span class="header-section-number">16.4.7</span> Bird observations<a class="anchor" aria-label="anchor" href="#bird-observations"><i class="fas fa-link"></i></a>
+</h3>
+<p>You will explore a bird observation dataset, downloaded from <a href="http://goldengateaudubon.org/birding-resources/observations/">GOLDEN GATE AUDUBON SOCIETY</a>. This file lists bird observations collected by this bird monitoring group in the San Francisco Bay Area. I already cleaned it a bit and placed it here: <a href="data/Observations-Data-2014.csv">data/Observations-Data-2014.csv</a>.</p>
+<p>You can download it as follows:</p>
+<div class="sourceCode" id="cb906"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">file_name</span> <span class="op">&lt;-</span> <span class="st">"Observations-Data-2014.csv"</span></span>
+<span><span class="va">remote_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/MichielNoback/davur1_gitbook/master/data/"</span>, <span class="va">file_name</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="va">remote_url</span>, destfile <span class="op">=</span> <span class="va">file_name</span><span class="op">)</span></span></code></pre></div>
+<p>Load the observation data into R and assign it to a variable called <code>bird_obs</code>.</p>
+<p>From here on, it is assumed that you have the dataframe <code>bird_obs</code> loaded. This series of exercises deals with cleaning and transforming data, and exploring a cleaned dataset using basic plotting techniques and descriptive statistics.</p>
+<p><strong>A</strong><br>
+First, explore the raw data as they are.</p>
+<ul>
+<li>What data on bird observations were recorded (i.e. what kind of variables do you have)?</li>
+<li>What did R do to the original column names?</li>
+<li>Are all column names clear to you?</li>
+</ul>
+<p><strong>B</strong><br>
+How many bird observations were recorded?</p>
+<p><strong>C</strong><br>
+The column holding observation “Number” is actually not a number. Into what type has R converted it?</p>
+<p><strong>D</strong><br>
+Convert the “Number” column into an integer column using <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code>, but assign it to a new column called “Count” (i.e. do not overwrite the original values). Compare the first 50 values or so of these two columns. What happened to the data? Is this OK?</p>
+<p><strong>E</strong><br>
+The previous question has shown that converting factors to numbers is a bit dangerous. It is often easiest to convert characters to numbers. The best way to do this is by using the <code>as.is = c(&lt;column indices&gt;)</code> argument for the <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> function.</p>
+<p>So, which columns should be loaded as real factor data and which as plain character data? Use <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> and the <code>as.is</code> argument to reload the data, and then transform the <code>Number</code> column to integer again as <code>Count</code>.</p>
+<p><strong>F</strong><br>
+Compare the first 50 values of the Number and Count columns again. Has the conversion succeeded? How many <code>Number</code> values could not be transformed into an integer value? Hint: use <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code></p>
+<p><strong>G</strong><br>
+Explore the sighting counts:</p>
+<ul>
+<li>Report the sighting with the maximum number of birds in a single sighting?</li>
+<li>What is the mean sighting count?</li>
+<li>What is the median of the sighting count?</li>
+</ul>
+<p><strong>H</strong><br>
+Is the <code>Count</code> variable a normal distributed value? You can use <code>hist(...)</code>, <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> or <code>plot(density(...))</code> to explore this further.</p>
+<p><strong>I</strong><br>
+Explore the species constitution:</p>
+<ul>
+<li>How many different species were recorded?</li>
+<li>How many genera do they constitute?</li>
+<li>What species from the genus “Puffinus” have been observed?</li>
+</ul>
+<p>Hint: use the function <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code> here.</p>
+<p>[<strong>Challenge</strong>] The number of unique “common names” should equal the number of unique “scientific names” since each species has a common name and a scientific name. The scientific name can be generated from Genus and Species. Investigate this. Is it correct? If not, what went wrong?</p>
+<p><strong>J [Challenge]</strong><br>
+This is a challenge exercise for those who like to grind their brains! Think of a strategy to “rescue” the NAs that appear after transforming “Number” to “Count”. Hint: use <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code> or<code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code></p>
+</div>
+</div>
+<div id="functions-1" class="section level2" number="16.5">
+<h2>
+<span class="header-section-number">16.5</span> Functions<a class="anchor" aria-label="anchor" href="#functions-1"><i class="fas fa-link"></i></a>
+</h2>
+<div id="the-cut-function-i" class="section level3" number="16.5.1">
+<h3>
+<span class="header-section-number">16.5.1</span> The <code>cut()</code> function I<a class="anchor" aria-label="anchor" href="#the-cut-function-i"><i class="fas fa-link"></i></a>
+</h3>
+<p>Suppose we have a gene expression data set of gene array data. The vector below contains the fold-change of genome-wide mRNA expression after exposure of cells to dihydrotestosterone.
+A value above 1 means an induction of gene expression, a value below 1 means a repression of gene expression. However, we know that the accuracy of the fold induction measurements is approximately plus or minus 0.1. This means that we can set the breakpoints as follows:</p>
+<ul>
+<li>range 0 &lt; x &lt; 0.9 is a repression<br>
+</li>
+<li>range 0.9 &lt;= x &lt; 1.1 is no net change<br>
+</li>
+<li>range x &gt;= 1.1 is an induction</li>
+</ul>
+<div class="sourceCode" id="cb907"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fold_change</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.10</span>, <span class="fl">8.50</span>, <span class="fl">0.95</span>, <span class="fl">56.08</span>, <span class="fl">0.90</span>, <span class="fl">99.15</span>, <span class="fl">1.00</span>, <span class="fl">0.01</span>, <span class="fl">0.65</span>, <span class="fl">1.10</span>, <span class="fl">2.34</span>, <span class="fl">62.2</span><span class="op">)</span></span></code></pre></div>
+<p><strong>A</strong></p>
+<p>Use the <code><a href="https://rdrr.io/r/base/cut.html">cut()</a></code> function to convert the data into a factor that tells you if there is an <code>induction</code>, no net change (<code>no_change</code>) or a <code>repression</code>. Make sure that you get an ordered factor. Assign the factor to the variable <code>induct_type</code>.</p>
+<p><strong>B</strong></p>
+<p>Create a data frame of both vectors and assign it to <code>induction</code>. Use <code>fold_change</code> and <code>induction_type</code> as column names.</p>
+<p><strong>C</strong></p>
+<p>Create a well annotated plot of the induction type that shows the number of genes that are repressed, have no change or are induced upon dihydrotestosterone treatment. Bars should have a blue color. The bars should be named <code>repressed</code>, <code>no change</code>, <code>induced</code>.</p>
+</div>
+<div id="the-cut-function-ii" class="section level3" number="16.5.2">
+<h3>
+<span class="header-section-number">16.5.2</span> The <code>cut()</code> function II<a class="anchor" aria-label="anchor" href="#the-cut-function-ii"><i class="fas fa-link"></i></a>
+</h3>
+<p>We will use the <code><a href="https://rdrr.io/r/base/cut.html">cut()</a></code> function on a slightly larger data set with fictitious gene array data. The text file is located <a href="https://raw.githubusercontent.com/MichielNoback/davur1_gitbook/master/data/gene_expression_data.txt">here</a>.You can simply use that as argument to <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code>:</p>
+<div class="sourceCode" id="cb908"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">remote_location</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MichielNoback/davur1_gitbook/master/data/gene_expression_data.txt"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="va">remote_location</span>,  <span class="op">)</span></span></code></pre></div>
+<p>The columns are:
+- transcript_ID: NM_ entry number of the reference mRNA.<br>
+- fold_change: the same rules as in the previous exercise for repression, no change and induction apply here.<br>
+- family: the protein family that the gene encodes for.<br>
+- location: the cellular localization of the gene product.</p>
+<p><strong>A</strong></p>
+<p>Load the file and assign it to the variable <code>gene_array</code>.</p>
+<p><strong>B</strong></p>
+<p>Add a column <code>induction_repression</code> to the data frame based on the fold_induction column.
+Use the <code>cut</code> function to accomplish this. The same rules apply for the breakpoints.</p>
+<p><strong>C</strong></p>
+<p>Create a well annotated plot of the induction type that shows the number of genes that are repressed, have no change or are induced upon dihydrotestosterone treatment. Bars should be blue. The bars should be named <code>repressed</code>, <code>no change</code>, <code>induced</code>. Make sure that the bars are within the axis borders.</p>
+</div>
+</div>
+<div id="regular-expressions" class="section level2" number="16.6">
+<h2>
+<span class="header-section-number">16.6</span> Regular Expressions<a class="anchor" aria-label="anchor" href="#regular-expressions"><i class="fas fa-link"></i></a>
+</h2>
+<div id="restriction-enzymes-1" class="section level3" number="16.6.1">
+<h3>
+<span class="header-section-number">16.6.1</span> Restriction enzymes<a class="anchor" aria-label="anchor" href="#restriction-enzymes-1"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>A</strong><br>
+The restriction enzyme PacI has the recognition sequence “TTAATTAA”. Define (at least) three alternative regex patterns that will catch these sites.</p>
+<p><strong>B</strong><br>
+The restriction enzyme SfiI has the recognition sequence “GGCCNNNNNGGCC”. Define (at least) three alternative regex patterns that will catch these sites.</p>
+</div>
+<div id="prosite-patterns" class="section level3" number="16.6.2">
+<h3>
+<span class="header-section-number">16.6.2</span> Prosite Patterns<a class="anchor" aria-label="anchor" href="#prosite-patterns"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>A</strong><br>
+The Prosite pattern PS00211 (ABC-transporter-1; <a href="https://prosite.expasy.org/PS00211" class="uri">https://prosite.expasy.org/PS00211</a>) has the pattern:<br>
+“[LIVMFYC]-[SA]-[SAPGLVFYKQH]-G-[DENQMW]-[KRQASPCLIMFW]-[KRNQSTAVM]-[KRACLVM]-[LIVMFYPAN]-{PHY}-[LIVMFW]-[SAGCLIVP]-{FYWHP}-{KRHP}-[LIVMFYWSTA].”
+Translate it into a regex pattern. Info on the syntax is here: <a href="https://prosite.expasy.org/prosuser.html#conv_pa" class="uri">https://prosite.expasy.org/prosuser.html#conv_pa</a></p>
+<p><strong>B</strong><br>
+The Prosite pattern PS00018 (EF-hand calcium-binding domain; <a href="https://prosite.expasy.org/PS00018" class="uri">https://prosite.expasy.org/PS00018</a>) has the pattern:
+“D-{W}-[DNS]-{ILVFYW}-[DENSTG]-[DNQGHRK]-{GP}-[LIVMC]-[DENQSTAGC]-x(2)- [DE]-[LIVMFYW].”
+Translate it into a regex pattern.</p>
+<p>You could exercise more by simply browsing Prosite. Test your pattern by fetching the proteins referred to within the Prosite pattern details page.</p>
+</div>
+<div id="fasta-headers" class="section level3" number="16.6.3">
+<h3>
+<span class="header-section-number">16.6.3</span> Fasta Headers<a class="anchor" aria-label="anchor" href="#fasta-headers"><i class="fas fa-link"></i></a>
+</h3>
+<p>The fasta sequence format is a very common sequence file format used in molecular biology.
+It looks like this (I omitted most of the actual protein sequences for better representation):</p>
+<pre><code>&gt;gi|21595364|gb|AAH32336.1| FHIT protein [Homo sapiens]
+MSFRFGQHLIK...ALRVYFQ
+&gt;gi|15215093|gb|AAH12662.1| Fhit protein [Mus musculus]
+MSFRFGQHLIK...RVYFQA
+&gt;gi|151554847|gb|AAI47994.1| FHIT protein [Bos taurus]
+MSFRFGQHLIK...LRVYFQ</code></pre>
+<p>As you can see there are several distinct elements within the Fasta <strong><em>header</em></strong> which is the description line above the actual sequence: one or more database identification strings, a protein description or name and an organism name. Study the format - we are going to extract some elements from these fasta headers using the <code>stringr</code> package. Install it if you don’t have it yet.</p>
+<p>Here is a small example:</p>
+<div class="sourceCode" id="cb910"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span>
+<span><span class="va">hinfII_re</span> <span class="op">&lt;-</span> <span class="st">"GA[GATC]TC"</span></span>
+<span><span class="va">sequences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GGGAATCC"</span>, <span class="st">"TCGATTCGC"</span>, <span class="st">"ACGAGTCTA"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span>string <span class="op">=</span> <span class="va">sequences</span>,</span>
+<span>            pattern <span class="op">=</span> <span class="va">hinfII_re</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "GAATC" "GATTC" "GAGTC"</code></pre>
+<p>Function <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code> simply extracts the exact match of your regex (shown above). On the other hand, function <code><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match()</a></code> supports <strong><em>grouping capture</em></strong> through bounding parentheses:</p>
+<div class="sourceCode" id="cb912"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">phones</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"+31-6-23415239"</span>, <span class="st">"+49-51-55523146"</span>, <span class="st">"+31-50-5956566"</span><span class="op">)</span></span>
+<span><span class="va">phones_re</span> <span class="op">&lt;-</span> <span class="st">"\\+(\\d{2})-(\\d{1,2})"</span> <span class="co">#matching country codes and area codes</span></span>
+<span><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match</a></span><span class="op">(</span><span class="va">phones</span>, <span class="va">phones_re</span><span class="op">)</span> </span>
+<span><span class="va">matches</span></span></code></pre></div>
+<pre><code>##      [,1]     [,2] [,3]
+## [1,] "+31-6"  "31" "6" 
+## [2,] "+49-51" "49" "51"
+## [3,] "+31-50" "31" "50"</code></pre>
+<p>Thus, each set of parentheses will yield a column in the returned matrix. Simply use its column index to get that result set:</p>
+<div class="sourceCode" id="cb914"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">matches</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="co">##the country codes</span></span></code></pre></div>
+<pre><code>## [1] "31" "49" "31"</code></pre>
+<p>Now, given the fasta headers in <a href="./data/fasta_headers.txt">./data/fasta_headers.txt</a>
+which you can simply load into a character vector using <code><a href="https://rdrr.io/r/base/readLines.html">readLines()</a></code>, extract the following.</p>
+<p><strong>A</strong><br>
+- Extract all complete organism names.<br>
+- Extract all species-level organism names (omitting subspecies and strains etc).</p>
+<p><strong>B</strong><br>
+Extract all <strong><em>first</em></strong> database identifiers. So in this header element <code>&gt;gi|224017144|gb|EEF75156.1|</code> you should extract only <code>gi|224017144</code></p>
+<p><strong>C</strong><br>
+Extract all protein names/descriptions.</p>
+</div>
+</div>
+<div id="scripting-1" class="section level2" number="16.7">
+<h2>
+<span class="header-section-number">16.7</span> Scripting<a class="anchor" aria-label="anchor" href="#scripting-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>This section serves you some exercises that will help you improve your function-writing skills.</p>
+<div id="illegal-reproductions" class="section level3" number="16.7.1">
+<h3>
+<span class="header-section-number">16.7.1</span> Illegal reproductions<a class="anchor" aria-label="anchor" href="#illegal-reproductions"><i class="fas fa-link"></i></a>
+</h3>
+<p>As an exercise, you will re-invent the wheel here for some statistical functions.</p>
+<div id="the-mean" class="section level4 unnumbered">
+<h4>The mean<a class="anchor" aria-label="anchor" href="#the-mean"><i class="fas fa-link"></i></a>
+</h4>
+<p>Create a function, <code>my_mean()</code>, that duplicates the R function <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, i.e. calculates and returns the mean of a vector of numbers, without actually using <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>.</p>
+</div>
+<div id="standard-deviation" class="section level4 unnumbered">
+<h4>Standard deviation<a class="anchor" aria-label="anchor" href="#standard-deviation"><i class="fas fa-link"></i></a>
+</h4>
+<p>Create a function, <code>my_sd()</code>, that duplicates the R function <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>, i.e. calculates and returns the standard deviation of a vector of numbers, without actually using <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>.</p>
+</div>
+<div id="maximum" class="section level4 unnumbered">
+<h4>Maximum<a class="anchor" aria-label="anchor" href="#maximum"><i class="fas fa-link"></i></a>
+</h4>
+<p>Suppose we have some random numbers:</p>
+<div class="sourceCode" id="cb916"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span> </span>
+<span><span class="va">my_nums</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
+<p>The use of <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> assures that the generated random numbers will always be the same, for everyone who runs it, every time.</p>
+<p>Use a <code>for</code> loop and <code>if/else</code> flow control to find the largest number in <code>my_nums</code>.
+Do not use the build in <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> or <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> functions.
+Put this in a function with the name <code>my_max</code> and demonstrate its use.
+You may use the build-in <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> function to verify your result.</p>
+</div>
+<div id="find-match-locations" class="section level4" number="16.7.1.1">
+<h4>
+<span class="header-section-number">16.7.1.1</span> Find match locations<a class="anchor" aria-label="anchor" href="#find-match-locations"><i class="fas fa-link"></i></a>
+</h4>
+<p>Create a function that will report the match locations some value in a given vector. Name it <code>where_is_it()</code>.
+Use only <code>for()</code> and <code>if/else</code> to get to your solution, no functions except <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>.</p>
+<p>So, this snippet should return the given expected reult</p>
+<div class="sourceCode" id="cb917"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pro"</span>, <span class="st">"Glu"</span>, <span class="st">"Lys"</span>, <span class="st">"Pro"</span>, <span class="st">"Ser"</span><span class="op">)</span></span>
+<span><span class="fu">where_is_it</span><span class="op">(</span><span class="va">x</span>, <span class="st">"Pro"</span><span class="op">)</span></span>
+<span><span class="co">##expected:</span></span>
+<span><span class="co">#[1] 1 4</span></span></code></pre></div>
+</div>
+<div id="median" class="section level4 unnumbered">
+<h4>Median<a class="anchor" aria-label="anchor" href="#median"><i class="fas fa-link"></i></a>
+</h4>
+<p><strong>[Challenge]</strong> Create a function, <code>my_median()</code>, that duplicates the R function <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code>, i.e. calculates and returns the median of a vector of numbers. This is actually a bit harder than you might expect. Hint: use the <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> function.</p>
+</div>
+</div>
+<div id="count-odd-and-even-numbers" class="section level3" number="16.7.2">
+<h3>
+<span class="header-section-number">16.7.2</span> Count odd and even numbers<a class="anchor" aria-label="anchor" href="#count-odd-and-even-numbers"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create a function, <code>count_odd_even()</code>, that counts the number of even and odd numbers in an input vector.
+It should return the result as a <em>named vector</em>.
+Do not make use of R base functions.</p>
+</div>
+<div id="add-column-compared-to-mean" class="section level3" number="16.7.3">
+<h3>
+<span class="header-section-number">16.7.3</span> Add column compared to mean<a class="anchor" aria-label="anchor" href="#add-column-compared-to-mean"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create a function that accepts as input:</p>
+<ul>
+<li>a dataframe</li>
+<li>a column name. This column name should refer to a numeric column</li>
+</ul>
+<p>The function should return a copy of this dataframe with an extra column attached. The column with name ‘compared_to_mean’ should have values “greater” (greater than mean) or “less” (less than or equal to the mean) when compared to the indicated column. Apply a check to the users’ input and stop with an appropriate error message if something is not right (not a dataframe, column does not exist, not a numeric column).</p>
+</div>
+<div id="interquantile-ranges" class="section level3" number="16.7.4">
+<h3>
+<span class="header-section-number">16.7.4</span> Interquantile ranges<a class="anchor" aria-label="anchor" href="#interquantile-ranges"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create a function that will calculate a custom “interquantile range”. The function should accept three arguments: a numeric vector, a lower quantile and an upper quantile. It should return the difference (range) between these two quantile values. The lower quantile should default to 0 and the higher to 1, thus returning <code>max(x)</code> minus <code>min(x)</code>. The function therefore has this “signature”:</p>
+<div class="sourceCode" id="cb918"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">interquantile_range</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">lower</span> <span class="op">=</span> <span class="fl">0</span>, <span class="va">higher</span> <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></code></pre></div>
+<p>Perform some tests on the arguments to make a robust method: are all arguments numeric?</p>
+<p>To test you method, you can compare <code>interquantile_range(some_vector, 0.25, 0.75)</code> with <code>IQR(some_vector)</code> - they should be the same.</p>
+</div>
+<div id="vector-distance" class="section level3" number="16.7.5">
+<h3>
+<span class="header-section-number">16.7.5</span> Vector distance<a class="anchor" aria-label="anchor" href="#vector-distance"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create a function, <code>distance(p, q)</code>, that will calculate and return the Euclidean distance between two vectors of equal length. A numeric vector can be seen as a point in multidimensional space. Euclidean distance is defined as</p>
+<p><span class="math display">\[d(p, q) = \sqrt{\sum_{i = 1}^{n}(q_i-p_i)^2}\]</span>
+Where <em>p</em> and <em>q</em> are the two vectors and <em>n</em> the length of the two vectors.<br>
+You should first perform a check whether the two vectors are of equal length and both of type <code>numeric</code> or <code>integer</code>. If not, the function should abort with an appropriate error message.</p>
+<div id="other-distance-measures" class="section level4 unnumbered">
+<h4>Other distance measures<a class="anchor" aria-label="anchor" href="#other-distance-measures"><i class="fas fa-link"></i></a>
+</h4>
+<p>Extend the function of the previous assignment in such a way that a third argument is accepted, <code>method =</code>, which defaults to “euclidean”. Other possible distance measures are “Manhattan” (same as “city block” and “taxicab”) and [<strong>Challenge</strong>] Pearson correlation.</p>
+<p>Look up the equations for these in Wikipedia or some other place.</p>
+</div>
+</div>
+<div id="quadratic-equation-solver" class="section level3" number="16.7.6">
+<h3>
+<span class="header-section-number">16.7.6</span> Quadratic equation solver<a class="anchor" aria-label="anchor" href="#quadratic-equation-solver"><i class="fas fa-link"></i></a>
+</h3>
+<p>Write a function that will use the quadratic equation (ABC formula) to solve an equation in the form <span class="math inline">\(ax^2 + bx + c = 0\)</span>. Call the function <code>abc_solver</code>.
+Use flow control to perform the following:</p>
+<ul>
+<li>First calculate the discriminant (you should know the equation from your math lessons). The website of Khan Academy (<a href="https://www.khanacademy.org/" class="uri">https://www.khanacademy.org/</a>) gives ample review.<br>
+</li>
+<li>Test if the discriminant is negative. If so, return a <em>warning</em> message that tells the user that the equation can not be solved.<br>
+</li>
+<li>Then test if the discriminant is positive. If so, there are two solutions for the equation. Return them in a <em>named</em> vector.<br>
+</li>
+<li>Then test if the discriminant is 0. If so, there is one solution for the equation. Return the solution as a <em>named</em> vector.</li>
+</ul>
+<p>Test your function for the following quadratic models:<br>
+- <span class="math inline">\(ax^1 + 2x + 3\)</span> (no solution)<br>
+- <span class="math inline">\(ax^3 + 7x + 4\)</span> (two intersections)<br>
+- <span class="math inline">\(ax^2 + 4x + 2\)</span> (1 intersection)</p>
+</div>
+<div id="gc-percentage-of-dna" class="section level3" number="16.7.7">
+<h3>
+<span class="header-section-number">16.7.7</span> G/C percentage of DNA<a class="anchor" aria-label="anchor" href="#gc-percentage-of-dna"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>[Challenge XL]</strong> Create a function, <code>GC_perc()</code>, that calculates and returns the GC percentage of a DNA or RNA sequence. Accept as input a sequence and a flag -<code>strict</code>- indicating whether other characters are accepted than core DNA/RNA (GATUC). If <code>strict = FALSE</code>, the percentage of other characters should be reported using a <code><a href="https://rdrr.io/r/base/warning.html">warning()</a></code> call. If <code>strict = TRUE</code>, the function should terminate with an error message. Use <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> for this. <code>strict</code> should default to <code>TRUE</code>. NOTE, usage of <code>strict</code> can complicate things, so start with the core functionality!
+You can use <code><a href="https://rdrr.io/r/base/strsplit.html">strsplit()</a></code> or <code><a href="https://rdrr.io/r/base/substr.html">substr()</a></code> to get hold of individual sequence characters.</p>
+</div>
+</div>
+<div id="function-apply-and-its-relatives" class="section level2" number="16.8">
+<h2>
+<span class="header-section-number">16.8</span> Function <code>apply</code> and its relatives<a class="anchor" aria-label="anchor" href="#function-apply-and-its-relatives"><i class="fas fa-link"></i></a>
+</h2>
+<p>In this section you will encounter some exercises revolving around the different flavors of apply.</p>
+<div id="whale-selenium" class="section level3" number="16.8.1">
+<h3>
+<span class="header-section-number">16.8.1</span> Whale selenium<a class="anchor" aria-label="anchor" href="#whale-selenium"><i class="fas fa-link"></i></a>
+</h3>
+<p>On the course website under <a href="https://michielnoback.github.io/bincourses/course_contents/davur/resources.html">Resources</a> you will find a link to file <code>whale_selenium.txt</code>. You could download it into your working directory manually or use <code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code> to obtain it. However, there is a third way to get its contents without actually downloading it as a local copy. You can read it directly using <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> as shown here.</p>
+<div class="sourceCode" id="cb919"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">whale_sel_url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MichielNoback/davur1/gh-pages/exercises/data/whale_selenium.txt"</span></span>
+<span><span class="va">whale_selenium</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="va">whale_sel_url</span>,</span>
+<span>    header <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>    row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p>Note: when you are going to load a file many times it is probably better to store a local copy.</p>
+<p><strong>A</strong><br>
+Report the means of both columns using <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>.</p>
+<p><strong>B</strong>
+Report the standard deviation of both columns, using <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code></p>
+<p><strong>C</strong><br>
+Report the standard error of the mean of both columns, using <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> The SEM is calculated as <span class="math display">\[\frac{sd}{\sqrt{n}}\]</span> where <span class="math inline">\(sd\)</span> is the sample standard deviation and <span class="math inline">\(n\)</span> the number of measurements. You should create the function calculating this statistic yourself.</p>
+<p><strong>D</strong><br>
+Using <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>, calculate the ratio of <span class="math inline">\(Se_{tooth} / Se_{liver}\)</span> and attach it to the <code>whale_selenium</code> dataframe as column <code>ratio</code>. Create a histogram of this ratio.</p>
+<p><strong>E</strong><br>
+Using <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> and <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, report the mean and the standard deviation of the ratio column, but do this with an inline expression, e.g. an expression embedded in the R markdown paragraph text.</p>
+</div>
+<div id="chickweight" class="section level3" number="16.8.2">
+<h3>
+<span class="header-section-number">16.8.2</span> ChickWeight<a class="anchor" aria-label="anchor" href="#chickweight"><i class="fas fa-link"></i></a>
+</h3>
+<p>This exercise revolves around the <code>ChickWeight</code> dataset of the built-in <code>datasets</code> package.</p>
+<p><strong>A</strong><br>
+Report the number of chickens used in the experiment.</p>
+<p><strong>B</strong><br>
+Use <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> to get the mean weight of the chickens for the different Diets.</p>
+<p><strong>C</strong><br>
+Use <code><a href="https://rdrr.io/r/graphics/coplot.html">coplot()</a></code> to plot a panel with weight as function of Time, split over Diet.</p>
+<p><strong>D</strong><br>
+[<strong>Challenge</strong>] Add a column called <code>weight_gain</code> to the dataframe holding values for the weight gain since the last measurement. Take special care with rows marking the boundaries between individual chickens! You could consider using a traditional for loop here.
+In the next course, we’ll see a more efficient way of doing this.</p>
+<p><strong>E</strong><br>
+Split the <code>weight_gain</code> column on Diet and report the mean, median and standard deviation for each diet.
+If you were not successful in the previous question, load and attach the data from file <code>ChickWeight_weight_gain.Rdata</code> downloadable from <a href="https://github.com/MichielNoback/davur1_gitbook/raw/master/data/ChickWeight_weight_gain.Rdata">https://github.com/MichielNoback/davur1_gitbook/raw/master/data/ChickWeight_weight_gain.Rdata</a>. You can use this code chunk for downloading and loading the data into variable <code>stored_weight_gain</code>. Don’t forget to attach the column to the data frame!</p>
+<div class="sourceCode" id="cb920"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">local_file</span> <span class="op">&lt;-</span> <span class="st">"ChickWeight_weight_gain.Rdata"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://github.com/MichielNoback/davur1_gitbook/raw/master/data/"</span>, <span class="va">local_file</span><span class="op">)</span>, <span class="va">local_file</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="va">local_file</span><span class="op">)</span></span></code></pre></div>
+<p><strong>F</strong><br>
+Create a (single-panel) boxplot for weight gain, split over Diet. Hint: read the <code><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot()</a></code> help page!</p>
+</div>
+<div id="food-constituents" class="section level3" number="16.8.3">
+<h3>
+<span class="header-section-number">16.8.3</span> Food constituents<a class="anchor" aria-label="anchor" href="#food-constituents"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <a href="https://raw.githubusercontent.com/MichielNoback/davur1_gitbook/master/data/food_constituents.txt">food constituents dataset</a> holds information on ingredients for different foods. Individual foods are simply marked with an id.</p>
+<p><strong>A</strong><br>
+Load the data and report the different food categories (<code>Type</code>). Also report the numbers of entries for each Type.</p>
+<p><strong>B</strong><br>
+What is the mean energy content of chocolate foods?</p>
+<p><strong>C</strong><br>
+What is the food category with the highest mean fat content?</p>
+<p><strong>D</strong><br>
+What food category has the highest mean energy content, and which has the lowest?</p>
+<p><strong>E</strong><br><strong>[Challenge]</strong> Create a boxplot showing the difference in sugar content between drink and solid food.</p>
+<p><strong>F</strong><br>
+Assuming both saturated fats and sugar are bad for you, what food category do you consider the worst? Think of a means to answer this, explain it and carry it out.</p>
+</div>
+<div id="urine-properties" class="section level3" number="16.8.4">
+<h3>
+<span class="header-section-number">16.8.4</span> Urine properties<a class="anchor" aria-label="anchor" href="#urine-properties"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <a href="https://github.com/MichielNoback/datasets/tree/master/urine">urine specimens dataset</a> contains a <code>readme.txt</code> file and a data file (<code>urine.csv</code>; direct link: “<a href="https://raw.githubusercontent.com/MichielNoback/datasets/master/urine/urine.csv" class="uri">https://raw.githubusercontent.com/MichielNoback/datasets/master/urine/urine.csv</a>”). Study the readme to get an idea of the data. Download the file like this:</p>
+<div class="sourceCode" id="cb921"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">urine_file_name</span> <span class="op">&lt;-</span> <span class="st">"urine.csv"</span></span>
+<span><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/MichielNoback/datasets/master/urine/"</span>, <span class="va">urine_file_name</span><span class="op">)</span></span>
+<span><span class="va">local_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"../"</span>, <span class="va">urine_file_name</span><span class="op">)</span> <span class="co">#specifiy your own folder!</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="va">url</span>, destfile <span class="op">=</span> <span class="va">local_name</span><span class="op">)</span></span></code></pre></div>
+<p><strong>A</strong><br>
+Load the data into a dataframe with name <code>urine</code>.</p>
+<p><strong>B</strong><br>
+Convert the column <code>r</code> into a factor with two levels: <code>yes</code> and <code>no</code>, and give it a better name: <code>ox_crystals</code>.</p>
+<p><strong>C</strong><br>
+Using <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>, report the mean and standard deviation of the numeric columns only. Give these with only two decimal digits. Use a <em>named vector</em> so you get this output:</p>
+<pre><code>     gravity   ph   osmo  cond   urea calc
+mean    1.02 6.03 615.04 20.90 266.41 4.14
+sd      0.01 0.72 238.25  7.95 131.25 3.26</code></pre>
+<p><strong>D</strong><br>
+Using <code>aggregate</code>, report the mean of the numeric columns, but split over the <code>ox_crystals</code> variable levels. Which variables seem most likely candidates for a relation with oxalate crystal formation.</p>
+<p><strong>E</strong><br>
+Use the <code><a href="https://rdrr.io/r/graphics/pairs.html">pairs()</a></code> plotting function to explore the pairwise relationships between the different numeric variables</p>
+<p><strong>F</strong><br>
+Use the <code>heatmap.2()</code> and <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> functions together to create a heatmap of pairwise variable correlations. You will need to install package <code>gplots</code> for the heatmap.2 function. Alternatively, use <code><a href="https://rdrr.io/r/stats/heatmap.html">heatmap()</a></code> from base R.</p>
+<p>Which visualization do you prefer - the <code><a href="https://rdrr.io/r/graphics/pairs.html">pairs()</a></code> or the <code>heatmap.2()</code>?</p>
+<p><strong>G</strong><br>
+[<strong>Challenge</strong>] There does not seem to be an interesting correlation between pH and any of the other variables. Sometimes this is becuase you are not looking in enough detail. Let’s dig a little further. Use <code><a href="https://rdrr.io/r/base/cut.html">cut()</a></code> to split the pH variable into a factor with three levels: “acidic”, “neutral” and “basic” with breakpoints between them at pH 5.5 and 7. Next, use the <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> and <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> functions to calculate the mean, meadian and sd of the other numeric variables for each level of this pH factor. This exercise can of course be done in many ways. one of them is by using an <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> <em>within</em> the applied function of <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>.</p>
+</div>
+<div id="bird-observations-revisited" class="section level3" number="16.8.5">
+<h3>
+<span class="header-section-number">16.8.5</span> Bird observations revisited<a class="anchor" aria-label="anchor" href="#bird-observations-revisited"><i class="fas fa-link"></i></a>
+</h3>
+<p>This exercise revisits the bird observations dataset. You can download it <a href="data/Observations-Data-2014.csv">here</a>. (Re)load the dataset.</p>
+<p><strong>A</strong><br>
+Report the number of observations per <code>County</code>. Use both a textual as a barplot representation. With the barplot, you should order the bars according to observation numbers.</p>
+<p><strong>B</strong><br>
+Report the number of observations per <code>Observer.1</code> but only for observers with more than 10 observations, ordered from high to low observation count. Use <code><a href="https://rdrr.io/r/base/order.html">order()</a></code> to achieve this.</p>
+<p><strong>C</strong><br>
+Which observer has the highest number of observations listed (and how many is that)?</p>
+<p><strong>D</strong><br>
+Report the different observed species (using <code>Common.name</code>) for each genus. <strong>[Challenge]</strong> Report only the 5 Genera with the highest number of observed species.</p>
+<p><strong>E</strong><br><strong>[Challenge]</strong> Create a Dataframe holding the number of birds per day (use Date.start) and plot it with date on the x-axis and number of birds on the y-axis. Hint: use <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> to convert the character date to a real date field. See this page how you can do that <a href="http://www.statmethods.net/input/dates.html">Date Values</a>.</p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></div>
+<div class="next"><a href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercises."><span class="header-section-number">16</span> Exercises.</a></li>
+<li>
+<a class="nav-link" href="#getting-started."><span class="header-section-number">16.1</span> Getting started.</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#install-the-tools"><span class="header-section-number">16.1.1</span> Install the tools</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#the-toolbox"><span class="header-section-number">16.2</span> The toolbox</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#customize-rstudio"><span class="header-section-number">16.2.1</span> Customize RStudio</a></li>
+<li><a class="nav-link" href="#resum%C3%A9"><span class="header-section-number">16.2.2</span> Resumé</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#basic-r---coding-1"><span class="header-section-number">16.3</span> Basic R - coding</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#math-in-the-console"><span class="header-section-number">16.3.1</span> Math in the console</a></li>
+<li><a class="nav-link" href="#first-look-at-functions"><span class="header-section-number">16.3.2</span> First look at functions</a></li>
+<li><a class="nav-link" href="#variables-1"><span class="header-section-number">16.3.3</span> Variables</a></li>
+<li><a class="nav-link" href="#vectors-1"><span class="header-section-number">16.3.4</span> Vectors</a></li>
+<li><a class="nav-link" href="#optional-stair-walking-and-heart-rate"><span class="header-section-number">16.3.5</span> [Optional] Stair walking and heart rate</a></li>
+<li><a class="nav-link" href="#optional-more-subjects"><span class="header-section-number">16.3.6</span> [Optional] More subjects</a></li>
+<li><a class="nav-link" href="#optional-chickens-on-a-diet"><span class="header-section-number">16.3.7</span> [Optional] Chickens on a diet</a></li>
+<li><a class="nav-link" href="#optional-chicken-bar-plot"><span class="header-section-number">16.3.8</span> [Optional] Chicken bar plot</a></li>
+<li><a class="nav-link" href="#optional-lung-cancer"><span class="header-section-number">16.3.9</span> [Optional] Lung cancer</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#complex-datatypes"><span class="header-section-number">16.4</span> Complex datatypes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#creating-factors"><span class="header-section-number">16.4.1</span> Creating factors</a></li>
+<li><a class="nav-link" href="#a-dictionary-with-a-named-vector"><span class="header-section-number">16.4.2</span> A dictionary with a named vector</a></li>
+<li><a class="nav-link" href="#protein-concentrations-with-lowry"><span class="header-section-number">16.4.3</span> Protein concentrations with Lowry</a></li>
+<li><a class="nav-link" href="#island-surfaces"><span class="header-section-number">16.4.4</span> Island surfaces</a></li>
+<li><a class="nav-link" href="#airquality"><span class="header-section-number">16.4.5</span> Airquality</a></li>
+<li><a class="nav-link" href="#file-reading-practice"><span class="header-section-number">16.4.6</span> File reading practice</a></li>
+<li><a class="nav-link" href="#bird-observations"><span class="header-section-number">16.4.7</span> Bird observations</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#functions-1"><span class="header-section-number">16.5</span> Functions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-cut-function-i"><span class="header-section-number">16.5.1</span> The cut() function I</a></li>
+<li><a class="nav-link" href="#the-cut-function-ii"><span class="header-section-number">16.5.2</span> The cut() function II</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#regular-expressions"><span class="header-section-number">16.6</span> Regular Expressions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#restriction-enzymes-1"><span class="header-section-number">16.6.1</span> Restriction enzymes</a></li>
+<li><a class="nav-link" href="#prosite-patterns"><span class="header-section-number">16.6.2</span> Prosite Patterns</a></li>
+<li><a class="nav-link" href="#fasta-headers"><span class="header-section-number">16.6.3</span> Fasta Headers</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#scripting-1"><span class="header-section-number">16.7</span> Scripting</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#illegal-reproductions"><span class="header-section-number">16.7.1</span> Illegal reproductions</a></li>
+<li><a class="nav-link" href="#count-odd-and-even-numbers"><span class="header-section-number">16.7.2</span> Count odd and even numbers</a></li>
+<li><a class="nav-link" href="#add-column-compared-to-mean"><span class="header-section-number">16.7.3</span> Add column compared to mean</a></li>
+<li><a class="nav-link" href="#interquantile-ranges"><span class="header-section-number">16.7.4</span> Interquantile ranges</a></li>
+<li><a class="nav-link" href="#vector-distance"><span class="header-section-number">16.7.5</span> Vector distance</a></li>
+<li><a class="nav-link" href="#quadratic-equation-solver"><span class="header-section-number">16.7.6</span> Quadratic equation solver</a></li>
+<li><a class="nav-link" href="#gc-percentage-of-dna"><span class="header-section-number">16.7.7</span> G/C percentage of DNA</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#function-apply-and-its-relatives"><span class="header-section-number">16.8</span> Function apply and its relatives</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#whale-selenium"><span class="header-section-number">16.8.1</span> Whale selenium</a></li>
+<li><a class="nav-link" href="#chickweight"><span class="header-section-number">16.8.2</span> ChickWeight</a></li>
+<li><a class="nav-link" href="#food-constituents"><span class="header-section-number">16.8.3</span> Food constituents</a></li>
+<li><a class="nav-link" href="#urine-properties"><span class="header-section-number">16.8.4</span> Urine properties</a></li>
+<li><a class="nav-link" href="#bird-observations-revisited"><span class="header-section-number">16.8.5</span> Bird observations revisited</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-12.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

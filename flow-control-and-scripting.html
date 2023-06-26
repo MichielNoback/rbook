@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 7 Flow control and scripting | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="So far you have only used the functions that are build in R, or in some installed packages such as ggplot2. Moreover, the only R code you have seen was written in the console or in the code chunks...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 7 Flow control and scripting | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="So far you have only used the functions that are build in R, or in some installed packages such as ggplot2. Moreover, the only R code you have seen was written in the console or in the code chunks...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7 Flow control and scripting | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="So far you have only used the functions that are build in R, or in some installed packages such as ggplot2. Moreover, the only R code you have seen was written in the console or in the code chunks...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="active" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">16</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="flow-control-and-scripting" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> Flow control and scripting<a class="anchor" aria-label="anchor" href="#flow-control-and-scripting"><i class="fas fa-link"></i></a>
+</h1>
+<p>So far you have only used the functions that are build in R, or in some installed packages such as ggplot2. Moreover, the only R code you have seen was written in the console or in the code chunks of an RMarkdown document.</p>
+<p>This code consisted of (series of) R statements with one or more function calls.<br>
+There has been no conditional code, no repeated operations and no extraction of blocks of code into something reusable, a custom function let alone a standalone executable script.</p>
+<p>This chapter deals with that. It introduces conditional execution, custom functions and scripts.</p>
+<div id="flow-control" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Flow control<a class="anchor" aria-label="anchor" href="#flow-control"><i class="fas fa-link"></i></a>
+</h2>
+<div class="definitions">
+<p>Flow control constitutes a series of code elements used to control whether some code blocks are executed or not, and how many times</p>
+</div>
+<p>These programming concepts and structures are used for flow control:</p>
+<ul>
+<li>Conditional execution: <code>if(){} else if(){} else{}</code>
+</li>
+<li>Repeated execution: <code>for() {}</code>
+</li>
+<li>Repeated conditional execution: <code>while(){}</code>
+</li>
+</ul>
+<p>For those of you with experience in other programming languages: there is no switch expression. There is a <code><a href="https://rdrr.io/r/base/switch.html">switch()</a></code> function however, but it is not dealt with in this eBook.</p>
+<div id="conditional-execution-with-ifelse" class="section level3" number="7.1.1">
+<h3>
+<span class="header-section-number">7.1.1</span> Conditional execution with <code>if/else</code><a class="anchor" aria-label="anchor" href="#conditional-execution-with-ifelse"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are several applications for conditionals, with differing language constructs:</p>
+<ul>
+<li>the <code>if(COND) {&lt;TRUE&gt;} else {&lt;FALSE&gt;}</code> code block for controlling program flow</li>
+<li>the <code>if (COND) &lt;TRUE&gt; else &lt;FALSE&gt;</code> expression as a shorthand for the code block</li>
+<li>the <code>ifelse(COND, &lt;TRUE&gt;, &lt;FALSE&gt;)</code> function for use on dataframes</li>
+</ul>
+<p>As you can see there is always a <strong><em>condition</em></strong> to be tested. This expression should return a logical value: TRUE or FALSE.</p>
+<p>All three are discussed in the following slides.</p>
+<div id="the-if-else-code-block" class="section level4 unnumbered">
+<h4>The <code>if() {} else {}</code> code block<a class="anchor" aria-label="anchor" href="#the-if-else-code-block"><i class="fas fa-link"></i></a>
+</h4>
+<p>The <code>if(COND) {&lt;TRUE&gt;} else {&lt;FALSE&gt;}</code> code block knows several required and several optional elements.<br>
+At the minimum there is an <code>if(COND) {}</code> element where <code>COND</code> is an expression evaluating to a Logical.</p>
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">43</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Adult"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## [1] "Adult"</code></pre>
+</div>
+<div id="if-shorthand" class="section level4 unnumbered">
+<h4>
+<code>if()</code> shorthand<a class="anchor" aria-label="anchor" href="#if-shorthand"><i class="fas fa-link"></i></a>
+</h4>
+<p>If there is only one statement within a block you can omit the curly braces:</p>
+<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">43</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Adult"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "Adult"</code></pre>
+<p>Remember that the semicolon at the end of a statement is optional in R and is usually omitted.</p>
+</div>
+<div id="if-can-have-an-else" class="section level4 unnumbered">
+<h4>
+<code>if()</code> can have an <code>else {}</code><a class="anchor" aria-label="anchor" href="#if-can-have-an-else"><i class="fas fa-link"></i></a>
+</h4>
+<p>When there is an alternative course of action when the test evaluates to <code>FALSE</code> you use the <code>else{}</code> element of this structure.</p>
+<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">43</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Adult"</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Junior"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## [1] "Adult"</code></pre>
+<p>Here the curly braces are required:</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="flow-control-and-scripting.html#cb339-1" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">43</span></span>
+<span id="cb339-2"><a href="flow-control-and-scripting.html#cb339-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (age <span class="sc">&gt;=</span> <span class="dv">18</span>) <span class="fu">print</span>(<span class="st">"Adult"</span>)</span>
+<span id="cb339-3"><a href="flow-control-and-scripting.html#cb339-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="fu">print</span>(<span class="st">"Junior"</span>)</span></code></pre></div>
+<pre><code>## Error: &lt;text&gt;:3:1: unexpected 'else'
+## 2: if (age &gt;= 18) print("Adult")
+## 3: else
+##    ^</code></pre>
+</div>
+<div id="if-can-have-else-if-blocks" class="section level4 unnumbered">
+<h4>
+<code>if()</code> can have <code>else if()</code> blocks<a class="anchor" aria-label="anchor" href="#if-can-have-else-if-blocks"><i class="fas fa-link"></i></a>
+</h4>
+<p>If there are more than two courses of action, you must reside to <code>else if()</code> blocks.
+Each of them should have its own CONDition to test on.</p>
+<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">43</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&lt;</span> <span class="fl">18</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Minor"</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">65</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Senior"</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span> <span class="op">&amp;&amp;</span> <span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">30</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Young Adult"</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Adult"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## [1] "Adult"</code></pre>
+</div>
+<div id="ifelse-real-life-example" class="section level4 unnumbered">
+<h4>if/else real life example<a class="anchor" aria-label="anchor" href="#ifelse-real-life-example"><i class="fas fa-link"></i></a>
+</h4>
+<p>This code chunk checks if a file exists and only downloads it if it is not present</p>
+<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_data_file</span> <span class="op">&lt;-</span> <span class="st">"/some/file/on/disk"</span></span>
+<span><span class="co">## fetch file</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="va">my_data_file</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"downloading"</span>, <span class="va">my_data_file</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="va">remote_url</span>, destfile <span class="op">=</span> <span class="va">my_data_file</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"reading cached copy of"</span>, <span class="va">my_data_file</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="ifelse-shorthand" class="section level4 unnumbered">
+<h4>if/else shorthand<a class="anchor" aria-label="anchor" href="#ifelse-shorthand"><i class="fas fa-link"></i></a>
+</h4>
+<p>There is also a shorthand for <code>if(){} else{}</code>. It is also called a <strong><em>ternary</em></strong>.<br>
+It has the form<br><code>if (COND) &lt;EXPRESSION_FOR_TRUE&gt; else &lt;EXPRESSION_FOR_FALSE&gt;</code></p>
+<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="va">a</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="st">"EVEN"</span> <span class="kw">else</span> <span class="st">"UNEVEN"</span></span>
+<span><span class="va">x</span></span></code></pre></div>
+<pre><code>## [1] "UNEVEN"</code></pre>
+</div>
+<div id="ifelse-on-dataframes-ifelse" class="section level4 unnumbered">
+<h4>if/else on dataframes: <code>ifelse()</code><a class="anchor" aria-label="anchor" href="#ifelse-on-dataframes-ifelse"><i class="fas fa-link"></i></a>
+</h4>
+<p>When you want to assign values to a vector based on some condition, you need to use the third form, the <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> function.</p>
+<p>When you use the regular if/else structures on dataframes you don’t get what you want:</p>
+<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># In newer versions of R this yields an error; in older versions</span></span>
+<span><span class="co"># only first value (row) is evaluated and this value is cycled.</span></span>
+<span><span class="co"># The whole column gets value 1</span></span>
+<span></span>
+<span><span class="co">#airquality$foo &lt;- if (airquality$Ozone &lt; 30) 0 else 1 </span></span>
+<span></span>
+<span><span class="co"># This works</span></span>
+<span><span class="va">airquality</span><span class="op">$</span><span class="va">bar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Ozone</span> <span class="op">&lt;</span> <span class="fl">30</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Ozone Solar.R Wind Temp Month Day bar
+## 1    41     190  7.4   67   May   1   1
+## 2    36     118  8.0   72   May   2   1
+## 3    12     149 12.6   74   May   3   0
+## 4    18     313 11.5   62   May   4   0
+## 5    NA      NA 14.3   56   May   5  NA
+## 6    28      NA 14.9   66   May   6   0</code></pre>
+</div>
+</div>
+<div id="executing-alternatives-with-lists" class="section level3" number="7.1.2">
+<h3>
+<span class="header-section-number">7.1.2</span> Executing alternatives with lists<a class="anchor" aria-label="anchor" href="#executing-alternatives-with-lists"><i class="fas fa-link"></i></a>
+</h3>
+<p>Besides decision making with if/else, you can also make use of the list type in combination with the fact that function can be passed around like any other object.</p>
+<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">message_maker</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    silent <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">message</span><span class="op">)</span><span class="op">{</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"..."</span><span class="op">)</span></span>
+<span>    <span class="op">}</span>,</span>
+<span>    normal <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">message</span><span class="op">)</span><span class="op">{</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Your message '"</span>, <span class="va">message</span>, <span class="st">"' was recorded on "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">message</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Your message '"</span>, <span class="va">message</span>, <span class="st">"' was recorded on "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>                     <span class="st">" with system details ["</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.info.html">Sys.info</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, collapse <span class="op">=</span><span class="st">";"</span><span class="op">)</span>, <span class="st">"]"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">message_maker</span><span class="op">[[</span><span class="st">'verbose'</span><span class="op">]</span><span class="op">]</span><span class="op">(</span><span class="st">"I need coffee"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "Your message 'I need coffee' was recorded on 2023-06-26 with system details [Darwin;22.5.0;Darwin Kernel Version 22.5.0: Mon Apr 24 20:52:24 PDT 2023; root:xnu-8796.121.2~5/RELEASE_ARM64_T6000;MBP3.local]"</code></pre>
+<p>Of course, it would have been even better when this was wrapped inside a function, but that has not been discussed yet.</p>
+</div>
+<div id="iteration-with-for" class="section level3" number="7.1.3">
+<h3>
+<span class="header-section-number">7.1.3</span> Iteration with <code>for(){}</code><a class="anchor" aria-label="anchor" href="#iteration-with-for"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Iteration with <code>for</code> is used for looping a series of values from a vector.
+_ You should not use it to iterate columns or rows of a dataframe: the preferred way to do that is with <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> and its relatives (next presentation)</li>
+</ul>
+<div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">greeting</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hello"</span>, <span class="st">"'Allo"</span>, <span class="st">"Moi"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">greeting</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## [1] "Hello"
+## [1] "'Allo"
+## [1] "Moi"</code></pre>
+<p>Sometimes you need a counter or index when iterating:</p>
+<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">greetings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hello"</span>, <span class="st">"'Allo"</span>, <span class="st">"Moi"</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span> <span class="op">:</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">greetings</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">greetings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## [1] "1 Hello"
+## [1] "2 'Allo"
+## [1] "3 Moi"</code></pre>
+<p>But this causes strange results with empty vectors, as in the chunk below.</p>
+<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">greetings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span> <span class="op">:</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">greetings</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">greetings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## [1] "1 NA"
+## [1] "0 "</code></pre>
+<p>Therefore, it is advised to use <code><a href="https://rdrr.io/r/base/seq.html">seq_along()</a></code> when looping iterables with indexes:</p>
+<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">greetings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hello"</span>, <span class="st">"'Allo"</span>, <span class="st">"Moi"</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">greetings</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">greetings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## [1] "1 Hello"
+## [1] "2 'Allo"
+## [1] "3 Moi"</code></pre>
+<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Does not do anything, as it should!</span></span>
+<span><span class="va">greetings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">greetings</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">greetings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="conditional-iteration-with-while" class="section level3" number="7.1.4">
+<h3>
+<span class="header-section-number">7.1.4</span> Conditional iteration with <code>while(){}</code><a class="anchor" aria-label="anchor" href="#conditional-iteration-with-while"><i class="fas fa-link"></i></a>
+</h3>
+<p>This is the last flow control structure. It is used to execute a block <strong><em>as long as a certain condition is met</em></strong>. They are not used very much in R.</p>
+<div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">counter</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">counter</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">5</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">counter</span><span class="op">)</span></span>
+<span>    <span class="va">counter</span> <span class="op">=</span> <span class="va">counter</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4</code></pre>
+</div>
+</div>
+<div id="creating-functions" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Creating functions<a class="anchor" aria-label="anchor" href="#creating-functions"><i class="fas fa-link"></i></a>
+</h2>
+<p>Here is the definition again.</p>
+<div class="definitions">
+<p>A function is a piece of functionality that you can execute by typing its name, followed by a pair of parentheses. Within these parentheses, you can pass data for the function to work on. Functions often, but not always, return a value.</p>
+</div>
+<p>Thus, functions are named blocks of code with a <strong><em>single well-defined purpose</em></strong> which make them reusable.
+You have already used many <strong><em>predefined</em></strong> or build in functions of R: <code>str</code>, <code>max</code>, <code>read.table</code> etc. If you type the name of a function without parenthesis you get its definition.</p>
+<div class="sourceCode" id="cb361"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sum</span></span></code></pre></div>
+<pre><code>## function (..., na.rm = FALSE)  .Primitive("sum")</code></pre>
+<div id="anatomy-of-a-function" class="section level3 unnumbered">
+<h3>Anatomy of a function<a class="anchor" aria-label="anchor" href="#anatomy-of-a-function"><i class="fas fa-link"></i></a>
+</h3>
+<p>A function</p>
+<ul>
+<li>usually, but not always, has a name. in the next chapter you will see examples of <em>anonymous</em> functions that are defined in the location where they are needed.<br>
+</li>
+<li>has a <strong><em>parameter list</em></strong> (sometimes of size zero) between parentheses. These parameters constitute the required input variables on which the function will operate.<br>
+</li>
+<li>has a <strong><em>method body</em></strong>. This is a block of one or more lines of code in which the actual work is performed.<br>
+</li>
+<li>may have a <strong><em>return value</em></strong>. Ther result of a function is usually, but not always returned. The print function, for instance, does not return a value but only outputs to the console. Functions can only retun one single value (vector). If more return values are needed, you need to wrap them in a complex datatype such as a list.<br>
+</li>
+<li>is defined using the _<strong>function keyword_</strong>
+</li>
+</ul>
+<p>Here is a function prototype. It shows all characteristics of the above list of properties.</p>
+<pre><code>method_name &lt;- function(arg, arg, ...) {
+    &lt;function body&gt;
+    return(return_value)
+}</code></pre>
+</div>
+<div id="a-first-function" class="section level3 unnumbered">
+<h3>A first function<a class="anchor" aria-label="anchor" href="#a-first-function"><i class="fas fa-link"></i></a>
+</h3>
+<p>Here is a simple function determining whether some number is even</p>
+<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">is_even</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">evens</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">evens</span><span class="op">)</span> </span>
+<span><span class="op">}</span></span>
+<span><span class="fu">is_even</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE  TRUE FALSE</code></pre>
+<p>Note that <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> is a <strong><em>method call</em></strong> which is very unlike other programming languages.</p>
+<p>The <strong><em>return statement is optional</em></strong>.
+In R, the last statement of a method body is its <strong><em>implicit return value</em></strong>. Therefore, the previous example is equivalent to this:</p>
+<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">is_even</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">is_even</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE  TRUE FALSE</code></pre>
+<p>Being explicit is always allowed when implicit return is possible, but using a <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> for forcing return values at other points is required:</p>
+<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_message</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">age</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&lt;</span> <span class="fl">18</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="st">"have a lemonade!"</span><span class="op">)</span> <span class="co"># explicit return</span></span>
+<span>    <span class="st">"have a beer!"</span> <span class="co"># implicit return statement</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">my_message</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "have a beer!"</code></pre>
+</div>
+<div id="default-argument-values" class="section level3 unnumbered">
+<h3>Default argument values<a class="anchor" aria-label="anchor" href="#default-argument-values"><i class="fas fa-link"></i></a>
+</h3>
+<p>It is possible to specify <strong><em>default values</em></strong> for function arguments. This is a value that is attached to a function parameter when the calling code does not provide one. A default value is specified in the parameter list, using this construct: <code>some_arg = &lt;default-value&gt;</code>. Almost all functions in R have (many) parameters with default values.</p>
+<p>You should use default values yourself for function parameters whenever possible. They make using the function so much easier. The following function calculates the exponent (power) of a number. When no <code>power =</code> value is provided, it defaults to two.</p>
+<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_power</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">power</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">x</span> <span class="op">^</span> <span class="va">power</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">my_power</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span><span class="op">)</span> <span class="co">## custom power</span></span></code></pre></div>
+<pre><code>## [1] 1000</code></pre>
+<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">my_power</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="co">## defaults to 2</span></span></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+</div>
+<div id="argument-order-when-calling-a-function" class="section level3 unnumbered">
+<h3>Argument order when calling a function<a class="anchor" aria-label="anchor" href="#argument-order-when-calling-a-function"><i class="fas fa-link"></i></a>
+</h3>
+<p>As we have seen many times before, you do not <em>need</em> to pass arguments by name. In the above example, the names were not used. When you do not use the names of arguments, the order in which you pass them is important; they must match the order in which they are declared in the function. If you use their names, their order is not important:</p>
+<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">my_power</span><span class="op">(</span>power <span class="op">=</span> <span class="fl">4</span>, x <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<p>To summarize: When calling a function,</p>
+<ul>
+<li>the parameters without default value are mandatory</li>
+<li>the unnamed arguments should come first and should be passed in the order in which they are declared</li>
+<li>passing named arguments may be done in any order</li>
+</ul>
+</div>
+<div id="errors-and-warnings" class="section level3" number="7.2.1">
+<h3>
+<span class="header-section-number">7.2.1</span> Errors and warnings<a class="anchor" aria-label="anchor" href="#errors-and-warnings"><i class="fas fa-link"></i></a>
+</h3>
+<p>When someting is not right, but not enought to quit execution, use a warning to let the user (or yourself) know that there is something wrong:</p>
+<p><code>warning("I am not happy")</code></p>
+<p>When something is terribly wrong, and you cannot continue, you should stop execution with an error message:</p>
+<p><code>stop("I can't go on")</code></p>
+<p>Here is a small errors demo:</p>
+<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">demo_inverse</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"non-numeric vector"</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x</span> <span class="op">/</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">result1</span> <span class="op">&lt;-</span> <span class="fu">demo_inverse</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span><span class="op">)</span> <span class="co">#result1 not created!</span></span></code></pre></div>
+<pre><code>## Error in demo_inverse(c("a", "b")): non-numeric vector</code></pre>
+<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">result2</span> <span class="op">&lt;-</span> <span class="fu">demo_inverse</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="scripting" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Scripting<a class="anchor" aria-label="anchor" href="#scripting"><i class="fas fa-link"></i></a>
+</h2>
+<p>An R script is a text file with the extension <code>.R</code> that contains R code. When it is loaded, it is immediately evaluated. <strong><em>Functions are loaded/evaluated, but not executed</em></strong>. Declared variables are stored in main memory - the Global Environment to be precise.</p>
+<p>Here is the contents of a very simple R script called <code>source_demo.R</code></p>
+<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">42</span></span>
+<span><span class="va">x</span> <span class="co"># echo to console</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"x = "</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co">#explicit print</span></span>
+<span></span>
+<span><span class="co"># function defined but not called</span></span>
+<span><span class="va">demo_function</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">message</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"you said"</span>, <span class="va">message</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>You can load this script int your R session by <em>sourcing</em> it; just call <code>source(path/to/source_demo.R)</code>. Alternatively, when you have it open in the RStudio editor, you can click the “source” button at the top right of the editor panel. After that, you can use the functions and variables defined within the script:</p>
+<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"data/source_demo.R"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "x = 42"</code></pre>
+<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span></span></code></pre></div>
+<pre><code>## [1] 42</code></pre>
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">demo_function</span><span class="op">(</span><span class="st">"hi!"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "you said hi!"</code></pre>
+<div id="why-scripts" class="section level4 unnumbered">
+<h4>Why scripts?<a class="anchor" aria-label="anchor" href="#why-scripts"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li>To store pieces of functionality you want to reuse (e.g. in different RMarkdown documents)</li>
+<li>To store entire workflows outside RMarkdown</li>
+<li>To run R code from the commandline (terminal)</li>
+<li>To call from other scripts and build <strong><em>applications</em></strong> or <strong><em>packages</em></strong>
+</li>
+</ul>
+</div>
+<div id="coding_style" class="section level3" number="7.3.1">
+<h3>
+<span class="header-section-number">7.3.1</span> Some coding style rules rules for writing code<a class="anchor" aria-label="anchor" href="#coding_style"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Names of variables start with a lower-case letter</li>
+<li>Words are separated using underscores</li>
+<li>Be descriptive with names</li>
+<li>Function names are verbs</li>
+<li>Write all code and comments in English</li>
+<li>Preferentially use one statement per line</li>
+<li>Use spaces on both sides of ALL operators</li>
+<li>Use a space after a comma</li>
+<li>Indent code blocks -with {}- with 4 or 2 spaces, but be consistent</li>
+</ul>
+<p>Follow Hadleys’ style guide <a href="http://adv-r.had.co.nz/Style.html">http://adv-r.had.co.nz/Style.html</a></p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></div>
+<div class="next"><a href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#flow-control-and-scripting"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li>
+<a class="nav-link" href="#flow-control"><span class="header-section-number">7.1</span> Flow control</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#conditional-execution-with-ifelse"><span class="header-section-number">7.1.1</span> Conditional execution with if/else</a></li>
+<li><a class="nav-link" href="#executing-alternatives-with-lists"><span class="header-section-number">7.1.2</span> Executing alternatives with lists</a></li>
+<li><a class="nav-link" href="#iteration-with-for"><span class="header-section-number">7.1.3</span> Iteration with for(){}</a></li>
+<li><a class="nav-link" href="#conditional-iteration-with-while"><span class="header-section-number">7.1.4</span> Conditional iteration with while(){}</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#creating-functions"><span class="header-section-number">7.2</span> Creating functions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#anatomy-of-a-function">Anatomy of a function</a></li>
+<li><a class="nav-link" href="#a-first-function">A first function</a></li>
+<li><a class="nav-link" href="#default-argument-values">Default argument values</a></li>
+<li><a class="nav-link" href="#argument-order-when-calling-a-function">Argument order when calling a function</a></li>
+<li><a class="nav-link" href="#errors-and-warnings"><span class="header-section-number">7.2.1</span> Errors and warnings</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#scripting"><span class="header-section-number">7.3</span> Scripting</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#coding_style"><span class="header-section-number">7.3.1</span> Some coding style rules rules for writing code</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
