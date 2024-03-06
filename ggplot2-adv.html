@@ -488,14 +488,18 @@ Here are is the minimal theme where the text sizes have been modified somewhat.<
 <span>        axis.line <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"darkblue"</span>, size <span class="op">=</span> <span class="fl">1</span>, linetype <span class="op">=</span> <span class="st">"solid"</span><span class="op">)</span>,</span>
 <span>        panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"lightblue"</span>, size <span class="op">=</span> <span class="fl">0.5</span>, linetype <span class="op">=</span> <span class="st">"solid"</span><span class="op">)</span>,</span>
 <span>        panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+<pre><code>## Warning: The `size` argument of `element_line()` is deprecated as of
+## ggplot2 3.4.0.
 ## ℹ Please use the `linewidth` argument instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
-<pre><code>## Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.</code></pre>
+<pre><code>## Warning: The `size` argument of `element_rect()` is deprecated as of
+## ggplot2 3.4.0.
 ## ℹ Please use the `linewidth` argument instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.</code></pre>
 <pre><code>## `geom_smooth()` using formula = 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/themes2-1.png" width="80%" style="display: block; margin: auto;"></div>
 <p>As you can see, there are <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect()</a></code> functions to specify these types of plot elements. The <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank()</a></code> function can be used in various theme aspects to prevent it from being displayed.</p>
@@ -532,7 +536,8 @@ The panel below demonstrates a few.</p>
 <pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.</code></pre>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/annotation-1.png" width="80%" style="display: block; margin: auto;"></div>
 <p>Note there is a <code>geom_rectangle()</code> as well, but as I have discovered after much sorrow, it behaves quite unexpectedly when using the <code>alpha =</code> argument on its fill color. For annotation purposes you should always use the <code><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate()</a></code> function.</p>
 </div>
@@ -1473,7 +1478,7 @@ Q1-Q3
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

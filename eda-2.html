@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 15 Exploratory Data Analysis II | Data Analysis and Visualization using R</title>
 <meta name="author" content="Michiel Noback">
-<meta name="description" content="15.1 Introduction In this last chapter we’ll step back from the data mangling and have a look at an activity called Exploratory Data Analysis, EDA in short. All theory that is presented in...">
+<meta name="description" content="15.1 Introduction This chapter presents a second example of an Exploratory Data Analysis, (EDA). All theory that is presented in previous chapters will be applied to two datasets In statistics,...">
 <meta name="generator" content="bookdown 0.29 with bs4_book()">
 <meta property="og:title" content="Chapter 15 Exploratory Data Analysis II | Data Analysis and Visualization using R">
 <meta property="og:type" content="book">
-<meta property="og:description" content="15.1 Introduction In this last chapter we’ll step back from the data mangling and have a look at an activity called Exploratory Data Analysis, EDA in short. All theory that is presented in...">
+<meta property="og:description" content="15.1 Introduction This chapter presents a second example of an Exploratory Data Analysis, (EDA). All theory that is presented in previous chapters will be applied to two datasets In statistics,...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 15 Exploratory Data Analysis II | Data Analysis and Visualization using R">
-<meta name="twitter:description" content="15.1 Introduction In this last chapter we’ll step back from the data mangling and have a look at an activity called Exploratory Data Analysis, EDA in short. All theory that is presented in...">
+<meta name="twitter:description" content="15.1 Introduction This chapter presents a second example of an Exploratory Data Analysis, (EDA). All theory that is presented in previous chapters will be applied to two datasets In statistics,...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -79,9 +79,8 @@
 <h2>
 <span class="header-section-number">15.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-3"><i class="fas fa-link"></i></a>
 </h2>
-<p>In this last chapter we’ll step back from the data mangling and have a look at an activity called Exploratory Data Analysis, EDA in short. All theory that is presented in previous chapters will be applied to two datasets</p>
-<p>In statistics, <em>exploratory data analysis (EDA)</em> is an approach to analyzing data sets to summarize their main characteristics, often with visual methods. A statistical model can be used or not, but primarily EDA is for seeing what the data can tell us beyond the formal modeling or hypothesis testing task.
-s. (Wikipedia)</p>
+<p>This chapter presents a second example of an Exploratory Data Analysis, (EDA). All theory that is presented in previous chapters will be applied to two datasets</p>
+<p>In statistics, <em>exploratory data analysis (EDA)</em> is an approach to analyzing data sets to summarize their main characteristics, often with visual methods. A statistical model can be used or not, but primarily EDA is for seeing what the data can tell us beyond the formal modeling or hypothesis testing task. (Wikipedia)</p>
 <div id="the-cervical-cancer-dataset" class="section level4 unnumbered">
 <h4>The Cervical Cancer dataset<a class="anchor" aria-label="anchor" href="#the-cervical-cancer-dataset"><i class="fas fa-link"></i></a>
 </h4>
@@ -720,16 +719,10 @@ Here, the new variable <code>smoking</code> is the result of cutting the <code>s
 <code class="sourceCode R"><span><span class="va">cor_matrix</span> <span class="op">&lt;-</span> <span class="va">cor_matrix</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>target_name <span class="op">=</span> <span class="va">target_names</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <p>A <strong><em>
 map</em></strong> is a nice visualization for this type of data. Of course, ggplot really likes the long format so that needs to be done first with <code><a href="https://tidyr.tidyverse.org/reference/gather.html">gather()</a></code> (try to do this with <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> as an exercise):</p>
-<pre class="{r"><code>map, fig.asp=.9, out.width='70%', fig.align='center', fig.cap="A correlation 
-map of the four explanatory variables"}
-cor_matrix_long &lt;- gather(cor_matrix, key = "method", value = "correlation", target_names)
-ggplot(data = cor_matrix_long, aes(x=target_name, y=method, fill=correlation)) + 
-    geom_tile() + 
-    labs(x=NULL, y=NULL) + 
-    scale_fill_gradient(high = "red", low = "white" )</code></pre>
+<p><code>{r  map, fig.asp=.9, out.width='70%', fig.align='center', fig.cap="A correlation  map of the four explanatory variables"} cor_matrix_long &lt;- gather(cor_matrix, key = "method", value = "correlation", target_names) ggplot(data = cor_matrix_long, aes(x=target_name, y=method, fill=correlation)) +      geom_tile() +      labs(x=NULL, y=NULL) +      scale_fill_gradient(high = "red", low = "white" )</code></p>
 <p>This shows the correlation between the four target variables.</p>
 <p>Another way to explore this is a <strong><em>contingency table</em></strong>.</p>
-<div class="sourceCode" id="cb875"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb874"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## TO BE DONE</span></span></code></pre></div>
 </div>
 <div id="exploring-relationships-between-variables" class="section level3" number="15.2.6">
@@ -741,7 +734,7 @@ ggplot(data = cor_matrix_long, aes(x=target_name, y=method, fill=correlation)) +
 <h4>The scatterplot<a class="anchor" aria-label="anchor" href="#the-scatterplot"><i class="fas fa-link"></i></a>
 </h4>
 <p>A simple scatterplot looking at the relationship between <code>first.sex</code> and <code>num.partners</code>.</p>
-<div class="sourceCode" id="cb876"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb875"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">baseplot_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">clean_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">first.sex</span>, y<span class="op">=</span><span class="va">num.partners</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Age of first sex"</span>, y<span class="op">=</span><span class="st">"Number of sexual partners"</span><span class="op">)</span> </span>
 <span><span class="va">baseplot_sp</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
@@ -755,7 +748,7 @@ Figure 15.3: scatterplot first version
 More importantly, this is not showing the correct picture: there is a limited number of discrete values for each variable. Only around 100 points are visible where {r nrow(data)} are expected, so apparently many points overlap. This can be improved with alpha parameter to <code>geom_point</code>. Another strategy to improve is by using the <code><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter()</a></code> function, and combined with the <code>alpha</code> parameter.
 Omitting outliers could improve the picture, but will of course not show the complete picture anymore.</p>
 <p>Here, I choose the transparency option together with a bit of jitter (but not too much to still show the discreteness of the measurements). I also added a trend line in the form of a smoother. The trend line is an addition that is a great visual help to guide your reader. My question to you is: look at the trend line and decide whether it is showing a false pattern.</p>
-<div class="sourceCode" id="cb877"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb876"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">baseplot_sp</span> <span class="op">+</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>na.rm<span class="op">=</span><span class="cn">T</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, </span>
 <span>                shape<span class="op">=</span><span class="fl">16</span>, size<span class="op">=</span><span class="fl">2</span>, </span>
@@ -770,7 +763,7 @@ Figure 15.4: scatterplot with trendline
 </p>
 </div>
 <p>The trend line shows the high impact of a single outlier! In contrast to common belief about age of first sex and “promiscuity”, no apparent relationship is visible in this dataset when you omit the single outlier:</p>
-<div class="sourceCode" id="cb879"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb878"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clean_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">num.partners</span> <span class="op">&lt;</span> <span class="fl">25</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">first.sex</span>, y<span class="op">=</span><span class="va">num.partners</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Age of first sex"</span>, y<span class="op">=</span><span class="st">"Number of sexual partners"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -791,11 +784,11 @@ Figure 15.5: scatterplot with trendline
 <h4>Binning<a class="anchor" aria-label="anchor" href="#binning"><i class="fas fa-link"></i></a>
 </h4>
 <p>A method not discussed before is <strong><em>binning</em></strong>, With binning, you cluster the individual data points into “buckets”. The amount of cases in a bucket is then displayed using a color gradient.</p>
-<div class="sourceCode" id="cb881"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb880"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">baseplot_sp</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bin_2d.html">geom_bin2d</a></span><span class="op">(</span>na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/unnamed-chunk-41-1.png" width="624"></div>
 <p>Here is a variation of binning - the hexagonal bin (requires package <code>hexbin</code>):</p>
-<div class="sourceCode" id="cb882"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb881"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edzer/hexbin">hexbin</a></span><span class="op">)</span></span>
 <span><span class="va">baseplot_sp</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_hex.html">geom_hex</a></span><span class="op">(</span>na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
@@ -806,7 +799,7 @@ Figure 15.5: scatterplot with trendline
 <span class="header-section-number">15.2.7</span> Look for patterns with the dependent variable<a class="anchor" aria-label="anchor" href="#look-for-patterns-with-the-dependent-variable"><i class="fas fa-link"></i></a>
 </h3>
 <p>Why would you do that? The dependent variable is the thing you are interested in! Therefore it is a good idea to investigate variables in relation with the dependent variable.</p>
-<div class="sourceCode" id="cb883"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb882"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clean_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">num.partners</span> <span class="op">&lt;</span> <span class="fl">25</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">first.sex</span>, y<span class="op">=</span><span class="va">num.preg</span>, color<span class="op">=</span><span class="va">target.biopsy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Age of first sex"</span>, y<span class="op">=</span><span class="st">"Number of pregnancies"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -818,11 +811,12 @@ Figure 15.5: scatterplot with trendline
 <pre><code>## `geom_smooth()` using formula = 'y ~ x'</code></pre>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/unnamed-chunk-43-1.png" width="624"></div>
 <p>Again, the heatmap comes in handy. Start with creating the matrix.</p>
-<div class="sourceCode" id="cb885"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb884"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">selection</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"num.partners"</span>, <span class="st">"first.sex"</span>, <span class="st">"num.preg"</span>, <span class="st">"horm.contracept.years"</span>, <span class="st">"IUD.years"</span>, <span class="st">"STDs.number"</span>, <span class="st">"target.biopsy"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="va">clean_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">selection</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## Warning: Using an external vector in selections was deprecated in tidyselect 1.1.0.
+<pre><code>## Warning: Using an external vector in selections was deprecated in
+## tidyselect 1.1.0.
 ## ℹ Please use `all_of()` or `any_of()` instead.
 ##   # Was:
 ##   data %&gt;% select(selection)
@@ -830,10 +824,12 @@ Figure 15.5: scatterplot with trendline
 ##   # Now:
 ##   data %&gt;% select(all_of(selection))
 ## 
-## See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
+## See
+## &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
-<div class="sourceCode" id="cb887"><pre class="downlit sourceCode r">
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.</code></pre>
+<div class="sourceCode" id="cb886"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cor_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span>
 <span><span class="co">#cor_matrix</span></span>
 <span></span>
@@ -852,7 +848,7 @@ Figure 15.5: scatterplot with trendline
 ## 7 target.biopsy      -0.00266   0.0296   0.0452                0.0799    0.0422 
 ## # ℹ 2 more variables: STDs.number &lt;dbl&gt;, target.biopsy &lt;dbl&gt;</code></pre>
 <p>And then create the plot. Here I used <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> instead of <code><a href="https://tidyr.tidyverse.org/reference/gather.html">gather()</a></code> to obtain the longer format required for ggplot2.</p>
-<div class="sourceCode" id="cb889"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb888"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cor_matrix_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">cor_matrix</span>, cols <span class="op">=</span> <span class="va">selection</span>, names_to <span class="op">=</span> <span class="st">"variable"</span>, values_to <span class="op">=</span> <span class="st">"cor"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">cor_matrix_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">var1</span>, y<span class="op">=</span><span class="va">variable</span>, fill<span class="op">=</span><span class="va">cor</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -872,7 +868,7 @@ Figure 15.6: A heatmap pairwise correlation of selected numeric variables
 <span class="header-section-number">15.3</span> Density plots show class distinction<a class="anchor" aria-label="anchor" href="#density-plots-show-class-distinction"><i class="fas fa-link"></i></a>
 </h2>
 <p>A density plot, split over the categories of your target variable, will often quickly reveal whether there is promise in a variable. I’ll demonstrate with the <code>iris</code> dataset since the cervical cancer dataset is not so nice in that respect.</p>
-<div class="sourceCode" id="cb890"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb889"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">iris</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Petal.Length</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color<span class="op">=</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure">
 <img src="DAVuR_files/figure-html/unnamed-chunk-45-1.png" width="624">
@@ -882,7 +878,7 @@ In this plot, you can see that Setosa separates quite nicely, by the other two d
 <span class="header-section-number">15.3.1</span> The ‘xor’ problem<a class="anchor" aria-label="anchor" href="#the-xor-problem"><i class="fas fa-link"></i></a>
 </h3>
 <p>The density approach is not flawless! Consider this:</p>
-<div class="sourceCode" id="cb891"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb890"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">var_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">300</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">300</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">var_y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">150</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">150</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">150</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">150</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">label</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"sick"</span>, <span class="fl">150</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"healthy"</span>, <span class="fl">150</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
@@ -891,12 +887,12 @@ In this plot, you can see that Setosa separates quite nicely, by the other two d
 <div class="inline-figure"><img src="DAVuR_files/figure-html/unnamed-chunk-46-1.png" width="624"></div>
 <p>This looks like there is little to win, doesn’t it?<br>
 Here’s another view of the same data!</p>
-<div class="sourceCode" id="cb892"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb891"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">dosage</span>, y<span class="op">=</span><span class="va">response</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure">
 <img src="DAVuR_files/figure-html/unnamed-chunk-47-1.png" width="624">
 Still not interesting! Give it one more shot:</div>
-<div class="sourceCode" id="cb893"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb892"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">dosage</span>, y<span class="op">=</span><span class="va">response</span>, color<span class="op">=</span><span class="va">patient_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/unnamed-chunk-48-1.png" width="624"></div>
 <p>This is called the <strong><em>XOR</em></strong> problem because the cases follow an “Exclusive Or” rule.</p>
@@ -909,7 +905,7 @@ Still not interesting! Give it one more shot:</div>
 <h4>PCA<a class="anchor" aria-label="anchor" href="#pca"><i class="fas fa-link"></i></a>
 </h4>
 <p>First PCA will be shown with the iris dataset and then with the cervical cancer dataset.</p>
-<div class="sourceCode" id="cb894"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb893"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ir.pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>, <span class="op">-</span><span class="fl">5</span><span class="op">]</span>,</span>
 <span>                 center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                 scale. <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -925,11 +921,11 @@ Still not interesting! Give it one more shot:</div>
 ## Petal.Width   0.524 -0.066990  0.0595  0.634 -0.5608
 ## mean_ratios  -0.411 -0.000233  0.8858  0.208 -0.0551</code></pre>
 <p>The plot method returns a plot of the variances (y-axis) associated with the PCs (x-axis).</p>
-<div class="sourceCode" id="cb896"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb895"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ir.pca</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/pc-plot-1.png" width="672"></div>
 <p>The summary method describe the importance of the PCs.</p>
-<div class="sourceCode" id="cb897"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb896"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ir.pca</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Importance of components:
 ##                          PC1   PC2   PC3    PC4     PC5
@@ -937,7 +933,7 @@ Still not interesting! Give it one more shot:</div>
 ## Proportion of Variance 0.681 0.183 0.107 0.0251 0.00384
 ## Cumulative Proportion  0.681 0.864 0.971 0.9962 1.00000</code></pre>
 <p>The PC plot</p>
-<div class="sourceCode" id="cb899"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb898"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#library(devtools)</span></span>
 <span><span class="co">#install_github("vqv/ggbiplot")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/vqv/ggbiplot">ggbiplot</a></span><span class="op">)</span></span>
@@ -948,7 +944,7 @@ Still not interesting! Give it one more shot:</div>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.direction <span class="op">=</span> <span class="st">'horizontal'</span>, legend.position <span class="op">=</span> <span class="st">'top'</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/ggbiplot-1.png" width="672"></div>
 <p>Now the same procedure for the cervical cancer dataset, with a selection of numerical variables.</p>
-<div class="sourceCode" id="cb900"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb899"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">selection</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"num.partners"</span>, <span class="st">"first.sex"</span>, <span class="st">"num.preg"</span>, <span class="st">"horm.contracept.years"</span>, <span class="st">"IUD.years"</span>, <span class="st">"STDs.number"</span>, <span class="st">"target.biopsy"</span><span class="op">)</span></span>
 <span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="va">clean_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">selection</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">tmp</span></span></code></pre></div>
@@ -963,7 +959,7 @@ Still not interesting! Give it one more shot:</div>
 ## 6            3        17        6                     0         7           0
 ## # ℹ 670 more rows
 ## # ℹ 1 more variable: target.biopsy &lt;lgl&gt;</code></pre>
-<div class="sourceCode" id="cb902"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb901"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cc.pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">[</span>, <span class="op">-</span><span class="fl">7</span><span class="op">]</span>,</span>
 <span>                 center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                 scale. <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -980,11 +976,11 @@ Still not interesting! Give it one more shot:</div>
 ## IUD.years             -0.3457 -0.104 -0.8319 -0.0899 -0.0903 -0.40168
 ## STDs.number           -0.0113  0.266 -0.1506  0.9336  0.1875  0.00171</code></pre>
 <p>The plot method returns a plot of the variances (y-axis) associated with the PCs (x-axis).</p>
-<div class="sourceCode" id="cb904"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb903"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cc.pca</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/unnamed-chunk-50-1.png" width="672"></div>
 <p>The summary method describe the importance of the PCs.</p>
-<div class="sourceCode" id="cb905"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb904"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cc.pca</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Importance of components:
 ##                          PC1   PC2   PC3   PC4   PC5   PC6
@@ -992,7 +988,7 @@ Still not interesting! Give it one more shot:</div>
 ## Proportion of Variance 0.221 0.185 0.168 0.166 0.140 0.120
 ## Cumulative Proportion  0.221 0.405 0.574 0.740 0.880 1.000</code></pre>
 <p>PC plot</p>
-<div class="sourceCode" id="cb907"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb906"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ggbiplot/man/ggbiplot.html">ggbiplot</a></span><span class="op">(</span><span class="va">cc.pca</span>, obs.scale <span class="op">=</span> <span class="fl">1</span>, var.scale <span class="op">=</span> <span class="fl">1</span>, </span>
 <span>              groups <span class="op">=</span> <span class="va">tmp</span><span class="op">$</span><span class="va">target.biopsy</span>, ellipse <span class="op">=</span> <span class="cn">FALSE</span>, </span>
 <span>              circle <span class="op">=</span> <span class="cn">TRUE</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -1026,7 +1022,7 @@ Figure 15.7: A PCA plot of the numerical variables
 <span class="header-section-number">15.3.2.2</span> k-Means clustering<a class="anchor" aria-label="anchor" href="#k-means-clustering"><i class="fas fa-link"></i></a>
 </h4>
 <p>k-means is very sensitive to the scale of your data so you’ll need to normalize it.</p>
-<div class="sourceCode" id="cb908"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb907"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#km_clusters &lt;- kmeans()</span></span></code></pre></div>
 </div>
 <div id="hierarchical-clustering" class="section level4" number="15.3.2.3">
@@ -1081,7 +1077,7 @@ Figure 15.7: A PCA plot of the numerical variables
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

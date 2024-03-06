@@ -283,13 +283,13 @@ In R you usually assign a value to a variable using “<code>&lt;-</code>”, so
 </h4>
 <p>You will see shortly that there are many ways to create vectors: a custom collection, a series, a repetition of a smaller set, a random sample from a distribution, etc. etc.</p>
 <p>The simplest way to create a vector is the first: create a vector from a custom set of elements, using the “Concatenate” function <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>. The <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function simply takes all its arguments and puts them behind each other, in the order in which they were passed to it, and returns the resulting vector.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basic-r.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basic-r.html#cb15-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 2 4 3</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basic-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="fu">c</span>(<span class="st">"c"</span>, <span class="st">"d"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basic-r.html#cb17-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="fu">c</span>(<span class="st">"c"</span>, <span class="st">"d"</span>))</span></code></pre></div>
 <pre><code>## [1] "a" "b" "c" "d"</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basic-r.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.01</span>, <span class="fl">0.001</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basic-r.html#cb19-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.01</span>, <span class="fl">0.001</span>)</span></code></pre></div>
 <pre><code>## [1] 0.100 0.010 0.001</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="basic-r.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(T, F, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="co"># There are two way to write logical values</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="basic-r.html#cb21-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(T, F, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="co"># There are two way to write logical values</span></span></code></pre></div>
 <pre><code>## [1]  TRUE FALSE  TRUE FALSE</code></pre>
 </div>
 <div id="vectors-can-hold-only-one-data-type" class="section level4 unnumbered">
@@ -300,20 +300,20 @@ In R you usually assign a value to a variable using “<code>&lt;-</code>”, so
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="st">"a"</span><span class="op">)</span> </span></code></pre></div>
 <pre><code>## [1] "2" "4" "a"</code></pre>
 <p>Here are some more coercion examples.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basic-r.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">TRUE</span>) <span class="co"># To numeric</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basic-r.html#cb25-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">TRUE</span>) <span class="co"># To numeric</span></span></code></pre></div>
 <pre><code>## [1] 1 2 1</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="basic-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="st">"TRUE"</span>) <span class="co"># To character</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="basic-r.html#cb27-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="st">"TRUE"</span>) <span class="co"># To character</span></span></code></pre></div>
 <pre><code>## [1] "TRUE"  "FALSE" "TRUE"</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="basic-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="fl">1.3</span>, <span class="cn">TRUE</span>, <span class="st">"1"</span>) <span class="co"># To character</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="basic-r.html#cb29-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">c</span>(<span class="fl">1.3</span>, <span class="cn">TRUE</span>, <span class="st">"1"</span>) <span class="co"># To character</span></span></code></pre></div>
 <pre><code>## [1] "1.3"  "TRUE" "1"</code></pre>
 <p>Using the function <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>, you can get the data type of any value or variable.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-r.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="st">"a"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-r.html#cb31-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="st">"a"</span>))</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="basic-r.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="basic-r.html#cb33-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] "integer"</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="basic-r.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="fl">0.3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="basic-r.html#cb35-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="fl">0.3</span>))</span></code></pre></div>
 <pre><code>## [1] "numeric"</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basic-r.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basic-r.html#cb37-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## [1] "numeric"</code></pre>
 </div>
 <div id="vector-arithmetic" class="section level4 unnumbered">
@@ -651,13 +651,13 @@ Here, the last two elements are (supposed to be selected).</p>
 <h4>Method 5: The <code>seq()</code> function<a class="anchor" aria-label="anchor" href="#method-5-the-seq-function"><i class="fas fa-link"></i></a>
 </h4>
 <p>The <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> function is used to create a numeric vector in which the subsequent element show sequential increment or decrement. You specify a range and a step which may be neative if the range end (<code>to =</code>) is lower than the range start (<code>from =</code>).</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="basic-r.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">3</span>, <span class="at">by =</span> .<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="basic-r.html#cb101-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">3</span>, <span class="at">by =</span> .<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##  [1] 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="basic-r.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">0.2</span>) <span class="co"># same</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="basic-r.html#cb103-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">0.2</span>) <span class="co"># same</span></span></code></pre></div>
 <pre><code>## [1] 1.0 1.2 1.4 1.6 1.8 2.0</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="basic-r.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="basic-r.html#cb105-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 1.00 0.75 0.50 0.25 0.00</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="basic-r.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="at">by =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="basic-r.html#cb107-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="at">by =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 3 2 1 0</code></pre>
 </div>
 <div id="method-6-through-vector-operations" class="section level4 unnumbered">
@@ -800,7 +800,7 @@ Figure 3.1: Here is a nice figure!
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">persons</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## persons
 ## female   male 
-##     52     48</code></pre>
+##     53     47</code></pre>
 <div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">persons</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/barplot-2-1.png" width="80%" style="display: block; margin: auto;"></div>
@@ -1030,7 +1030,7 @@ Use the function <code><a href="https://rdrr.io/r/graphics/abline.html">abline()
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

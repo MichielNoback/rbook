@@ -240,21 +240,21 @@ Figure 5.5: Ozone level dependency on Temperature. Grey area: Loess smoother wit
 </tbody>
 </table></div>
 <p>First, there is the <strong><em>data</em></strong> layer - the input data that you want to visualize:</p>
-<div class="figure">
-<img src="graphics/data_layer_50p.png#center" alt=""><p class="caption">The data layer</p>
+<div class="float">
+<img src="figures/data_layer_50p.png" alt="The data layer"><div class="figcaption">The data layer</div>
 </div>
 <p>Next, using the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> function, the data is <strong><em>mapped</em></strong> to a coordinate system. This encompasses not only the xy-coordinates but also possible extra plot dimensions such as color and shape.</p>
-<div class="figure">
-<img src="graphics/data_aes_layers_50p.png#center" alt=""><p class="caption">The data and aesthetic layers</p>
+<div class="float">
+<img src="figures/data_aes_layers_50p.png" alt="The data and aesthetic layers"><div class="figcaption">The data and aesthetic layers</div>
 </div>
 <p>As a third step, the data is <strong><em>visually represented</em></strong> in some way, using a <strong><em>geometry</em></strong> (dealt with by one of the many <code>geom_....()</code> functions). Examples of geometries are <strong><em>point</em></strong> for scatterplots, <strong><em>boxplot</em></strong>, <strong><em>line</em></strong> etc.</p>
-<div class="figure">
-<img src="graphics/data_aes_geom_layers_50p.png#center" alt=""><p class="caption">The data, aesthetic and geometry layers</p>
+<div class="float">
+<img src="figures/data_aes_geom_layers_50p.png" alt="The data, aesthetic and geometry layers"><div class="figcaption">The data, aesthetic and geometry layers</div>
 </div>
 <p>At a minimum, these three layers are used in every plot you create.</p>
 <p>Besides these fundamental aspects there are other elements you may wish to add or modify: axis labels, legend, titles, etc. These constitute additional, optional layers:</p>
-<div class="figure">
-<img src="graphics/all_layers_50p.png#center" alt=""><p class="caption">All layers</p>
+<div class="float">
+<img src="figures/all_layers_50p.png" alt="All layers"><div class="figcaption">All layers</div>
 </div>
 <p>Except for Statistics and Coordinates, each of these layers will be discussed in detail in subsequent paragraphs.</p>
 </div>
@@ -268,7 +268,7 @@ Figure 5.5: Ozone level dependency on Temperature. Grey area: Loess smoother wit
 <li>Each observation has its own row.</li>
 <li>Each value has its own cell.</li>
 </ol>
-<p>Want to know more about tidy data? Read the paper by Hadley Wickham: <span class="citation">(<a href="#ref-tidy-data" role="doc-biblioref"><strong>tidy-data?</strong></a>)</span>.</p>
+<p>Want to know more about tidy data? Read the paper by Hadley Wickham: <span class="citation">(<a href="#ref-tidy-data"><strong>tidy-data?</strong></a>)</span>.</p>
 <p>Here is an example dataset that requires some mangling, or <strong><em>tidying</em></strong>, to adhere to these rules.</p>
 <pre><code>##    patient sex dose10mg dose100mg
 ## 1      001   f       12        88
@@ -642,7 +642,8 @@ In this second example, the data points are omitted altogether, making the plot 
 <pre><code>## Warning: `stat(count / max(count))` was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `after_stat(count / max(count))` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.</code></pre>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/histogram2-1.png" width="60%" style="display: block; margin: auto;"></div>
 <p>Alternatively, if you want percentages, you can use <code>y = stat(count / sum(count) * 100)</code>.</p>
 <div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
@@ -814,7 +815,7 @@ Here is a small overview of some of them.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

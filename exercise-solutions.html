@@ -111,7 +111,7 @@
 <h3>
 <span class="header-section-number">17.3.1</span> Math in the console<a class="anchor" aria-label="anchor" href="#math-in-the-console-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb953"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">31</span> <span class="op">+</span> <span class="fl">11</span></span>
 <span><span class="fl">66</span> <span class="op">-</span> <span class="fl">24</span></span>
 <span><span class="fl">126</span> <span class="op">/</span> <span class="fl">3</span></span>
@@ -131,55 +131,55 @@
 </h3>
 <p><strong>A</strong><br>
 Answer: <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> and <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>. The difference lies in the <em>separator</em>, which is an empty string in <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code> and one space in <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>. Moreover, the separator can be configured in <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> using the <code>sep =</code> parameter.</p>
-<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb955"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"welcome "</span>, <span class="st">"to "</span>, <span class="st">"R"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"welcome "</span>, <span class="st">"to "</span>, <span class="st">"R"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong><br>
 Answer: <code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code> returns the <em>absolute</em> value. Simply put, a number with the minus sign removed if present.</p>
-<div class="sourceCode" id="cb957"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb959"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 <p><strong>C</strong><br>
 Answer: it combines (<strong>c</strong>oncatenates) its arguments into a single vector. The first example creates a “character” (text data) and the second a “numeric” (numeric data).</p>
-<div class="sourceCode" id="cb961"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb960"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="st">"a"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "1" "2" "a"</code></pre>
-<div class="sourceCode" id="cb963"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb962"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="st">"a"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
-<div class="sourceCode" id="cb965"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb964"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1 2 3</code></pre>
-<div class="sourceCode" id="cb967"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb966"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "numeric"</code></pre>
 <p><strong>D</strong></p>
-<div class="sourceCode" id="cb969"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb968"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#install it. Note the quotes</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"RColorBrewer"</span><span class="op">)</span></span>
 <span><span class="co">#load it into your session. Note the absence of quotes</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span></code></pre></div>
 <p><strong>E</strong></p>
-<div class="sourceCode" id="cb970"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb969"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">numberz</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">trunc</a></span><span class="op">(</span><span class="va">numberz</span><span class="op">)</span> <span class="co"># or signif(numberz, 3)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">numberz</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="va">numberz</span><span class="op">)</span></span></code></pre></div>
 <p><strong>F</strong></p>
-<div class="sourceCode" id="cb971"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb970"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">names</span>, <span class="st">" "</span><span class="op">)</span></span></code></pre></div>
 <p><strong>G</strong></p>
-<div class="sourceCode" id="cb972"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb971"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">birds</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="variables-2" class="section level3" number="17.3.3">
 <h3>
 <span class="header-section-number">17.3.3</span> Variables<a class="anchor" aria-label="anchor" href="#variables-2"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb973"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb972"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">20</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
 <span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
@@ -202,19 +202,19 @@ Answer: it combines (<strong>c</strong>oncatenates) its arguments into a single 
 </h4>
 <p>The circumference of a circle is <span class="math inline">\(2\pi\cdot r\)</span>, its surface <span class="math inline">\(4\pi \cdot r^2\)</span> and its volume <span class="math inline">\(4/3 \pi\cdot r^3\)</span>.
 Given this vector of circle radiuses,</p>
-<div class="sourceCode" id="cb974"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb973"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">radiuses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="va">pi</span>, <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <p><strong>A</strong><br>
 Calculate their cirumference.</p>
-<div class="sourceCode" id="cb975"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb974"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">radiuses</span></span></code></pre></div>
 <p><strong>B</strong><br>
 Calculate their surface.</p>
-<div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb975"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">4</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">radiuses</span><span class="op">^</span><span class="fl">2</span></span></code></pre></div>
 <p><strong>C</strong><br>
 Calculate their volume.</p>
-<div class="sourceCode" id="cb977"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">4</span><span class="op">/</span><span class="fl">3</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">radiuses</span><span class="op">^</span><span class="fl">3</span></span></code></pre></div>
 </div>
 <div id="creating-vectors-2" class="section level4 unnumbered">
@@ -222,25 +222,25 @@ Calculate their volume.</p>
 </h4>
 <p>Create the following vectors, as efficiently as possible. The functions <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code>, <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> and <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code> and the colon operator <code>:</code> can be used, in any combination.</p>
 <p><strong>A</strong><br><code>[1] 1 2 5 1 2 5</code></p>
-<div class="sourceCode" id="cb978"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb977"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong><br><code>[1] 9 9 9 8 8 8 7 7 7 6 6 6 5 5 5</code></p>
-<div class="sourceCode" id="cb979"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb978"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">9</span><span class="op">:</span><span class="fl">5</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C</strong><br><code>[1] 1 1 1 4 4 4 9 9 9 1 1 1 4 4 4 9 9 9</code></p>
-<div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb979"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">9</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">2</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p><strong>D</strong><br><code>[1] "1a" "2b" "3c" "4d" "5e" "1a" "2b" "3c" "4d" "5e"</code></p>
-<div class="sourceCode" id="cb981"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><strong>E</strong><br><code>[1] "0z"   "0.2y" "0.4x" "0.6w" "0.8v" "1u"</code></p>
-<div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb981"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">1</span>, length.out <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>, <span class="va">letters</span><span class="op">[</span><span class="fl">26</span><span class="op">:</span><span class="fl">21</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p><strong>F</strong><br><code>[1] "505" "404" "303" "202" "101" "000"</code></p>
-<div class="sourceCode" id="cb983"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <p><strong>G [Challenge]</strong><br><code>[1] "0.5A5.0" "0.4B4.0" "0.3C3.0" "0.2D2.0" "0.1E1.0"</code></p>
-<div class="sourceCode" id="cb984"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb983"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0.5</span>, to <span class="op">=</span> <span class="fl">0.1</span>, by <span class="op">=</span> <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>,  <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">1</span>, <span class="st">".0"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -254,14 +254,14 @@ Calculate their volume.</p>
 <span class="header-section-number">17.4.1</span> Creating factors<a class="anchor" aria-label="anchor" href="#creating-factors-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb985"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb984"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animal_risk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">animal_risk_factor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">animal_risk</span>,</span>
 <span>                             levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
 <span>                             labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"harmless"</span>, <span class="st">"risky"</span>, <span class="st">"dangerous"</span>, <span class="st">"deadly"</span><span class="op">)</span>,</span>
 <span>                             ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb986"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb985"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="va">wealth_male</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, </span>
 <span>                 size <span class="op">=</span> <span class="fl">1000</span>,</span>
@@ -297,18 +297,18 @@ Calculate their volume.</p>
 <span class="header-section-number">17.4.2</span> List actions<a class="anchor" aria-label="anchor" href="#list-actions-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb988"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb987"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">house_admin</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code></pre></div>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb989"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb988"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">house_admin</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
 <span><span class="co">#OR</span></span>
 <span><span class="va">house_admin</span><span class="op">$</span><span class="va">Rose</span></span></code></pre></div>
 <p><strong>C</strong></p>
-<div class="sourceCode" id="cb990"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb989"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">house_admin</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></code></pre></div>
 <p><strong>D</strong></p>
-<div class="sourceCode" id="cb991"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb990"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">house_admin</span><span class="op">$</span><span class="va">Mike</span><span class="op">$</span><span class="va">cooking</span></span>
 <span><span class="co">#OR</span></span>
 <span><span class="va">house_admin</span><span class="op">$</span><span class="va">Mike</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
@@ -316,7 +316,7 @@ Calculate their volume.</p>
 <span><span class="va">house_admin</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="st">"cooking"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#MORE POSSIBILITIES</span></span></code></pre></div>
 <p><strong>E</strong></p>
-<div class="sourceCode" id="cb992"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb991"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">house_admin</span><span class="op">$</span><span class="va">John</span><span class="op">$</span><span class="va">tasks</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
 <span><span class="co">#MANY MORE POSSIBILITIES</span></span></code></pre></div>
 </div>
@@ -325,7 +325,7 @@ Calculate their volume.</p>
 <span class="header-section-number">17.4.3</span> Named vectors<a class="anchor" aria-label="anchor" href="#named-vectors-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb993"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb992"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">codons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"G"</span>, <span class="st">"P"</span>, <span class="st">"K"</span>, <span class="st">"S"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">codons</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GGA"</span>, <span class="st">"CCU"</span>, <span class="st">"AAA"</span>, <span class="st">"AGU"</span><span class="op">)</span></span>
 <span></span>
@@ -338,7 +338,7 @@ Calculate their volume.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">my_prot</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "GPKS"</code></pre>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb995"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb994"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nuc_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">491.2</span>, <span class="fl">467.2</span>, <span class="fl">507.2</span>, <span class="fl">482.2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">nuc_weights</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'C'</span>, <span class="st">'G'</span>, <span class="st">'U'</span><span class="op">)</span></span>
 <span></span>
@@ -354,34 +354,34 @@ Calculate their volume.</p>
 <h3>
 <span class="header-section-number">17.4.4</span> Lowry<a class="anchor" aria-label="anchor" href="#lowry-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb995"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bsa_conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">0</span>,  <span class="fl">0.025</span>,  <span class="fl">0.025</span>,  <span class="fl">0.075</span>,  <span class="fl">0.075</span>,  <span class="fl">0.125</span>,  <span class="fl">0.125</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb997"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">OD750</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.063</span>,   <span class="fl">0.033</span>,  <span class="fl">0.16</span>,   <span class="fl">0.181</span>,  <span class="fl">0.346</span>,  <span class="fl">0.352</span>,  <span class="fl">0.491</span>,  <span class="fl">0.488</span><span class="op">)</span></span></code></pre></div>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb998"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb997"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dilution</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">bsa_conc</span>, <span class="va">OD750</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb999"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb998"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dilution</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"prot_conc"</span>, <span class="st">"absorption"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C</strong></p>
-<div class="sourceCode" id="cb1000"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb999"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bsa_conc2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.175</span>,   <span class="fl">0.175</span>,  <span class="fl">0.25</span>,   <span class="fl">0.25</span><span class="op">)</span></span>
 <span><span class="va">OD750_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.597</span>, <span class="fl">0.595</span>,  <span class="fl">0.743</span>,  <span class="fl">0.742</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1001"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1000"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"prot_conc"</span> <span class="op">=</span> <span class="va">bsa_conc2</span>,</span>
 <span>                      <span class="st">"absorption"</span> <span class="op">=</span> <span class="va">OD750_2</span><span class="op">)</span></span></code></pre></div>
 <p><strong>D</strong></p>
-<div class="sourceCode" id="cb1002"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1001"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dilution</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">dilution</span>, <span class="va">df_temp</span><span class="op">)</span></span></code></pre></div>
 <p><strong>E</strong></p>
-<div class="sourceCode" id="cb1003"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1002"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">even</span> <span class="op">&lt;-</span> <span class="va">dilution</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">T</span>, <span class="cn">F</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="va">odd</span> <span class="op">&lt;-</span> <span class="va">dilution</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">F</span>, <span class="cn">T</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="va">dilution_duplo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">odd</span>, <span class="va">even</span><span class="op">)</span></span>
 <span><span class="va">dilution_duplo</span></span></code></pre></div>
 <p><strong>F</strong></p>
-<div class="sourceCode" id="cb1004"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1003"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dilution_duplo</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dilution_duplo</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"prot_conc"</span>, <span class="st">"abs1"</span>, <span class="st">"abs2"</span><span class="op">)</span></span>
 <span><span class="va">dilution_duplo</span></span></code></pre></div>
@@ -393,13 +393,13 @@ Calculate their volume.</p>
 <span class="header-section-number">17.4.5</span> Island surfaces<a class="anchor" aria-label="anchor" href="#island-surfaces-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb1005"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1004"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">islands_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Island <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">islands</span><span class="op">)</span>,</span>
 <span>                        Area <span class="op">=</span> <span class="va">islands</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">islands_df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span><span class="va">islands_df</span></span></code></pre></div>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb1006"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1005"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">islands_df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">islands_df</span><span class="op">$</span><span class="va">Area</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, <span class="op">]</span></span>
 <span><span class="co">#OR</span></span>
 <span><span class="va">islands_df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">islands_df</span><span class="op">$</span><span class="va">Area</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, <span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="op">]</span></span></code></pre></div>
@@ -415,13 +415,13 @@ UrbanPop Percent urban population
 Rape arrests (per 100,000)</code></pre>
 <p>We’ll explore this dataset for a few questions.</p>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb1008"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1007"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">USArrests</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span> <span class="op">==</span> <span class="st">"Montana"</span>, <span class="op">]</span></span></code></pre></div>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb1009"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1008"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">USArrests</span><span class="op">[</span><span class="va">USArrests</span><span class="op">$</span><span class="va">Rape</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">$</span><span class="va">Rape</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 <p><strong>C</strong></p>
-<div class="sourceCode" id="cb1010"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1009"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">USArrests</span><span class="op">[</span><span class="va">USArrests</span><span class="op">$</span><span class="va">Assault</span> <span class="op">&lt;</span> <span class="va">USArrests</span><span class="op">$</span><span class="va">Murder</span> <span class="op">*</span> <span class="fl">10</span>, <span class="op">]</span></span></code></pre></div>
 </div>
 <div id="file-reading-practice-1" class="section level3" number="17.4.7">
@@ -429,7 +429,7 @@ Rape arrests (per 100,000)</code></pre>
 <span class="header-section-number">17.4.7</span> File reading practice<a class="anchor" aria-label="anchor" href="#file-reading-practice-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>File 01</strong></p>
-<div class="sourceCode" id="cb1011"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1010"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_dir</span> <span class="op">&lt;-</span> <span class="st">"data/file_reading"</span></span>
 <span><span class="va">my_file</span> <span class="op">&lt;-</span> <span class="st">"file01.txt"</span></span>
 <span><span class="va">my_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_dir</span>, <span class="st">"/"</span>, <span class="va">my_file</span><span class="op">)</span></span>
@@ -442,7 +442,7 @@ Rape arrests (per 100,000)</code></pre>
 <span>    na.strings <span class="op">=</span> <span class="st">"ND"</span>,</span>
 <span>    as.is <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>File 02</strong></p>
-<div class="sourceCode" id="cb1012"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1011"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_file</span> <span class="op">&lt;-</span> <span class="st">"file02.txt"</span></span>
 <span><span class="va">my_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_dir</span>, <span class="st">"/"</span>, <span class="va">my_file</span><span class="op">)</span></span>
 <span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span></span>
@@ -455,7 +455,7 @@ Rape arrests (per 100,000)</code></pre>
 <span>    as.is <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><strong>File 03</strong></p>
-<div class="sourceCode" id="cb1013"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1012"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_file</span> <span class="op">&lt;-</span> <span class="st">"file03.txt"</span></span>
 <span><span class="va">my_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_dir</span>, <span class="st">"/"</span>, <span class="va">my_file</span><span class="op">)</span></span>
 <span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span></span>
@@ -467,7 +467,7 @@ Rape arrests (per 100,000)</code></pre>
 <span>    as.is <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><strong>File 04</strong></p>
-<div class="sourceCode" id="cb1014"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1013"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_file</span> <span class="op">&lt;-</span> <span class="st">"file04.txt"</span></span>
 <span><span class="va">my_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_dir</span>, <span class="st">"/"</span>, <span class="va">my_file</span><span class="op">)</span></span>
 <span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span></span>
@@ -479,7 +479,7 @@ Rape arrests (per 100,000)</code></pre>
 <span>    as.is <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><strong>File 05</strong></p>
-<div class="sourceCode" id="cb1015"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1014"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_file</span> <span class="op">&lt;-</span> <span class="st">"file05.txt"</span></span>
 <span><span class="va">my_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_dir</span>, <span class="st">"/"</span>, <span class="va">my_file</span><span class="op">)</span></span>
 <span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span></span>
@@ -492,7 +492,7 @@ Rape arrests (per 100,000)</code></pre>
 <span>    as.is <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><strong>File 06</strong></p>
-<div class="sourceCode" id="cb1016"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1015"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_file</span> <span class="op">&lt;-</span> <span class="st">"file06.txt"</span></span>
 <span><span class="va">my_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_dir</span>, <span class="st">"/"</span>, <span class="va">my_file</span><span class="op">)</span></span>
 <span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span></span>
@@ -505,7 +505,7 @@ Rape arrests (per 100,000)</code></pre>
 <span>    as.is <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">my_data</span></span></code></pre></div>
 <p><strong>File 07</strong></p>
-<div class="sourceCode" id="cb1017"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1016"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_file</span> <span class="op">&lt;-</span> <span class="st">"file07.txt"</span></span>
 <span><span class="va">my_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_dir</span>, <span class="st">"/"</span>, <span class="va">my_file</span><span class="op">)</span></span>
 <span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span></span>
@@ -517,7 +517,7 @@ Rape arrests (per 100,000)</code></pre>
 <span>    na.strings <span class="op">=</span> <span class="st">"-"</span>,</span>
 <span>    as.is <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>File 08</strong></p>
-<div class="sourceCode" id="cb1018"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1017"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_file</span> <span class="op">&lt;-</span> <span class="st">"file08.txt"</span></span>
 <span><span class="va">my_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_dir</span>, <span class="st">"/"</span>, <span class="va">my_file</span><span class="op">)</span></span>
 <span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span></span>
@@ -549,7 +549,7 @@ Rape arrests (per 100,000)</code></pre>
 </ul>
 <p>NB: Where you specify aesthetics matters here!</p>
 <p>As extra practice you could convert the values to the metric system first.</p>
-<div class="sourceCode" id="cb1019"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1018"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">trees</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Height</span>, y <span class="op">=</span> <span class="va">Girth</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">Volume</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"darkgreen"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -563,7 +563,7 @@ Rape arrests (per 100,000)</code></pre>
 </h3>
 <p>The <code>datasets</code> package that is shipped with R has a dataset called <code>?</code>. Type <code><a href="https://rdrr.io/r/datasets/InsectSprays.html">?InsectSprays</a></code> to get information on it.</p>
 <p><strong>A [❋]</strong></p>
-<div class="sourceCode" id="cb1020"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1019"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">InsectSprays</span>, </span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">spray</span>, y <span class="op">=</span> <span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -576,7 +576,7 @@ Figure 17.1: The counts of insects in agricultural experimental units treated wi
 </p>
 </div>
 <p><strong>B [❋❋]</strong></p>
-<div class="sourceCode" id="cb1021"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1020"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">InsectSprays</span>, </span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">spray</span>, y <span class="op">=</span> <span class="va">count</span>, color <span class="op">=</span> <span class="va">spray</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">0</span>, width <span class="op">=</span> <span class="fl">0.1</span>, shape <span class="op">=</span> <span class="fl">18</span>, size <span class="op">=</span> <span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
@@ -595,14 +595,14 @@ Figure 17.2: The counts of insects in agricultural experimental units treated wi
 </h3>
 <p>The <code>Theoph</code> dataset contains pharmacokinetics of theophylline, the anti-asthmatic drug theophylline. Twelve subjects were given oral doses of theophylline, then serum concentrations were measured at 11 time points over the next 25 hours.</p>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb1022"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1021"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Theoph</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Time</span>, y <span class="op">=</span> <span class="va">conc</span>, color <span class="op">=</span> <span class="va">Dose</span>, linetype <span class="op">=</span> <span class="va">Subject</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Time (h)"</span>, y <span class="op">=</span> <span class="st">"Concentration (mg/l)"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/theoph-decay-1-1.png" width="672"></div>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb1023"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1022"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Theoph</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Time</span>, y <span class="op">=</span> <span class="va">conc</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>group <span class="op">=</span> <span class="va">Subject</span>, color <span class="op">=</span> <span class="va">Dose</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -617,7 +617,7 @@ Figure 17.2: The counts of insects in agricultural experimental units treated wi
 <span class="header-section-number">17.5.4</span> USArrests (II)<a class="anchor" aria-label="anchor" href="#usarrests-ii-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb1024"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1023"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">USArrests</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Assault</span>,</span>
 <span>                     y <span class="op">=</span> <span class="va">Murder</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -626,7 +626,7 @@ Figure 17.2: The counts of insects in agricultural experimental units treated wi
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Assault arrests (per 100,000)"</span>, y <span class="op">=</span> <span class="st">"Murder arrests (per 100,000)"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/ggplot-usarrests-scatter-a-1.png" width="672"></div>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb1025"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1024"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">scale</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">USArrests</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Assault</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -634,10 +634,12 @@ Figure 17.2: The counts of insects in agricultural experimental units treated wi
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co">#scale_y_continuous(sec.axis = sec_axis(~ . * scale, name="Assault prob")) +</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Assault arrests (per 100,000)"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+<pre><code>## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2
+## 3.4.0.
 ## ℹ Please use `after_stat(density)` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.</code></pre>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/ggplot-usarrests-hist-dens-a-1.png" width="672"></div>
 </div>
 <div id="orchard-sprays-1" class="section level3" number="17.5.5">
@@ -645,14 +647,14 @@ Figure 17.2: The counts of insects in agricultural experimental units treated wi
 <span class="header-section-number">17.5.5</span> Orchard Sprays<a class="anchor" aria-label="anchor" href="#orchard-sprays-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb1027"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1026"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">OrchardSprays</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">decrease</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"darkred"</span>, width <span class="op">=</span> <span class="fl">0.2</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/orchard-sprays-1-a-1.png" width="672"></div>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb1028"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1027"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">OrchardSprays</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">decrease</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">treatment</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -663,7 +665,7 @@ Figure 17.2: The counts of insects in agricultural experimental units treated wi
 <span class="header-section-number">17.5.6</span> Diauxic growth<a class="anchor" aria-label="anchor" href="#diauxic-growth-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A [❋❋]</strong></p>
-<div class="sourceCode" id="cb1029"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1028"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">remote</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MichielNoback/datasets/master/diauxic_growth/monod_diauxic_growth.csv"</span></span>
 <span><span class="co">#local &lt;- "../diauxic.csv"</span></span>
 <span><span class="co">#download.file(url = remote, destfile = local)</span></span>
@@ -673,13 +675,13 @@ Figure 17.2: The counts of insects in agricultural experimental units treated wi
 <span>                        names_to <span class="op">=</span> <span class="st">"Substrate"</span>,</span>
 <span>                        values_to <span class="op">=</span> <span class="st">"OD"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B [❋]</strong></p>
-<div class="sourceCode" id="cb1030"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1029"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">diauxic</span><span class="op">$</span><span class="va">Substrate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">diauxic</span><span class="op">$</span><span class="va">Substrate</span>, </span>
 <span>       levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GlucMann"</span>, <span class="st">"GlucXyl"</span>, <span class="st">"GlucArab"</span>, <span class="st">"GlucRham"</span><span class="op">)</span>, </span>
 <span>       labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Glucose Mannose"</span>, <span class="st">"Glucose Xylose"</span>, <span class="st">"Glucose Arabinose"</span>, <span class="st">"Glucose Rhamnose"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C [❋❋]</strong></p>
 <p>Create a line plot with all four growth curves within a single graph.</p>
-<div class="sourceCode" id="cb1031"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1030"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">diauxic</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Time</span>, y <span class="op">=</span> <span class="va">OD</span>, color <span class="op">=</span> <span class="va">Substrate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -693,7 +695,7 @@ Figure 17.3: Monod’s Diauxic shift experiment.
 </p>
 </div>
 <p><strong>D [❋❋❋]</strong></p>
-<div class="sourceCode" id="cb1033"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1032"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">diauxic</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Time</span>, y <span class="op">=</span> <span class="va">OD</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -712,7 +714,7 @@ Figure 17.4: Monod’s Diauxic shift experiment.
 <h3>
 <span class="header-section-number">17.5.7</span> Virginia Death Rates<a class="anchor" aria-label="anchor" href="#virginia-death-rates-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1035"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1034"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="co">## %&gt;% is used to pipe results from one operation to the other, just like '|' in Linux.</span></span>
 <span><span class="va">virginia_death_rates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">VADeaths</span><span class="op">)</span></span>
@@ -721,13 +723,13 @@ Figure 17.4: Monod’s Diauxic shift experiment.
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">`Age Group`</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co">#reorder the columns</span></span></code></pre></div>
 <p><strong>A (❋❋❋)</strong></p>
 <p>Pivot this table to long (tidy) format. This should generate a dataframe with four columns: <code>Age Group</code>, <code>Habitat</code>, <code>Gender</code> and <code>DeathRate</code>.</p>
-<div class="sourceCode" id="cb1036"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1035"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">virginia_death_rates</span> <span class="op">&lt;-</span> <span class="va">virginia_death_rates</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, </span>
 <span>                 names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Habitat"</span>, <span class="st">"Gender"</span><span class="op">)</span>, </span>
 <span>                 names_sep <span class="op">=</span> <span class="st">" "</span>, </span>
 <span>                 values_to <span class="op">=</span> <span class="st">"DeathRate"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B (❋❋)</strong></p>
-<div class="sourceCode" id="cb1037"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1036"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">virginia_death_rates</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Gender</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="va">DeathRate</span>, fill <span class="op">=</span> <span class="va">Habitat</span><span class="op">)</span>, position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -742,7 +744,7 @@ Figure 17.5: Virginia Death rates
 <span class="header-section-number">17.5.8</span> Global temperature<a class="anchor" aria-label="anchor" href="#global-temperature-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Load the data.</p>
-<div class="sourceCode" id="cb1038"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1037"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">remote_file</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MichielNoback/datasets/master/global_temperature/annual.csv"</span></span>
 <span><span class="va">global_temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="va">remote_file</span>,</span>
 <span>                          header <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -751,7 +753,7 @@ Figure 17.5: Virginia Death rates
 <h4>
 <span class="header-section-number">17.5.8.1</span> Create a scatter-and-line-plot [❋❋]<a class="anchor" aria-label="anchor" href="#create-a-scatter-and-line-plot-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1039"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1038"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">global_temp</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Year</span>, y <span class="op">=</span> <span class="va">Mean</span>, color <span class="op">=</span> <span class="va">Source</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
@@ -769,7 +771,7 @@ Figure 17.6: Global temperature anomalies
 <h4>
 <span class="header-section-number">17.5.8.2</span> Re-create the heatmap [❋❋❋]<a class="anchor" aria-label="anchor" href="#re-create-the-heatmap-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1040"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1039"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">global_temp</span><span class="op">[</span><span class="va">global_temp</span><span class="op">$</span><span class="va">Source</span> <span class="op">==</span> <span class="st">"GCAG"</span>, <span class="op">]</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Year</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Mean</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -808,7 +810,7 @@ Figure 17.7: Global temperature anomalies
 <h3>
 <span class="header-section-number">17.6.1</span> <code>cut()</code><a class="anchor" aria-label="anchor" href="#cut-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1041"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1040"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">USArrests</span><span class="op">$</span><span class="va">UrbanPop_f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">$</span><span class="va">UrbanPop</span>, </span>
 <span>                  breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">60</span>, <span class="fl">80</span>, <span class="fl">100</span><span class="op">)</span>,</span>
 <span>                  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"low"</span>, <span class="st">"mid"</span>, <span class="st">"high"</span><span class="op">)</span>,</span>
@@ -821,14 +823,14 @@ Figure 17.7: Global temperature anomalies
 <span class="header-section-number">17.6.2</span> <code>quantile()</code><a class="anchor" aria-label="anchor" href="#quantile-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb1042"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1041"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">precip</span><span class="op">[</span><span class="va">precip</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">precip</span>, probs <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code>##     Phoenix Los Angeles      Denver       Boise        Reno Albuquerque 
 ##         7.0        14.0        13.0        11.5         7.2         7.8 
 ##     El Paso 
 ##         7.8</code></pre>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb1044"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1043"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sel_range</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">infert</span><span class="op">$</span><span class="va">age</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.6</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">infert</span><span class="op">[</span><span class="va">infert</span><span class="op">$</span><span class="va">age</span> <span class="op">&gt;</span> <span class="va">sel_range</span><span class="op">[</span><span class="st">"40%"</span><span class="op">]</span> <span class="op">&amp;</span> <span class="va">infert</span><span class="op">$</span><span class="va">age</span> <span class="op">&lt;</span> <span class="va">sel_range</span><span class="op">[</span><span class="st">"60%"</span><span class="op">]</span>, <span class="op">]</span></span></code></pre></div>
 </div>
@@ -844,7 +846,7 @@ Figure 17.7: Global temperature anomalies
 <div id="the-mean-1" class="section level4 unnumbered">
 <h4>The mean<a class="anchor" aria-label="anchor" href="#the-mean-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1045"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1044"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -852,7 +854,7 @@ Figure 17.7: Global temperature anomalies
 <div id="standard-deviation-1" class="section level4 unnumbered">
 <h4>Standard deviation<a class="anchor" aria-label="anchor" href="#standard-deviation-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1046"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1045"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_sd</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -860,7 +862,7 @@ Figure 17.7: Global temperature anomalies
 <div id="maximum-1" class="section level4 unnumbered">
 <h4>Maximum<a class="anchor" aria-label="anchor" href="#maximum-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1047"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1046"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span> </span>
 <span><span class="va">my_nums</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="va">my_max</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -876,7 +878,7 @@ Figure 17.7: Global temperature anomalies
 <div id="median-1" class="section level4 unnumbered">
 <h4>Median<a class="anchor" aria-label="anchor" href="#median-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1048"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1047"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_median</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>        <span class="va">sorted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span>        <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
@@ -896,7 +898,7 @@ Figure 17.7: Global temperature anomalies
 <div id="find-match-locations-1" class="section level4 unnumbered">
 <h4>Find match locations<a class="anchor" aria-label="anchor" href="#find-match-locations-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1049"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1048"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">where_is_it</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">look_for</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">found</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">integer</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
 <span>    <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -915,7 +917,7 @@ Figure 17.7: Global temperature anomalies
 <div id="odd-and-even-1" class="section level4 unnumbered">
 <h4>Odd and even<a class="anchor" aria-label="anchor" href="#odd-and-even-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1050"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1049"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">count_odd_even</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">evens</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
 <span>    <span class="va">odds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -929,7 +931,7 @@ Figure 17.7: Global temperature anomalies
 <div id="add-column-compared-to-mean-1" class="section level4 unnumbered">
 <h4>Add column compared to mean<a class="anchor" aria-label="anchor" href="#add-column-compared-to-mean-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1051"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1050"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">add_compared_to_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">df</span>, <span class="va">name</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">is.data.frame</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>        <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"'"</span>, <span class="va">df</span>, <span class="st">"' is not a dataframe."</span><span class="op">)</span><span class="op">)</span></span>
@@ -951,7 +953,7 @@ Figure 17.7: Global temperature anomalies
 <div id="interquantile-ranges-1" class="section level4 unnumbered">
 <h4>Interquantile ranges<a class="anchor" aria-label="anchor" href="#interquantile-ranges-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1052"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1051"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">interquantile_range</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">lower</span> <span class="op">=</span> <span class="fl">0</span>, <span class="va">upper</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|</span> </span>
 <span>      <span class="op">!</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">lower</span><span class="op">)</span> <span class="op">|</span></span>
@@ -973,7 +975,7 @@ Figure 17.7: Global temperature anomalies
 <div id="vector-distance-1" class="section level4 unnumbered">
 <h4>Vector distance<a class="anchor" aria-label="anchor" href="#vector-distance-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1053"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1052"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">distance</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">|</span> <span class="op">!</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>        <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"non-numeric vectors passed"</span><span class="op">)</span></span>
@@ -987,7 +989,7 @@ Figure 17.7: Global temperature anomalies
 <div id="other-distance-measures-1" class="section level4 unnumbered">
 <h4>Other distance measures<a class="anchor" aria-label="anchor" href="#other-distance-measures-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1054"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1053"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_distance</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span>, <span class="va">q</span>, <span class="va">method</span> <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">q</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"One or both of the vectors is not numeric"</span><span class="op">)</span></span>
@@ -1010,7 +1012,7 @@ Figure 17.7: Global temperature anomalies
 <div id="gc-percentage-1" class="section level4 unnumbered">
 <h4>G/C percentage<a class="anchor" aria-label="anchor" href="#gc-percentage-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1055"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1054"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">GC_perc</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">seq</span>, <span class="va">strict</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">seq</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span></span>
@@ -1056,7 +1058,7 @@ Figure 17.7: Global temperature anomalies
 <p>The <a href="data/"><code>data</code></a> folder of this eBook contains three small csv files that need tidying. Read them from file and convert them into tidy format, with data columns as clean as possible (e.g. not “creatine_T0” but “T0”).</p>
 <p><strong>A</strong></p>
 <p>Tidy file <a href="data/untidy1.csv"><code>untidy1.csv</code></a>.</p>
-<div class="sourceCode" id="cb1056"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1055"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">untidy1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/untidy1.csv"</span>, </span>
 <span>                      sep <span class="op">=</span> <span class="st">","</span>, </span>
 <span>                      header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -1065,7 +1067,7 @@ Figure 17.7: Global temperature anomalies
 <span>            values_from <span class="op">=</span> <span class="va">value</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong></p>
 <p>Tidy file <a href="data/untidy2.csv"><code>untidy2.csv</code></a>.</p>
-<div class="sourceCode" id="cb1057"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1056"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">untidy2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/untidy2.csv"</span>, </span>
 <span>                      sep <span class="op">=</span> <span class="st">","</span>, </span>
 <span>                      header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -1076,7 +1078,7 @@ Figure 17.7: Global temperature anomalies
 <span>             values_to <span class="op">=</span> <span class="st">"creatine"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C</strong></p>
 <p>Tidy file <a href="data/untidy3.csv"><code>untidy3.csv</code></a>.</p>
-<div class="sourceCode" id="cb1058"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1057"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">untidy3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/untidy3.csv"</span>, </span>
 <span>                      sep <span class="op">=</span> <span class="st">";"</span>, </span>
 <span>                      header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -1092,37 +1094,37 @@ Figure 17.7: Global temperature anomalies
 <h3>
 <span class="header-section-number">17.8.2</span> Lung cancer<a class="anchor" aria-label="anchor" href="#lung-cancer-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1059"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1058"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lung_cancer_deaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1974</span><span class="op">:</span><span class="fl">1979</span>, each <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,</span>
 <span>                     month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">month.abb</span>, times <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,</span>
 <span>                     male <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">mdeaths</span><span class="op">)</span>,</span>
 <span>                     female <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">fdeaths</span><span class="op">)</span>,</span>
 <span>                     total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">ldeaths</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb1060"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1059"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lung_cancer_deaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lung_cancer_deaths</span>, </span>
 <span>             cols <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, </span>
 <span>             names_to <span class="op">=</span> <span class="st">"type"</span>,</span>
 <span>             values_to <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong></p>
 <p>Prep:</p>
-<div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1060"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lung_cancer_deaths</span><span class="op">$</span><span class="va">date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">lung_cancer_deaths</span><span class="op">$</span><span class="va">month</span>, <span class="va">lung_cancer_deaths</span><span class="op">$</span><span class="va">year</span>, <span class="fl">1</span>, sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span>,</span>
 <span>        format <span class="op">=</span> <span class="st">"%b/%Y/%d"</span><span class="op">)</span></span></code></pre></div>
 <p>Figure:</p>
-<div class="sourceCode" id="cb1062"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lung_cancer_deaths</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">type</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/lung-deaths-line-plot-a-1.png" width="70%" style="display: block; margin: auto;"></div>
 <p><strong>C</strong></p>
-<div class="sourceCode" id="cb1063"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1062"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lung_cancer_deaths</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">type</span>, y <span class="op">=</span> <span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">type</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/lung-deaths-boxplot-a-1.png" width="70%" style="display: block; margin: auto;"></div>
 <p>ANSWER: You can see a single outlier in the <code>female</code> set. We can identify the year by finding out when this occurred:</p>
-<div class="sourceCode" id="cb1064"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1063"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">maximum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">lung_cancer_deaths</span><span class="op">[</span><span class="va">lung_cancer_deaths</span><span class="op">$</span><span class="va">type</span> <span class="op">==</span> <span class="st">"female"</span>, <span class="st">"count"</span><span class="op">]</span><span class="op">)</span> <span class="co">## 1141</span></span>
 <span><span class="va">lung_cancer_deaths</span><span class="op">[</span><span class="va">lung_cancer_deaths</span><span class="op">$</span><span class="va">count</span> <span class="op">==</span> <span class="va">maximum</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code>## # A tibble: 1 × 5
@@ -1145,25 +1147,25 @@ Figure 17.7: Global temperature anomalies
 <h3>
 <span class="header-section-number">17.9.1</span> Whale selenium<a class="anchor" aria-label="anchor" href="#whale-selenium-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1066"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1065"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">whale_sel_url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MichielNoback/davur1/gh-pages/exercises/data/whale_selenium.txt"</span></span>
 <span><span class="va">whale_selenium</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="va">whale_sel_url</span>,</span>
 <span>        header <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>        row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb1067"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1066"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">whale_selenium</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb1068"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1067"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">whale_selenium</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="va">sd</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C</strong></p>
-<div class="sourceCode" id="cb1069"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1068"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my.sem</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>        <span class="va">sem</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">whale_selenium</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="va">my.sem</span><span class="op">)</span></span></code></pre></div>
 <p><strong>D</strong></p>
-<div class="sourceCode" id="cb1070"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1069"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">whale_selenium</span><span class="op">$</span><span class="va">ratio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">whale_selenium</span>, </span>
 <span>            MARGIN <span class="op">=</span> <span class="fl">1</span>, </span>
 <span>            FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
@@ -1180,22 +1182,22 @@ Inline expressions are like this: 15.4 MpH.</p>
 <h3>
 <span class="header-section-number">17.9.2</span> Urine properties<a class="anchor" aria-label="anchor" href="#urine-properties-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1071"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1070"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">urine_file_name</span> <span class="op">&lt;-</span> <span class="st">"urine.csv"</span></span>
 <span><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/MichielNoback/datasets/master/urine/"</span>, <span class="va">urine_file_name</span><span class="op">)</span></span>
 <span><span class="va">local_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"../"</span>, <span class="va">urine_file_name</span><span class="op">)</span> <span class="co">#specifiy your own folder!</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="va">url</span>, destfile <span class="op">=</span> <span class="va">local_name</span><span class="op">)</span></span></code></pre></div>
 <p><strong>A</strong></p>
-<div class="sourceCode" id="cb1072"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1071"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">urine</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="va">local_name</span>, </span>
 <span>                     sep <span class="op">=</span> <span class="st">","</span>,</span>
 <span>                     header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong></p>
-<div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1072"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">urine</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"ox_crystals"</span></span>
 <span><span class="va">urine</span><span class="op">$</span><span class="va">ox_crystals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">urine</span><span class="op">$</span><span class="va">ox_crystals</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"no"</span>, <span class="st">"yes"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C</strong></p>
-<div class="sourceCode" id="cb1074"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mean_sd</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="co"># returns a named vector</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mean"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, </span>
@@ -1206,7 +1208,7 @@ Inline expressions are like this: 15.4 MpH.</p>
 ## mean    1.02 6.03  615 20.90  266 4.14
 ## sd      0.01 0.72  238  7.95  131 3.26</code></pre>
 <p><strong>D</strong></p>
-<div class="sourceCode" id="cb1076"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1075"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">gravity</span>, <span class="va">ph</span>, <span class="va">osmo</span>, <span class="va">cond</span>, <span class="va">urea</span>, <span class="va">calc</span><span class="op">)</span> <span class="op">~</span> <span class="va">ox_crystals</span>, </span>
 <span>          data <span class="op">=</span> <span class="va">urine</span>, </span>
 <span>          FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1224,18 +1226,18 @@ Inline expressions are like this: 15.4 MpH.</p>
 <span class="header-section-number">17.10.1</span> Global temperature revisited<a class="anchor" aria-label="anchor" href="#global-temperature-revisited-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong> [❋]</p>
-<div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1077"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MichielNoback/datasets/master/global_temperature/GLB.Ts%2BdSST.csv"</span></span>
 <span><span class="co">#temp_dat &lt;- readr::read_csv(f)</span></span>
 <span><span class="va">temp_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="va">f</span>, sep <span class="op">=</span> <span class="st">","</span>, header<span class="op">=</span><span class="cn">TRUE</span>, na.strings <span class="op">=</span> <span class="st">"***"</span><span class="op">)</span></span>
 <span><span class="va">temp_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">temp_dat</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong> [❋❋]</p>
-<div class="sourceCode" id="cb1079"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temp_dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">JJA</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">Year</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C</strong> [❋❋]</p>
-<div class="sourceCode" id="cb1080"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1079"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># coldest</span></span>
 <span><span class="va">cold</span> <span class="op">&lt;-</span> <span class="va">temp_dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">J.D</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1249,19 +1251,19 @@ Inline expressions are like this: 15.4 MpH.</p>
 <span><span class="co"># combine</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">cold</span>, <span class="va">warm</span><span class="op">)</span></span></code></pre></div>
 <p><strong>D</strong> [❋❋]</p>
-<div class="sourceCode" id="cb1081"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1080"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temp_dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">MAM</span> <span class="op">&gt;</span> <span class="op">(</span><span class="va">JJA</span><span class="op">+</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Year</span>, <span class="va">MAM</span>, <span class="va">JJA</span><span class="op">)</span></span></code></pre></div>
 <p><strong>E</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1082"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1081"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">decade_avg</span> <span class="op">&lt;-</span> <span class="va">temp_dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Year</span> <span class="op">&gt;</span> <span class="fl">1969</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Decade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">Year</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, <span class="st">"0"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># there probably is a better way to do this...</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Year</span>, <span class="va">Decade</span>, <span class="va">DJF</span>, <span class="va">MAM</span>, <span class="va">JJA</span>, <span class="va">SON</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Decade</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="op">-</span><span class="va">Year</span>, <span class="va">mean</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1083"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1082"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">decade_avg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">Decade</span>, </span>
 <span>                 names_to <span class="op">=</span> <span class="st">"Season"</span>,</span>
@@ -1274,7 +1276,7 @@ Inline expressions are like this: 15.4 MpH.</p>
 <span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="va">Anomaly</span>, fill <span class="op">=</span> <span class="va">Season</span><span class="op">)</span>, position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>F</strong> [❋❋❋❋]</p>
-<div class="sourceCode" id="cb1084"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1083"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">max_temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">temp_dat</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
 <span><span class="va">temp_dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">if_any</a></span><span class="op">(</span><span class="va">Jan</span><span class="op">:</span><span class="va">Dec</span>, <span class="op">~</span> <span class="va">.x</span> <span class="op">==</span> <span class="va">max_temp</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co">#across is deprecated</span></span>
@@ -1285,31 +1287,31 @@ Inline expressions are like this: 15.4 MpH.</p>
 <span class="header-section-number">17.10.2</span> Pigs<a class="anchor" aria-label="anchor" href="#pigs-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong> [❋]</p>
-<div class="sourceCode" id="cb1085"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1084"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pigs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/MichielNoback/datasets/master/pigs/dietox.csv"</span>, </span>
 <span>                   header <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                   sep <span class="op">=</span> <span class="st">","</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pigs</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong> [❋❋]</p>
-<div class="sourceCode" id="cb1086"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1085"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pigs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Time</span> <span class="op">==</span> <span class="fl">12</span> <span class="op">&amp;</span> <span class="va">Evit</span> <span class="op">==</span> <span class="fl">3</span> <span class="op">&amp;</span> <span class="va">Cu</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Pig</span>, <span class="va">Litter</span>, <span class="va">Feed</span>, <span class="va">Weight</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Weight</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C</strong> [❋❋]</p>
-<div class="sourceCode" id="cb1087"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1086"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pigs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">Evit</span>, <span class="va">Cu</span><span class="op">)</span></span></code></pre></div>
 <p><strong>D</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1088"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1087"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pigs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Time</span> <span class="op">==</span> <span class="fl">12</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Evit</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Weight</span><span class="op">)</span>,</span>
 <span>              n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>E</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1088"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gain</span> <span class="op">&lt;-</span> <span class="va">pigs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Pig</span>, <span class="va">Time</span>, <span class="va">Weight</span>, <span class="va">Feed</span>, <span class="va">Evit</span>, <span class="va">Cu</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Pig</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1322,7 +1324,7 @@ Inline expressions are like this: 15.4 MpH.</p>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Evit</span><span class="op">)</span></span></code></pre></div>
 <p><strong>F</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1090"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># select and pivot</span></span>
 <span><span class="va">pigs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">X</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1335,7 +1337,7 @@ Inline expressions are like this: 15.4 MpH.</p>
 <span class="header-section-number">17.10.3</span> Population numbers<a class="anchor" aria-label="anchor" href="#population-numbers-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong> [❋]</p>
-<div class="sourceCode" id="cb1091"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1090"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop_data_file</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MichielNoback/datasets/master/population/EDU_DEM_05022020113225751.csv"</span></span>
 <span><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="va">pop_data_file</span>,</span>
 <span>                         header <span class="op">=</span> <span class="cn">TRUE</span>, </span>
@@ -1344,13 +1346,13 @@ Inline expressions are like this: 15.4 MpH.</p>
 <code>str(population)</code> tells me that <code>Unit.Code</code>, <code>Unit</code> and <code>PowerCode</code> are factors with one level. Using <code>table(population$PowerCode.Code, useNA = "always")</code> tells me that there are only zeros there. Same for <code>Reference.Period.Code</code> and <code>Reference.Period</code>. The variables <code>Flags</code> and <code>Flag.Codes</code> refer to the same, so one of them can be removed (I choose to remove <code>Flag.Codes</code>). The same counts for <code>SEX</code>/<code>Sex</code>, <code>AGE</code>/<code>Age</code> and <code>YEAR</code>/<code>Year</code>.</p>
 <p><strong>Select</strong>
 This is my selection:</p>
-<div class="sourceCode" id="cb1092"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1091"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">15</span>, <span class="fl">16</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">keep</span></span>
 <span><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">population</span><span class="op">[</span>, <span class="va">keep</span><span class="op">]</span><span class="op">)</span> <span class="co">#tibble is nicer!</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1092"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop_totals</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">population</span>, <span class="va">Sex</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> <span class="va">Age</span> <span class="op">==</span> <span class="st">"Total: All age groups"</span><span class="op">)</span></span>
 <span><span class="co">##or, using base R</span></span>
 <span><span class="co">#population[population$Sex == "Total" &amp; population$Age == "Total: All age groups", ]</span></span>
@@ -1360,7 +1362,7 @@ This is my selection:</p>
 <span>    values_from <span class="op">=</span> <span class="va">Value</span><span class="op">)</span></span></code></pre></div>
 <p><strong>D</strong> [❋❋❋❋]<br>
 You could do this on the <code>pop_totals</code> dataset using the <code>lag()</code> function, after using <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, but since we have the wide format, you could also use a simple <code>for</code> loop, iterating the columns by index and subtracting the first from the second. I will demonstrate the only the first.</p>
-<div class="sourceCode" id="cb1094"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop_totals</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Country</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Pop_change <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">Value</span> <span class="op">-</span> <span class="fu">lag</span><span class="op">(</span><span class="va">Value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1372,7 +1374,7 @@ You could do this on the <code>pop_totals</code> dataset using the <code>lag()</
 <span><span class="co">## backticks in above selection are required </span></span>
 <span><span class="co">## because we are selecting names that are numbers!</span></span></code></pre></div>
 <p><strong>E</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1094"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sel</span> <span class="op">&lt;-</span> <span class="va">population</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Women"</span> <span class="op">|</span> <span class="va">Sex</span> <span class="op">==</span> <span class="st">"Men"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">COUNTRY</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"BEL"</span>, <span class="st">"CHE"</span>, <span class="st">"DNK"</span>, <span class="st">"FRA"</span>, <span class="st">"IRL"</span>, <span class="st">"DEU"</span>, <span class="st">"LUX"</span>, <span class="st">"NLD"</span>, <span class="st">"GBR"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1382,7 +1384,7 @@ You could do this on the <code>pop_totals</code> dataset using the <code>lag()</
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="va">Value</span>, fill <span class="op">=</span> <span class="va">Sex</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">COUNTRY</span><span class="op">)</span></span></code></pre></div>
 <p><strong>F</strong> [❋❋❋❋]</p>
-<div class="sourceCode" id="cb1096"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">population</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> <span class="va">Age</span> <span class="op">==</span> <span class="st">"Total: All age groups"</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">Year</span> <span class="op">==</span> <span class="fl">2005</span> <span class="op">|</span> <span class="va">Year</span> <span class="op">==</span> <span class="fl">2017</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Country</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1404,7 +1406,7 @@ You could do this on the <code>pop_totals</code> dataset using the <code>lag()</
 <span class="header-section-number">17.11.1</span> Restriction enzymes<a class="anchor" aria-label="anchor" href="#restriction-enzymes-2"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong> [❋❋]</p>
-<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1096"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pacI_re</span> <span class="op">&lt;-</span> <span class="st">"TTAATTAA"</span></span>
 <span><span class="va">patterns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"T{2}A{2}T{2}A{2}"</span>,</span>
 <span>           <span class="st">"(TTAA){2}"</span>,</span>
@@ -1413,7 +1415,7 @@ You could do this on the <code>pop_totals</code> dataset using the <code>lag()</
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="va">ptrn</span>, <span class="va">pacI_re</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><strong>B</strong> [❋❋]</p>
-<div class="sourceCode" id="cb1098"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sfiI_re</span> <span class="op">&lt;-</span> <span class="st">"GGCCACGTAGGCC"</span></span>
 <span><span class="va">patterns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"G{2}C{2}[GATC]{5}G{2}C{2}"</span>,</span>
 <span>           <span class="st">"GGCC[GATC]{5}GGCC"</span>,</span>
@@ -1429,30 +1431,30 @@ You could do this on the <code>pop_totals</code> dataset using the <code>lag()</
 <p><strong>A</strong> [❋❋]<br>
 PS00211:
 “[LIVMFYC]-[SA]-[SAPGLVFYKQH]-G-[DENQMW]-[KRQASPCLIMFW]-[KRNQSTAVM]-[KRACLVM]-[LIVMFYPAN]-{PHY}-[LIVMFW]-[SAGCLIVP]-{FYWHP}-{KRHP}-[LIVMFYWSTA].”</p>
-<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1098"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">PS00211</span><span class="op">&lt;-</span> <span class="st">"[LIVMFYC][SA][SAPGLVFYKQH]G[DENQMW][KRQASPCLIMFW][KRNQSTAVM][KRACLVM][LIVMFYPAN][^PHY][LIVMFW][SAGCLIVP][^FYWHP][^KRHP][LIVMFYWSTA]"</span></span></code></pre></div>
 <p><strong>B</strong> [❋❋]<br>
 PS00018:
 “D-{W}-[DNS]-{ILVFYW}-[DENSTG]-[DNQGHRK]-{GP}-[LIVMC]-[DENQSTAGC]-x(2)- [DE]-[LIVMFYW].”</p>
-<div class="sourceCode" id="cb1100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">PS00018</span> <span class="op">&lt;-</span> <span class="st">"D[^W][DNS][^ILVFYW][DENSTG][DNQGHRK][^GP][LIVMC][DENQSTAGC].{2} [DE][LIVMFYW]"</span></span></code></pre></div>
 </div>
 <div id="fasta-headers-1" class="section level3" number="17.11.3">
 <h3>
 <span class="header-section-number">17.11.3</span> Fasta Headers<a class="anchor" aria-label="anchor" href="#fasta-headers-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span>
 <span><span class="va">fasta_headers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"./data/fasta_headers.txt"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>A</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match</a></span><span class="op">(</span><span class="va">fasta_headers</span>, <span class="st">"\\[(.+)\\]"</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match</a></span><span class="op">(</span><span class="va">fasta_headers</span>, <span class="st">"\\[([[:alpha:]]+ [[:alpha:]]+) ?(.+)?\\]"</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span></code></pre></div>
 <p><strong>B</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1103"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match</a></span><span class="op">(</span><span class="va">fasta_headers</span>, <span class="st">"&gt;([[:alpha:]]{2,3}\\|\\w+)\\|"</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span></code></pre></div>
 <p><strong>C</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match</a></span><span class="op">(</span><span class="va">fasta_headers</span>, <span class="st">"&gt;.+\\| (.+?) \\["</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span></code></pre></div>
 </div>
 </div>
@@ -1465,16 +1467,16 @@ PS00018:
 <span class="header-section-number">17.12.1</span> Eye colors<a class="anchor" aria-label="anchor" href="#eye-colors-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong> [❋❋]</p>
-<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">ec_data</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/eyecolor_data.csv"</span>, </span>
 <span>                            col_types <span class="op">=</span> <span class="st">"cfiffffffff"</span>,</span>
 <span>                            na<span class="op">=</span><span class="st">"-"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ec_data</span> <span class="op">&lt;-</span> <span class="va">ec_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">11</span>, <span class="op">~</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode_factor</a></span><span class="op">(</span><span class="va">.x</span>, blauw <span class="op">=</span> <span class="st">"blue"</span>, bruin <span class="op">=</span> <span class="st">"brown"</span>, groen <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C</strong> [❋❋❋❋]</p>
-<div class="sourceCode" id="cb1107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Majority for use in mutate()</span></span>
 <span><span class="va">majority</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="co">#print(as.character(x))</span></span>
@@ -1495,14 +1497,14 @@ PS00018:
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>majority <span class="op">=</span> <span class="fu">majority</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/c_across.html">c_across</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>D</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1108"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ec_data_tidy</span> <span class="op">&lt;-</span> <span class="va">ec_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Identifier</span>, <span class="va">sex</span>, <span class="va">age</span>, <span class="va">majority</span><span class="op">)</span>,</span>
 <span>                 names_sep <span class="op">=</span> <span class="st">"_"</span>,</span>
 <span>                 names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"eye"</span>, <span class="st">"experimenter"</span><span class="op">)</span>,</span>
 <span>                 values_to <span class="op">=</span> <span class="st">"observed_color"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>E</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1109"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## create the contingency table</span></span>
 <span><span class="va">counts</span> <span class="op">&lt;-</span> <span class="va">ec_data_tidy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">eye</span>, <span class="va">observed_color</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">eye</span>, <span class="va">observed_color</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1526,23 +1528,23 @@ PS00018:
 <span class="header-section-number">17.13.1</span> Bacterial growth<a class="anchor" aria-label="anchor" href="#bacterial-growth-1"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>A</strong> [❋❋]</p>
-<div class="sourceCode" id="cb1110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bact_growth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">'data/growth-exp-data.csv'</span>, </span>
 <span>           sep <span class="op">=</span> <span class="st">";"</span>,</span>
 <span>           header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><strong>B</strong> [❋❋]</p>
-<div class="sourceCode" id="cb1111"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bact_growth</span> <span class="op">&lt;-</span> <span class="va">bact_growth</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">date_time</span>, <span class="va">date</span>, <span class="va">time</span>, sep<span class="op">=</span><span class="st">"@"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date_time <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">dmy_hm</a></span><span class="op">(</span><span class="va">date_time</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>C</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">start</span> <span class="op">&lt;-</span> <span class="va">bact_growth</span><span class="op">$</span><span class="va">date_time</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">bact_growth</span> <span class="op">&lt;-</span> </span>
 <span>    <span class="va">bact_growth</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>elapsed_time <span class="op">=</span> <span class="fu">hour</span><span class="op">(</span><span class="fu">seconds_to_period</span><span class="op">(</span><span class="va">date_time</span> <span class="op">-</span> <span class="va">start</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>D</strong> [❋❋❋]</p>
-<div class="sourceCode" id="cb1113"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Value used to transform the data of the second axis</span></span>
 <span><span class="va">coeff</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span></span>
@@ -1675,7 +1677,7 @@ PS00018:
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2023-06-26.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
