@@ -21,7 +21,8 @@
 <script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.4/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
@@ -62,8 +63,9 @@
 <li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
 <li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
 <li><a class="active" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
-<li><a class="" href="exercises.html"><span class="header-section-number">16</span> Exercises</a></li>
-<li><a class="" href="exercise-solutions.html"><span class="header-section-number">17</span> Exercise solutions</a></li>
+<li><a class="" href="adding-interactivity.html"><span class="header-section-number">16</span> Adding interactivity</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">17</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">18</span> Exercise solutions</a></li>
 </ul>
 
         <div class="book-extra">
@@ -815,8 +817,7 @@ Figure 15.5: scatterplot with trendline
 <code class="sourceCode R"><span><span class="va">selection</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"num.partners"</span>, <span class="st">"first.sex"</span>, <span class="st">"num.preg"</span>, <span class="st">"horm.contracept.years"</span>, <span class="st">"IUD.years"</span>, <span class="st">"STDs.number"</span>, <span class="st">"target.biopsy"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="va">clean_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">selection</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## Warning: Using an external vector in selections was deprecated in
-## tidyselect 1.1.0.
+<pre><code>## Warning: Using an external vector in selections was deprecated in tidyselect 1.1.0.
 ## ℹ Please use `all_of()` or `any_of()` instead.
 ##   # Was:
 ##   data %&gt;% select(selection)
@@ -824,11 +825,9 @@ Figure 15.5: scatterplot with trendline
 ##   # Now:
 ##   data %&gt;% select(all_of(selection))
 ## 
-## See
-## &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
+## See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this
-## warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <div class="sourceCode" id="cb886"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cor_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span>
 <span><span class="co">#cor_matrix</span></span>
@@ -1037,7 +1036,7 @@ Figure 15.7: A PCA plot of the numerical variables
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></div>
-<div class="next"><a href="exercises.html"><span class="header-section-number">16</span> Exercises</a></div>
+<div class="next"><a href="adding-interactivity.html"><span class="header-section-number">16</span> Adding interactivity</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -1077,7 +1076,7 @@ Figure 15.7: A PCA plot of the numerical variables
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-06.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

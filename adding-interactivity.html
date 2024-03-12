@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 16 Adding interactivity | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="There are several ways to create interactive documents and apps using R: Plotly Shiny within RMarkdown Shiny apps They are discussed here, from low to high difficulty.  16.1 Plotly This is the...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 16 Adding interactivity | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="There are several ways to create interactive documents and apps using R: Plotly Shiny within RMarkdown Shiny apps They are discussed here, from low to high difficulty.  16.1 Plotly This is the...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 16 Adding interactivity | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="There are several ways to create interactive documents and apps using R: Plotly Shiny within RMarkdown Shiny apps They are discussed here, from low to high difficulty.  16.1 Plotly This is the...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.4/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="active" href="adding-interactivity.html"><span class="header-section-number">16</span> Adding interactivity</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">17</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">18</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="adding-interactivity" class="section level1" number="16">
+<h1>
+<span class="header-section-number">16</span> Adding interactivity<a class="anchor" aria-label="anchor" href="#adding-interactivity"><i class="fas fa-link"></i></a>
+</h1>
+<p>There are several ways to create interactive documents and apps using R:</p>
+<ul>
+<li>Plotly</li>
+<li>Shiny within RMarkdown</li>
+<li>Shiny apps</li>
+</ul>
+<p>They are discussed here, from low to high difficulty.</p>
+<div id="plotly" class="section level2" number="16.1">
+<h2>
+<span class="header-section-number">16.1</span> Plotly<a class="anchor" aria-label="anchor" href="#plotly"><i class="fas fa-link"></i></a>
+</h2>
+<p>This is the simplest form of interactivity. Note that it only works with html output.</p>
+<div class="sourceCode" id="cb908"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/plot_ly.html">plot_ly</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">iris</span>, </span>
+<span>        x <span class="op">=</span> <span class="op">~</span><span class="va">Petal.Length</span>, </span>
+<span>        y <span class="op">=</span> <span class="op">~</span><span class="va">Petal.Width</span>, </span>
+<span>        color <span class="op">=</span> <span class="op">~</span><span class="va">Species</span>, </span>
+<span>        type <span class="op">=</span> <span class="st">"scatter"</span>, </span>
+<span>        mode <span class="op">=</span> <span class="st">"markers"</span><span class="op">)</span></span></code></pre></div>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f14a51e2d7bff479029d" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-f14a51e2d7bff479029d">{"x":{"visdat":{"e6a430292c41":["function () ","plotlyVisDat"]},"cur_data":"e6a430292c41","attrs":{"e6a430292c41":{"x":{},"y":{},"mode":"markers","color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Petal.Length"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Petal.Width"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,1.7,1.5,1.7,1.5,1,1.7,1.9,1.6,1.6,1.5,1.4,1.6,1.6,1.5,1.5,1.4,1.5,1.2,1.3,1.4,1.3,1.5,1.3,1.3,1.3,1.6,1.9,1.4,1.6,1.4,1.5,1.4],"y":[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1,0.2,0.2,0.1,0.1,0.2,0.4,0.4,0.3,0.3,0.3,0.2,0.4,0.2,0.5,0.2,0.2,0.4,0.2,0.2,0.2,0.2,0.4,0.1,0.2,0.2,0.2,0.2,0.1,0.2,0.2,0.3,0.3,0.2,0.6,0.4,0.3,0.2,0.2,0.2,0.2],"mode":"markers","type":"scatter","name":"setosa","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[4.7,4.5,4.9,4,4.6,4.5,4.7,3.3,4.6,3.9,3.5,4.2,4,4.7,3.6,4.4,4.5,4.1,4.5,3.9,4.8,4,4.9,4.7,4.3,4.4,4.8,5,4.5,3.5,3.8,3.7,3.9,5.1,4.5,4.5,4.7,4.4,4.1,4,4.4,4.6,4,3.3,4.2,4.2,4.2,4.3,3,4.1],"y":[1.4,1.5,1.5,1.3,1.5,1.3,1.6,1,1.3,1.4,1,1.5,1,1.4,1.3,1.4,1.5,1,1.5,1.1,1.8,1.3,1.5,1.2,1.3,1.4,1.4,1.7,1.5,1,1.1,1,1.2,1.6,1.5,1.6,1.5,1.3,1.3,1.3,1.2,1.4,1.2,1,1.3,1.2,1.3,1.3,1.1,1.3],"mode":"markers","type":"scatter","name":"versicolor","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[6,5.1,5.9,5.6,5.8,6.6,4.5,6.3,5.8,6.1,5.1,5.3,5.5,5,5.1,5.3,5.5,6.7,6.9,5,5.7,4.9,6.7,4.9,5.7,6,4.8,4.9,5.6,5.8,6.1,6.4,5.6,5.1,5.6,6.1,5.6,5.5,4.8,5.4,5.6,5.1,5.1,5.9,5.7,5.2,5,5.2,5.4,5.1],"y":[2.5,1.9,2.1,1.8,2.2,2.1,1.7,1.8,1.8,2.5,2,1.9,2.1,2,2.4,2.3,1.8,2.2,2.3,1.5,2.3,2,2,1.8,2.1,1.8,1.8,1.8,2.1,1.6,1.9,2,2.2,1.5,1.4,2.3,2.4,1.8,1.8,2.1,2.4,2.3,1.9,2.3,2.5,2.3,1.9,2,2.3,1.8],"mode":"markers","type":"scatter","name":"virginica","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>Note the use of the tilde prefix with the variables (<code>~Petal.Length</code>); they are necessary in plotly, toherwise you get an error: <code>Error in plot_ly(...) object 'Petal.Length' not found</code>.</p>
+<p>The plot is interactive in several ways:</p>
+<ul>
+<li>you can hover points to get the values behind them</li>
+<li>you can zoom a part of the plot</li>
+<li>you can download the plot as png image</li>
+</ul>
+<p>There is more; simply try it out!</p>
+<p>You should realise however that plotly is not (even close) as versatile and sophisticated as ggplot!</p>
+</div>
+<div id="shiny" class="section level2" number="16.2">
+<h2>
+<span class="header-section-number">16.2</span> Shiny<a class="anchor" aria-label="anchor" href="#shiny"><i class="fas fa-link"></i></a>
+</h2>
+<p>Shiny is an R package that provides a framework for building web applications using only the R language. Shiny helps you turn your analyses into interactive web applications without requiring HTML, CSS, or JavaScript knowledge - ideally.</p>
+<p>Unfortunately, shiny will not run within the context of an ebook. Therefore, the code snippets below are all static examples. To see these in action, please download the markdown <a href="">here</a> and run it in your own RStudio setting. The yaml header of your notebook should have this output statement: <code>runtime: shiny</code> (instead of )</p>
+<p>All examples below assume you have installed and loaded shiny using <code><a href="https://shiny.rstudio.com/">library(shiny)</a></code>.</p>
+<div id="inputs-and-outputs" class="section level3" number="16.2.1">
+<h3>
+<span class="header-section-number">16.2.1</span> Inputs and Outputs<a class="anchor" aria-label="anchor" href="#inputs-and-outputs"><i class="fas fa-link"></i></a>
+</h3>
+<p>You can embed Shiny inputs and outputs in your document. Outputs are automatically updated whenever inputs change.</p>
+<p>An input is a graphical element (a widgets like a slider, a pull-down menu, or radio button) that dynamically provides input values to shiny reactive functions.</p>
+<p>What then, is reactivity?<br>
+This is the paradigm that when one of the dependants of a function changes, it will be automatically triggered to run again and generate a fresh new output based on the changed input value.</p>
+<p>An output is on the receiving end of a reactive chain. This can be a table, or a plot, for instance.</p>
+<p>An example explains best. The snippet below demonstrates an output ggplot2 plot that depends on two inputs: <code>input$n_breaks</code> and <code>$input$bw_adjust</code>. These inputs are created by the select box (<code>selectInput</code>) and the slider (<code>sliderInput</code>). These functions create the input widgets and place values on the <code>input</code> reactive collection. The glue between the inputs and the output is the reactive <code>renderPlot</code> function. Whenever one of the two reactive inputs changes, the function executes again and updates the plot.</p>
+<p><strong>None of the examples below work in the context of this e-Book!</strong> Please clone the repo <a href="https://github.com/MichielNoback/davur_shiny_material">at github</a> holding all demo materials (notebooks and apps) that do function within RStudio.</p>
+<div class="sourceCode" id="cb909"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/inputPanel.html">inputPanel</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput</a></span><span class="op">(</span><span class="st">"n_breaks"</span>, </span>
+<span>              label <span class="op">=</span> <span class="st">"Number of bins:"</span>,</span>
+<span>              choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">50</span>, <span class="fl">5</span><span class="op">)</span>, </span>
+<span>              selected <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>,</span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="st">"bw_adjust"</span>, </span>
+<span>              label <span class="op">=</span> <span class="st">"Bandwidth adjustment:"</span>,</span>
+<span>              min <span class="op">=</span> <span class="fl">0.1</span>, </span>
+<span>              max <span class="op">=</span> <span class="fl">2</span>, </span>
+<span>              value <span class="op">=</span> <span class="fl">0.6</span>, </span>
+<span>              step <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>,</span>
+<span>           mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">..density..</span><span class="op">)</span>, </span>
+<span>                       bins <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">n_breaks</span>,</span>
+<span>                       fill <span class="op">=</span> <span class="st">"green"</span>,</span>
+<span>                       color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>bw <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">bw_adjust</span>, color <span class="op">=</span> <span class="st">"darkblue"</span>, linewidth <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span> <span class="st">"Duration (minutes)"</span>, title <span class="op">=</span> <span class="st">"Geyser eruption duration"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">plt</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure">The above, when run as notebook, will yield this:
+<img src="figures/shiny_example_1.png" alt="Embedded interactivity">
+</div>
+<p>Below is a graphical representation of the dependencies in this reactive situation.</p>
+<div class="float">
+<img src="figures/shiny_input_output.png" alt="Shiny reactivity graph"><div class="figcaption">Shiny reactivity graph</div>
+</div>
+</div>
+</div>
+<div id="inline-application" class="section level2" number="16.3">
+<h2>
+<span class="header-section-number">16.3</span> Inline application<a class="anchor" aria-label="anchor" href="#inline-application"><i class="fas fa-link"></i></a>
+</h2>
+<p>The next step up the ladder of complexity is an inline application.
+It has the added advantage that you can run the chunk separately from the notebook, which is not possible with the above example.</p>
+<div class="sourceCode" id="cb910"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span></span>
+<span></span>
+<span>  ui <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"method"</span>,</span>
+<span>                label <span class="op">=</span> <span class="st">"regression method"</span>,</span>
+<span>                choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"loess"</span>, <span class="st">"lm"</span>, <span class="st">"glm"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"uptake"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span></span>
+<span>  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">output</span><span class="op">$</span><span class="va">uptake</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>        <span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">CO2</span>,</span>
+<span>               mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">conc</span>, y <span class="op">=</span> <span class="va">uptake</span>, color <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">method</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, formula <span class="op">=</span> <span class="st">"y ~ x"</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">plt</span><span class="op">)</span></span>
+<span>    <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="op">}</span>,</span>
+<span></span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">400</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure">The above, when run as notebook, will yield this:
+<img src="figures/shiny_example_2.png" alt="Embedded interactivity">
+</div>
+<p>Note the use of the <code>height</code> parameter to determine how much vertical space the embedded application should occupy.</p>
+</div>
+<div id="embedded-external-application" class="section level2" number="16.4">
+<h2>
+<span class="header-section-number">16.4</span> Embedded external application<a class="anchor" aria-label="anchor" href="#embedded-external-application"><i class="fas fa-link"></i></a>
+</h2>
+<p>Finally, it’s also possible to embed an entire Shiny application within an R Markdown document using the <code>shinyAppDir</code> function. This example embeds a Shiny application located in another directory:</p>
+<div class="sourceCode" id="cb911"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyAppDir</a></span><span class="op">(</span></span>
+<span>    <span class="st">"./autoimmune_cohort_analysis/"</span>,</span>
+<span>    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure">The above, when run as notebook, will yield this:
+<img src="figures/shiny_example_3.png" alt="Embedded interactivity">
+</div>
+<p>The app could of course also have been run standalone, which is maybe more the appropriate deployment.</p>
+<p>You can also use the <code>shinyApp</code> function to define an application inline rather then in an external directory.</p>
+<p>In all of R code chunks above the <code>echo = TRUE</code> attribute is used. You should change that to
+<code>echo = FALSE</code> if you want to prevent the R code within the chunk from rendering in the
+document alongside the Shiny components.</p>
+</div>
+<div id="more-examples" class="section level2" number="16.5">
+<h2>
+<span class="header-section-number">16.5</span> More examples<a class="anchor" aria-label="anchor" href="#more-examples"><i class="fas fa-link"></i></a>
+</h2>
+<p>There is a small <a href="https://github.com/MichielNoback/davur_shiny_material">repo</a> with this notebook with working examples, as well as two small demo apps that you can inspect: app-1 and app-2.</p>
+</div>
+<div id="mastering-shiny" class="section level2" number="16.6">
+<h2>
+<span class="header-section-number">16.6</span> Mastering Shiny<a class="anchor" aria-label="anchor" href="#mastering-shiny"><i class="fas fa-link"></i></a>
+</h2>
+<p>This was only skimming the subject. For further details, I suggest you start with the excellent free ebook.
+<a href="https://mastering-shiny.org/">Mastering Shiny</a></p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></div>
+<div class="next"><a href="exercises.html"><span class="header-section-number">17</span> Exercises</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#adding-interactivity"><span class="header-section-number">16</span> Adding interactivity</a></li>
+<li><a class="nav-link" href="#plotly"><span class="header-section-number">16.1</span> Plotly</a></li>
+<li>
+<a class="nav-link" href="#shiny"><span class="header-section-number">16.2</span> Shiny</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#inputs-and-outputs"><span class="header-section-number">16.2.1</span> Inputs and Outputs</a></li></ul>
+</li>
+<li><a class="nav-link" href="#inline-application"><span class="header-section-number">16.3</span> Inline application</a></li>
+<li><a class="nav-link" href="#embedded-external-application"><span class="header-section-number">16.4</span> Embedded external application</a></li>
+<li><a class="nav-link" href="#more-examples"><span class="header-section-number">16.5</span> More examples</a></li>
+<li><a class="nav-link" href="#mastering-shiny"><span class="header-section-number">16.6</span> Mastering Shiny</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-12.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

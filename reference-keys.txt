@@ -190,6 +190,14 @@ advanced-explorations
 clustering
 k-means-clustering
 hierarchical-clustering
+adding-interactivity
+plotly
+shiny
+inputs-and-outputs
+inline-application
+embedded-external-application
+more-examples
+mastering-shiny
 exercises
 getting-started-2
 install-the-tools
