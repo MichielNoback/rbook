@@ -198,6 +198,12 @@ inline-application
 embedded-external-application
 more-examples
 mastering-shiny
+packages
+prerequisites
+setting-up
+demo-data
+writing-functions
+publish-the-package
 exercises
 getting-started-2
 install-the-tools

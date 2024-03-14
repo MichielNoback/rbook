@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 17 Packages | Data Analysis and Visualization using R</title>
+<meta name="author" content="Michiel Noback">
+<meta name="description" content="Until now, you have probably installed and imported many R packages, but one of them your own. There are two main reasons why you would create your own packages: You want to reuse some functions...">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta property="og:title" content="Chapter 17 Packages | Data Analysis and Visualization using R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Until now, you have probably installed and imported many R packages, but one of them your own. There are two main reasons why you would create your own packages: You want to reuse some functions...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 17 Packages | Data Analysis and Visualization using R">
+<meta name="twitter:description" content="Until now, you have probably installed and imported many R packages, but one of them your own. There are two main reasons why you would create your own packages: You want to reuse some functions...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.4/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Data Analysis and Visualization using R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Getting started</a></li>
+<li><a class="" href="toolbox.html"><span class="header-section-number">2</span> The toolbox</a></li>
+<li><a class="" href="basic-r.html"><span class="header-section-number">3</span> Basic R</a></li>
+<li><a class="" href="complex-datatypes-and-file-reading.html"><span class="header-section-number">4</span> Complex Datatypes and File Reading</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">5</span> Basics of the ggplot2 package</a></li>
+<li><a class="" href="built-in-functions.html"><span class="header-section-number">6</span> Built-in Functions</a></li>
+<li><a class="" href="flow-control-and-scripting.html"><span class="header-section-number">7</span> Flow control and scripting</a></li>
+<li><a class="" href="tidyr.html"><span class="header-section-number">8</span> Tidying dataframes using Package tidyr</a></li>
+<li><a class="" href="mangling.html"><span class="header-section-number">9</span> Old school data mangling</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">10</span> Data mangling with dplyr</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">11</span> Text processing with regex</a></li>
+<li><a class="" href="ggplot2-adv.html"><span class="header-section-number">12</span> Package ggplot2 revisited</a></li>
+<li><a class="" href="date-time.html"><span class="header-section-number">13</span> Working with date-time data</a></li>
+<li><a class="" href="eda-1.html"><span class="header-section-number">14</span> Exploratory Data Analysis I</a></li>
+<li><a class="" href="eda-2.html"><span class="header-section-number">15</span> Exploratory Data Analysis II</a></li>
+<li><a class="" href="adding-interactivity.html"><span class="header-section-number">16</span> Adding interactivity</a></li>
+<li><a class="active" href="packages.html"><span class="header-section-number">17</span> Packages</a></li>
+<li><a class="" href="exercises.html"><span class="header-section-number">18</span> Exercises</a></li>
+<li><a class="" href="exercise-solutions.html"><span class="header-section-number">19</span> Exercise solutions</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="packages" class="section level1" number="17">
+<h1>
+<span class="header-section-number">17</span> Packages<a class="anchor" aria-label="anchor" href="#packages"><i class="fas fa-link"></i></a>
+</h1>
+<p>Until now, you have probably installed and imported many R packages, but one of them your own.<br>
+There are two main reasons why you would create your own packages:</p>
+<ol style="list-style-type: decimal">
+<li>You want to reuse some functions in multiple projects that you work on.</li>
+<li>You want to share functions and data with a wider community, maybe with FAIR science in mind.</li>
+</ol>
+<p>This chapter outlines the basic workflow for creating, developing, documenting and deploying your package.<br>
+For a real in-depth discussion, you should read the excellent free e-Book <a href="https://r-pkgs.org/">R Packages</a> by Wickham and Bryan.</p>
+<div id="prerequisites" class="section level2" number="17.1">
+<h2>
+<span class="header-section-number">17.1</span> Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"><i class="fas fa-link"></i></a>
+</h2>
+<p>You need the following packages to get started with developing your own package:</p>
+<ol style="list-style-type: decimal">
+<li>
+<code>devtools</code> which itself loads some other packages as well.</li>
+<li><code>usethis</code></li>
+</ol>
+</div>
+<div id="setting-up" class="section level2" number="17.2">
+<h2>
+<span class="header-section-number">17.2</span> Setting up<a class="anchor" aria-label="anchor" href="#setting-up"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <code>usethis</code> package has a convenience method to create a new package:</p>
+<div class="sourceCode" id="cb912"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/create_package.html">create_package</a></span><span class="op">(</span><span class="st">"demopackage"</span><span class="op">)</span></span></code></pre></div>
+<p>Note: I use the package name prefix with two colons (<code>package::function()</code>) in this tutorial in
+order to make it clear which package I the function resides in. It is not mandatory.</p>
+<p>The above command will create a new directory with the following structure:</p>
+<pre><code>demopackage/
+    .gitignore
+    .Rbuildignore
+    demopackage.Rproj
+    DESCRIPTION
+    NAMESPACE
+    R/</code></pre>
+<p>The <code>DESCRIPTION</code> file contains metadata about your package, such as the name, version,
+dependencies, and so on:</p>
+<pre><code>Package: demopackage
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3</code></pre>
+<p>The <code>NAMESPACE</code> file is used to define which functions are exported from your package.</p>
+<pre><code># Generated by roxygen2: do not edit by hand</code></pre>
+<p>The <code>R/</code> directory is where you will put your R code.
+The other files.folders are auto-generated and not interesting for now.</p>
+</div>
+<div id="demo-data" class="section level2" number="17.3">
+<h2>
+<span class="header-section-number">17.3</span> Demo data<a class="anchor" aria-label="anchor" href="#demo-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Many packages come with demo data that can be used to test the package.<br>
+I think it always a good idea to include some demo data in the package, also for my own development cycle,
+so let’s start with that.</p>
+<p><strong>step 1</strong> Create folders <code>data/</code> and <code>/data-raw/</code> in the package folder. Also add <code>data-raw</code> to the <code>.Rbuildignore</code> file:</p>
+<pre><code>^demopackage\.Rproj$
+^\.Rproj\.user$
+data-raw</code></pre>
+<p><strong>step 2</strong> Create a new R script called <code>DATASET.R</code> in the <code>data-raw/</code> directory .</p>
+<p>Contents of <code>DATASET.R</code>:</p>
+<div class="sourceCode" id="cb917"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">create_demo_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">time_mins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">16</span>, <span class="fl">32</span>, <span class="fl">48</span>, <span class="fl">64</span>, <span class="fl">80</span>, <span class="fl">96</span>, <span class="fl">112</span>, <span class="fl">128</span>, <span class="fl">144</span>, <span class="fl">160</span><span class="op">)</span></span>
+<span>    <span class="va">OD600_A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.023</span>, <span class="fl">0.035</span>, <span class="fl">0.059</span>, <span class="fl">0.099</span>, <span class="fl">0.167</span>, <span class="fl">0.256</span>, <span class="fl">0.349</span>, <span class="fl">0.491</span>, <span class="fl">0.684</span>, <span class="fl">0.821</span>, <span class="fl">0.916</span><span class="op">)</span></span>
+<span>    <span class="va">OD600_A2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.022</span>, <span class="fl">0.031</span>, <span class="fl">0.062</span>, <span class="fl">0.103</span>, <span class="fl">0.174</span>, <span class="fl">0.263</span>, <span class="fl">0.358</span>, <span class="fl">0.508</span>, <span class="fl">0.691</span>, <span class="fl">0.826</span>, <span class="fl">0.927</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="va">OD600_B1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.023</span>, <span class="fl">0.022</span>, <span class="fl">0.027</span>, <span class="fl">0.051</span>, <span class="fl">0.074</span>, <span class="fl">0.099</span>, <span class="fl">0.123</span>, <span class="fl">0.178</span>, <span class="fl">0.263</span>, <span class="fl">0.341</span>, <span class="fl">0.382</span><span class="op">)</span></span>
+<span>    <span class="va">OD600_B2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.018</span>, <span class="fl">0.019</span>, <span class="fl">0.024</span>, <span class="fl">0.047</span>, <span class="fl">0.067</span>, <span class="fl">0.085</span>, <span class="fl">0.109</span>, <span class="fl">0.165</span>, <span class="fl">0.243</span>, <span class="fl">0.308</span>, <span class="fl">0.342</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>minutes <span class="op">=</span> <span class="va">time_mins</span>,</span>
+<span>                       OD600_control_A <span class="op">=</span> <span class="va">OD600_A1</span>,</span>
+<span>                       OD600_control_B <span class="op">=</span> <span class="va">OD600_A2</span>,</span>
+<span>                       OD600_agentX_A <span class="op">=</span> <span class="va">OD600_B1</span>,</span>
+<span>                       OD600_agentX_B <span class="op">=</span> <span class="va">OD600_B2</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="va">growth_data</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>,</span>
+<span>                       cols <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>,</span>
+<span>                       names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"condition"</span>, <span class="st">"duplo"</span><span class="op">)</span>,</span>
+<span>                       names_pattern <span class="op">=</span> <span class="st">"OD600_(control|agentX)_(A|B)"</span>,</span>
+<span>                       values_to <span class="op">=</span> <span class="st">"OD600"</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_data.html">use_data</a></span><span class="op">(</span><span class="va">growth_data</span>, overwrite<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">create_demo_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Step 3</strong> Run the above script in the console of RStudio.</p>
+<p>Note the call of <code>usethis::use_data(growth_data, overwrite=TRUE)</code> at the end of the function.
+This takes care of creating the <code>growth_data.rda</code> R data object in <code>data/</code> that will be published with you package.</p>
+<p>I used the <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> function to transform the data from wide to long format.</p>
+<p>Run <code><a href="https://devtools.r-lib.org/reference/load_all.html">devtools::load_all()</a></code> in the console of RStudio to load the package into the current R session.
+Output will be something like:</p>
+<pre><code>ℹ Loading demopackage
+✔ Saving 'growth_data' to 'data/growth_data.rda'
+• Document your data (see 'https://r-pkgs.org/data.html')</code></pre>
+<p><strong>Do not ignore warnings!</strong> The warning about documenting your data is important.</p>
+<p>Now, when you type in the console <code>growth_data</code>, or <code><a href="https://rdrr.io/pkg/demopackage/man/growth_data.html">demopackage::growth_data</a></code>,
+you will see the data object printed to the console.</p>
+<pre><code># A tibble: 44 × 4
+   minutes condition duplo OD600
+     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;
+ 1       0 control   A     0.023
+ 2       0 control   B     0.022
+ 3       0 agentX    A     0.023
+ 4       0 agentX    B     0.018
+ 5      16 control   A     0.035
+ 6      16 control   B     0.031
+ 7      16 agentX    A     0.022
+ 8      16 agentX    B     0.019
+ 9      32 control   A     0.059
+10      32 control   B     0.062
+# ℹ 34 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+<p>You may have noticed the <code>• Document your data (see 'https://r-pkgs.org/data.html')</code>
+in the <code>load_all()</code> output above.
+Let’s proceed with that, following the guidelines mentioned in the link.</p>
+<p>First, create a new R script in the <code>R/</code> directory called <code>data.R</code>.<br>
+In it, put the documentation of your dataset, followed by its -quoted- name:</p>
+<div class="sourceCode" id="cb920"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Demo bacterial growth data</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' A small fictitious dataset with duplo's for two conditions of growth medium.</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @format ## `growth_data`</span></span>
+<span><span class="co">#' A data frame with 44 rows and 4 columns:</span></span>
+<span><span class="co">#' \describe{</span></span>
+<span><span class="co">#'   \item{minutes}{Minutes elapsed since T0}</span></span>
+<span><span class="co">#'   \item{condition}{Growth condition; a control and a medium additive}</span></span>
+<span><span class="co">#'   \item{duplo}{Duplo A or B}</span></span>
+<span><span class="co">#'   \item{OD600}{The OD600, or Optical Density measured at 600 nm wavelength}</span></span>
+<span><span class="co">#' }</span></span>
+<span><span class="co">#' @details</span></span>
+<span><span class="co">#' Additional details...</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="st">"growth_data"</span></span></code></pre></div>
+<p>The documentation is written in Roxygen2 format, which is a way to write documentation in the source code of your package.
+The <code>roxygen2</code> package will parse this and create the documentation for you.<br>
+The <code>@export</code> tag at the end is used to indicate that this dataset is meant to be used by the users of your package.</p>
+<p>To make this available, we first call <code><a href="https://devtools.r-lib.org/reference/document.html">devtools::document()</a></code> and then type <code>?growth_data</code> in the console to see the documentation.
+It looks like this:</p>
+<div class="float">
+<img src="figures/growth_data_help.png" alt="growth_data_help.png"><div class="figcaption">growth_data_help.png</div>
+</div>
+<p>Your package folder now has an additional folder <code>man</code> with a file <code>growth_data.Rd</code> in it;
+the same documentation, but now in Latex format. This is the file that contains the documentation
+that you just wrote.<br>
+Here is the current status of the project folder.</p>
+<pre><code>demopackage/
+    .gitignore
+    .Rbuildignore
+    demopackage.Rproj
+    DESCRIPTION
+    NAMESPACE
+    data/
+        growth_data.rda
+    data-raw/
+        DATASET.R
+    man/
+        growth_data.Rd
+    R/
+        data.R</code></pre>
+</div>
+<div id="writing-functions" class="section level2" number="17.4">
+<h2>
+<span class="header-section-number">17.4</span> Writing functions<a class="anchor" aria-label="anchor" href="#writing-functions"><i class="fas fa-link"></i></a>
+</h2>
+<p>Let’s add some functionality to the package.<br>
+A warning: Do not use <code><a href="https://rdrr.io/r/base/library.html">library(package)</a></code> statements in your package scripts; they should be dealt with in another way.</p>
+<p>Create a new R script in the <code>R/</code> directory called <code>plot_growth_curves.R</code>.
+In it, put the following function:</p>
+<div class="sourceCode" id="cb922"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_growth_curves</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">growth_data</span>, <span class="va">add_smoother</span><span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">growth_data</span>,</span>
+<span>                           mapping <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">minutes</span>,</span>
+<span>                                         y <span class="op">=</span> <span class="va">OD600</span>,</span>
+<span>                                         linetype <span class="op">=</span> <span class="va">duplo</span>,</span>
+<span>                                         shape <span class="op">=</span> <span class="va">duplo</span>,</span>
+<span>                                         color <span class="op">=</span> <span class="va">condition</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>           <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>           <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="va">add_smoother</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="va">plt</span> <span class="op">&lt;-</span> <span class="va">plt</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">F</span>, formula <span class="op">=</span> <span class="st">'y ~ x'</span>, method <span class="op">=</span> <span class="st">"loess"</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">plt</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>and don’t forget to add the dependency on the two tidyverse packages in the <code>DESCRIPTION</code> file:</p>
+<pre><code>Imports: 
+    tidyr,
+    ggplot2</code></pre>
+<p>In this example, I always use the <code>ggplot::</code> prefix. This is the easiest way to use dependencies.
+If you don’t want this (because it is a bit verbose), you can use <code>importFrom</code> in the <code>NAMESPACE</code> file.
+See details for this in the <a href="https://r-pkgs.org/">R Packages</a> book.</p>
+<p>Now, after <code><a href="https://devtools.r-lib.org/reference/load_all.html">devtools::load_all()</a></code> we can use the package function:</p>
+<div class="sourceCode" id="cb924"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">demopackage</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/demopackage/man/plot_growth_curves.html">plot_growth_curves</a></span><span class="op">(</span><span class="fu">demopackage</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/demopackage/man/growth_data.html">growth_data</a></span><span class="op">)</span></span>
+<span><span class="co">#OR</span></span>
+<span><span class="fu">plot_growth_curves</span><span class="op">(</span><span class="va">growth_data</span><span class="op">)</span></span></code></pre></div>
+<p>Let’s finish with the function documentation:</p>
+<div class="sourceCode" id="cb925"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Plot bacterial growth data</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' Plots bacterial growth curves with duplos and multiple conditions.</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @param growth_data A tibble of data frame in long format, similar to the growth_data demo table of this package.</span></span>
+<span><span class="co">#' @param add_smoother A logical indicating whether to add a smoother to the plot.</span></span>
+<span><span class="co">#' @returns Nothing</span></span>
+<span><span class="co">#' @examples</span></span>
+<span><span class="co">#' plot_growth_curves(growth_data)</span></span>
+<span><span class="co">#' plot_growth_curves(growth_data, add_smoother = TRUE)</span></span>
+<span><span class="co">#' @details</span></span>
+<span><span class="co">#' Additional details...</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @export</span></span></code></pre></div>
+<p>Finally, run <code><a href="https://devtools.r-lib.org/reference/document.html">devtools::document()</a></code> and <code><a href="https://devtools.r-lib.org/reference/load_all.html">devtools::load_all()</a></code> to test the function and its documentation.</p>
+<div class="float">
+<img src="figures/growth_data_plot.png" alt="growth_data_plot.png"><div class="figcaption">growth_data_plot.png</div>
+</div>
+<p>I know, this smoother is not the most appropriate fit for this type of data, but couldn’t be bothered
+to find a better one for this example.</p>
+<p>Finally, let’s update the <code>DESCRIPTION</code> file with the new function and its documentation:
+The DESCRIPTION file should now look something like this:</p>
+<pre><code>Package: demopackage
+Title: A package for plotting bacterial growth curves.
+Version: 0.0.1.000
+Authors@R: 
+    person("Michiel", "Noback", , "michiel.noback@example.com", role = c("aut", "cre"))
+Description: A package for plotting bacteria growth curves in a user-friendly way.
+License: `use_mit_license()`
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    tidyr,
+    ggplot2
+Depends: 
+    R (&gt;= 2.10)
+LazyData: true</code></pre>
+<p>and the NAMESPACE file should look like this (DON’T EDIT THIS FILE BY HAND):</p>
+<pre><code># Generated by roxygen2: do not edit by hand
+
+export(plot_growth_curves)</code></pre>
+<p>The dataset <code>growth_data</code> is not present in the NAMESPACE file. Datasets are dealt with in a different way by R.</p>
+</div>
+<div id="publish-the-package" class="section level2" number="17.5">
+<h2>
+<span class="header-section-number">17.5</span> Publish the package<a class="anchor" aria-label="anchor" href="#publish-the-package"><i class="fas fa-link"></i></a>
+</h2>
+<p>If you want to share your package with the world, you can publish it on GitHub, or on CRAN.</p>
+<p>CRAN has a lot of rules and guidelines that you need to follow; I won’t go into that here.</p>
+<p>For GitHub, you can use the <code><a href="https://usethis.r-lib.org/reference/use_github.html">usethis::use_github()</a></code> function, but I prefer to take matters in my own hands.</p>
+<p>These are the steps:</p>
+<ol style="list-style-type: decimal">
+<li>Add a <code>.gitignore</code> file to your package folder with <code><a href="https://usethis.r-lib.org/reference/use_git_ignore.html">usethis::use_git_ignore()</a></code>. It should have the entries <code>.Rproj.user</code>, <code>*.Rproj</code> and <code>.Rhistory</code>
+</li>
+<li>Init a github repository in your package folder with <code>git init</code>.</li>
+<li>Create a new repository on GitHub (in my case <a href="https://github.com/MichielNoback/R-demo-package">https://github.com/MichielNoback/R-demo-package</a>).</li>
+<li>Add the remote with <code>git remote add origin</code> and the URL of your repository.</li>
+<li>Add a Readme.md; you can create a stub file with <code><a href="https://usethis.r-lib.org/reference/use_readme_rmd.html">usethis::use_readme_md()</a></code>. Don’t forget to edit it!</li>
+<li>
+<code>git add</code>, <code>git commit</code> and <code>git push</code> to the remote.</li>
+</ol>
+<p>Here is the final status of the project folder.</p>
+<pre><code>demopackage/
+    .git/
+    .Rproj.user/
+    data/
+        growth_data.rda
+    data-raw/
+        DATASET.R
+    man/
+        growth_data.Rd
+        plot_growth_curves.Rd
+    R/
+        data.R
+        plot_growth_curves.R
+    .gitignore
+    .Rbuildignore
+    .Rhistory
+    demopackage.Rproj
+    DESCRIPTION
+    NAMESPACE
+    README.md</code></pre>
+<p>Others can now install this package with <code>devtools::install_github("MichielNoback/R-demo-package")</code>.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="adding-interactivity.html"><span class="header-section-number">16</span> Adding interactivity</a></div>
+<div class="next"><a href="exercises.html"><span class="header-section-number">18</span> Exercises</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#packages"><span class="header-section-number">17</span> Packages</a></li>
+<li><a class="nav-link" href="#prerequisites"><span class="header-section-number">17.1</span> Prerequisites</a></li>
+<li><a class="nav-link" href="#setting-up"><span class="header-section-number">17.2</span> Setting up</a></li>
+<li><a class="nav-link" href="#demo-data"><span class="header-section-number">17.3</span> Demo data</a></li>
+<li><a class="nav-link" href="#writing-functions"><span class="header-section-number">17.4</span> Writing functions</a></li>
+<li><a class="nav-link" href="#publish-the-package"><span class="header-section-number">17.5</span> Publish the package</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-14.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
