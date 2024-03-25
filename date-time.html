@@ -89,7 +89,7 @@
 <p>When working in a lab you will often encounter time-measured data. For instance, growth curves, animal behavior observations etc.</p>
 <p>The tidyverse package <code>lubridate</code> can help you with that. It is quite an expensive package; only the bare essentials will be dealt with here. For a bit more complete overview have a look at the <a href="graphics/lubridate.pdf">cheat sheet</a>.</p>
 <p>A small fictitious dataset will be used here to explore some of the concepts. It can be found in file <code>data/time_series_drug_test.txt</code>.</p>
-<div class="sourceCode" id="cb760"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb780"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/time_series_drug_test.txt"</span>, </span>
 <span>                 header <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>                 sep <span class="op">=</span> <span class="st">";"</span>,</span>
@@ -107,7 +107,7 @@
 ## 6 S001    30/12/2019 12:05 n             57
 ## # ℹ 42 more rows</code></pre>
 <p>If you simply want to show the timeseries as a plot, the date and time columns need to be combined first. The tidyr package has <code>unite()</code>, or do it with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code></p>
-<div class="sourceCode" id="cb762"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb782"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu">unite</span><span class="op">(</span><span class="st">"date_time"</span>, <span class="va">date</span>, <span class="va">time</span>, sep <span class="op">=</span> <span class="st">"T"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
@@ -118,7 +118,7 @@
 ## 2 S001    29/12/2019T12:06 n             68
 ## 3 S001    29/12/2019T17:28 n            112</code></pre>
 <p>As you can see, the original data columns are lost in this operation. Using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> does keep them intact however. I will take this approach because I want the old columns for demonstration purposes.</p>
-<div class="sourceCode" id="cb764"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb784"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ts</span> <span class="op">&lt;-</span> <span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">time</span>, sep<span class="op">=</span><span class="st">" "</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">ts</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
@@ -129,7 +129,7 @@
 ## 2 S001    29/12/2019 12:06 n             68 29/12/2019 12:06
 ## 3 S001    29/12/2019 17:28 n            112 29/12/2019 17:28</code></pre>
 <p>Let’s reshuffle. I like it when my dependent variable comes last.</p>
-<div class="sourceCode" id="cb766"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb786"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ts</span> <span class="op">&lt;-</span> <span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">date</span>, <span class="va">time</span>, <span class="va">date_time</span>, <span class="va">control</span>, <span class="va">response</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">ts</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 3 × 6
@@ -139,7 +139,7 @@
 ## 2 S001    29/12/2019 12:06 29/12/2019 12:06 n             68
 ## 3 S001    29/12/2019 17:28 29/12/2019 17:28 n            112</code></pre>
 <p>If I attempt to plot the response over time for each of the subjects I get into trouble:</p>
-<div class="sourceCode" id="cb768"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb788"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ts</span>, </span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">response</span>, linetype <span class="op">=</span> <span class="va">subject</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -148,7 +148,7 @@
 Actually there are some functions in baser R that can do this, but we’ll stick to the tidyverse.</p>
 <p>So this is the area of the <code>lubridate</code> package. I included a <code><a href="https://lubridate.tidyverse.org">library(lubridate)</a></code> statement at the top of this document so that’s not needed anymore.</p>
 <p>Let’s start with reading in date and time variables. There are many dedicated (wrapper) functions for reading date and time data. The <code>date</code> variable has the format “<strong>D</strong>ay/<strong>M</strong>onth/<strong>Y</strong>ear” so the function <code>dmy()</code> should be fine here:</p>
-<div class="sourceCode" id="cb769"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb789"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ts</span> <span class="op">&lt;-</span> <span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu">dmy</span><span class="op">(</span><span class="va">ts</span><span class="op">$</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
@@ -159,18 +159,18 @@ Actually there are some functions in baser R that can do this, but we’ll stick
 ## 2 S001    2019-12-29 12:06 29/12/2019 12:06 n             68
 ## 3 S001    2019-12-29 17:28 29/12/2019 17:28 n            112</code></pre>
 <p>As you can see, the type has changed into <code>date</code>. Let’s try the plot again:</p>
-<div class="sourceCode" id="cb771"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb791"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ts</span>, </span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">response</span>, linetype <span class="op">=</span> <span class="va">subject</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/lubridate-mutate-3-1.png" width="672"></div>
 <p>Now we’re getting somewhere. The times are not taken into account yet, so it is simply mapped to 00:00 hours on that day. Also, we’re not really interested in the specific date, we want to know the change from T = 0. We’ll get to that.</p>
 <p>Parsing time is the same as parsing the date, we have an “<strong>H</strong>our:<strong>M</strong>inute” format so the function to take is <code>hm()</code> (there is also an <code>hms()</code>):</p>
-<div class="sourceCode" id="cb772"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb792"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">hm</span><span class="op">(</span><span class="va">ts</span><span class="op">$</span><span class="va">time</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code>## [1] "7H 44M 0S"  "12H 6M 0S"  "17H 28M 0S" "22H 1M 0S"  "7H 22M 0S"</code></pre>
 <p>And yes, there is also an <code>dmy_hm()</code> function:</p>
-<div class="sourceCode" id="cb774"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb794"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dmy_hm</span><span class="op">(</span><span class="va">ts</span><span class="op">$</span><span class="va">date_time</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code>## [1] "2019-12-29 07:44:00 UTC" "2019-12-29 12:06:00 UTC"
 ## [3] "2019-12-29 17:28:00 UTC" "2019-12-29 22:01:00 UTC"
@@ -200,12 +200,12 @@ Actually there are some functions in baser R that can do this, but we’ll stick
 <strong><code>Y</code></strong> Year with century.</li>
 </ul>
 <p>Function <code>parse_date_time()</code> is the most lenient of the two with respect to the <strong><em>format string</em></strong>:</p>
-<div class="sourceCode" id="cb776"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb796"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">parse_date_time</span><span class="op">(</span><span class="va">ts</span><span class="op">$</span><span class="va">date_time</span>, <span class="st">"d.m-y H:M"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span> <span class="co">##doesn't care I have a typo in my format string</span></span></code></pre></div>
 <pre><code>## [1] "2019-12-29 07:44:00 UTC" "2019-12-29 12:06:00 UTC"
 ## [3] "2019-12-29 17:28:00 UTC" "2019-12-29 22:01:00 UTC"
 ## [5] "2019-12-30 07:22:00 UTC"</code></pre>
-<div class="sourceCode" id="cb778"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb798"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ts</span> <span class="op">&lt;-</span> <span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date_time <span class="op">=</span> <span class="fu">parse_date_time</span><span class="op">(</span><span class="va">ts</span><span class="op">$</span><span class="va">date_time</span>, <span class="st">"d/m/y H:M"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">ts</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 3 × 6
@@ -215,10 +215,10 @@ Actually there are some functions in baser R that can do this, but we’ll stick
 ## 2 S001    2019-12-29 12:06 2019-12-29 12:06:00 n             68
 ## 3 S001    2019-12-29 17:28 2019-12-29 17:28:00 n            112</code></pre>
 <p>The <code>fast_strptime()</code> is much more picky, but much faster. You specify the date(-time) format using<code>%</code> sign together with one of the symbols listed above:</p>
-<div class="sourceCode" id="cb780"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb800"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">fast_strptime</span><span class="op">(</span><span class="st">'29/12/2019 07:44'</span>, <span class="st">'%d/%m/%Y %H:%M'</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "2019-12-29 07:44:00 UTC"</code></pre>
-<div class="sourceCode" id="cb782"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb802"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## When in tibble context, you need to set `lt = F`...</span></span>
 <span><span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date_time <span class="op">=</span> <span class="fu">fast_strptime</span><span class="op">(</span><span class="va">date_time</span>, <span class="st">'%d/%m/%Y %H:%M'</span>, lt <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -229,13 +229,13 @@ Actually there are some functions in baser R that can do this, but we’ll stick
 <span class="header-section-number">13.1.2</span> Current time<a class="anchor" aria-label="anchor" href="#current-time"><i class="fas fa-link"></i></a>
 </h3>
 <p>The functions <code>today()</code> and <code>now()</code> are your friends.</p>
-<div class="sourceCode" id="cb783"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb803"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##output will vary!</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"the day is "</span>, <span class="fu">today</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] "the day is  2024-03-14"</code></pre>
-<div class="sourceCode" id="cb785"><pre class="downlit sourceCode r">
+<pre><code>## [1] "the day is  2024-03-25"</code></pre>
+<div class="sourceCode" id="cb805"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"and to be really exact: "</span>, <span class="fu">now</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] "and to be really exact:  2024-03-14 11:01:55"</code></pre>
+<pre><code>## [1] "and to be really exact:  2024-03-25 10:45:46"</code></pre>
 </div>
 <div id="getting-elements-from-date-time-objects" class="section level3" number="13.1.3">
 <h3>
@@ -264,7 +264,7 @@ Actually there are some functions in baser R that can do this, but we’ll stick
 <strong><code>week(x)</code></strong> Week of the year.</li>
 </ul>
 <p>A use case demonstration: On what days were the samples taken of the times series used so far?</p>
-<div class="sourceCode" id="cb787"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb807"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>day_of_week <span class="op">=</span> <span class="fu">wday</span><span class="op">(</span><span class="va">date_time</span>, label<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>sample_count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -276,7 +276,7 @@ Actually there are some functions in baser R that can do this, but we’ll stick
 ## 1 Sun                   24
 ## 2 Mon                   24</code></pre>
 <p>What was the mean response on the different times of the day:</p>
-<div class="sourceCode" id="cb789"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb809"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>hour_of_day <span class="op">=</span> <span class="fu">hour</span><span class="op">(</span><span class="va">date_time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">response</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -288,7 +288,7 @@ Actually there are some functions in baser R that can do this, but we’ll stick
 ## 3          17  68.8
 ## 4          22  52</code></pre>
 <p>And when split over the control/treatment group as well:</p>
-<div class="sourceCode" id="cb791"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb811"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">control</span>, hour_of_day <span class="op">=</span> <span class="fu">hour</span><span class="op">(</span><span class="va">date_time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">response</span><span class="op">)</span>,</span>
@@ -308,7 +308,7 @@ Actually there are some functions in baser R that can do this, but we’ll stick
 ## 7 y                17  42.5     6
 ## 8 y                22  34.5     6</code></pre>
 <p>Finally, let’s close off with a plot</p>
-<div class="sourceCode" id="cb794"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb814"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ts</span>, </span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date_time</span>, y <span class="op">=</span> <span class="va">response</span>, color <span class="op">=</span> <span class="va">subject</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -320,7 +320,7 @@ Actually there are some functions in baser R that can do this, but we’ll stick
 <span class="header-section-number">13.1.4</span> Calculations with date-time<a class="anchor" aria-label="anchor" href="#calculations-with-date-time"><i class="fas fa-link"></i></a>
 </h3>
 <p>The example below shows the most basic calculation: the difference between two date-time objects.</p>
-<div class="sourceCode" id="cb795"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb815"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ts</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">subject</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">date_time</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -374,7 +374,7 @@ For this more advanced time math you should refer to the cheat sheet or the offi
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-14.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -263,7 +263,7 @@ Here is part of the measles data. It is not tidy. Why not?</p>
 <span class="header-section-number">8.1</span> The <code>pivot_longer()</code> function<a class="anchor" aria-label="anchor" href="#the-pivot_longer-function"><i class="fas fa-link"></i></a>
 </h2>
 <p>Tidying has never been simpler, using the <code>pivot_longer</code> function:</p>
-<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">measles_tidy</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>data <span class="op">=</span> <span class="va">measles</span>,</span>
 <span>                             cols <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">16</span>,</span>
 <span>                             names_to <span class="op">=</span> <span class="st">"Month"</span>,</span>
@@ -409,15 +409,15 @@ Here is part of the measles data. It is not tidy. Why not?</p>
 </ol>
 <p>The result is a “flattened but elongated” data structure. All data from the non-gathered columns (<code>Region</code>, <code>ISO3</code>, <code>Country</code>, and <code>Year</code>) will be expanded/duplicated for each of the 12 month rows that will be created.</p>
 <p>Here you can see the numbers as verification of the process:</p>
-<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## The original dimensions</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">measles</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1746   16</code></pre>
-<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## The tidied data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">measles_tidy</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 20952     6</code></pre>
-<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## 12 times 1746 is 20952 rows</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">measles_tidy</span><span class="op">)</span> <span class="op">/</span> <span class="fl">12</span></span></code></pre></div>
 <pre><code>## [1] 1746</code></pre>
@@ -427,10 +427,10 @@ Here is part of the measles data. It is not tidy. Why not?</p>
 <span class="header-section-number">8.1.1</span> Selecting columns<a class="anchor" aria-label="anchor" href="#selecting-columns"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>cols=</code> argument can be specified using a whole bunch of different methods. A few are listed here.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="tidyr.html#cb393-1" tabindex="-1"></a>cols <span class="ot">=</span> <span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>),</span>
-<span id="cb393-2"><a href="tidyr.html#cb393-2" tabindex="-1"></a>cols <span class="ot">=</span> <span class="sc">-</span>(Region<span class="sc">:</span>Year),</span>
-<span id="cb393-3"><a href="tidyr.html#cb393-3" tabindex="-1"></a>cols <span class="ot">=</span> January<span class="sc">:</span>December,</span>
-<span id="cb393-4"><a href="tidyr.html#cb393-4" tabindex="-1"></a>cols <span class="ot">=</span> <span class="sc">-</span><span class="fu">c</span>(Region, ISO3, Country, Year),</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="tidyr.html#cb413-1" tabindex="-1"></a>cols <span class="ot">=</span> <span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>),</span>
+<span id="cb413-2"><a href="tidyr.html#cb413-2" tabindex="-1"></a>cols <span class="ot">=</span> <span class="sc">-</span>(Region<span class="sc">:</span>Year),</span>
+<span id="cb413-3"><a href="tidyr.html#cb413-3" tabindex="-1"></a>cols <span class="ot">=</span> January<span class="sc">:</span>December,</span>
+<span id="cb413-4"><a href="tidyr.html#cb413-4" tabindex="-1"></a>cols <span class="ot">=</span> <span class="sc">-</span><span class="fu">c</span>(Region, ISO3, Country, Year),</span></code></pre></div>
 <p>Later on, we’ll encounter some more means to select columns using the <em><strong>tidyselect helpers</strong></em>.</p>
 </div>
 <div id="another-example" class="section level3" number="8.1.2">
@@ -438,7 +438,7 @@ Here is part of the measles data. It is not tidy. Why not?</p>
 <span class="header-section-number">8.1.2</span> Another example<a class="anchor" aria-label="anchor" href="#another-example"><i class="fas fa-link"></i></a>
 </h3>
 <p>As an extra example, here is the dose_response data again.</p>
-<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dose_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/dose_response2.txt"</span>,</span>
 <span>                            header <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>                            sep<span class="op">=</span><span class="st">";"</span>,</span>
@@ -446,7 +446,7 @@ Here is part of the measles data. It is not tidy. Why not?</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dose_response</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "patient"   "sex"       "dose10mg"  "dose100mg"</code></pre>
 <p>It is processed by pivot_longer as well. This time, a Regular Expression is used to parse the dose as numbers only out of the header names.</p>
-<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dose_response</span>,</span>
 <span>             cols <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"patient"</span>, <span class="st">"sex"</span><span class="op">)</span>,</span>
 <span>             names_to <span class="op">=</span> <span class="st">"dose"</span>,</span>
@@ -525,7 +525,7 @@ Here is part of the measles data. It is not tidy. Why not?</p>
 </table></div>
 <p>The argument <code>names_pattern = "dose(10|100)mg"</code> specifies, using parentheses and the “or” symbol <code>|</code> that we want to extract only the numbers 10 or 100 from the column names. Regular expressions are discussed in another chapter (<a href="regex.html#regex">11</a>)</p>
 <p>Note however they are still character values so this requires a conversion:</p>
-<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">dose</span><span class="op">)</span></span>
 <span><span class="va">tmp</span><span class="op">$</span><span class="va">dose</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">dose</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
@@ -536,7 +536,7 @@ Here is part of the measles data. It is not tidy. Why not?</p>
 <span class="header-section-number">8.1.3</span> A more complex problem: two sets of columns<a class="anchor" aria-label="anchor" href="#a-more-complex-problem-two-sets-of-columns"><i class="fas fa-link"></i></a>
 </h3>
 <p>How about a case with two sets of columns? Here, to create an example, a <code>tibble</code> is used. This is an extension of the well-known <code>data.frame</code> type. It is also part of the <code>tidyverse</code> and will be discussed in more detail as well.</p>
-<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="va">two_two_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subject <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,</span>
 <span>              T0_Control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span>,</span>
@@ -599,7 +599,7 @@ a       T1   Control   13.057
 a       T1   Treated   15.188
 ...</code></pre>
 <p>To solve this it requires another bit of knowledge of regular expressions:</p>
-<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dose_response_long</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>data <span class="op">=</span> <span class="va">two_two_col</span>,</span>
 <span>             cols <span class="op">=</span> <span class="op">-</span><span class="st">"subject"</span>,</span>
 <span>             names_pattern <span class="op">=</span> <span class="st">"(T.)_(Control|Treated)"</span>,</span>
@@ -666,7 +666,7 @@ a       T1   Treated   15.188
 </table></div>
 <p>The expression <code>names_pattern = "(T.).(Control|Treated)"</code> tells the function there are two groups in the column names to be widened. These groups are defined by the two sets of parentheses <code>()</code>. The first group is defined by the letter “T” follows by a single character specified by the dot <code>.</code> which says “any character”. The second group is <code>(Control|Treated)</code> which tells the function that it is formed by the word Control or Treated. In between is a random single underscore “_“.<br>
 Alternatively, and actually much simpler, the <code>names_sep</code> argument could have been used. For instance, <code>names_sep = '_'</code> tells to split the column names at the underscore character character, yielding this result:</p>
-<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">alt</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>data <span class="op">=</span> <span class="va">two_two_col</span>,</span>
 <span>             cols <span class="op">=</span> <span class="op">-</span><span class="st">"subject"</span>,</span>
 <span>             names_sep <span class="op">=</span> <span class="st">"_"</span>,</span>
@@ -738,7 +738,7 @@ Alternatively, and actually much simpler, the <code>names_sep</code> argument co
 <span class="header-section-number">8.2</span> Widening with <code>pivot_wider()</code><a class="anchor" aria-label="anchor" href="#widening-with-pivot_wider"><i class="fas fa-link"></i></a>
 </h2>
 <p>The opposite of <code>pivot_longer()</code> is <code>pivot_wider()</code>. First the simple case of a single column:</p>
-<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dose_response_long</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   subject Time  Treatment Response
@@ -750,7 +750,7 @@ Alternatively, and actually much simpler, the <code>names_sep</code> argument co
 ## 5 b       T0    Control      10.3 
 ## 6 b       T0    Treated       8.81</code></pre>
 <p>Here is the reverse operation with <code>pivot_wider</code>:</p>
-<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu">pivot_wider</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dose_response_long</span>,</span>
 <span>                   names_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Time</span>, <span class="va">Treatment</span><span class="op">)</span>,</span>
 <span>                   values_from <span class="op">=</span> <span class="va">Response</span><span class="op">)</span></span>
@@ -811,7 +811,7 @@ Alternatively, and actually much simpler, the <code>names_sep</code> argument co
 <span class="header-section-number">8.3.1</span> Split columns with <code>separate()</code><a class="anchor" aria-label="anchor" href="#split-columns-with-separate"><i class="fas fa-link"></i></a>
 </h3>
 <p>The function <code>separate()</code> will split on the non-word character if no separator is specified. Here a separator is prided telling to split on an X with two other characters on either side.</p>
-<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">10</span><span class="op">:</span><span class="fl">15</span>, a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="st">"zXb"</span>, <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">tmp</span></span></code></pre></div>
 <pre><code>##    x     a
@@ -821,7 +821,7 @@ Alternatively, and actually much simpler, the <code>names_sep</code> argument co
 ## 4 13 4zXbd
 ## 5 14 5zXbe
 ## 6 15 6zXbf</code></pre>
-<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">separate</span><span class="op">(</span>data <span class="op">=</span> <span class="va">tmp</span>, col <span class="op">=</span> <span class="va">a</span>, sep <span class="op">=</span> <span class="st">".X."</span>, into<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    x b c
 ## 1 10 1 a
@@ -838,7 +838,7 @@ Alternatively, and actually much simpler, the <code>names_sep</code> argument co
 <p>When you have two columns that should be logically combined into one, use the <code>unite()</code> function.
 For instance, dates and times are often placed in separate columns but they are two aspects of a single measurement: time.
 Here is a small example. In a later presentation, working with dates and times will be extensively treated.</p>
-<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">activity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"30/12/2019"</span>, <span class="st">"31/12/2019"</span>, <span class="st">"01/01/2020"</span>, <span class="st">"02/01/2020"</span>, <span class="st">"02/01/2020"</span><span class="op">)</span>,</span>
 <span>                 time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"14:55"</span>, <span class="st">"21:01"</span>, <span class="st">"08:22"</span>, <span class="st">"11:56"</span>, <span class="st">"16:38"</span><span class="op">)</span>,</span>
 <span>                 activity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">48</span>, <span class="fl">5</span>, <span class="fl">19</span>, <span class="fl">22</span><span class="op">)</span><span class="op">)</span></span>
@@ -855,7 +855,7 @@ Here is a small example. In a later presentation, working with dates and times w
 <span class="header-section-number">8.3.3</span> Drop rows with missing values: <code>drop_na()</code><a class="anchor" aria-label="anchor" href="#drop-rows-with-missing-values-drop_na"><i class="fas fa-link"></i></a>
 </h3>
 <p>This function is extremely simple and useful. It drops rows with missing from a dataframe and returns a cured copy:</p>
-<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">drop_na</span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   Ozone Solar.R Wind Temp Month Day bar
 ## 1    41     190  7.4   67   May   1   1
@@ -907,7 +907,7 @@ Here is a small example. In a later presentation, working with dates and times w
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-14.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

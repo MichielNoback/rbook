@@ -165,7 +165,7 @@ Experiment with other usages of <code><a href="https://rdrr.io/r/base/c.html">c(
 What does the function <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> do? Use it to install the package <code>RColorBrewer</code>. We’ll have a look at this package later on.</p>
 <p><strong>E</strong> [❋]<br>
 Type <code><a href="https://rdrr.io/r/base/Round.html">?round</a></code> in the console. There are several functions related to rounding numbers. Give this vector:</p>
-<div class="sourceCode" id="cb930"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb950"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">numberz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.33</span>, <span class="op">-</span><span class="fl">1.55239</span>, <span class="fl">0.4432</span>, <span class="fl">0.5000001</span>, <span class="fl">1.98765</span><span class="op">)</span></span></code></pre></div>
 <p>generate these -exact- outputs using one of the listed functions:</p>
 <pre><code>[1] -1 -1  1  1  2
@@ -174,7 +174,7 @@ Type <code><a href="https://rdrr.io/r/base/Round.html">?round</a></code> in the 
 [1] -2 -2  0  0  1</code></pre>
 <p><strong>F</strong> [❋]<br>
 Using the on the website provided <a href="https://michielnoback.github.io/bincourses/course_contents/davur/R_cheatsheet.pdf">cheat sheet</a>, find the String manipulation function that will convert this vector of author names</p>
-<div class="sourceCode" id="cb932"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"William Shakespeare"</span>, <span class="st">"Agatha Christie"</span>, <span class="st">"J. K. Rowling"</span><span class="op">)</span></span></code></pre></div>
 <p>into this:</p>
 <pre><code>[[1]]
@@ -188,7 +188,7 @@ Using the on the website provided <a href="https://michielnoback.github.io/binco
 <p>(The output type is a list, a data type that we’ll see later on)</p>
 <p><strong>G</strong> [❋]</p>
 <p>Using the on the website provided <a href="https://michielnoback.github.io/bincourses/course_contents/davur/R_cheatsheet.pdf">cheat sheet</a>, find the data selection function that will accept this vector of bird names and returns a vector with all duplicates removed.</p>
-<div class="sourceCode" id="cb934"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">birds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"robin"</span>, <span class="st">"wagtail"</span>, <span class="st">"blackbird"</span>, <span class="st">"robin"</span>, <span class="st">"blackbird"</span>, <span class="st">"buzzard"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="variables-1" class="section level3" number="18.3.3">
@@ -213,7 +213,7 @@ F. <span class="math inline">\(\log_{10}{(x \times y)}\)</span></p>
 </h4>
 <p>The circumference of a circle is <span class="math inline">\(2\pi\cdot r\)</span>, its surface <span class="math inline">\(4\pi \cdot r^2\)</span> and its volume <span class="math inline">\(4/3 \pi\cdot r^3\)</span>.
 Given this vector of circle radiuses,</p>
-<div class="sourceCode" id="cb935"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb955"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">radiuses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="va">pi</span>, <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <p><strong>A</strong> [❋]<br>
 Calculate their circumference.</p>
@@ -246,7 +246,7 @@ Calculate their volume.</p>
 </h3>
 <p><strong>A</strong> [❋]
 Given this vector:</p>
-<div class="sourceCode" id="cb936"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animal_risk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p>and these possible levels:
 1: harmless
@@ -256,7 +256,7 @@ Given this vector:</p>
 <p>Create a factor from this data where the levels have order.</p>
 <p><strong>B</strong> [❋❋]<br>
 Given this simulated data set of wealth distribution. The letters represent the following labels: “a” = “poor”, “b” = “middle class”, “c” = “wealthy” and “c” = “rich”:</p>
-<div class="sourceCode" id="cb937"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb957"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="va">wealth_male</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, </span>
 <span>                 size <span class="op">=</span> <span class="fl">1000</span>,</span>
@@ -275,7 +275,7 @@ Next, combine these two factors into a single one. Finally, report the percentag
 <span class="header-section-number">18.4.2</span> List actions<a class="anchor" aria-label="anchor" href="#list-actions"><i class="fas fa-link"></i></a>
 </h3>
 <p>Given the list below,</p>
-<div class="sourceCode" id="cb938"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">house_admin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>John <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>cooking <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sunday"</span>, <span class="st">"Wednesday"</span><span class="op">)</span>,</span>
 <span>                                 tasks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"vacuuming"</span>, <span class="st">"fridge"</span><span class="op">)</span>,</span>
 <span>                                 rent <span class="op">=</span> <span class="fl">350</span><span class="op">)</span>,</span>
@@ -368,7 +368,7 @@ $Rose$rent
 </h3>
 <p>Almost all programming languages know the (hash)map / dictionary data structure storing so-called “key-and-value” pairs. They make it possible to “look up” the value belonging to a “key”. That is where the term dictionary comes from. A dictionary holds keys (the words) and their meaning (values). R does not have a dictionary type but you could make a dict-like structure using a <strong><em>vector with named elements</em></strong>. Here follows an example.</p>
 <p>If I wanted to create and use a DNA codon translation table, and use it to translate a piece of DNA, I could do something like what is shown below (there are only 4 of the 64 codons included to keep it simple). See if you can figure out what is going on there</p>
-<div class="sourceCode" id="cb945"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb965"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## define codon table as named vector</span></span>
 <span><span class="va">codons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Gly"</span>, <span class="st">"Pro"</span>, <span class="st">"Lys"</span>, <span class="st">"Ser"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">codons</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GGA"</span>, <span class="st">"CCU"</span>, <span class="st">"AAA"</span>, <span class="st">"AGU"</span><span class="op">)</span></span>
@@ -376,7 +376,7 @@ $Rose$rent
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">codons</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   GGA   CCU   AAA   AGU 
 ## "Gly" "Pro" "Lys" "Ser"</code></pre>
-<div class="sourceCode" id="cb947"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb967"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## the DNA to translate</span></span>
 <span><span class="va">my_DNA</span> <span class="op">&lt;-</span> <span class="st">"GGACCUAAAAGU"</span></span>
 <span><span class="va">my_prot</span> <span class="op">&lt;-</span> <span class="st">""</span></span>
@@ -391,7 +391,7 @@ $Rose$rent
 Make a modified copy of this code chunk in such a way that no spaces are present between the amino acid residues and that single-letter codes of amino acids are used instead of three-letter codes.</p>
 <p><strong>B</strong> [❋❋❋]<br>
 Below is a vector called <code>nuc_weights</code>. It holds the weights for the nucleotides A, C, G and U respectively. Convert it into a named vector. Then use a similar <code>for</code> code block as above to iterate <code>my_DNA</code> from the above code chunk to calculate its molecular weight.</p>
-<div class="sourceCode" id="cb949"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb969"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nuc_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">491.2</span>, <span class="fl">467.2</span>, <span class="fl">507.2</span>, <span class="fl">482.2</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="lowry" class="section level3" number="18.4.4">
@@ -401,11 +401,11 @@ Below is a vector called <code>nuc_weights</code>. It holds the weights for the 
 <p>The Lowry method is a widely used spectroscopic method to quantify protein amounts in solutions. Here are some real Lowry results for the quantification of proteins:
 The calibration curve is made using BSA (bovine serum albumin) as a standard.
 The concentrations are in mg/ml:</p>
-<div class="sourceCode" id="cb950"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb970"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bsa_conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">0</span>,  <span class="fl">0.025</span>,  <span class="fl">0.025</span>,  <span class="fl">0.075</span>,  <span class="fl">0.075</span>,  <span class="fl">0.125</span>,  <span class="fl">0.125</span><span class="op">)</span></span></code></pre></div>
 <p>Note that the duplo measurements are all put into one vector, in subsequent pairs of values. We’ll deal with that later.</p>
 <p>These are the measured absorption values at 750 nm (again for the duplo measurements):</p>
-<div class="sourceCode" id="cb951"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb971"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">OD750</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.063</span>,   <span class="fl">0.033</span>,  <span class="fl">0.16</span>,   <span class="fl">0.181</span>,  <span class="fl">0.346</span>,  <span class="fl">0.352</span>,  <span class="fl">0.491</span>,  <span class="fl">0.488</span><span class="op">)</span></span></code></pre></div>
 <p><strong>A</strong> [❋]</p>
 <p>Combine these two vectors in a dataframe and assign to a variable with name <code>dilution</code>. Do not add column names yet!</p>
@@ -413,7 +413,7 @@ The concentrations are in mg/ml:</p>
 <p>Now add the appropriate column names: <code>prot_conc</code> and <code>absorption</code>.</p>
 <p><strong>C</strong> [❋]</p>
 <p>You forgot to include the last data points (again these are duplos):</p>
-<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb972"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bsa_conc2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.175</span>,   <span class="fl">0.175</span>,  <span class="fl">0.25</span>,   <span class="fl">0.25</span><span class="op">)</span></span>
 <span><span class="va">OD750_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.597</span>, <span class="fl">0.595</span>,  <span class="fl">0.743</span>,  <span class="fl">0.742</span><span class="op">)</span></span></code></pre></div>
 <p>Generate a data frame assigned to the variable <code>df_temp</code> from these data points. This time, add the appropriate column names with creation of the data frame. Be sure you use exactly the same column names.</p>
@@ -514,7 +514,7 @@ Use these cutoffs: “low”: &lt; 60; “mid”: 60 &lt;= 80; “high”: &gt;=
 <p>Also: read the help for the <code>read.table</code> function carefully.</p>
 <p>Read the contents of each file in the <code>file_reading</code> directory into a dataframe object and assign it to the variable name <code>df</code>. There are 15 different files to practice your file loading skills.</p>
 <p>You don’t need to download them manually; simply use this:</p>
-<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/MichielNoback/davur_ebook/main/data/file_reading/file01.txt"</span>,</span>
 <span>           <span class="co">#more arguments</span></span>
 <span>           <span class="op">)</span></span></code></pre></div>
@@ -611,7 +611,7 @@ Type <code><a href="https://rdrr.io/r/datasets/OrchardSprays.html">?OrchardSpray
 <span class="header-section-number">18.5.7</span> Virginia Death Rates<a class="anchor" aria-label="anchor" href="#virginia-death-rates"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>datasets</code> package that is shipped with R has a dataset (a <code>matrix</code>) called <code>VADeaths</code>. Type <code><a href="https://rdrr.io/r/datasets/VADeaths.html">?VADeaths</a></code> to get information on it. First you should convert this matrix into a tibble (a kind of data frame) and the rownames into a real variable using the chunk below (study it so you understand what happens here):</p>
-<div class="sourceCode" id="cb957"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb977"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="co">## %&gt;% is used to pipe results from one operation to the other, just like '|' in Linux.</span></span>
 <span><span class="va">virginia_death_rates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">VADeaths</span><span class="op">)</span></span>
@@ -731,7 +731,7 @@ Create a function, <code>my_mean()</code>, that duplicates the R function <code>
 </h4>
 <p><strong>Level: ❋❋❋</strong></p>
 <p>Suppose we have some random numbers:</p>
-<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb978"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span> </span>
 <span><span class="va">my_nums</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
 <p>The use of <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> assures that the generated random numbers will always be the same, for everyone who runs it, every time.</p>
@@ -759,7 +759,7 @@ You may use the build-in <code><a href="https://rdrr.io/r/base/Extremes.html">ma
 <p>Create a function that will report the match locations some value in a given vector. Name it <code>where_is_it()</code>.
 Use only <code>for()</code> and <code>if/else</code> to get to your solution, no functions except <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>.</p>
 <p>So, this snippet should return the given expected reult</p>
-<div class="sourceCode" id="cb959"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb979"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pro"</span>, <span class="st">"Glu"</span>, <span class="st">"Lys"</span>, <span class="st">"Pro"</span>, <span class="st">"Ser"</span><span class="op">)</span></span>
 <span><span class="fu">where_is_it</span><span class="op">(</span><span class="va">x</span>, <span class="st">"Pro"</span><span class="op">)</span></span>
 <span><span class="co">##expected:</span></span>
@@ -789,7 +789,7 @@ Do not make use of R base functions.</p>
 </h4>
 <p><strong>Level: ❋❋❋</strong></p>
 <p>Create a function that will calculate a custom “interquantile range”. The function should accept three arguments: a numeric vector, a lower quantile and an upper quantile. It should return the difference (range) between these two quantile values. The lower quantile should default to 0 and the higher to 1, thus returning <code>max(x)</code> minus <code>min(x)</code>. The function therefore has this “signature”:</p>
-<div class="sourceCode" id="cb960"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">interquantile_range</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">lower</span> <span class="op">=</span> <span class="fl">0</span>, <span class="va">higher</span> <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></code></pre></div>
 <p>Perform some tests on the arguments to make a robust method: are all arguments numeric?</p>
 <p>To test you method, you can compare <code>interquantile_range(some_vector, 0.25, 0.75)</code> with <code>IQR(some_vector)</code> - they should be the same.</p>
@@ -841,7 +841,7 @@ You can use <code><a href="https://rdrr.io/r/base/strsplit.html">strsplit()</a><
 </h3>
 <p>The R <code>datasets</code> package has three related timeseries datasets relating to lung cancer deaths. These are <code>ldeaths</code>, <code>mdeaths</code> and <code>fdeaths</code> for total, male and female deaths respectively.</p>
 <p>For convenience, the original timeseries can be converted to a dataframe using the chunk below.</p>
-<div class="sourceCode" id="cb961"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb981"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lung_cancer_deaths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1974</span><span class="op">:</span><span class="fl">1979</span>, each <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,</span>
 <span>                     month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">month.abb</span>, times <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,</span>
 <span>                     male <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">mdeaths</span><span class="op">)</span>,</span>
@@ -869,7 +869,7 @@ Create a boxplot panel of the three types: female, male and total. Are there out
 <span class="header-section-number">18.9.1</span> Whale selenium<a class="anchor" aria-label="anchor" href="#whale-selenium"><i class="fas fa-link"></i></a>
 </h3>
 <p>On the course website under <a href="https://michielnoback.github.io/bincourses/course_contents/davur/resources.html">Resources</a> you will find a link to file <code>whale_selenium.txt</code>. You could download it into your working directory manually or use <code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code> to obtain it. However, there is a third way to get its contents without actually downloading it as a local copy. You can read it directly using <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> as shown here.</p>
-<div class="sourceCode" id="cb962"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">whale_sel_url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MichielNoback/davur1/gh-pages/exercises/data/whale_selenium.txt"</span></span>
 <span><span class="va">whale_selenium</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="va">whale_sel_url</span>,</span>
 <span>    header <span class="op">=</span> <span class="cn">T</span>,</span>
@@ -891,7 +891,7 @@ Using <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> and <
 <span class="header-section-number">18.9.2</span> Urine properties<a class="anchor" aria-label="anchor" href="#urine-properties"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <a href="https://github.com/MichielNoback/datasets/tree/master/urine">urine specimens dataset</a> contains a <code>readme.txt</code> file and a data file (<code>urine.csv</code>; direct link: “<a href="https://raw.githubusercontent.com/MichielNoback/datasets/master/urine/urine.csv" class="uri">https://raw.githubusercontent.com/MichielNoback/datasets/master/urine/urine.csv</a>”). Study the readme to get an idea of the data. Download the file like this:</p>
-<div class="sourceCode" id="cb963"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb983"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">urine_file_name</span> <span class="op">&lt;-</span> <span class="st">"urine.csv"</span></span>
 <span><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/MichielNoback/datasets/master/urine/"</span>, <span class="va">urine_file_name</span><span class="op">)</span></span>
 <span><span class="va">local_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"../"</span>, <span class="va">urine_file_name</span><span class="op">)</span> <span class="co">#specifiy your own folder!</span></span>
@@ -1035,7 +1035,7 @@ MSFRFGQHLIK...RVYFQA
 MSFRFGQHLIK...LRVYFQ</code></pre>
 <p>As you can see there are several distinct elements within the Fasta <strong><em>header</em></strong> which is the description line above the actual sequence: one or more database identification strings, a protein description or name and an organism name. Study the format - we are going to extract some elements from these fasta headers using the <code>stringr</code> package. Install it if you don’t have it yet.</p>
 <p>Here is a small example:</p>
-<div class="sourceCode" id="cb967"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb987"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span>
 <span><span class="va">hinfII_re</span> <span class="op">&lt;-</span> <span class="st">"GA[GATC]TC"</span></span>
 <span><span class="va">sequences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GGGAATCC"</span>, <span class="st">"TCGATTCGC"</span>, <span class="st">"ACGAGTCTA"</span><span class="op">)</span></span>
@@ -1043,7 +1043,7 @@ MSFRFGQHLIK...LRVYFQ</code></pre>
 <span>            pattern <span class="op">=</span> <span class="va">hinfII_re</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "GAATC" "GATTC" "GAGTC"</code></pre>
 <p>Function <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract()</a></code> simply extracts the exact match of your regex (shown above). On the other hand, function <code><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match()</a></code> supports <strong><em>grouping capture</em></strong> through bounding parentheses:</p>
-<div class="sourceCode" id="cb969"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb989"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">phones</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"+31-6-23415239"</span>, <span class="st">"+49-51-55523146"</span>, <span class="st">"+31-50-5956566"</span><span class="op">)</span></span>
 <span><span class="va">phones_re</span> <span class="op">&lt;-</span> <span class="st">"\\+(\\d{2})-(\\d{1,2})"</span> <span class="co">#matching country codes and area codes</span></span>
 <span><span class="va">matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match</a></span><span class="op">(</span><span class="va">phones</span>, <span class="va">phones_re</span><span class="op">)</span></span>
@@ -1053,7 +1053,7 @@ MSFRFGQHLIK...LRVYFQ</code></pre>
 ## [2,] "+49-51" "49" "51"
 ## [3,] "+31-50" "31" "50"</code></pre>
 <p>Thus, each set of parentheses will yield a column in the returned matrix. Simply use its column index to get that result set:</p>
-<div class="sourceCode" id="cb971"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb991"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">matches</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="co">##the country codes</span></span></code></pre></div>
 <pre><code>## [1] "31" "49" "31"</code></pre>
 <p>Now, given the fasta headers in <a href="./data/fasta_headers.txt">./data/fasta_headers.txt</a>
@@ -1227,7 +1227,7 @@ Create a line plot with two y-axes; one for OD600 and one for glucose. On the x-
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-14.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

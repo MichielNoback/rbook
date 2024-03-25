@@ -116,7 +116,7 @@ There has been no conditional code, no repeated operations and no extraction of 
 </h4>
 <p>The <code>if(COND) {&lt;TRUE&gt;} else {&lt;FALSE&gt;}</code> code block knows several required and several optional elements.<br>
 At the minimum there is an <code>if(COND) {}</code> element where <code>COND</code> is an expression evaluating to a Logical.</p>
-<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb353"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">43</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Adult"</span><span class="op">)</span></span>
@@ -128,7 +128,7 @@ At the minimum there is an <code>if(COND) {}</code> element where <code>COND</co
 <code>if()</code> shorthand<a class="anchor" aria-label="anchor" href="#if-shorthand"><i class="fas fa-link"></i></a>
 </h4>
 <p>If there is only one statement within a block you can omit the curly braces:</p>
-<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">43</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Adult"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "Adult"</code></pre>
@@ -139,7 +139,7 @@ At the minimum there is an <code>if(COND) {}</code> element where <code>COND</co
 <code>if()</code> can have an <code>else {}</code><a class="anchor" aria-label="anchor" href="#if-can-have-an-else"><i class="fas fa-link"></i></a>
 </h4>
 <p>When there is an alternative course of action when the test evaluates to <code>FALSE</code> you use the <code>else{}</code> element of this structure.</p>
-<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb357"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">43</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Adult"</span><span class="op">)</span></span>
@@ -148,9 +148,9 @@ At the minimum there is an <code>if(COND) {}</code> element where <code>COND</co
 <span><span class="op">}</span></span></code></pre></div>
 <pre><code>## [1] "Adult"</code></pre>
 <p>Here the curly braces are required:</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="flow-control-and-scripting.html#cb339-1" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">43</span></span>
-<span id="cb339-2"><a href="flow-control-and-scripting.html#cb339-2" tabindex="-1"></a><span class="cf">if</span> (age <span class="sc">&gt;=</span> <span class="dv">18</span>) <span class="fu">print</span>(<span class="st">"Adult"</span>)</span>
-<span id="cb339-3"><a href="flow-control-and-scripting.html#cb339-3" tabindex="-1"></a><span class="cf">else</span> <span class="fu">print</span>(<span class="st">"Junior"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="flow-control-and-scripting.html#cb359-1" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">43</span></span>
+<span id="cb359-2"><a href="flow-control-and-scripting.html#cb359-2" tabindex="-1"></a><span class="cf">if</span> (age <span class="sc">&gt;=</span> <span class="dv">18</span>) <span class="fu">print</span>(<span class="st">"Adult"</span>)</span>
+<span id="cb359-3"><a href="flow-control-and-scripting.html#cb359-3" tabindex="-1"></a><span class="cf">else</span> <span class="fu">print</span>(<span class="st">"Junior"</span>)</span></code></pre></div>
 <pre><code>## Error: &lt;text&gt;:3:1: unexpected 'else'
 ## 2: if (age &gt;= 18) print("Adult")
 ## 3: else
@@ -162,7 +162,7 @@ At the minimum there is an <code>if(COND) {}</code> element where <code>COND</co
 </h4>
 <p>If there are more than two courses of action, you must reside to <code>else if()</code> blocks.
 Each of them should have its own CONDition to test on.</p>
-<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb361"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">43</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&lt;</span> <span class="fl">18</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Minor"</span><span class="op">)</span></span>
@@ -179,7 +179,7 @@ Each of them should have its own CONDition to test on.</p>
 <h4>if/else real life example<a class="anchor" aria-label="anchor" href="#ifelse-real-life-example"><i class="fas fa-link"></i></a>
 </h4>
 <p>This code chunk checks if a file exists and only downloads it if it is not present</p>
-<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb363"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_data_file</span> <span class="op">&lt;-</span> <span class="st">"/some/file/on/disk"</span></span>
 <span><span class="co">## fetch file</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="va">my_data_file</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -194,7 +194,7 @@ Each of them should have its own CONDition to test on.</p>
 </h4>
 <p>There is also a shorthand for <code>if(){} else{}</code>. It is also called a <strong><em>ternary</em></strong>.<br>
 It has the form<br><code>if (COND) &lt;EXPRESSION_FOR_TRUE&gt; else &lt;EXPRESSION_FOR_FALSE&gt;</code></p>
-<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="va">a</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="st">"EVEN"</span> <span class="kw">else</span> <span class="st">"UNEVEN"</span></span>
 <span><span class="va">x</span></span></code></pre></div>
@@ -205,7 +205,7 @@ It has the form<br><code>if (COND) &lt;EXPRESSION_FOR_TRUE&gt; else &lt;EXPRESSI
 </h4>
 <p>When you want to assign values to a vector based on some condition, you need to use the third form, the <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> function.</p>
 <p>When you use the regular if/else structures on dataframes you don’t get what you want:</p>
-<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># In newer versions of R this yields an error; in older versions</span></span>
 <span><span class="co"># only first value (row) is evaluated and this value is cycled.</span></span>
 <span><span class="co"># The whole column gets value 1</span></span>
@@ -229,7 +229,7 @@ It has the form<br><code>if (COND) &lt;EXPRESSION_FOR_TRUE&gt; else &lt;EXPRESSI
 <span class="header-section-number">7.1.2</span> Executing alternatives with lists<a class="anchor" aria-label="anchor" href="#executing-alternatives-with-lists"><i class="fas fa-link"></i></a>
 </h3>
 <p>Besides decision making with if/else, you can also make use of the list type in combination with the fact that function can be passed around like any other object.</p>
-<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">message_maker</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    silent <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">message</span><span class="op">)</span><span class="op">{</span></span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"..."</span><span class="op">)</span></span>
@@ -244,7 +244,7 @@ It has the form<br><code>if (COND) &lt;EXPRESSION_FOR_TRUE&gt; else &lt;EXPRESSI
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">message_maker</span><span class="op">[[</span><span class="st">'verbose'</span><span class="op">]</span><span class="op">]</span><span class="op">(</span><span class="st">"I need coffee"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] "Your message 'I need coffee' was recorded on 2024-03-14 with system details [Darwin;22.5.0;Darwin Kernel Version 22.5.0: Mon Apr 24 20:52:24 PDT 2023; root:xnu-8796.121.2~5/RELEASE_ARM64_T6000;MBP3]"</code></pre>
+<pre><code>## [1] "Your message 'I need coffee' was recorded on 2024-03-25 with system details [Darwin;22.5.0;Darwin Kernel Version 22.5.0: Mon Apr 24 20:52:24 PDT 2023; root:xnu-8796.121.2~5/RELEASE_ARM64_T6000;MBP3]"</code></pre>
 <p>Of course, it would have been even better when this was wrapped inside a function, but that has not been discussed yet.</p>
 </div>
 <div id="iteration-with-for" class="section level3" number="7.1.3">
@@ -255,7 +255,7 @@ It has the form<br><code>if (COND) &lt;EXPRESSION_FOR_TRUE&gt; else &lt;EXPRESSI
 <li>Iteration with <code>for</code> is used for looping a series of values from a vector.
 _ You should not use it to iterate columns or rows of a dataframe: the preferred way to do that is with <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> and its relatives (next presentation)</li>
 </ul>
-<div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">greeting</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hello"</span>, <span class="st">"'Allo"</span>, <span class="st">"Moi"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">greeting</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -263,7 +263,7 @@ _ You should not use it to iterate columns or rows of a dataframe: the preferred
 ## [1] "'Allo"
 ## [1] "Moi"</code></pre>
 <p>Sometimes you need a counter or index when iterating:</p>
-<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">greetings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hello"</span>, <span class="st">"'Allo"</span>, <span class="st">"Moi"</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span> <span class="op">:</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">greetings</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">greetings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
@@ -272,7 +272,7 @@ _ You should not use it to iterate columns or rows of a dataframe: the preferred
 ## [1] "2 'Allo"
 ## [1] "3 Moi"</code></pre>
 <p>But this causes strange results with empty vectors, as in the chunk below.</p>
-<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">greetings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span> <span class="op">:</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">greetings</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">greetings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
@@ -280,7 +280,7 @@ _ You should not use it to iterate columns or rows of a dataframe: the preferred
 <pre><code>## [1] "1 NA"
 ## [1] "0 "</code></pre>
 <p>Therefore, it is advised to use <code><a href="https://rdrr.io/r/base/seq.html">seq_along()</a></code> when looping iterables with indexes:</p>
-<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">greetings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hello"</span>, <span class="st">"'Allo"</span>, <span class="st">"Moi"</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">greetings</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">greetings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
@@ -288,7 +288,7 @@ _ You should not use it to iterate columns or rows of a dataframe: the preferred
 <pre><code>## [1] "1 Hello"
 ## [1] "2 'Allo"
 ## [1] "3 Moi"</code></pre>
-<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Does not do anything, as it should!</span></span>
 <span><span class="va">greetings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">greetings</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -300,7 +300,7 @@ _ You should not use it to iterate columns or rows of a dataframe: the preferred
 <span class="header-section-number">7.1.4</span> Conditional iteration with <code>while(){}</code><a class="anchor" aria-label="anchor" href="#conditional-iteration-with-while"><i class="fas fa-link"></i></a>
 </h3>
 <p>This is the last flow control structure. It is used to execute a block <strong><em>as long as a certain condition is met</em></strong>. They are not used very much in R.</p>
-<div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">counter</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="kw">while</span> <span class="op">(</span><span class="va">counter</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">5</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">counter</span><span class="op">)</span></span>
@@ -322,7 +322,7 @@ _ You should not use it to iterate columns or rows of a dataframe: the preferred
 </div>
 <p>Thus, functions are named blocks of code with a <strong><em>single well-defined purpose</em></strong> which make them reusable.
 You have already used many <strong><em>predefined</em></strong> or build in functions of R: <code>str</code>, <code>max</code>, <code>read.table</code> etc. If you type the name of a function without parenthesis you get its definition.</p>
-<div class="sourceCode" id="cb361"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sum</span></span></code></pre></div>
 <pre><code>## function (..., na.rm = FALSE)  .Primitive("sum")</code></pre>
 <div id="anatomy-of-a-function" class="section level3 unnumbered">
@@ -351,7 +351,7 @@ You have already used many <strong><em>predefined</em></strong> or build in func
 <h3>A first function<a class="anchor" aria-label="anchor" href="#a-first-function"><i class="fas fa-link"></i></a>
 </h3>
 <p>Here is a simple function determining whether some number is even</p>
-<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">is_even</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">evens</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">evens</span><span class="op">)</span> </span>
@@ -361,14 +361,14 @@ You have already used many <strong><em>predefined</em></strong> or build in func
 <p>Note that <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> is a <strong><em>method call</em></strong> which is very unlike other programming languages.</p>
 <p>The <strong><em>return statement is optional</em></strong>.
 In R, the last statement of a method body is its <strong><em>implicit return value</em></strong>. Therefore, the previous example is equivalent to this:</p>
-<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">is_even</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">is_even</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE FALSE  TRUE FALSE</code></pre>
 <p>Being explicit is always allowed when implicit return is possible, but using a <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> for forcing return values at other points is required:</p>
-<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_message</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">age</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="va">age</span> <span class="op">&lt;</span> <span class="fl">18</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="st">"have a lemonade!"</span><span class="op">)</span> <span class="co"># explicit return</span></span>
 <span>    <span class="st">"have a beer!"</span> <span class="co"># implicit return statement</span></span>
@@ -381,13 +381,13 @@ In R, the last statement of a method body is its <strong><em>implicit return val
 </h3>
 <p>It is possible to specify <strong><em>default values</em></strong> for function arguments. This is a value that is attached to a function parameter when the calling code does not provide one. A default value is specified in the parameter list, using this construct: <code>some_arg = &lt;default-value&gt;</code>. Almost all functions in R have (many) parameters with default values.</p>
 <p>You should use default values yourself for function parameters whenever possible. They make using the function so much easier. The following function calculates the exponent (power) of a number. When no <code>power =</code> value is provided, it defaults to two.</p>
-<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_power</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">power</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">x</span> <span class="op">^</span> <span class="va">power</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">my_power</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span><span class="op">)</span> <span class="co">## custom power</span></span></code></pre></div>
 <pre><code>## [1] 1000</code></pre>
-<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">my_power</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="co">## defaults to 2</span></span></code></pre></div>
 <pre><code>## [1] 100</code></pre>
 </div>
@@ -395,7 +395,7 @@ In R, the last statement of a method body is its <strong><em>implicit return val
 <h3>Argument order when calling a function<a class="anchor" aria-label="anchor" href="#argument-order-when-calling-a-function"><i class="fas fa-link"></i></a>
 </h3>
 <p>As we have seen many times before, you do not <em>need</em> to pass arguments by name. In the above example, the names were not used. When you do not use the names of arguments, the order in which you pass them is important; they must match the order in which they are declared in the function. If you use their names, their order is not important:</p>
-<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">my_power</span><span class="op">(</span>power <span class="op">=</span> <span class="fl">4</span>, x <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 16</code></pre>
 <p>To summarize: When calling a function,</p>
@@ -414,7 +414,7 @@ In R, the last statement of a method body is its <strong><em>implicit return val
 <p>When something is terribly wrong, and you cannot continue, you should stop execution with an error message:</p>
 <p><code>stop("I can't go on")</code></p>
 <p>Here is a small errors demo:</p>
-<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">demo_inverse</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>        <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"non-numeric vector"</span><span class="op">)</span></span>
@@ -423,7 +423,7 @@ In R, the last statement of a method body is its <strong><em>implicit return val
 <span><span class="op">}</span></span>
 <span><span class="va">result1</span> <span class="op">&lt;-</span> <span class="fu">demo_inverse</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span><span class="op">)</span> <span class="co">#result1 not created!</span></span></code></pre></div>
 <pre><code>## Error in demo_inverse(c("a", "b")): non-numeric vector</code></pre>
-<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">result2</span> <span class="op">&lt;-</span> <span class="fu">demo_inverse</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -433,7 +433,7 @@ In R, the last statement of a method body is its <strong><em>implicit return val
 </h2>
 <p>An R script is a text file with the extension <code>.R</code> that contains R code. When it is loaded, it is immediately evaluated. <strong><em>Functions are loaded/evaluated, but not executed</em></strong>. Declared variables are stored in main memory - the Global Environment to be precise.</p>
 <p>Here is the contents of a very simple R script called <code>source_demo.R</code></p>
-<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">42</span></span>
 <span><span class="va">x</span> <span class="co"># echo to console</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"x = "</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co">#explicit print</span></span>
@@ -443,13 +443,13 @@ In R, the last statement of a method body is its <strong><em>implicit return val
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"you said"</span>, <span class="va">message</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>You can load this script int your R session by <em>sourcing</em> it; just call <code>source(path/to/source_demo.R)</code>. Alternatively, when you have it open in the RStudio editor, you can click the “source” button at the top right of the editor panel. After that, you can use the functions and variables defined within the script:</p>
-<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"data/source_demo.R"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "x = 42"</code></pre>
-<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span></span></code></pre></div>
 <pre><code>## [1] 42</code></pre>
-<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">demo_function</span><span class="op">(</span><span class="st">"hi!"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "you said hi!"</code></pre>
 <div id="why-scripts" class="section level4 unnumbered">
@@ -526,7 +526,7 @@ In R, the last statement of a method body is its <strong><em>implicit return val
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-14.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

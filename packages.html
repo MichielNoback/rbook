@@ -102,7 +102,7 @@ For a real in-depth discussion, you should read the excellent free e-Book <a hre
 <span class="header-section-number">17.2</span> Setting up<a class="anchor" aria-label="anchor" href="#setting-up"><i class="fas fa-link"></i></a>
 </h2>
 <p>The <code>usethis</code> package has a convenience method to create a new package:</p>
-<div class="sourceCode" id="cb912"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb932"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/create_package.html">create_package</a></span><span class="op">(</span><span class="st">"demopackage"</span><span class="op">)</span></span></code></pre></div>
 <p>Note: I use the package name prefix with two colons (<code>package::function()</code>) in this tutorial in
 order to make it clear which package I the function resides in. It is not mandatory.</p>
@@ -146,7 +146,7 @@ so let’s start with that.</p>
 data-raw</code></pre>
 <p><strong>step 2</strong> Create a new R script called <code>DATASET.R</code> in the <code>data-raw/</code> directory .</p>
 <p>Contents of <code>DATASET.R</code>:</p>
-<div class="sourceCode" id="cb917"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb937"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">create_demo_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">time_mins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">16</span>, <span class="fl">32</span>, <span class="fl">48</span>, <span class="fl">64</span>, <span class="fl">80</span>, <span class="fl">96</span>, <span class="fl">112</span>, <span class="fl">128</span>, <span class="fl">144</span>, <span class="fl">160</span><span class="op">)</span></span>
 <span>    <span class="va">OD600_A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.023</span>, <span class="fl">0.035</span>, <span class="fl">0.059</span>, <span class="fl">0.099</span>, <span class="fl">0.167</span>, <span class="fl">0.256</span>, <span class="fl">0.349</span>, <span class="fl">0.491</span>, <span class="fl">0.684</span>, <span class="fl">0.821</span>, <span class="fl">0.916</span><span class="op">)</span></span>
@@ -203,7 +203,7 @@ in the <code>load_all()</code> output above.
 Let’s proceed with that, following the guidelines mentioned in the link.</p>
 <p>First, create a new R script in the <code>R/</code> directory called <code>data.R</code>.<br>
 In it, put the documentation of your dataset, followed by its -quoted- name:</p>
-<div class="sourceCode" id="cb920"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb940"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#' Demo bacterial growth data</span></span>
 <span><span class="co">#'</span></span>
 <span><span class="co">#' A small fictitious dataset with duplo's for two conditions of growth medium.</span></span>
@@ -255,7 +255,7 @@ Here is the current status of the project folder.</p>
 A warning: Do not use <code><a href="https://rdrr.io/r/base/library.html">library(package)</a></code> statements in your package scripts; they should be dealt with in another way.</p>
 <p>Create a new R script in the <code>R/</code> directory called <code>plot_growth_curves.R</code>.
 In it, put the following function:</p>
-<div class="sourceCode" id="cb922"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb942"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_growth_curves</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">growth_data</span>, <span class="va">add_smoother</span><span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">growth_data</span>,</span>
 <span>                           mapping <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">minutes</span>,</span>
@@ -278,12 +278,12 @@ In it, put the following function:</p>
 If you don’t want this (because it is a bit verbose), you can use <code>importFrom</code> in the <code>NAMESPACE</code> file.
 See details for this in the <a href="https://r-pkgs.org/">R Packages</a> book.</p>
 <p>Now, after <code><a href="https://devtools.r-lib.org/reference/load_all.html">devtools::load_all()</a></code> we can use the package function:</p>
-<div class="sourceCode" id="cb924"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb944"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">demopackage</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/demopackage/man/plot_growth_curves.html">plot_growth_curves</a></span><span class="op">(</span><span class="fu">demopackage</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/demopackage/man/growth_data.html">growth_data</a></span><span class="op">)</span></span>
 <span><span class="co">#OR</span></span>
 <span><span class="fu">plot_growth_curves</span><span class="op">(</span><span class="va">growth_data</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s finish with the function documentation:</p>
-<div class="sourceCode" id="cb925"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb945"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#' Plot bacterial growth data</span></span>
 <span><span class="co">#'</span></span>
 <span><span class="co">#' Plots bacterial growth curves with duplos and multiple conditions.</span></span>
@@ -399,7 +399,7 @@ export(plot_growth_curves)</code></pre>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-14.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

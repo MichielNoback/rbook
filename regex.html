@@ -89,12 +89,12 @@
 <p>This chapter deals with processing data in textual form: character data.<br>
 When working with text, you really need to be able to work with regular expressions. That is why these are dealt with first, together with the base R regex functions. After that the functions from the <code>stringr</code> package are discussed.</p>
 <p>It is easy enough to look for the word “Chimpanzee” in a vector containing animal species names:</p>
-<div class="sourceCode" id="cb656"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb676"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chimpanzee"</span>, <span class="st">"Cow"</span>, <span class="st">"Camel"</span><span class="op">)</span></span>
 <span><span class="va">animals</span> <span class="op">==</span> <span class="st">"Chimpanzee"</span></span></code></pre></div>
 <pre><code>## [1]  TRUE FALSE FALSE</code></pre>
 <p>but what are you going to do if there are multiple variants of the word you are looking for? This?</p>
-<div class="sourceCode" id="cb658"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chimpanzee"</span>, <span class="st">"Chimp"</span>, <span class="st">"chimpanzee"</span>, <span class="st">"Camel"</span><span class="op">)</span></span>
 <span><span class="va">animals</span> <span class="op">==</span> <span class="st">"Chimpanzee"</span> <span class="op">|</span> <span class="va">animals</span> <span class="op">==</span> <span class="st">"Chimp"</span> <span class="op">|</span> <span class="va">animals</span> <span class="op">==</span> <span class="st">"chimpanzee"</span></span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
@@ -105,7 +105,7 @@ When working with text, you really need to be able to work with regular expressi
 <p>In programming we use <strong><em>regular expressions</em></strong> or <strong><em>RegEx</em></strong> to describe such a pattern in a formal concise way:</p>
 <p><code>[Cc]himp(anzee)?</code></p>
 <p>And to apply such a pattern in R, we use one of several functions dedicated for this task. Here is one, <code><a href="https://rdrr.io/r/base/grep.html">grepl()</a></code>, which returns <code>TRUE</code> if the regex matched the vector element.</p>
-<div class="sourceCode" id="cb660"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"[Cc]himp(anzee)?"</span>, <span class="va">animals</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
 <div class="definitions">
@@ -191,7 +191,7 @@ They differ in intent and output. Later, the <code>stringr</code> counterparts w
 <h4>Anchoring<a class="anchor" aria-label="anchor" href="#anchoring"><i class="fas fa-link"></i></a>
 </h4>
 <p>Using anchoring, you can make sure the string is not longer than you explicitly state:</p>
-<div class="sourceCode" id="cb662"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"15/2/2019"</span>, <span class="st">"15-2-2019"</span>, <span class="st">"15-02-2019"</span>, <span class="st">"015/2/20191"</span>, <span class="st">"15/2/20191"</span><span class="op">)</span></span>
 <span><span class="va">dateRegex</span> <span class="op">&lt;-</span> <span class="st">"^[0-9]{2}[/-][0-9]{1,2}[/-][0-9]{4}$"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="va">dateRegex</span>, x <span class="op">=</span> <span class="va">dates</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -222,7 +222,7 @@ They differ in intent and output. Later, the <code>stringr</code> counterparts w
 </ul>
 <p>(have a look at the cheat sheet for all)</p>
 <p>Here is the same example, this time using these predefined character classes</p>
-<div class="sourceCode" id="cb664"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"15/2/2019"</span>, <span class="st">"15-2-2019"</span>, <span class="st">"15-02-2019"</span>, <span class="st">"15022019"</span>, <span class="st">"15/2/20191"</span><span class="op">)</span></span>
 <span><span class="va">dateRegex</span> <span class="op">&lt;-</span> <span class="st">"[[:digit:]]{2}[/-]\\d{1,2}[/-]\\d{4}"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="va">dateRegex</span>, x <span class="op">=</span> <span class="va">dates</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -232,7 +232,7 @@ They differ in intent and output. Later, the <code>stringr</code> counterparts w
 <h4>Alternatives<a class="anchor" aria-label="anchor" href="#alternatives"><i class="fas fa-link"></i></a>
 </h4>
 <p>To apply two alternative choices for a single regex element you use the pipe symbol <code>|</code>. You can us parentheses <code>(foo[])</code> to fence alternatives off.</p>
-<div class="sourceCode" id="cb666"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">column_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Subject"</span>, <span class="st">"Age"</span>, <span class="st">"T0_creatine"</span>, <span class="st">"T0_calcium"</span>, <span class="st">"T1_creatine"</span>, <span class="st">"T1_calcium"</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"T[01]_(creatine|calcium)"</span>, x <span class="op">=</span> <span class="va">column_names</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "T0_creatine" "T0_calcium"  "T1_creatine" "T1_calcium"</code></pre>
@@ -251,7 +251,7 @@ They differ in intent and output. Later, the <code>stringr</code> counterparts w
 <p>Before reading on: how would you define a regular expression that is precisely describes this recognition sequence?</p>
 <p>Molecular biology sequence ambiguity codes can be found
 <a href="data/ambiguity-codes.html" target="_blank">here</a></p>
-<div class="sourceCode" id="cb669"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HincII_rs</span> <span class="op">&lt;-</span> <span class="st">"GT[CT][AG]AC"</span></span>
 <span><span class="va">sequences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GTCAAC"</span>,</span>
 <span>               <span class="st">"GTCGAC"</span>,</span>
@@ -266,7 +266,7 @@ They differ in intent and output. Later, the <code>stringr</code> counterparts w
 </h4>
 <p>Here are some Dutch dates, in different accepted formats. The last two are not a correct notation.
 Create a RegEx that will determine whether an element contains a Dutch date string.</p>
-<div class="sourceCode" id="cb671"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb691"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"15/2/2019"</span>, <span class="st">"15-2-2019"</span>, <span class="st">"15-02-2019"</span>, <span class="st">"015/2/20191"</span>, <span class="st">"15/2/20191"</span><span class="op">)</span></span>
 <span><span class="va">dateRegex</span> <span class="op">&lt;-</span> <span class="st">"[0-9]{2}[/-][0-9]{1,2}[/-][0-9]{4}"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="va">dateRegex</span>, x <span class="op">=</span> <span class="va">dates</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -280,7 +280,7 @@ We have to <strong><em>anchor</em></strong> the pattern to be more specific.</p>
 </h4>
 <p>Here are some Dutch zip (postal) codes, in different accepted formats. The last two are not a correct notation.
 Can you create a RegEx that will determine whether an element contains a Dutch zip code?</p>
-<div class="sourceCode" id="cb673"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">zips</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1234 AA"</span>, <span class="st">"2345-BB"</span>, <span class="st">"3456CC"</span>, <span class="st">"4567 dd"</span>, <span class="st">"56789aa"</span>, <span class="st">"6789a_"</span><span class="op">)</span></span>
 <span><span class="va">zips</span></span></code></pre></div>
 <pre><code>## [1] "1234 AA" "2345-BB" "3456CC"  "4567 dd" "56789aa" "6789a_"</code></pre>
@@ -343,12 +343,12 @@ This note is to make you aware of the concept so that you remember this when the
 <li>
 <code>str_to_sentence()</code> capitalizes the first character in the string, not after every period</li>
 </ul>
-<div class="sourceCode" id="cb676"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb696"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sntc</span> <span class="op">&lt;-</span> <span class="st">"the path of the righteous man is beset on all sides by the iniquities of the selfish,  and the tyranny of evil men. --quote from?"</span></span>
 <span></span>
 <span><span class="fu">str_to_title</span><span class="op">(</span><span class="va">sntc</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "The Path Of The Righteous Man Is Beset On All Sides By The Iniquities Of The Selfish,  And The Tyranny Of Evil Men. --Quote From?"</code></pre>
-<div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb698"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_to_sentence</span><span class="op">(</span><span class="va">sntc</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "The path of the righteous man is beset on all sides by the iniquities of the selfish,  and the tyranny of evil men. --quote from?"</code></pre>
 </div>
@@ -357,25 +357,25 @@ This note is to make you aware of the concept so that you remember this when the
 </h4>
 <p>Combining two vectors into one, one vector into one, or doing the reverse: splitting. These are all string-based operation that are carried out in scripting quite often.</p>
 <p>Here are some joining operations, using <code>str_c()</code>:</p>
-<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">l1</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
 <span><span class="va">l2</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu">str_c</span><span class="op">(</span><span class="va">l1</span>, collapse <span class="op">=</span> <span class="st">"="</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "a=b=c=d=e"</code></pre>
-<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_c</span><span class="op">(</span><span class="va">l1</span>, <span class="va">l2</span>, sep <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "a+f" "b+g" "c+h" "d+i" "e+j"</code></pre>
-<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb704"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_c</span><span class="op">(</span><span class="va">l1</span>, <span class="va">l2</span>, sep <span class="op">=</span> <span class="st">"+"</span>, collapse <span class="op">=</span> <span class="st">"="</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "a+f=b+g=c+h=d+i=e+j"</code></pre>
 <p>When you want to combine variables and text <code>str_glue()</code> comes in handy:</p>
-<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_glue</span><span class="op">(</span><span class="st">"The value of pi is {pi} and the first month of the year is {month.name[1]}"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## The value of pi is 3.14159265358979 and the first month of the year is January</code></pre>
 <p>This is a more friendly approach than with <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>.</p>
 <p><strong>Splitting</strong> is slightly more tricky since it accepts a regex pattern as split argument. For instance, you can get the words of a sentence by splitting like this:</p>
-<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">words</span> <span class="op">&lt;-</span> <span class="fu">str_split</span><span class="op">(</span><span class="va">sntc</span>, <span class="st">"([[:punct:]]|[[:space:]])+"</span><span class="op">)</span></span>
 <span><span class="va">words</span></span>
 <span><span class="co">##alternative</span></span>
@@ -388,17 +388,17 @@ This note is to make you aware of the concept so that you remember this when the
 ## [21] "of"         "evil"       "men"        "quote"      "from"      
 ## [26] ""</code></pre>
 <p>There are two ways to get parts of character strings, or <strong><em>substrings</em></strong>. The first is by index. You can omit both <code>start</code> and <code>end</code> arguments; they will default to start and end of the string, respectively.</p>
-<div class="sourceCode" id="cb690"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nucs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Adenine"</span>, <span class="st">"Guanine"</span>, <span class="st">"Cytosine"</span>, <span class="st">"Thymine"</span><span class="op">)</span></span>
 <span><span class="fu">str_sub</span><span class="op">(</span><span class="va">nucs</span>, end <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "Ade" "Gua" "Cyt" "Thy"</code></pre>
 <p>You can even use this function to change the substring that is removed</p>
-<div class="sourceCode" id="cb692"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb712"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_sub</span><span class="op">(</span><span class="va">nucs</span>, start <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"......"</span></span>
 <span><span class="va">nucs</span></span></code></pre></div>
 <pre><code>## [1] "Ade......" "Gua......" "Cyt......" "Thy......"</code></pre>
 <p>This does not work with literals! The following chunk gives and error:</p>
-<div class="sourceCode" id="cb694"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb714"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_sub</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Adenine"</span>, <span class="st">"Guanine"</span>, <span class="st">"Cytosine"</span>, <span class="st">"Thymine"</span><span class="op">)</span>, start <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"......"</span></span></code></pre></div>
 <pre><code>## Error in str_sub(c("Adenine", "Guanine", "Cytosine", "Thymine"), start = 4) &lt;- "......": target of assignment expands to non-language object</code></pre>
 </div>
@@ -409,31 +409,31 @@ This note is to make you aware of the concept so that you remember this when the
 <ul>
 <li>
 <p><code>str_detect(string, pattern)</code> detects the presence of a pattern match in a string.</p>
-<div class="sourceCode" id="cb696"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb716"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_detect</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"[Aa]"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE  TRUE FALSE</code></pre>
 </li>
 <li>
 <p><code>str_subset(string, pattern)</code> returns only the strings that contain a pattern match</p>
-<div class="sourceCode" id="cb698"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb718"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_subset</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"[Aa]"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "Banana" "Apple"  "Orange"</code></pre>
 </li>
 <li>
 <p><code>str_which(string, pattern)</code> finds the indexes of strings that contain a pattern match.</p>
-<div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb720"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_which</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"[Aa]"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1 2 3</code></pre>
 </li>
 <li>
 <p><code>str_count(string, pattern)</code> counts the number of matches in a string.</p>
-<div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb722"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_count</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"[Aa]"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 3 1 1 0</code></pre>
 </li>
 <li>
 <p><code>str_locate(string, pattern)</code> and <code>str_locate_all(string, pattern)</code> locate the positions of pattern matches in a string</p>
-<div class="sourceCode" id="cb704"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb724"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_locate_all</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"[Aa]"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [[1]]
 ##      start end
@@ -458,7 +458,7 @@ This note is to make you aware of the concept so that you remember this when the
 <h4>Extracting and replacing<a class="anchor" aria-label="anchor" href="#extracting-and-replacing"><i class="fas fa-link"></i></a>
 </h4>
 <p>If you want to obtain the character sequences matching your pattern you can use the <code>str_extract()</code> and <code>str_extract_all()</code> functions:</p>
-<div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb726"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_extract_all</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"an"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] "an" "an"
@@ -472,7 +472,7 @@ This note is to make you aware of the concept so that you remember this when the
 ## [[4]]
 ## character(0)</code></pre>
 <p>Finally, replacing occurrences of a pattern is carried out using <code>str_replace()</code> or <code>str_replace_all()</code>.</p>
-<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb728"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">str_replace_all</span><span class="op">(</span><span class="va">fruits</span>, <span class="st">"an"</span>, <span class="st">".."</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] "B....a" "Apple"  "Or..ge" "Cherry"</code></pre>
 
@@ -516,7 +516,7 @@ This note is to make you aware of the concept so that you remember this when the
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-14.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

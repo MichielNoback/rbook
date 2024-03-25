@@ -120,12 +120,12 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 </ol>
 </li>
 </ul>
-<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">cars</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span> <span class="co"># apply over columns</span></span></code></pre></div>
 <pre><code>## speed  dist 
 ##  15.4  43.0</code></pre>
 <p>Here, a function is applied to both columns and rows</p>
-<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, y <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">minus_one_squared</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">df</span>, MARGIN <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="va">minus_one_squared</span><span class="op">)</span></span></code></pre></div>
@@ -137,13 +137,13 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 ## [5,] 16 81</code></pre>
 <p>(Ok, that was a bit lame: <code>minus_one_squared(df)</code> does the same)</p>
 <p>The Body Mass Index, or BMI, is calculated as <span class="math inline">\((weight / height ^ 2) * 703\)</span> where weight is in pounds and height in inches. Here it is calculated for the build in dataset <code>women</code>.</p>
-<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">women</span>, n<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   height weight
 ## 1     58    115
 ## 2     59    117
 ## 3     60    120</code></pre>
-<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">women</span><span class="op">$</span><span class="va">bmi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">women</span>, </span>
 <span>                   MARGIN <span class="op">=</span> <span class="fl">1</span>, </span>
 <span>                   FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">/</span> <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">*</span> <span class="fl">703</span><span class="op">)</span></span>
@@ -158,7 +158,7 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 <h4>Pass arguments to the applied function<a class="anchor" aria-label="anchor" href="#pass-arguments-to-the-applied-function"><i class="fas fa-link"></i></a>
 </h4>
 <p>Sometimes the applied function needs to have other arguments passed besides the row or column. The <code>...</code> argument to <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> makes this possible (type <code><a href="https://rdrr.io/r/base/apply.html">?apply</a></code> to see more info)</p>
-<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># function sums and powers up</span></span>
 <span><span class="va">spwr</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">p</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">^</span><span class="va">p</span><span class="op">}</span></span>
 <span><span class="co"># a simple dataframe</span></span>
@@ -170,11 +170,11 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 ## 3 3  8
 ## 4 4  9
 ## 5 5 10</code></pre>
-<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># spwr will use the default value for p (p = 2)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">df</span>, MARGIN <span class="op">=</span> <span class="fl">1</span>, FUN <span class="op">=</span> <span class="va">spwr</span><span class="op">)</span> </span></code></pre></div>
 <pre><code>## [1]  49  81 121 169 225</code></pre>
-<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># pass power p = 3 to function spwr (argument names omitted)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">df</span>, <span class="fl">1</span>, <span class="va">spwr</span>, p <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span></code></pre></div>
 <pre><code>## [1]  343  729 1331 2197 3375</code></pre>
@@ -185,7 +185,7 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 <span class="header-section-number">9.1.0.2</span> <code>lapply()</code>: Apply a Function over a List or Vector<a class="anchor" aria-label="anchor" href="#lapply-apply-a-function-over-a-list-or-vector"><i class="fas fa-link"></i></a>
 </h4>
 <p>Function <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> applies a function to all elements of a list and returns a list with the same length, each element the result of applying the function</p>
-<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myNumbers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    one <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, </span>
 <span>    two <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>, </span>
@@ -200,7 +200,7 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 ## $three
 ## [1] 7</code></pre>
 <p>Here is the same list, but now with <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code> applied. Notice how the nature of the applied function influences the result.</p>
-<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">myNumbers</span>, FUN <span class="op">=</span> <span class="va">sqrt</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## $one
 ## [1] 1.00 1.73 2.00
@@ -216,7 +216,7 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 <span class="header-section-number">9.1.0.3</span> <code>sapply()</code>: Apply a Function over a List or Vector and Simplify<a class="anchor" aria-label="anchor" href="#sapply-apply-a-function-over-a-list-or-vector-and-simplify"><i class="fas fa-link"></i></a>
 </h4>
 <p>When using the same example as above, but with <code>sapply</code>, you get a vector returned. Note that the resulting vector is a named vector, a convenient feature of <code>sapply</code></p>
-<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myNumbers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    one <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
 <span>    two <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>,</span>
@@ -225,7 +225,7 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 <pre><code>##   one   two three 
 ##  2.67  3.00  7.00</code></pre>
 <p>When the result can not be simplified, you get the same list as with <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>:</p>
-<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">myNumbers</span>, FUN <span class="op">=</span> <span class="va">sqrt</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## $one
 ## [1] 1.00 1.73 2.00
@@ -241,14 +241,14 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 <span class="header-section-number">9.1.0.4</span> wasn’t a dataframe also a list?<a class="anchor" aria-label="anchor" href="#wasnt-a-dataframe-also-a-list"><i class="fas fa-link"></i></a>
 </h4>
 <p>Yes! It is also list(ish). Both <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> and <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code> work just fine on dataframes:</p>
-<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">cars</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## $speed
 ## [1] 15.4
 ## 
 ## $dist
 ## [1] 43</code></pre>
-<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">cars</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span> </span></code></pre></div>
 <pre><code>## speed  dist 
 ##  15.4  43.0</code></pre>
@@ -259,7 +259,7 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 <span class="header-section-number">9.1.0.5</span> <code>tapply()</code>: Apply a Function Over a Ragged Array<a class="anchor" aria-label="anchor" href="#tapply-apply-a-function-over-a-ragged-array"><i class="fas fa-link"></i></a>
 </h4>
 <p>What <code><a href="https://rdrr.io/r/base/tapply.html">tapply()</a></code> does is apply a function over subsets of a vector; it splits a vector into groups according to the levels in a second vector and applies the given function to each group.</p>
-<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">weight</span>, INDEX <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">feed</span>, FUN <span class="op">=</span> <span class="va">sd</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    casein horsebean   linseed  meatmeal   soybean sunflower 
 ##      64.4      38.6      52.2      64.9      54.1      48.8</code></pre>
@@ -276,7 +276,7 @@ In this presentation, we’ll explore a few new functions and techniques for wor
 <p>This is similar to <code><a href="https://rdrr.io/r/base/tapply.html">tapply()</a></code> in the sense that is uses a factor to split its first argument. But where <code><a href="https://rdrr.io/r/base/tapply.html">tapply()</a></code> splits a vector, <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> splits a dataframe - into <em>list of dataframes</em>.
 You use <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> when a dataframe needs to be divided depending on the value of some grouping variable.<br>
 Here we have the response of Treated (T) and Untreated (UT) subjects</p>
-<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>    response <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">9</span>, <span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">5</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>    treatment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span></span>
@@ -290,13 +290,13 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 ##  $ UT:'data.frame':  6 obs. of  2 variables:
 ##   ..$ response : num [1:6] 5 4 5 3 3 2
 ##   ..$ treatment: Factor w/ 2 levels "T","UT": 2 2 2 2 2 2</code></pre>
-<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">splData</span><span class="op">$</span><span class="cn">T</span><span class="op">$</span><span class="va">response</span>, <span class="va">splData</span><span class="op">$</span><span class="va">UT</span><span class="op">$</span><span class="va">response</span>, </span>
 <span>        names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Treated"</span>, <span class="st">"Untreated"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/split_demo-1-1.png" width="672"></div>
 <p>Note that this trivial example could also have been done with <code>boxplot(myData$response ~ myData$treatment)</code>.</p>
 <p>Here you can see that <code><a href="https://rdrr.io/r/base/split.html">split()</a></code> also works with vectors.</p>
-<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sick"</span>, <span class="st">"healthy"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## $healthy
 ## [1] -1.4482  0.5748 -1.0237 -0.0151 -0.9359
@@ -309,7 +309,7 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 <span class="header-section-number">9.2.0.2</span> <code>aggregate()</code>: Compute Summary Statistics of Data Subsets<a class="anchor" aria-label="anchor" href="#aggregate-compute-summary-statistics-of-data-subsets"><i class="fas fa-link"></i></a>
 </h4>
 <p>Splits the data into subsets, computes summary statistics for each, and returns the result in a convenient form.</p>
-<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">Temp</span> <span class="op">~</span> <span class="va">Month</span>, </span>
 <span>          data <span class="op">=</span> <span class="va">airquality</span>, </span>
 <span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
@@ -331,7 +331,7 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 <h4>Aggregate with formula<a class="anchor" aria-label="anchor" href="#aggregate-with-formula"><i class="fas fa-link"></i></a>
 </h4>
 <p>The left part of the formula accepts one, several or all columns as dependent variables.</p>
-<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##two dependents</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">Temp</span>, <span class="va">Ozone</span><span class="op">)</span> <span class="op">~</span> <span class="va">Month</span>, </span>
 <span>          data <span class="op">=</span> <span class="va">airquality</span>, </span>
@@ -342,7 +342,7 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 ## 3      July 83.9  59.1
 ## 4    August 84.0  60.0
 ## 5 September 76.9  31.4</code></pre>
-<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##all</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">Month</span>, </span>
 <span>          data <span class="op">=</span> <span class="va">airquality</span>, </span>
@@ -354,7 +354,7 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 ## 4    August  60.0     173  8.86 83.7 17.2 0.696
 ## 5 September  31.4     168 10.08 76.9 15.1 0.345</code></pre>
 <p>The right part can also accept multiple independent variables</p>
-<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp_factor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>, </span>
 <span>                              breaks <span class="op">=</span> <span class="fl">2</span>, </span>
 <span>                              labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"low"</span>, <span class="st">"high"</span><span class="op">)</span><span class="op">)</span></span>
@@ -377,7 +377,7 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 <h4>The <code>by = list(...)</code> form<a class="anchor" aria-label="anchor" href="#the-by-list...-form"><i class="fas fa-link"></i></a>
 </h4>
 <p>This is the other form of aggregate. It is more elaborate in my opinion because you need te spell out all vectors you want to work on.</p>
-<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">weight</span>, </span>
 <span>          by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>feed <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">feed</span><span class="op">)</span>, </span>
 <span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
@@ -389,7 +389,7 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 ## 5   soybean 246
 ## 6 sunflower 329</code></pre>
 <p>Here is another example:</p>
-<div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Wind</span>, </span>
 <span>          by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>month <span class="op">=</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Month</span>, temperature <span class="op">=</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Temp_factor</span><span class="op">)</span>, </span>
 <span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
@@ -405,7 +405,7 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 ## 9     August        high  8.51
 ## 10 September        high  8.79</code></pre>
 <p>But it is better to wrap it in <code><a href="https://rdrr.io/r/base/with.html">with()</a></code>:</p>
-<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">airquality</span>, <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Wind</span>, </span>
 <span>                           by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>month <span class="op">=</span> <span class="va">Month</span>, temperature <span class="op">=</span> <span class="va">Temp_factor</span><span class="op">)</span>, </span>
 <span>                           FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -415,7 +415,7 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 <span class="header-section-number">9.2.1</span> Many roads lead to Rome<a class="anchor" aria-label="anchor" href="#many-roads-lead-to-rome"><i class="fas fa-link"></i></a>
 </h3>
 <p>The next series of examples are all essentially the same. The message is: there is more than one way to do it!</p>
-<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">weight</span> <span class="op">~</span> <span class="va">feed</span>, </span>
 <span>          data <span class="op">=</span> <span class="va">chickwts</span>, </span>
 <span>          FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
@@ -427,7 +427,7 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 ## 5   soybean    246
 ## 6 sunflower    329</code></pre>
 <p>same as</p>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">weight</span>, </span>
 <span>               by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>feed <span class="op">=</span> <span class="va">chickwts</span><span class="op">$</span><span class="va">feed</span><span class="op">)</span>, </span>
 <span>               FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>, n<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
@@ -436,21 +436,21 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 ## 2 horsebean 160
 ## 3   linseed 219</code></pre>
 <p>same as</p>
-<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">chickwts</span><span class="op">$</span><span class="va">weight</span>, <span class="va">chickwts</span><span class="op">$</span><span class="va">feed</span>, <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    casein horsebean   linseed  meatmeal   soybean sunflower 
 ##       324       160       219       277       246       329</code></pre>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">chickwts</span>, <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">weight</span>, <span class="va">feed</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    casein horsebean   linseed  meatmeal   soybean sunflower 
 ##       324       160       219       277       246       329</code></pre>
 <p>same as</p>
-<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">chickwts</span>, <span class="va">chickwts</span><span class="op">$</span><span class="va">feed</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    casein horsebean   linseed  meatmeal   soybean sunflower 
 ##       324       160       219       277       246       329</code></pre>
 <p>And this is the topic of the next part of this chapter:</p>
-<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">chickwts</span>, <span class="va">feed</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_weigth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -494,7 +494,7 @@ Here we have the response of Treated (T) and Untreated (UT) subjects</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-14.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

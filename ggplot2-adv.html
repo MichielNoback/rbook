@@ -89,7 +89,7 @@
 </h3>
 <p>Sometimes there are simply too many data points for a scatter plot to be intelligible, even with minimum point size and maximum transparency. In that case you will need to do some binning of the points, a form of data reduction.</p>
 <p>For instance, this will not work:</p>
-<div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb730"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">size</span> <span class="op">&lt;-</span> <span class="fl">10000</span></span>
 <span><span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">size</span>, <span class="fl">100</span>, <span class="fl">10</span><span class="op">)</span>, </span>
 <span>                   y <span class="op">=</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">x</span>, mean <span class="op">=</span> <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
@@ -107,7 +107,7 @@
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_density_2d.html">geom_density_2d()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/geom_density_2d.html">geom_density_2d_filled()</a></code>: two-dimensional density</li>
 </ul>
 <p>Here is a <code><a href="https://ggplot2.tidyverse.org/reference/geom_hex.html">geom_hex()</a></code> example with a custom color scale:</p>
-<div class="sourceCode" id="cb711"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb731"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sim_data</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_hex.html">geom_hex</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"white"</span>, high <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -121,7 +121,7 @@
 <p>When you have multiple measurements for a single x-axis point there are already several options available to you:
 Since this is growth data I caried out a log2-transformation on the weight variable
 - <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>: Multiple lines; these tend to get cluttered really quick</p>
-<div class="sourceCode" id="cb712"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb732"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ChickWeight</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Time</span>, y <span class="op">=</span> <span class="va">weight</span>, color <span class="op">=</span> <span class="va">Diet</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>group<span class="op">=</span><span class="va">Chick</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -129,7 +129,7 @@ Since this is growth data I caried out a log2-transformation on the weight varia
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="DAVuR_files/figure-html/multiple-y-axis-measurements-1-1.png" width="80%" style="display: block; margin: auto;">
 - <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter()</a></code>: Tend to lead away from observing patterns</p>
-<div class="sourceCode" id="cb713"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb733"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ChickWeight</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Time</span>, y <span class="op">=</span> <span class="va">weight</span>, color <span class="op">=</span> <span class="va">Diet</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -140,7 +140,7 @@ Since this is growth data I caried out a log2-transformation on the weight varia
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>: Multiple boxplots are already better but also get cluttered.</li>
 </ul>
-<div class="sourceCode" id="cb714"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb734"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ChickWeight</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Time</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">weight</span>, fill <span class="op">=</span> <span class="va">Diet</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -148,7 +148,7 @@ Since this is growth data I caried out a log2-transformation on the weight varia
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="DAVuR_files/figure-html/multiple-y-axis-measurements-3-1.png" width="90%" style="display: block; margin: auto;">
 - <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin()</a></code>: Multiple violin plots; only when sufficient data are present</p>
-<div class="sourceCode" id="cb715"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb735"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ChickWeight</span>,</span>
 <span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Time</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">weight</span>, fill <span class="op">=</span> <span class="va">Diet</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -159,7 +159,7 @@ Since this is growth data I caried out a log2-transformation on the weight varia
 <li>
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar()</a></code> and related (<code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_linerange()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_crossbar()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_pointrange()</a></code>): Sometimes the best solution for more focus on the data patterns. Here, I added some shift on the x-axis (Time) in order to prevent the points and error bars to overlap.</li>
 </ul>
-<div class="sourceCode" id="cb716"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb736"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ChickWeight</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Diet</span>, <span class="va">Time</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span>, </span>
@@ -180,7 +180,7 @@ Since this is growth data I caried out a log2-transformation on the weight varia
 </h3>
 <p>Visualizing multivariate categorical data requires another approach. Scatter- and line plots and histograms are all unsuitable for factor data. Here are some plotting examples that work well for categorical data. Copied and adapted from <a href="http://www.sthda.com/english/articles/32-r-graphics-essentials/129-visualizing-multivariate-categorical-data/">STHDA site</a>.</p>
 <p>The first example deals with the builtin dataset <code>HairEyeColor</code>. It is a contingency table and a <code>table</code> object so it must be converted into a dataframe before use.</p>
-<div class="sourceCode" id="cb717"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb737"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hair_eye_col_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">HairEyeColor</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">hair_eye_col_df</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    Hair   Eye  Sex Freq
@@ -193,7 +193,7 @@ Since this is growth data I caried out a log2-transformation on the weight varia
 <div id="bar-plots-of-contingency-tables" class="section level4 unnumbered">
 <h4>Bar plots of contingency tables<a class="anchor" aria-label="anchor" href="#bar-plots-of-contingency-tables"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb719"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb739"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">hair_eye_col_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Hair</span>, y <span class="op">=</span> <span class="va">Freq</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Eye</span><span class="op">)</span>, </span>
 <span>           stat <span class="op">=</span> <span class="st">"identity"</span>, </span>
@@ -206,7 +206,7 @@ Since this is growth data I caried out a log2-transformation on the weight varia
 <h4>Balloon plot<a class="anchor" aria-label="anchor" href="#balloon-plot"><i class="fas fa-link"></i></a>
 </h4>
 <p>Here is a dataset called <code>housetasks</code> that contains data on who does what tasks within the household.</p>
-<div class="sourceCode" id="cb720"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb740"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">housetasks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"demo-data/housetasks.txt"</span>, package <span class="op">=</span> <span class="st">"ggpubr"</span><span class="op">)</span>,</span>
 <span>  row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -225,12 +225,12 @@ Since this is growth data I caried out a log2-transformation on the weight varia
 ## Repairs       0           3     160       2
 ## Holidays      0           1       6     153</code></pre>
 <p>A balloon plot is an excellent way to visualize this kind of data. The function <code>ggballoonplot()</code> is part of the ggpubr package (“‘ggplot2’ Based Publication Ready Plots”). Have a look at <a href="https://rpkgs.datanovia.com/ggpubr/">this page</a> for a nice review of its possibilities.</p>
-<div class="sourceCode" id="cb722"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb742"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggpubr</span><span class="fu">::</span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggballoonplot.html">ggballoonplot</a></span><span class="op">(</span><span class="va">housetasks</span>, fill <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/balloonplot1-1.png" width="80%" style="display: block; margin: auto;"></div>
 <p>As you can see the counts map to both size and color.
 Balloon plots can also be faceted.</p>
-<div class="sourceCode" id="cb723"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb743"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggpubr</span><span class="fu">::</span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggballoonplot.html">ggballoonplot</a></span><span class="op">(</span><span class="va">hair_eye_col_df</span>, x <span class="op">=</span> <span class="st">"Hair"</span>, y <span class="op">=</span> <span class="st">"Eye"</span>, size <span class="op">=</span> <span class="st">"Freq"</span>,</span>
 <span>              fill <span class="op">=</span> <span class="st">"Freq"</span>, facet.by <span class="op">=</span> <span class="st">"Sex"</span>,</span>
 <span>              ggtheme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -243,10 +243,10 @@ Balloon plots can also be faceted.</p>
 <span class="header-section-number">12.1.4</span> The <code>corrplot::corrplot()</code> function<a class="anchor" aria-label="anchor" href="#the-corrplotcorrplot-function"><i class="fas fa-link"></i></a>
 </h3>
 <p>R package <code>corrplot</code> provides a visualization interface to correlation matrices. It has <em>many</em> parameters. Here is a simple example with the airquality dataset</p>
-<div class="sourceCode" id="cb724"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb744"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/taiyun/corrplot">corrplot</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code>## corrplot 0.92 loaded</code></pre>
-<div class="sourceCode" id="cb726"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb746"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">M</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html">corrplot</a></span><span class="op">(</span><span class="va">M</span>,  order <span class="op">=</span> <span class="st">'AOE'</span>, type <span class="op">=</span> <span class="st">'lower'</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/corrplot-1-1.png" width="672"></div>
@@ -258,7 +258,7 @@ Balloon plots can also be faceted.</p>
 </h3>
 <p>The <code>ggpairs()</code> function of the <code>GGally</code> package allows you to build a scatterplot matrix just like the base R <code><a href="https://rdrr.io/r/graphics/pairs.html">pairs()</a></code> function.</p>
 <p>Scatterplots of each pair of numeric variable are drawn on the left part of the figure. Pearson correlation is displayed on the right. Variable distribution is available on the diagonal.</p>
-<div class="sourceCode" id="cb727"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb747"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">airquality_no_na</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span></span>
 <span><span class="fu">GGally</span><span class="fu">::</span><span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">airquality_no_na</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/ggpairs-demo-1.png" width="90%" style="display: block; margin: auto;"></div>
@@ -270,7 +270,7 @@ Balloon plots can also be faceted.</p>
 </h3>
 <p>You can use <code><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html">ggMarginal()</a></code> to add marginal distributions to the X and Y axis of a ggplot2 scatterplot.
 It can be done using histogram, boxplot or density plot using the <code>ggExtra</code> package</p>
-<div class="sourceCode" id="cb728"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb748"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/daattali/ggExtra">ggExtra</a></span><span class="op">)</span></span>
 <span><span class="va">airquality</span> <span class="op">&lt;-</span> <span class="va">airquality</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Month_f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">month.abb</span><span class="op">[</span><span class="va">Month</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
@@ -298,7 +298,7 @@ It can be done using histogram, boxplot or density plot using the <code>ggExtra<
 <span class="header-section-number">12.2.1</span> Secondary y-axis<a class="anchor" aria-label="anchor" href="#secondary-y-axis"><i class="fas fa-link"></i></a>
 </h3>
 <p>Adding a second y-axis series is surprisingle non-intuitive in ggplot. Here is a minimal example I found on the <a href="https://r-graph-gallery.com/line-chart-dual-Y-axis-ggplot2.html">R Graph Gallery</a>:</p>
-<div class="sourceCode" id="cb729"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb749"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Build dummy data</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  day <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2023-01-01"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0</span><span class="op">:</span><span class="fl">99</span>,</span>
@@ -333,7 +333,7 @@ It can be done using histogram, boxplot or density plot using the <code>ggExtra<
 </h3>
 <p>Sometimes you may wish to create a panel of plots using a <code>for</code> loop, similarly to the use of <code>par(mfrow = c(rows, cols))</code> in base R. There are a few caveats to this seemingly simple notion.</p>
 <p>For instance, to create a set of boxplots for a few columns of the <code>airquality</code> dataset, you would do something like this in base R:</p>
-<div class="sourceCode" id="cb730"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb750"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set the number of rows and columns</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -343,11 +343,11 @@ It can be done using histogram, boxplot or density plot using the <code>ggExtra<
 <span>            xlab <span class="op">=</span> <span class="va">n</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/panel-plots-base-R-1.png" width="672"></div>
-<div class="sourceCode" id="cb731"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb751"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># reset par</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>When you naively migrate this structure to a ggplot setting, it will become something like this.</p>
-<div class="sourceCode" id="cb732"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb752"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">n</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -358,11 +358,11 @@ It can be done using histogram, boxplot or density plot using the <code>ggExtra<
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">plt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="DAVuR_files/figure-html/panel-plots-ggplot-1-1.png" width="30%"><img src="DAVuR_files/figure-html/panel-plots-ggplot-1-2.png" width="30%"><img src="DAVuR_files/figure-html/panel-plots-ggplot-1-3.png" width="30%"><img src="DAVuR_files/figure-html/panel-plots-ggplot-1-4.png" width="30%"></p>
-<div class="sourceCode" id="cb733"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb753"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>This is surely not the plot you would have expected: a single straight line, and no panel of plots. It turns out you can not use variables as selectors in <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>.
 Until recently, you needed to use <code><a href="https://ggplot2.tidyverse.org/reference/aes_.html">aes_string()</a></code> for that purpose; see below (not evaluated):</p>
-<div class="sourceCode" id="cb734"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb754"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -378,7 +378,7 @@ Until recently, you needed to use <code><a href="https://ggplot2.tidyverse.org/r
 <p>However, since ggplot2 version 3.0.0. you need to use a different technique.
 You can do it using the <code>!!</code> operator on the variable after call to <code><a href="https://rlang.r-lib.org/reference/sym.html">sym()</a></code>. This will unquote and evaluate variable in the surrounding environment.</p>
 <p>Here is a recent version.</p>
-<div class="sourceCode" id="cb735"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb755"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -390,11 +390,11 @@ You can do it using the <code>!!</code> operator on the variable after call to <
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">plt</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="DAVuR_files/figure-html/panel-plots-ggplot-3-1.png" width="30%"><img src="DAVuR_files/figure-html/panel-plots-ggplot-3-2.png" width="30%"><img src="DAVuR_files/figure-html/panel-plots-ggplot-3-3.png" width="30%"><img src="DAVuR_files/figure-html/panel-plots-ggplot-3-4.png" width="30%"></p>
-<div class="sourceCode" id="cb736"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb756"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Also note that if you omit the <code>print(plt)</code> call this outputs <em>nothing</em>, which is really quite confusing. You need to explicitely print the plot, not implicitly as you normally can.</p>
 <p>This works as required except for the panel-of-plots part. The <code>mfrow</code> option to <code><a href="https://rdrr.io/r/graphics/par.html">par()</a></code> does not work with <code>ggplot2</code>. This can be fixed through the use of the <code>gridExtra</code> package.</p>
-<div class="sourceCode" id="cb737"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb757"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># a list to store the plots</span></span>
@@ -411,7 +411,7 @@ You can do it using the <code>!!</code> operator on the variable after call to <
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span>grobs <span class="op">=</span> <span class="va">my_plots</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="DAVuR_files/figure-html/panel-plots-ggplot-4-1.png" width="80%" style="display: block; margin: auto;"></div>
-<div class="sourceCode" id="cb738"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb758"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#OR: use do.call() to process the list in grid.arrange</span></span>
 <span><span class="co">#do.call(grid.arrange, c(my_plots, nrow = 2))</span></span></code></pre></div>
 <p>So the rules for usage of a for-loop to create a panel of plots:</p>
@@ -430,7 +430,7 @@ You can do it using the <code>!!</code> operator on the variable after call to <
 <h4>Scales, Coordinates and Annotations<a class="anchor" aria-label="anchor" href="#scales-coordinates-and-annotations"><i class="fas fa-link"></i></a>
 </h4>
 <p>Scales and Coordinates are used to adjust the way your data is mapped and displayed. Here, a log10 scale is applied to the y axis using <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10()</a></code> and the x axis is reversed (from high to low values instead of low to high) using <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_reverse()</a></code>.</p>
-<div class="sourceCode" id="cb739"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb759"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">cars</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">speed</span>, y <span class="op">=</span> <span class="va">dist</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -438,7 +438,7 @@ You can do it using the <code>!!</code> operator on the variable after call to <
 <div class="inline-figure"><img src="DAVuR_files/figure-html/tweeking-1.png" width="80%" style="display: block; margin: auto;"></div>
 <p>In other contexts, such as geographic information analysis, the scale is extremely important.
 The default coordinate system in ggplot2 is <code><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian()</a></code>. In the plot below, a different coordinate system is used.</p>
-<div class="sourceCode" id="cb740"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb760"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># function to compute standard error of mean</span></span>
 <span><span class="va">se</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> </span>
 <span></span>
@@ -464,7 +464,7 @@ The default coordinate system in ggplot2 is <code><a href="https://ggplot2.tidyv
 </h4>
 <p>The theme is used to make changes to the overall appearance of the plot. Two approaches exist. The simplest one is selecting a specific theme and make some minor adjustments at most.
 Here are is the minimal theme where the text sizes have been modified somewhat.</p>
-<div class="sourceCode" id="cb741"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb761"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">airquality</span>, mapping<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Temp</span>, y<span class="op">=</span><span class="va">Ozone</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">Month_f</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span> <span class="op">+</span></span>
@@ -477,7 +477,7 @@ Here are is the minimal theme where the text sizes have been modified somewhat.<
 <div class="inline-figure"><img src="DAVuR_files/figure-html/themes1-1.png" width="80%" style="display: block; margin: auto;"></div>
 <p>Note that if the <code>color = Month_f</code> aesthetic would have been put in the main ggplot call, the smoother would have been split over the Month groups.</p>
 <p>Alternatively, the theme can be specified completely, as show below.</p>
-<div class="sourceCode" id="cb744"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb764"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Temp</span>, y <span class="op">=</span> <span class="va">Ozone</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">Month_f</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -514,11 +514,11 @@ Here are is the minimal theme where the text sizes have been modified somewhat.<
 <p>A final layer that can be added one containing <strong><em>annotations</em></strong>. Annotations are elements that are added manually to the plot. This can be a text label, a fictitious data point, a shaded box or an arrow indicating a region of interest.</p>
 <p>In the <code><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate()</a></code> method, you specify the geom you wish to add (e.g. “text”, “point”)
 The panel below demonstrates a few.</p>
-<div class="sourceCode" id="cb748"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb768"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">outlier</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Ozone</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Ozone</span> <span class="op">&gt;</span> <span class="fl">150</span>, <span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##     Ozone Solar.R Wind Temp  Month Day bar Temp_factor Month_f
 ## 117   168     238  3.4   81 August  25   1        high     Apr</code></pre>
-<div class="sourceCode" id="cb750"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb770"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Temp</span>, y <span class="op">=</span> <span class="va">Ozone</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"rect"</span>, xmin <span class="op">=</span> <span class="fl">72</span>, xmax <span class="op">=</span> <span class="fl">77</span>, ymin <span class="op">=</span> <span class="fl">0</span>, ymax <span class="op">=</span> <span class="fl">50</span>, </span>
 <span>           alpha <span class="op">=</span> <span class="fl">0.1</span>, color <span class="op">=</span> <span class="st">"blue"</span>, fill <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1070,7 +1070,7 @@ T2
 <p>To work with ggplot2, a tidy (“long”) version of the data is required.
 In the next chapter this will be dealt with in detail.
 Here the T0, T1 and T2 columns are <strong><em>gather</em></strong>ed into a single column because they actually represent a single variable: Time. All measured stress values, also a single variable, are gathered into a single column as well. This causes a flattening of the data (less columns, more rows).</p>
-<div class="sourceCode" id="cb752"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb772"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">distress_data_tidy</span> <span class="op">&lt;-</span> <span class="fu">pivot_longer</span><span class="op">(</span>data <span class="op">=</span> <span class="va">distress_data</span>,</span>
 <span>                                   cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">T0</span>, <span class="va">T1</span>, <span class="va">T2</span><span class="op">)</span>,</span>
 <span>                                   names_to <span class="op">=</span> <span class="st">"Timepoint"</span>,</span>
@@ -1211,7 +1211,7 @@ T0
 <h4>A first version<a class="anchor" aria-label="anchor" href="#a-first-version"><i class="fas fa-link"></i></a>
 </h4>
 <p>This is the first version of the visualization. The jitter has been created with <code>geom_jitter</code>. The plot symbols have been made transparent to keep overlapping points visible. The plot symbols have been made bigger to support embedding in (PowerPoint) presentations. A little horizontal jitter was introduced to have less overlap of the symbols, but not too much - the discrete time points still stand out well. Vertical jitter omitted since the data are already measured in a continuous scale. A typical use case for vertical jitter is when you have discrete (and few) y-axis measurements.</p>
-<div class="sourceCode" id="cb753"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb773"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">distress_data_tidy</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Timepoint</span>, y<span class="op">=</span><span class="va">Stress</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.1</span>, size <span class="op">=</span> <span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -1225,7 +1225,7 @@ Figure 12.1: A first attempt
 <h4>Add mean and SD<a class="anchor" aria-label="anchor" href="#add-mean-and-sd"><i class="fas fa-link"></i></a>
 </h4>
 <p>To emphasize the trend in the timeseries, means and standard deviations from the mean were added using <code><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary()</a></code>. Always be aware of the orders of layers of your plot! Here, the <code>stat_summary</code> was placed “below” the plot symbols. Again, size was increased for enhanced visibility in presentations. Why not the median? Because of the audience! Everybody knows what a mean is, but few know what a median is - especially at management level.</p>
-<div class="sourceCode" id="cb754"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb774"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mean_sd</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, ymin <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, ymax <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -1244,7 +1244,7 @@ Figure 12.2: With mean and standard deviation
 <h4>Emphasize worst cases<a class="anchor" aria-label="anchor" href="#emphasize-worst-cases"><i class="fas fa-link"></i></a>
 </h4>
 <p>To emphasize the development of subjects who were in the worst shape at the onset of the research (T0), the top 25% with respect to distress score at T0 were highlighted.</p>
-<div class="sourceCode" id="cb755"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb775"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">distress_data</span><span class="op">$</span><span class="va">high_at_T0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">distress_data</span><span class="op">$</span><span class="va">T0</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">distress_data</span><span class="op">$</span><span class="va">T0</span>, <span class="fl">0.75</span><span class="op">)</span>, <span class="st">"Q4"</span>, <span class="st">"Q1-Q3"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">distress_data_tidy</span> <span class="op">&lt;-</span> <span class="fu">gather</span><span class="op">(</span><span class="va">distress_data</span>,</span>
@@ -1376,7 +1376,7 @@ Q1-Q3
 </tbody>
 </table></div>
 <p>The color is added using <code>aes(color = high_at_T0)</code> within the <code><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter()</a></code> call.</p>
-<div class="sourceCode" id="cb756"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb776"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">distress_data_tidy</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Timepoint</span>, y<span class="op">=</span><span class="va">Stress</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary</a></span><span class="op">(</span>fun.data<span class="op">=</span><span class="va">mean_sd</span>, color <span class="op">=</span> <span class="st">"darkred"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.1</span>, size <span class="op">=</span> <span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">0.6</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">high_at_T0</span><span class="op">)</span><span class="op">)</span></span>
@@ -1389,7 +1389,7 @@ Q1-Q3
 <span class="header-section-number">12.3.2</span> Last tweaks: fonts and legend<a class="anchor" aria-label="anchor" href="#last-tweaks-fonts-and-legend"><i class="fas fa-link"></i></a>
 </h3>
 <p>The plot is more or less ready. Now is the time to adjust the plot “theme”.</p>
-<div class="sourceCode" id="cb757"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb777"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"Group"</span><span class="op">)</span></span></code></pre></div>
@@ -1400,7 +1400,7 @@ Q1-Q3
 <span class="header-section-number">12.3.3</span> The code<a class="anchor" aria-label="anchor" href="#the-code"><i class="fas fa-link"></i></a>
 </h3>
 <p>Here is the code used for data preparation:</p>
-<div class="sourceCode" id="cb758"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb778"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">distress_data</span><span class="op">$</span><span class="va">high_at_T0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span></span>
 <span>    <span class="va">distress_data</span><span class="op">$</span><span class="va">T0</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">distress_data</span><span class="op">$</span><span class="va">T0</span>, <span class="fl">0.75</span><span class="op">)</span>, <span class="st">"Q4"</span>, <span class="st">"Q1-Q3"</span><span class="op">)</span></span>
 <span></span>
@@ -1414,7 +1414,7 @@ Q1-Q3
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, ymin<span class="op">=</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, ymax<span class="op">=</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>This is the final code for the plot</p>
-<div class="sourceCode" id="cb759"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb779"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">distress_data_tidy</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Timepoint</span>, y<span class="op">=</span><span class="va">Stress</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary</a></span><span class="op">(</span>fun.data<span class="op">=</span><span class="va">mean_sd</span>, color <span class="op">=</span> <span class="st">"darkred"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.1</span>,</span>
@@ -1476,7 +1476,7 @@ Q1-Q3
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-14.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

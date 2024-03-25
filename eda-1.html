@@ -161,7 +161,7 @@
 <span class="header-section-number">14.2.2</span> Data loading and prepping<a class="anchor" aria-label="anchor" href="#data-loading-and-prepping"><i class="fas fa-link"></i></a>
 </h3>
 <p>Since I am going to rerun the code in this notebook often I am going to create a local copy, and load that one.</p>
-<div class="sourceCode" id="cb798"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb818"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">file_name</span> <span class="op">&lt;-</span> <span class="st">"yeast.data"</span></span>
 <span><span class="va">yeast_data_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/MichielNoback/datasets/master/UCI_yeast_protein_loc/"</span>, <span class="va">file_name</span><span class="op">)</span></span>
 <span><span class="va">yeast_local_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"./data/"</span>, <span class="va">file_name</span><span class="op">)</span></span>
@@ -189,7 +189,7 @@
 ##  $ V10: Factor w/ 10 levels "CYT","ERL","EXC",..: 7 7 7 8 7 1 7 8 7 1 ...</code></pre>
 <p>The data seems to have been loaded correctly and, as expected since that was stated in the original data description, there are no missing data.</p>
 <p>The column names were not defined in the data file so this will be fixed first. I will create a data frame that also holds the column descriptions. I have put the data in a small text file for easy loading and editing; the attribute descriptions copied/pasted into a text file and with find/replace converted in easy to load form, and a new <code>label</code> column added for use in plotting. There were a few occurrences of the <code>'</code> character which always corrupt data import into R. They were removed.</p>
-<div class="sourceCode" id="cb800"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb820"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">attribute_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"data/yeast_attribute_info.txt"</span>, </span>
 <span>                             sep <span class="op">=</span> <span class="st">":"</span>,</span>
 <span>                             header <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -199,7 +199,7 @@
 <pre><code>##  [1] "accno" "mcg"   "gvh"   "alm"   "mit"   "erl"   "pox"   "vac"   "nuc"  
 ## [10] "loc"</code></pre>
 <p>To make this info easily accessible, a function is created that can be used to fetch either the description or the label.</p>
-<div class="sourceCode" id="cb802"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb822"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_attribute_info</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">attribute</span>, <span class="va">resource</span> <span class="op">=</span> <span class="st">"label"</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span> <span class="va">resource</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"label"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>        <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"type "</span>, <span class="va">resource</span>, <span class="st">"is not an attribute resource"</span><span class="op">)</span><span class="op">)</span></span>
@@ -218,12 +218,12 @@
 <span class="header-section-number">14.2.3</span> Data verification<a class="anchor" aria-label="anchor" href="#data-verification"><i class="fas fa-link"></i></a>
 </h3>
 <p>The original data description stated that 1484 instances with 9 attributes + a class label are present.</p>
-<div class="sourceCode" id="cb804"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb824"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1484   10</code></pre>
 <p>This is correct.
 No missing data are supposed to be there:</p>
-<div class="sourceCode" id="cb806"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb826"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1484</code></pre>
 <p>Also correct.</p>
@@ -234,7 +234,7 @@ No missing data are supposed to be there:</p>
 <span class="header-section-number">14.2.4</span> Attribute summaries<a class="anchor" aria-label="anchor" href="#attribute-summaries"><i class="fas fa-link"></i></a>
 </h3>
 <p>A first scan of the attributes.</p>
-<div class="sourceCode" id="cb808"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb828"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">yeast_data</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##     accno                mcg            gvh            alm      
 ##  Length:1484        Min.   :0.11   Min.   :0.13   Min.   :0.21  
@@ -264,7 +264,7 @@ No missing data are supposed to be there:</p>
 <p>The
 The <code>pox</code> (Peroxisomal) and <code>erl</code> ( ER-retention) attributes, seem to have a really strange distribution and should be investigated further.</p>
 <p>Here are all the numeric attributes in a single panel. I chose histogram over boxplot or density plot because it is more fine-grained than boxplot and very easy to interpret.</p>
-<div class="sourceCode" id="cb810"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb830"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># a list to store the plots</span></span>
 <span><span class="va">my_plots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -292,7 +292,7 @@ Figure 14.1: Distributions of the numeric variables
 <span class="header-section-number">14.2.5</span> Attribute relationships<a class="anchor" aria-label="anchor" href="#attribute-relationships"><i class="fas fa-link"></i></a>
 </h3>
 <p>Here is a quick scan of variable relationship, excluding the dependent variable. The <code><a href="https://rdrr.io/r/graphics/pairs.html">pairs()</a></code> function is used for that. I excluded <code>erl</code> and <code>pox</code> because they do not add information to the picture.</p>
-<div class="sourceCode" id="cb811"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb831"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Function to return points and geom_smooth</span></span>
 <span><span class="co"># allow for the method to be changed</span></span>
 <span><span class="va">wrap_fn</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">mapping</span>, <span class="va">method</span><span class="op">=</span><span class="st">"loess"</span>, <span class="va">...</span><span class="op">)</span><span class="op">{</span></span>
@@ -319,7 +319,7 @@ Figure 14.2: Relations between the numeric variables
 <span class="header-section-number">14.2.6</span> Correlations to the dependent variable<a class="anchor" aria-label="anchor" href="#correlations-to-the-dependent-variable"><i class="fas fa-link"></i></a>
 </h3>
 <p>As a first investigation, numeric variables are split on the location variable. These plots are screated using the base R plotting system.</p>
-<div class="sourceCode" id="cb812"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb832"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span>
 <span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">8</span>, name <span class="op">=</span> <span class="st">"Accent"</span><span class="op">)</span></span>
 <span><span class="co">#col = c("darkblue", "darkgreen", "magenta", )</span></span>
@@ -381,7 +381,7 @@ Figure 14.10: Correlations with the dependent variable
 </div>
 <p>Quite a few of the variables correlate pretty well with the dependent variable. These do so very well: <code>alm</code>, <code>mit</code>, <code>erl</code>, <code>pox</code>. Others are not: <code>nuc</code>, <code>vac</code>, and some are ambiguous - they discriminate, but not exclusively: <code>mcg</code>, <code>gvh</code>.</p>
 <p>Here are some summary statistics for the numeric variables split on the dependent variable:</p>
-<div class="sourceCode" id="cb813"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb833"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span> <span class="va">.</span> <span class="op">~</span> <span class="va">loc</span>, data <span class="op">=</span> <span class="va">yeast_data</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span>
@@ -703,7 +703,7 @@ nuc
 </td>
 </tr>
 </tbody></table></div>
-<div class="sourceCode" id="cb814"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb834"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span> <span class="va">.</span> <span class="op">~</span> <span class="va">loc</span>, data <span class="op">=</span> <span class="va">yeast_data</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span>, FUN <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm"><tbody>
@@ -1060,7 +1060,7 @@ nuc
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-14.</p>
+    <p>"<strong>Data Analysis and Visualization using R</strong>" was written by Michiel Noback. It was last built on 2024-03-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

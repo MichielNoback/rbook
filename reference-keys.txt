@@ -86,6 +86,9 @@ geometries
 faceting
 built-in-functions
 descriptive-statistics
+sampling-and-distributions
+rnorm-and-friends.
+sampling-from-vectors-or-ranges
 general-purpose-functions
 dealing-with-nas
 convert-numeric-vector-to-factor-cut
